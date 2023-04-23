@@ -1,0 +1,175 @@
+{
+  "name": "@vagabond-ts/react-crud-mui",
+  "version": "0.0.1",
+  "description": "React lib with MUI, redux, i18n, router-dom, axios",
+  "private": false,
+  "scripts": {
+    "clean": "rm -rf dist",
+    "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx}\"",
+    "prettier": "prettier --write \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx}\"",
+    "test": "jest",
+    "test:json": "jest --json --outputFile=src/jest-test-results.json",
+    "coverage": "npm run test -- --coverage ",
+    "coverage:all": "npm run coverage -- --watchAll",
+    "ci": "npm run coverage:all -- false --testResultsProcessor jest-sonar-reporter",
+    "format": "npm run prettier && npm run lint",
+    "storybook": "storybook dev -p 6006",
+    "build": "npm run clean && tsc",
+    "build:lib": "npm run build && rollup -c --bundleConfigAsCjs && cp -r src/assets dist/",
+    "build:all": "npm run build && npm run test && npm run format && rollup -c --bundleConfigAsCjs && cp -r src/assets dist/",
+    "prepublishOnly": "npm run test:json && npm run format && npm run build:lib",
+    "build:storybook": "storybook build"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@fontsource/roboto": "^4.5.8",
+    "@greatsumini/react-facebook-login": "^3.3.3",
+    "@mui/icons-material": "^5.11.10",
+    "@mui/material": "^5.11.10",
+    "@react-oauth/google": "^0.10.0",
+    "axios": "~1.2.0",
+    "dompurify": "~3.0.1",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "formik": "~2.0.0",
+    "i18next": "~22.4.0",
+    "i18next-browser-languagedetector": "~7.0.0",
+    "prettier": "^2.8.8",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-i18next": "~12.2.0",
+    "react-redux": "~8.0.0",
+    "react-router-dom": "^6.0.0",
+    "sass": "~1.0.0",
+    "uuid": "~9.0.0",
+    "yup": "~1.0.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.21.4",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.21.4",
+    "@reduxjs/toolkit": "~1.9.1",
+    "@rollup/plugin-commonjs": "^24.1.0",
+    "@rollup/plugin-json": "^6.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-typescript": "^11.1.0",
+    "@storybook/addon-essentials": "^7.0.5",
+    "@storybook/addon-interactions": "^7.0.5",
+    "@storybook/addon-jest": "^7.0.5",
+    "@storybook/addon-links": "^7.0.5",
+    "@storybook/blocks": "^7.0.5",
+    "@storybook/react": "^7.0.5",
+    "@storybook/react-webpack5": "^7.0.5",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@types/uuid": "^9.0.1",
+    "babel-jest": "^29.5.0",
+    "css-loader": "^6.7.3",
+    "eslint-config-react-app": "^7.0.1",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
+    "jest-sonar-reporter": "~2.0.0",
+    "react-test-renderer": "^18.2.0",
+    "redux-mock-store": "~1.5.4",
+    "rollup": "^3.20.6",
+    "rollup-plugin-dts": "^5.3.0",
+    "rollup-plugin-minification": "^0.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-scss": "^4.0.0",
+    "sass": "^1.62.0",
+    "sass-loader": "^13.2.2",
+    "sonarqube-scanner": "~3.0.1",
+    "storybook": "^7.0.5",
+    "style-loader": "^3.3.2",
+    "tslib": "^2.5.0",
+    "typescript": "^5.0.4",
+    "webpack": "^5.80.0"
+  },
+  "files": [
+    "/dist"
+  ],
+  "main": "dist/cjs/index.js",
+  "types": "dist/types/index.d.ts",
+  "module": "dist/esm/index.js",
+  "peerDependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@fontsource/roboto": "^4.5.8",
+    "@greatsumini/react-facebook-login": "^3.3.3",
+    "@mui/icons-material": "^5.11.10",
+    "@mui/material": "^5.11.10",
+    "@react-oauth/google": "^0.10.0",
+    "axios": "~1.2.0",
+    "formik": "~2.0.0",
+    "i18next": "~22.4.0",
+    "i18next-browser-languagedetector": "~7.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-i18next": "~12.2.0",
+    "react-redux": "~8.0.0",
+    "react-router-dom": "^6.0.0",
+    "sass": "~1.0.0",
+    "uuid": "~9.0.0",
+    "yup": "~1.0.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "rules": {
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "jsx-a11y/role-supports-aria-props": "off",
+      "jsx-a11y/anchor-is-valid": "off",
+      "jsx-a11y/anchor-has-content": "off",
+      "@typescript-eslint/no-restricted-imports": [
+        "warn",
+        {
+          "name": "react-redux",
+          "importNames": [
+            "useSelector",
+            "useDispatch"
+          ],
+          "message": "Use typed hooks `useAppDispatch` and `useAppSelector` instead."
+        }
+      ]
+    },
+    "ignorePatterns": [
+      "cypress/**",
+      "dist/**",
+      "**/*.stories.tsx",
+      "**/*.test.js",
+      "**/setupTests.*"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
+  },
+  "eslintIgnore": [
+    "**/*store*.*",
+    "**/vendor/*.js",
+    "node_modules/**/*.ts?(x)"
+  ],
+  "jestSonar": {
+    "reportPath": "coverage",
+    "reportFile": "test-report.xml",
+    "indent": 2
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ]
+}

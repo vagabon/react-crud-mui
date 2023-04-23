@@ -1,0 +1,64 @@
+{
+  "MINISTERE": "Ministère de l'Europe et des Affaires Etrangères",
+  "BACK": "Retour",
+  "AMBASSY_OF_FRANCE_TO": "Ambassade de France à ",
+  "CNCD_CARD_PAGE": "CNCD à la carte",
+  "ALT_LOGO_CNCD": "Logo du Ministère de l'Europe et des Affaires étrangères (MEAE) et de la Commission Nationale de la Coopération Décentralisée (CNCD)",
+  "SITEMAP_TITLE": "Plan du site",
+  "ACCESSIBILITY_TITLE": "Accessibilité",
+  "LEGAL_NOTICE_TITLE": "Mentions légales",
+  "PERSONAL_DATA_TITLE": "Données personnelles",
+  "CONTACT_TITLE": "Nous contacter",
+  "FAQ_TITLE": "FAQ",
+  "FAQ_FULL_TITLE": "Foire aux questions - FAQ",
+  "NEW_WINDOW": "nouvelle fenêtre",
+  "OUI": "Oui",
+  "NON": "Non",
+  "VALIDER": "Valider",
+  "MODIFIER": "Modifier",
+  "SUPPRIMER": "Supprimer",
+  "ANNULER": "Annuler",
+  "NEXT_STEP": "Étape suivante : ",
+  "Network Error": "Le BACK OFFICE n'est pas accessible.",
+
+  "HEADER": {
+    "SIGNIN": "Se connecter",
+    "SIGNUP": "Créer son compte",
+    "PARAMETER_DISPLAY": "Paramètres d'affichage",
+    "HOME": "Accueil – Commission Nationale de la Coopération Décentralisée",
+    "SIGNOUT": "Déconnexion",
+    "UPDATE_USER": "Modifier mon compte",
+    "TITLE_ADMIN": "Administration CNCD"
+  },
+
+  "FOOTER": {
+    "ACCESSIBILITY_STATUS": "Accessibilité : non conforme",
+    "DESCRIPTION": "Pour en savoir plus sur l'action extérieure des collectivités territoriales, consultez la rubrique dédiée sur le site",
+    "FRANCE_DIPLOMATIE": "France Diplomatie",
+    "ALL_RIGHTS_RESERVED": "Tous droits réservés - Ministère de l'Europe et des Affaires étrangères 2023 - CNCD v2.1.4",
+    "COPYRIGHT_ETALAB": "Sauf mention contraire, tous les contenus de ce site sont sous"
+  },
+
+  "HOME": {
+    "TITLE": "Qu'est ce que la Coopération Décentralisée",
+    "SUBTITLE": "L'ensemble des projets de collaboration entre les collectivités territoriales française et des autorité locale étrangères"
+  },
+
+  "NOT_FOUND": {
+    "TITLE": "Page non trouvée",
+    "SUBTITILE": "Erreur 404",
+    "PAGE": "La page que vous cherchez est introuvable. Excusez-nous pour la gène occasionnée.",
+    "TAP_FROM_WEB": "Si vous avez tapé l'adresse web dans le navigateur, vérifiez qu'elle est correcte. La page n'est peut-être plus disponible.",
+    "HOME": "Dans ce cas, pour continuer votre visite vous pouvez consulter notre page d'accueil, ou effectuer une recherche avec notre moteur de recherche en haut de page.",
+    "CONTACT": "Sinon contactez-nous pour que l'on puisse vous rediriger vers la bonne information.",
+    "HOMEPAGE": "Page d'accueil",
+    "CONTACT_US": "Contactez-nous"
+  },
+
+  "STEPS": {
+    "1": "Etape 1 : ",
+    "2": "Etape 2 : ",
+    "3": "Etape 3 : ",
+    "4": "Etape 4 : "
+  }
+}

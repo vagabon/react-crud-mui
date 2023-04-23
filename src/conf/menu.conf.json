@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Accueil",
+    "link": "/home",
+    "roles": []
+  },
+  {
+    "title": "Bingo",
+    "link": "/bingo",
+    "roles": []
+  },
+  {
+    "title": "Administration",
+    "link": "/admin",
+    "roles": ["ADMIN"],
+    "childrens": [
+      {
+        "title": "Utilisateurs",
+        "link": "/admin/user",
+        "roles": []
+      },
+      {
+        "title": "Profiles",
+        "link": "/admin/profile",
+        "roles": []
+      }
+    ]
+  }
+]

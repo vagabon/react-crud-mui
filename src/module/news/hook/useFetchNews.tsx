@@ -1,0 +1,62 @@
+import { useCallback, useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'store/store';
+import { INewsDto } from '../dto/NewsDto';
+import NewsService from '../service/NewsService';
+import { NewsAction } from '../reducer/NewsReducers';
+
+export const useFetchNews = (): {
+  news: INewsDto[];
+  search: string;
+  page: number;
+  fetchNews: (filter: INewsDto, page: number, max: number, orderBy: string, orderByAsc: string) => void;
+  doSearch: (search: string) => void;
+  doChangePage: (page: number) => (pageToAdd: number) => void;
+} => {
+  const { datas: news, search, page } = useAppSelector((state) => state.news);
+  const dispatch = useAppDispatch();
+
+  const [stopLoad, setStopLoad] = useState(false);
+
+  const fetchNews = useCallback(
+    (filter: INewsDto, page: number, max: number, orderBy: string, orderByAsc: string = 'asc') => {
+      NewsService.fetchNews(filter, page * max, max, orderBy, orderByAsc).then((data) => {
+        if (data.length === 0 && page > 0) {
+          setStopLoad(true);
+        } else {
+          dispatch(page === 0 ? NewsAction.setDatas(data) : NewsAction.addDatas(data));
+          setStopLoad(false);
+        }
+      });
+    },
+    [dispatch],
+  );
+
+  const doFetchDatas = useCallback(
+    (filter: INewsDto, page: number) => {
+      fetchNews(filter, page, 5, 'creationDate', 'asc');
+    },
+    [fetchNews],
+  );
+
+  const doSearch = useCallback(
+    (search: string): void => {
+      dispatch(NewsAction.setSearchAndPage({ page: 0, search: search }));
+      doFetchDatas({ search }, 0);
+    },
+    [dispatch, doFetchDatas],
+  );
+
+  const doChangePage = useCallback(
+    (page: number) =>
+      (pageToAdd: number): void => {
+        if (!stopLoad) {
+          const newPage = page + pageToAdd;
+          dispatch(NewsAction.setPage(newPage));
+          doFetchDatas({}, newPage);
+        }
+      },
+    [dispatch, doFetchDatas, stopLoad],
+  );
+
+  return { news, search, page, fetchNews, doSearch, doChangePage };
+};

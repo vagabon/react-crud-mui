@@ -1,0 +1,15 @@
+import { Meta, Source } from '@storybook/blocks';
+
+<Meta title="utils/ListUtils" />
+
+# ListUtils
+
+<Source code={`
+
+  const { t } = useTranslation();
+  
+  ListUtils.convertEnumToList<Enum>(enums: Enum, libelle: string, t: I18nTranslate)
+
+  ListUtils.getListeBoolean<Enum>(t: I18nTranslate)
+
+`} language='javascript' />

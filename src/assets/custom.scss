@@ -1,0 +1,79 @@
+@import '@fontsource/roboto/300.css';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/700.css';
+
+.App { text-align: center; }
+html { font-size: 100%; }
+html, body, #root { height: 100%; }
+
+.label { margin: 20px; }
+
+.alert-danger { color: red !important; }
+
+.flex { display: flex; flex-direction: column; }
+.flexRow, .flex-row { display: flex; flex-direction: row; }
+.fullwidth { width: 100%; }
+.flex1 { flex: 1;  }
+.flex-wrap { & > .flex { flex-wrap: wrap; flex-direction: row; & > div { width : calc(50% - 8px); margin: 4px !important; } } }
+.flex-wrap { flex-wrap: wrap; flex-direction: row; & > div { width : calc(50% - 8px); margin: 4px !important; align-self: baseline; } }
+.width-auto { width: auto; }
+.align-center { align-items: center; }
+.align-end { align-items: end; }
+.justify-end { justify-content: flex-end; }
+.space-between { justify-content: space-between; }
+.margin-5 { margin: 5px; }
+.margin-border { margin: 0px 10px; }
+.margin-top-20 { margin-top: 20px; }
+.button-top-left { position: absolute; left: 10px; top: 2px;}
+.button-top-rigth { position: absolute; right: -4px; top: -6px;}
+.overflow-auto { overflow: auto;}
+
+.width100 { width: 100%; }
+.heigth100 { height: 100%; }
+
+.main-container {
+  flex: 1; align-self: center; align-items: center; overflow: auto; width: 900px !important;
+  .container { flex: 1;  overflow: auto; width: 100%; }
+}
+
+.MuiToolbar-root { min-height: 48px !important; a { text-decoration: none; } }
+.MuiCardContent-root { position: relative;  }
+.container .MuiButtonBase-root { padding: 9px 2px !important;}
+
+.roles { justify-content: space-between; flex-direction: row; align-items: baseline; width: 100%; }
+.roles > div .MuiChip-root { margin: 5px; }
+
+.modalList { max-height: 380px; overflow: auto; }
+
+/************** FORM ***********/
+.MuiFormControl-root { margin: 16px 0px 0px 0px !important; }
+.MuiInputLabel-root { line-height: 1em !important; top: -3px !important; }
+.MuiOutlinedInput-root { height: 40px !important; }
+
+.search-bar { width: 100%; padding: 10px 0; }
+.MuiCard-root { width: 100%; min-width: 100px !important;}
+
+@media screen and (max-width: 900px) {
+  .MuiCard-root { width: 100%; }
+}
+
+.modale .MuiBox-root { 
+  width: 70% !important; height: 50% !important; min-height: 370px;
+  .MuiPaper-root {
+    display: flex;  overflow: auto; width: 100% !important; height: 100%; 
+    .MuiCardContent-root {
+      width: 100%; display: flex; flex-direction: column;
+    }
+  } 
+}
+
+@media screen and (max-width: 900px) {
+  .main-container { width: 100% !important; 
+    .search-bar { padding: 0px 5px !important; }
+    .MuiPaper-root { margin: 5px 0px !important; width: calc(100% - 10px) !important; }
+    .flex-wrap { flex-direction: column; }
+    .flex-wrap>div {width: 98% !important;  }
+    .modale .MuiBox-root { width: 100% !important;  }
+  }
+}
