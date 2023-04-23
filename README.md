@@ -1,18 +1,20 @@
-# @vagabond/react-crud-mui
+# @vagabond-ts/react-crud-mui
 
 ## Description
 
 REACT CRUD MUI :
 
-- v0.0.x
+- v0.0.1
+
+## Documentation
+
+Npm : [@vagabond-ts/react-crud-mui](https://www.npmjs.com/package/@vagabond-ts/react-crud-mui)
+
+Example : [LostArk Roster](https://lostark-roster.vagabond.synology.me/)
 
 ## MUI
 
 https://mui.com/material-ui/getting-started/overview/
-
-## Documentation
-
-TODO
 
 ## Installation
 

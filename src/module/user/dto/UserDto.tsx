@@ -1,4 +1,4 @@
-import { IApiDto } from 'dto/api/ApiDto';
+import { IApiDto } from '../../../dto/api/ApiDto';
 import { IProfileDto } from './ProfileDto';
 
 export interface IUserDto extends IApiDto {

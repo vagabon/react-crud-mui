@@ -37,7 +37,7 @@ html, body, #root { height: 100%; }
   .container { flex: 1;  overflow: auto; width: 100%; }
 }
 
-.MuiToolbar-root { min-height: 48px !important; a { text-decoration: none; } }
+.MuiToolbar-root { min-height: 48px !important; & > a { text-decoration: none; } }
 .MuiCardContent-root { position: relative;  }
 .container .MuiButtonBase-root { padding: 9px 2px !important;}
 
