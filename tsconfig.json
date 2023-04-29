@@ -20,6 +20,6 @@
     "resolveJsonModule": true,
     "emitDeclarationOnly": true
   },
-  "exclude": ["node_modules", "coverage", "**/*.test.js", "**/*.stories.ts", "**/*.stories.ts"],
+  "exclude": ["node_modules", "coverage", "**/*.test.js"],
   "include": ["src"]
 }

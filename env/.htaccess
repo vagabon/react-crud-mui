@@ -1,0 +1,37 @@
+# Redirect to www
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^www\.(.+) [NC]
+RewriteRule ^(.*) http://%1/$1 [R=301,NE,L]
+
+RewriteCond %{HTTPS} off 
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+
+RewriteCond %{HTTPS} on
+RewriteCond %{HTTP_HOST} ^www\.(.*)
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.html [QSA,L]
+
+<FilesMatch "\\.(png)$">
+	<IfModule mod_headers.c>
+		Header set Cache-Control "max-age=18000, public, must-revalidate"
+	</IfModule>
+</FilesMatch>
+
+<IfModule mod_mime.c>
+  AddType text/javascript js mjs
+</IfModule>
+
+<filesMatch "\.(html|cgi|php|htm|css|js|json)$">
+	FileETag None
+	Header unset ETag
+	Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+	Header set Pragma "no-cache"
+	Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+</filesMatch>
+
+<FilesMatch "\.(ico|jpg|jpe?g|png|gif|swf|gz)$">
+	Header set Cache-Control "max-age=2592000, public"
+</FilesMatch>

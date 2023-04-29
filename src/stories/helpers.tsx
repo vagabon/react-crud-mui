@@ -3,11 +3,11 @@ import { cloneElement } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from 'store/store';
-
-import results from 'jest-test-results.json';
 import { withTests } from '@storybook/addon-jest';
 import MDForm, { IMDFormPropsReturn } from 'mui/form/MDForm';
 import { IYupValidators } from 'utils/yup/YupUtils';
+
+import results from 'jest-test-results.json';
 
 export const withProvider = (Story: any) => (
   <Provider store={store}>

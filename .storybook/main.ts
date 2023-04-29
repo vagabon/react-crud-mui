@@ -1,26 +1,26 @@
-import type { StorybookConfig } from '@storybook/react-webpack5';
+import type { StorybookConfig } from '@storybook/react-vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
-const path = require('path');
-const toPath = (_path) => path.join(process.cwd(), _path);
+import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions', '@storybook/addon-jest'],
   framework: {
-    name: '@storybook/react-webpack5',
+    name: '@storybook/react-vite',
     options: {},
   },
-  webpackFinal: async (config: any) => {
-    config.resolve.modules.push(process.cwd() + '/src');
-    return {
-      ...config,
-      resolve: {
-        ...config.resolve,
-        alias: {
-          ...config?.resolve?.alias,
-        },
+  async viteFinal(config) {
+    config.resolve = {
+      ...config.resolve,
+      alias: {
+        ...config.resolve?.alias,
+        path: require.resolve('path-browserify'),
       },
     };
+    return mergeConfig(config, {
+      plugins: [tsconfigPaths()],
+    });
   },
   docs: {
     autodocs: 'tag',
