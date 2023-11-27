@@ -22,7 +22,7 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
         variant='outlined'
         placeholder='Search...'
         size='small'
-        value={props.search}
+        defaultValue={props.search}
         InputProps={{
           startAdornment: (
             <InputAdornment position='start'>

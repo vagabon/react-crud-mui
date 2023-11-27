@@ -15,6 +15,8 @@ export interface MDCardProps {
   buttonchildren?: ReactNode;
 }
 
+const API_URL: string = window['ENV' as any]['API_URL' as any] as unknown as string;
+
 const MDCard: React.FC<MDCardProps> = ({ id, title, url, ...rest }: MDCardProps) => {
   const navigate = useNavigate();
 
@@ -27,9 +29,7 @@ const MDCard: React.FC<MDCardProps> = ({ id, title, url, ...rest }: MDCardProps)
   return (
     <>
       <Card {...rest} style={{ margin: '10px 0px' }} onClick={doClick}>
-        {rest.image && (
-          <img alt={'Image : ' + title} src={'http://localhost:8090/news/download?fileName=' + rest.image} width='100%' height='150px' />
-        )}
+        {rest.image && <img alt={'Image : ' + title} src={API_URL + '/news/download?fileName=' + rest.image} width='100%' height='150px' />}
         <CardContent>
           {title && (
             <Typography gutterBottom variant='h5' component='div'>

@@ -1,6 +1,6 @@
 {
   "name": "@vagabond-ts/react-crud-mui",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "React lib with MUI, redux, i18n, router-dom, axios",
   "private": false,
   "scripts": {
@@ -28,7 +28,7 @@
     "@mui/icons-material": "^5.11.10",
     "@mui/material": "^5.11.10",
     "@react-oauth/google": "^0.10.0",
-    "axios": "~1.2.0",
+    "axios": "~1.6.2",
     "dompurify": "~3.0.1",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
@@ -40,7 +40,7 @@
     "react-dom": "^18.0.0",
     "react-i18next": "~12.2.0",
     "react-redux": "~8.0.0",
-    "react-router-dom": "^6.0.0",
+    "react-router-dom": "^6.11.0",
     "sass": "~1.0.0",
     "uuid": "~9.0.0",
     "yup": "~1.0.0"
@@ -112,7 +112,7 @@
     "react-dom": "^18.0.0",
     "react-i18next": "~12.2.0",
     "react-redux": "~8.0.0",
-    "react-router-dom": "^6.0.0",
+    "react-router-dom": "^6.11.0",
     "sass": "~1.0.0",
     "uuid": "~9.0.0",
     "yup": "~1.0.0"

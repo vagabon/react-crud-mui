@@ -8,10 +8,8 @@ const News: React.FC = () => {
   const { news, search, page, doSearch, doChangePage } = useFetchNews();
 
   useEffect(() => {
-    if (news.length === 0) {
-      doSearch('');
-    }
-  }, [doSearch, news.length]);
+    doSearch('');
+  }, [doSearch]);
 
   return (
     <InfiniteScrollPage search={search} doChangePage={doChangePage(page)} doSearch={doSearch} urlAdd='/news/add' urlAddRole={['ADMIN']}>

@@ -9,6 +9,8 @@ import MDFormFile from 'mui/form/MDFormFile';
 import { useCreateNews } from 'module/news/hook/useCreateNews';
 import { JSONObject } from 'dto/api/ApiDto';
 
+const API_URL: string = window['ENV' as any]['API_URL' as any] as unknown as string;
+
 const NewsForm: React.FC = () => {
   const [file, setFile] = useState<File>();
   const { news, createOrUpdateNews } = useCreateNews();
@@ -25,7 +27,7 @@ const NewsForm: React.FC = () => {
             {props.values['image' as keyof JSONObject] && (
               <img
                 alt={'Image : ' + props.values['title' as keyof JSONObject]}
-                src={'http://localhost:8090/news/download?fileName=' + props.values['image' as keyof JSONObject]}
+                src={API_URL + '/news/download?fileName=' + props.values['image' as keyof JSONObject]}
                 width='100%'
                 height='150px'
               />

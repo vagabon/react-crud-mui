@@ -11,7 +11,7 @@ const ENDPOINT_NEWS_COUNTBY = '/news/countBy';
 const NewsService = {
   fetchNews: (filter: INewsDto, first: number, max: number, orderField: string, order: string): Promise<INewsDto[]> => {
     const champs = '(title%And|Description%)';
-    const values = filter.search + ',' + filter.search;
+    const values = '%' + filter.search + '%,%' + filter.search + '%';
     return ApiService.findBy<INewsDto[]>(ENDPOINT_NEWS_FINDBY, champs, values, first, max, orderField, order);
   },
 

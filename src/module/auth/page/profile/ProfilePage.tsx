@@ -11,6 +11,7 @@ import MdButton from 'mui/button/MdButton';
 const ProfilePage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { user: currentUser } = useAppSelector((state) => state.auth);
+
   if (!currentUser) {
     return <Navigate to='/auth/signin' />;
   }
