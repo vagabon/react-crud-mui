@@ -15,7 +15,6 @@ const config: StorybookConfig = {
       ...config.resolve,
       alias: {
         ...config.resolve?.alias,
-        path: require.resolve('path-browserify'),
       },
     };
     return mergeConfig(config, {

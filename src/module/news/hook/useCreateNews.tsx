@@ -1,10 +1,10 @@
+import ApiService from 'api/service/ApiService';
+import { ID } from 'dto/api/ApiDto';
 import { useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { INewsDto } from '../dto/NewsDto';
-import NewsService from '../service/NewsService';
 import { NewsAction } from '../reducer/NewsReducers';
-import { ID } from 'dto/api/ApiDto';
-import ApiService from 'api/service/ApiService';
+import NewsService from '../service/NewsService';
 
 export const useCreateNews = (): {
   news: INewsDto;
@@ -34,7 +34,7 @@ export const useCreateNews = (): {
           ApiService.post('/news/upload?id=' + news.id, formData, {
             'Content-Type': 'multipart/form-data',
           }).then((data) => {
-            console.log(data);
+            console.log('FILE UPLOAD : ', data);
           });
         }
       });

@@ -15,7 +15,6 @@ import React, { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export interface TableWithPagniationProps {
-  search: string;
   url?: string;
   cells: { name: string; label: string; order: boolean }[];
   datas: JSONObject[];
@@ -29,10 +28,6 @@ export interface TableWithPagniationProps {
 
 const TableWithPagination: React.FC<TableWithPagniationProps> = (props: TableWithPagniationProps) => {
   const navigate = useNavigate();
-
-  /*useEffect(() => {
-    props.callBack && props.callBack(props.page + 1, props.rowsPerPage, props.sortBy, props.sortByOrder);
-  }, [props.search, page, rowsPerPage, valueToOrderBy, orderDirection]);*/
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number): void => {
     props.callBack(newPage, props.rowsPerPage, props.sortBy, props.sortByOrder);
@@ -86,24 +81,23 @@ const TableWithPagination: React.FC<TableWithPagniationProps> = (props: TableWit
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.datas &&
-              props.datas.map(
-                (data: JSONObject) =>
-                  data && (
-                    <TableRow key={data['id' as keyof JSONObject]} onClick={() => handleClick(data['id' as keyof JSONObject])}>
-                      {props.cells?.map((cell: { name: string; label: string }) => (
-                        <TableCell component='th' scope='row' key={cell.name}>
-                          {showData(data, cell.name) as ReactNode}
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                  ),
-              )}
+            {props?.datas.map(
+              (data: JSONObject) =>
+                data && (
+                  <TableRow key={data['id' as keyof JSONObject]} onClick={() => handleClick(data['id' as keyof JSONObject])}>
+                    {props.cells?.map((cell: { name: string; label: string }) => (
+                      <TableCell component='th' scope='row' key={cell.name}>
+                        {showData(data, cell.name) as ReactNode}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ),
+            )}
           </TableBody>
           <TableFooter>
             <TableRow>
               <TablePagination
-                rowsPerPageOptions={[10, 20, 50]}
+                rowsPerPageOptions={[2, 10, 20, 50]}
                 count={props.count}
                 rowsPerPage={props.rowsPerPage}
                 page={props.page}

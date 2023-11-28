@@ -1,6 +1,6 @@
+import AddIcon from '@mui/icons-material/Add';
 import { Fab } from '@mui/material';
 import React, { ReactNode, SyntheticEvent } from 'react';
-import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from 'react-router-dom';
 
 export interface CrudPageProps {
@@ -17,10 +17,8 @@ const CrudPage: React.FC<CrudPageProps> = (props: CrudPageProps) => {
     event.stopPropagation();
     if (props.doCreate) {
       props.doCreate();
-    } else {
-      if (props.urlAdd) {
-        navigate(props.urlAdd);
-      }
+    } else if (props.urlAdd) {
+      navigate(props.urlAdd);
     }
   };
 
