@@ -15,8 +15,11 @@ html, body, #root { height: 100%; }
 .flexRow, .flex-row { display: flex; flex-direction: row; }
 .fullwidth { width: 100%; }
 .flex1 { flex: 1;  }
-.flex-wrap { & > .flex { flex-wrap: wrap; flex-direction: row; & > div { width : calc(50% - 8px); margin: 4px !important; } } }
-.flex-wrap { flex-wrap: wrap; flex-direction: row; & > div { width : calc(50% - 8px); margin: 4px !important; align-self: baseline; } }
+.flex-wrap { 
+  flex-wrap: wrap; flex-direction: row; 
+  & > .flex { flex-wrap: wrap; flex-direction: row; & > div { width : calc(50% - 8px); margin: 4px !important; } }
+  & > div { width : calc(50% - 8px); margin: 4px !important; align-self: baseline; } 
+}
 .width-auto { width: auto; }
 .align-center { align-items: center; }
 .align-end { align-items: end; }
@@ -49,7 +52,7 @@ html, body, #root { height: 100%; }
 /************** FORM ***********/
 .MuiFormControl-root { margin: 16px 0px 0px 0px !important; }
 .MuiInputLabel-root { line-height: 1em !important; top: -3px !important; }
-.MuiOutlinedInput-root { height: 40px !important; }
+.MuiOutlinedInput-root { min-height: 40px !important; }
 
 .search-bar { width: 100%; padding: 10px 0; }
 .MuiCard-root { width: 100%; min-width: 100px !important;}

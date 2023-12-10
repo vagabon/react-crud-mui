@@ -1,7 +1,7 @@
-import React from 'react';
-import { InputAdornment, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import { InputAdornment, TextField } from '@mui/material';
 import { Primitif } from 'dto/api/ApiDto';
+import React from 'react';
 
 export interface SearchBarProps {
   search: Primitif;
@@ -10,12 +10,13 @@ export interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    props.callBack && props.callBack(event.target.value);
+    props?.callBack(event.target.value);
   };
 
   return (
     <section className='search-bar'>
       <TextField
+        name='search'
         className='text'
         onChange={handleInput}
         label='Search'
@@ -23,6 +24,7 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
         placeholder='Search...'
         size='small'
         defaultValue={props.search}
+        autoComplete='off'
         InputProps={{
           startAdornment: (
             <InputAdornment position='start'>

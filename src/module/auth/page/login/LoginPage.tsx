@@ -1,23 +1,23 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import LoginService from '../../service/AuthService';
-import { IUserDto } from '../../../user/dto/UserDto';
-import { useAppDispatch } from '../../../../store/store';
-import LOGIN_SCHEMA from './schema/login.schema.json';
-import { Trans } from 'react-i18next';
-import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
-import AuthFooter from '../../component/auth.footer/AuthFooter';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import LoginGoogle from './google/LoginGoogle';
-import LoginFacebook from './facebook/LoginFacebook';
 import MDCard from 'mui/card/MDCard';
 import MDForm, { IMDFormPropsReturn } from 'mui/form/MDForm';
 import MDInputText from 'mui/form/MDInputText';
+import { Trans } from 'react-i18next';
+import { useAppDispatch } from '../../../../store/store';
+import { IUserDto } from '../../../user/dto/UserDto';
+import AuthFooter from '../../component/auth.footer/AuthFooter';
+import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
+import LoginService from '../../service/AuthService';
+import LoginFacebook from './facebook/LoginFacebook';
+import LoginGoogle from './google/LoginGoogle';
+import LOGIN_SCHEMA from './schema/login.schema.json';
 
-const GOOGLE_CLIENT_ID: string = window['ENV' as any]['GOOGLE_CLIENT_ID' as any]?.toString();
+const GOOGLE_CLIENT_ID: string = window['ENV' as keyof Window]['GOOGLE_CLIENT_ID' as keyof Window]?.toString();
 
 const DEFAULT_VALUES = { email: '', password: '' };
 

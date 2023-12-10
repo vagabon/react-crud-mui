@@ -1,10 +1,10 @@
+import MdButton from 'mui/button/MdButton';
+import MDCard from 'mui/card/MDCard';
 import React, { useEffect, useState } from 'react';
 import { Trans } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 import { useAppSelector } from 'store/store';
 import AuthService from '../../service/AuthService';
-import MDCard from 'mui/card/MDCard';
-import MdButton from 'mui/button/MdButton';
-import { useParams } from 'react-router-dom';
 
 const ActivationPage: React.FC = () => {
   const params = useParams();
@@ -13,7 +13,6 @@ const ActivationPage: React.FC = () => {
   const { message } = useAppSelector((state) => state.common);
 
   useEffect(() => {
-    console.log(params.token);
     if (params.token) {
       AuthService.activation(params.token).then(() => {
         setIsActivated(true);

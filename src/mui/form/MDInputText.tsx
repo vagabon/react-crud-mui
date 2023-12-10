@@ -1,8 +1,9 @@
 import { TextField } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { IMDFormPropsReturn } from './MDForm';
 import { JSONObject } from 'dto/api/ApiDto';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { UuidUtils } from 'utils/uuid/UuidUtils';
+import { IMDFormPropsReturn } from './MDForm';
 
 export interface IMDInputProps extends IMDFormPropsReturn {
   label: string;
@@ -16,45 +17,68 @@ export interface IMDInputProps extends IMDFormPropsReturn {
 const MDInputText: React.FC<IMDInputProps> = (props: IMDInputProps) => {
   const [error, setError] = useState<string>('');
   const { t } = useTranslation();
+  const [key, setKey] = useState<string>();
+  const [defaultValue, setDefaultValue] = useState<string>();
+  const [readonly, setReadonly] = useState(props.type === 'password');
 
-  const [nameOnLoad] = useState(props.name);
+  const nameOnLoad = useRef(props.name);
 
   useEffect(() => {
-    const error = props.errors[nameOnLoad as keyof JSONObject];
-    if (error !== undefined && error !== '' && props.touched[nameOnLoad as keyof JSONObject]) {
+    const currentName = nameOnLoad.current;
+    const error = props.errors[currentName as keyof JSONObject];
+    if (error !== undefined && error !== '' && props.touched[currentName as keyof JSONObject]) {
       setError(error);
     } else {
       setError('');
     }
   }, [props.errors, props.touched, nameOnLoad]);
 
-  return (
-    <>
-      <div style={{ width: '100%' }}>
-        <TextField
-          className={props.className}
-          type={props.type}
-          margin='normal'
-          required={
-            props.validationSchema[nameOnLoad as keyof JSONObject] && props.validationSchema[nameOnLoad as keyof JSONObject]['required']
-          }
-          fullWidth
-          label={t(props.label)}
-          id={props.name}
-          name={props.name}
-          value={props.values[nameOnLoad as keyof JSONObject] || ''}
-          onChange={props.handleChange}
-          onBlur={props.handleBlur}></TextField>
+  useEffect(() => {
+    const newValue = props.state[nameOnLoad.current as keyof JSONObject];
+    setKey(UuidUtils.createUUID());
+    setDefaultValue(newValue);
+  }, [props.state]);
 
-        {error && (
-          <div className='form-group'>
-            <div className='alert alert-danger' role='alert'>
-              {error}
-            </div>
+  const handleFocus = useCallback(() => {
+    props.type === 'password' && setTimeout(() => setReadonly(false), 100);
+  }, [props.type]);
+
+  return (
+    <div style={{ width: '100%' }}>
+      <TextField
+        key={key}
+        className={props.className}
+        type={props.type}
+        margin='normal'
+        required={
+          props.validationSchema[nameOnLoad.current as keyof JSONObject] &&
+          props.validationSchema[nameOnLoad.current as keyof JSONObject]['required']
+        }
+        fullWidth
+        label={t(props.label)}
+        name={props.name}
+        defaultValue={defaultValue}
+        onFocus={handleFocus}
+        onChange={props.handleChange}
+        onBlur={props.handleBlur}
+        inputProps={{
+          autoComplete: 'off',
+          form: {
+            autoComplete: 'off',
+          },
+          readOnly: readonly,
+        }}
+        multiline={props.textarea}
+        rows={10}></TextField>
+
+      {error && (
+        <div className='form-group'>
+          <div className='alert alert-danger' role='alert'>
+            {error}
           </div>
-        )}
-      </div>
-    </>
+        </div>
+      )}
+    </div>
   );
 };
 

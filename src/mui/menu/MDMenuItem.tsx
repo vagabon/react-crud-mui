@@ -1,10 +1,9 @@
-import * as React from 'react';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useState } from 'react';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Fragment } from 'react';
+import * as React from 'react';
+import { Fragment, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export interface MDMenuItemProps {
@@ -47,14 +46,7 @@ const MDMenuItem: React.FC<MDMenuItemProps> = (props: MDMenuItemProps) => {
         {props.name}
       </Button>
       {props.childrens && (
-        <Menu
-          id='fade-menu'
-          MenuListProps={{
-            'aria-labelledby': 'fade-button',
-          }}
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}>
+        <Menu id='fade-menu' anchorEl={anchorEl} open={open} onClose={handleClose}>
           {props.childrens?.map((child: { title: string; link: string }) => (
             <MenuItem key={child.title} onClick={() => handleCloseWithUrl(child.link)} sx={{ width: '100px' }}>
               {child.title}

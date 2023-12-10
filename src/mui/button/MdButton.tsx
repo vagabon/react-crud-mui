@@ -1,5 +1,4 @@
 import Button from '@mui/material/Button';
-import { Fragment } from 'react';
 import { Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,7 +11,7 @@ declare module '@mui/material/Button' {
 
 export interface MdButtonProps {
   show?: boolean;
-  label: string;
+  label?: string;
   url?: string;
   startIcon?: any;
   color?: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning' | 'google' | 'facebook';
@@ -33,7 +32,7 @@ const MdButton: React.FC<MdButtonProps> = (props: MdButtonProps) => {
   };
 
   return (
-    <Fragment>
+    <>
       {props.show && (
         <Button
           size={props.size ?? 'small'}
@@ -44,7 +43,7 @@ const MdButton: React.FC<MdButtonProps> = (props: MdButtonProps) => {
           <Trans i18nKey={props.label}></Trans>
         </Button>
       )}
-    </Fragment>
+    </>
   );
 };
 

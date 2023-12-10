@@ -28,6 +28,17 @@ const MDCard: React.FC<MDCardProps> = ({ id, title, url, ...rest }: MDCardProps)
 
   return (
     <Card {...rest} style={{ margin: '10px 0px' }} onClick={doClick}>
+      {/*<CardHeader
+        avatar={
+          <Avatar sx={{ bgcolor: 'red[500]' }} aria-label='recipe'>
+            R
+          </Avatar>
+        }
+        action={<IconButton aria-label='settings'></IconButton>}
+        title='Shrimp and Chorizo Paella'
+        subheader='September 14, 2016'
+      />*/}
+
       {rest.image && <img alt={'Image : ' + title} src={API_URL + '/news/download?fileName=' + rest.image} width='100%' height='150px' />}
       <CardContent>
         {title && (

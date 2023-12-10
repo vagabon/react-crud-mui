@@ -1,6 +1,8 @@
 import { INewsDto } from 'module/news/dto/NewsDto';
+import { MuiMarkdown } from 'mui-markdown';
 import MdButton from 'mui/button/MdButton';
 import MDCard from 'mui/card/MDCard';
+import { Highlight, themes } from 'prism-react-renderer';
 
 export interface INewsCardProps {
   news: INewsDto;
@@ -13,7 +15,11 @@ const NewsCard: React.FC<INewsCardProps> = (props: INewsCardProps) => {
       title={props.news.title}
       image={props.news.image}
       buttonchildren={<>{props.link && <MdButton label='Go to' variant='outlined' url={'/news/update/' + props.news.id} show={true} />}</>}>
-      <p>{props.news.description}</p>
+      <p>
+        <MuiMarkdown Highlight={Highlight} themes={themes} prismTheme={themes.github}>
+          {props.news.description}
+        </MuiMarkdown>
+      </p>
     </MDCard>
   );
 };

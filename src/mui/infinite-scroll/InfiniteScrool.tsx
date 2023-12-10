@@ -25,11 +25,9 @@ const InfiniteScrool: React.FC<InfiniteScroolProps> = (props: InfiniteScroolProp
   };
 
   return (
-    <>
-      <div id={props.id} className={'flex container ' + props.className} onScroll={handleNavigation}>
-        <div className='flex width100'>{props.children}</div>
-      </div>
-    </>
+    <div id={props.id} className={'flex container ' + props.className} onScroll={handleNavigation}>
+      <div className='flex width100'>{props.children}</div>
+    </div>
   );
 };
 

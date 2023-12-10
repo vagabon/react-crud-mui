@@ -1,11 +1,11 @@
+import GoogleIcon from '@mui/icons-material/Google';
 import { useGoogleLogin } from '@react-oauth/google';
+import { LoginAction } from 'module/auth/reducer/AuthReducers';
 import AuthService from 'module/auth/service/AuthService';
+import MdButton from 'mui/button/MdButton';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'store/store';
-import GoogleIcon from '@mui/icons-material/Google';
-import { LoginAction } from 'module/auth/reducer/AuthReducers';
 import { StorageUtils } from 'utils/storage/StorageUtils';
-import MdButton from 'mui/button/MdButton';
 
 const LoginGoogle: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -23,16 +23,14 @@ const LoginGoogle: React.FC = () => {
   });
 
   return (
-    <>
-      <div className='flex align-center margin-5'>
-        <MdButton
-          label='AUTH:LOGIN.GOOGLE'
-          variant='outlined'
-          color='google'
-          startIcon={<GoogleIcon />}
-          onClick={handleGoogleLogin}></MdButton>
-      </div>
-    </>
+    <div className='flex align-center margin-5'>
+      <MdButton
+        label='AUTH:LOGIN.GOOGLE'
+        variant='outlined'
+        color='google'
+        startIcon={<GoogleIcon />}
+        onClick={handleGoogleLogin}></MdButton>
+    </div>
   );
 };
 

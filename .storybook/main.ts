@@ -14,7 +14,8 @@ const config: StorybookConfig = {
     config.resolve = {
       ...config.resolve,
       alias: {
-        ...config.resolve?.alias,
+        ...config.resolve?.alias, 
+        path: require.resolve('path-browserify'),
       },
     };
     return mergeConfig(config, {
@@ -23,6 +24,18 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: 'tag',
+  },
+  typescript: {
+    check: false,
+    reactDocgen: "react-docgen-typescript",
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      shouldRemoveUndefinedFromOptional: true,
+      propFilter: (prop) =>
+        prop.parent
+          ? !/node_modules\/(?!@mui)/.test(prop.parent.fileName)
+          : true,
+    },
   },
 };
 export default config;

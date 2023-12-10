@@ -1,8 +1,8 @@
+import InfiniteScrollPage from 'mui/page/InfiniteScrollPage';
 import { useEffect } from 'react';
-import { useFetchNews } from '../hook/useFetchNews';
 import { INewsDto } from '../dto/NewsDto';
+import { useFetchNews } from '../hook/useFetchNews';
 import NewsCard from './card/NewsCard';
-import { InfiniteScrollPage } from 'index';
 
 const News: React.FC = () => {
   const { news, search, page, doSearch, doChangePage } = useFetchNews();

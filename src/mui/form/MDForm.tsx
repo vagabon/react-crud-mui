@@ -1,16 +1,17 @@
-import React, { ChangeEvent, FocusEvent, useCallback, useEffect, useState } from 'react';
-import { Formik, Form, FormikErrors } from 'formik';
-import { useAppDispatch, useAppSelector } from '../../store/store';
-import { useNavigate } from 'react-router-dom';
-import MdButton from '../button/MdButton';
-import { useTranslation } from 'react-i18next';
 import { IApiDto, JSONObject } from 'dto/api/ApiDto';
 import { IPathDto } from 'dto/path/PathDto';
-import { IYupValidators, YupUtils } from 'utils/yup/YupUtils';
+import { Formik, FormikErrors } from 'formik';
+import React, { ChangeEvent, FocusEvent, useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { CommonAction } from 'reducer/common/CommonReducers';
+import { IYupValidators, YupUtils } from 'utils/yup/YupUtils';
+import { useAppDispatch, useAppSelector } from '../../store/store';
+import MdButton from '../button/MdButton';
 
 export interface IMDFormPropsReturn {
   values: JSONObject;
+  state: JSONObject;
   errors: JSONObject;
   touched: JSONObject;
   validationSchema: JSONObject;
@@ -44,7 +45,6 @@ const MDForm: React.FC<IMDFormProps> = (props: IMDFormProps) => {
   const navigate = useNavigate();
   const { history } = useAppSelector((state) => state.common);
   const { t } = useTranslation();
-  const [onGoBackOnLoad] = useState(() => props.onGoBack);
 
   const [state, setState] = useState<JSONObject>(props.initialValues);
 
@@ -58,7 +58,7 @@ const MDForm: React.FC<IMDFormProps> = (props: IMDFormProps) => {
       validateForm().then((errors) => {
         console.log('form errors : ', errors);
         if (Object.keys(errors).length > 0) {
-          dispatch(CommonAction.setMessage({ message: 'COMMON:FORM.ERROR', type: 'success' }));
+          dispatch(CommonAction.setMessage({ message: 'COMMON:FORM.ERROR', type: 'error' }));
         } else {
           dispatch(CommonAction.clearMessage());
           props.onSubmit(values);
@@ -76,26 +76,27 @@ const MDForm: React.FC<IMDFormProps> = (props: IMDFormProps) => {
   );
 
   const goBack = useCallback((): void => {
-    if (onGoBackOnLoad) {
-      onGoBackOnLoad();
+    if (props.onGoBack) {
+      props.onGoBack();
     } else {
       const lastPage: IPathDto = history[history.length - 2];
       dispatch(CommonAction.sliceHistory());
       navigate(lastPage.link);
     }
-  }, [dispatch, history, navigate, onGoBackOnLoad]);
+  }, [dispatch, history, navigate, props]);
 
   return (
     <Formik
       initialValues={state}
       validationSchema={YupUtils.convertToYup(props.validationSchema, t)}
       onSubmit={onSubmit}
-      autoComplete='none'
+      autoComplete='off'
       enableReinitialize>
       {({ values, errors, touched, handleChange, handleBlur, handleSubmit, validateForm, setFieldValue, setValues }) => (
-        <Form autoComplete='off'>
+        <>
           {props.children({
             values,
+            state,
             errors,
             touched,
             validationSchema: props.validationSchema,
@@ -110,7 +111,7 @@ const MDForm: React.FC<IMDFormProps> = (props: IMDFormProps) => {
             {props.backButton === true && history.length > 1 && <MdButton label='Retour' variant='text' onClick={goBack} />}
             {props.submitButton === true && <MdButton label='COMMON:SUBMIT' onClick={() => doSubmit(values, validateForm)} />}
           </div>
-        </Form>
+        </>
       )}
     </Formik>
   );
