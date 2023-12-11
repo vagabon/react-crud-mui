@@ -1,8 +1,8 @@
 import { INewsDto } from 'module/news/dto/NewsDto';
 import { MuiMarkdown } from 'mui-markdown';
+import { Highlight, themes } from 'prism-react-renderer';
 import MdButton from 'mui/button/MdButton';
 import MDCard from 'mui/card/MDCard';
-import { Highlight, themes } from 'prism-react-renderer';
 
 export interface INewsCardProps {
   news: INewsDto;

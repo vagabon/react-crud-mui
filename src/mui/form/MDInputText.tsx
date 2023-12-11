@@ -50,14 +50,14 @@ const MDInputText: React.FC<IMDInputProps> = (props: IMDInputProps) => {
         className={props.className}
         type={props.type}
         margin='normal'
+        label={t(props.label)}
+        name={props.name}
+        defaultValue={defaultValue}
         required={
           props.validationSchema[nameOnLoad.current as keyof JSONObject] &&
           props.validationSchema[nameOnLoad.current as keyof JSONObject]['required']
         }
         fullWidth
-        label={t(props.label)}
-        name={props.name}
-        defaultValue={defaultValue}
         onFocus={handleFocus}
         onChange={props.handleChange}
         onBlur={props.handleBlur}
