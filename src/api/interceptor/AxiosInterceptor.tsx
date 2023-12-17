@@ -1,8 +1,9 @@
-import axios, { AxiosError, AxiosHeaders, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
+import axios, { AxiosError, AxiosHeaders, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { ICurrentUserDto } from 'dto/current-user/CurrentUserDto';
+import { LoginAction } from 'module/auth/reducer/AuthReducers';
 import { CommonAction } from 'reducer/common/CommonReducers';
 import { StorageUtils } from 'utils/storage/StorageUtils';
-import { ICurrentUserDto } from 'dto/current-user/CurrentUserDto';
 
 const AxiosInterceptor = <U,>(
   store: ToolkitStore,
@@ -47,14 +48,14 @@ const AxiosInterceptor = <U,>(
       }
       return response;
     },
-    async (error: AxiosError) => {
+    async (error: AxiosError<U>) => {
       console.log(error);
       store.dispatch(CommonAction.setLoading(false));
       const originalRequest: InternalAxiosRequestConfig | undefined = error.config;
 
-      const message: string = ((error.response && error.response.data && error.response.data['debugMessage' as keyof {}]) ||
+      const message: string = ((error.response?.data && error.response?.data['debugMessage' as keyof U]) ||
         error.message ||
-        error.toString()) as string;
+        JSON.stringify(error)) as string;
 
       store.dispatch(CommonAction.setMessage({ message, type: 'error' }));
 
@@ -78,10 +79,10 @@ const AxiosInterceptor = <U,>(
           return axios(originalRequest);
         }
       } else {
-        /*if (error.response && error.response.status === 401) {
+        if (error.response && error.response.status === 401) {
           store.dispatch(LoginAction.setLoginError());
           window.location.href = 'auth/signin';
-        }*/
+        }
         return error;
       }
     },

@@ -12,7 +12,11 @@ const InfiniteScrool: React.FC<InfiniteScroolProps> = (props: InfiniteScroolProp
 
   const handleNavigation = () => {
     const wrappedElement = document.getElementById(props.id);
-    if (wrappedElement && props.callBack && wrappedElement.scrollHeight - wrappedElement.scrollTop <= wrappedElement.clientHeight + 30) {
+    if (
+      wrappedElement &&
+      props.callBack &&
+      wrappedElement.scrollHeight - wrappedElement.scrollTop <= wrappedElement.clientHeight + 30
+    ) {
       if (stopScroll === false) {
         setStopScroll(true);
         console.log('scroll bottom reached');

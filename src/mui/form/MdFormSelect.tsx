@@ -1,7 +1,7 @@
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { IApiDto, JSONObject } from 'dto/api/ApiDto';
 import { useEffect, useState } from 'react';
 import { IMDFormPropsReturn } from './MDForm';
-import { IApiDto, JSONObject } from 'dto/api/ApiDto';
 
 interface IList {
   value: string | number;
@@ -23,7 +23,7 @@ const MdFormSelect: React.FC<IMdFormSelectProps> = (props: IMdFormSelectProps) =
   const [value, setValue] = useState<string>('');
   const [values, setValues] = useState<IList[]>([]);
 
-  const [nameOnLoad] = useState(props.name);
+  const nameOnLoad = props.name;
 
   useEffect(() => {
     const values: IList[] = [];
@@ -36,7 +36,7 @@ const MdFormSelect: React.FC<IMdFormSelectProps> = (props: IMdFormSelectProps) =
   }, [props.list]);
 
   const propsValues = props.values[nameOnLoad as keyof JSONObject];
-  const validationSchema = props.validationSchema[nameOnLoad as keyof JSONObject];
+  let validationSchema = props.validationSchema[nameOnLoad as keyof JSONObject] ?? {};
 
   useEffect(() => {
     setValue(props.byId === true ? propsValues?.['id'] ?? '' : propsValues ?? '');
@@ -56,25 +56,25 @@ const MdFormSelect: React.FC<IMdFormSelectProps> = (props: IMdFormSelectProps) =
     event.preventDefault();
     const value: string | JSONObject = event.target.value;
     event.target.value = props.byId === true ? { id: value } : value;
-    props.handleChange && props.handleChange(event);
-    props.callBack && props.callBack(value.toString());
+    props.handleChange(event);
+    props.callBack!((value as string).toString());
   };
 
   return (
     <div style={{ width: '100%' }}>
       <FormControl fullWidth sx={{ marginBottom: '8px', marginTop: '16px' }} disabled={props.disabled}>
         <InputLabel id={props.name + '-label'}>
-          {props.label || props.label}
-          {validationSchema && validationSchema['required'] ? '*' : ''}
+          {props.label}
+          {validationSchema['required'] ? '*' : ''}
         </InputLabel>
         {values && values.length > 0 && (
           <Select
             labelId={props.name + '-label'}
             id={props.name}
             name={props.name}
-            value={value || ''}
-            required={validationSchema && validationSchema['required']}
-            label={props.label || props.label}
+            value={value ?? ''}
+            required={validationSchema['required']}
+            label={props.label}
             onChange={doChange}
             sx={{ width: '95%' }}>
             <MenuItem key='' value=''></MenuItem>

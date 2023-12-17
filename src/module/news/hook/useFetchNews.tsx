@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { INewsDto } from '../dto/NewsDto';
-import NewsService from '../service/NewsService';
 import { NewsAction } from '../reducer/NewsReducers';
+import NewsService from '../service/NewsService';
 
 export const useFetchNews = (): {
   news: INewsDto[];
@@ -33,7 +33,7 @@ export const useFetchNews = (): {
 
   const doFetchDatas = useCallback(
     (filter: INewsDto, page: number) => {
-      fetchNews(filter, page, 5, 'creationDate', 'asc');
+      fetchNews(filter, page, 10, 'creationDate', 'asc');
     },
     [fetchNews],
   );

@@ -1,81 +1,44 @@
-import { TextField } from '@mui/material';
+import { Box } from '@mui/material';
 import { JSONObject } from 'dto/api/ApiDto';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { UuidUtils } from 'utils/uuid/UuidUtils';
+import { useFormError } from 'mui/hook/useFormError';
 import { IMDFormPropsReturn } from './MDForm';
+import MDInputTextSimple from './MDInputTextSimple';
 
 export interface IMDInputProps extends IMDFormPropsReturn {
   label: string;
   name: string;
   type?: 'date' | 'text' | 'number' | 'password' | 'email';
-  textarea?: boolean;
+  textarea?: number;
   required?: boolean;
   className?: string;
+  fullWidth?: boolean;
 }
 
 const MDInputText: React.FC<IMDInputProps> = (props: IMDInputProps) => {
-  const [error, setError] = useState<string>('');
-  const { t } = useTranslation();
-  const [key, setKey] = useState<string>();
-  const [defaultValue, setDefaultValue] = useState<string>();
-  const [readonly, setReadonly] = useState(props.type === 'password');
-
-  const nameOnLoad = useRef(props.name);
-
-  useEffect(() => {
-    const currentName = nameOnLoad.current;
-    const error = props.errors[currentName as keyof JSONObject];
-    if (error !== undefined && error !== '' && props.touched[currentName as keyof JSONObject]) {
-      setError(error);
-    } else {
-      setError('');
-    }
-  }, [props.errors, props.touched, nameOnLoad]);
-
-  useEffect(() => {
-    const newValue = props.state[nameOnLoad.current as keyof JSONObject];
-    setKey(UuidUtils.createUUID());
-    setDefaultValue(newValue);
-  }, [props.state]);
-
-  const handleFocus = useCallback(() => {
-    props.type === 'password' && setTimeout(() => setReadonly(false), 100);
-  }, [props.type]);
+  const { error } = useFormError(props.name, props.errors, props.touched);
 
   return (
     <div style={{ width: '100%' }}>
-      <TextField
-        key={key}
+      <MDInputTextSimple
         className={props.className}
         type={props.type}
-        margin='normal'
-        label={t(props.label)}
+        label={props.label}
         name={props.name}
-        defaultValue={defaultValue}
+        value={props.state[props.name as keyof JSONObject]}
         required={
-          props.validationSchema[nameOnLoad.current as keyof JSONObject] &&
-          props.validationSchema[nameOnLoad.current as keyof JSONObject]['required']
+          props.validationSchema[props.name as keyof JSONObject] &&
+          props.validationSchema[props.name as keyof JSONObject]['required']
         }
-        fullWidth
-        onFocus={handleFocus}
-        onChange={props.handleChange}
-        onBlur={props.handleBlur}
-        inputProps={{
-          autoComplete: 'off',
-          form: {
-            autoComplete: 'off',
-          },
-          readOnly: readonly,
-        }}
-        multiline={props.textarea}
-        rows={10}></TextField>
+        fullWidth={props.fullWidth}
+        handleChange={props.handleChange}
+        handleBlur={props.handleBlur}
+        textarea={props.textarea}></MDInputTextSimple>
 
       {error && (
         <div className='form-group'>
-          <div className='alert alert-danger' role='alert'>
+          <Box className='alert' role='alert'>
             {error}
-          </div>
+          </Box>
         </div>
       )}
     </div>
@@ -84,8 +47,9 @@ const MDInputText: React.FC<IMDInputProps> = (props: IMDInputProps) => {
 
 MDInputText.defaultProps = {
   type: 'text',
-  textarea: false,
+  textarea: 0,
   required: false,
+  fullWidth: true,
   className: '',
 };
 

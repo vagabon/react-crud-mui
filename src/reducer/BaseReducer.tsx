@@ -54,7 +54,10 @@ export const ReducersActions = {
     ...state,
     page: action.payload,
   }),
-  setSearchAndPage: <T extends ReducerCrudState>(state: T, action: PayloadAction<{ search: string; page: number }>) => ({
+  setSearchAndPage: <T extends ReducerCrudState>(
+    state: T,
+    action: PayloadAction<{ search: string; page: number }>,
+  ) => ({
     ...state,
     search: action.payload.search,
     page: action.payload.page,

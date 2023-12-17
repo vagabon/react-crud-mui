@@ -64,7 +64,12 @@ export const YupUtils = {
       yup = yup.required(I18nUtils.translate(t, 'ERRORS:REQUIRED'));
     }
     if (value.regexp) {
-      yup = yup.trim().matches(new RegExp(value.regexp), I18nUtils.translate(t, value.regexpError ? value.regexpError : 'ERRORS:REGEXP'));
+      yup = yup
+        .trim()
+        .matches(
+          new RegExp(value.regexp),
+          I18nUtils.translate(t, value.regexpError ? value.regexpError : 'ERRORS:REGEXP'),
+        );
     }
     if (value.email) {
       yup = yup.email(I18nUtils.translate(t, 'ERRORS:FORMAT_MAIL'));
@@ -76,7 +81,9 @@ export const YupUtils = {
       yup = yup.max(value.max, t('ERRORS:MAX').replace('$1', value.max.toString()));
     }
     if (value.same) {
-      const translate: string = value.sameLabel ? I18nUtils.translate(t, value.sameLabel) : I18nUtils.translate(t, 'ERRORS:SAME');
+      const translate: string = value.sameLabel
+        ? I18nUtils.translate(t, value.sameLabel)
+        : I18nUtils.translate(t, 'ERRORS:SAME');
       yup = yup.oneOf([Yup.ref(value.same)], translate);
     }
     return yup;

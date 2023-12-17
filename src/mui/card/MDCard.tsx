@@ -1,13 +1,17 @@
-import { Card, CardActions, CardContent, Typography } from '@mui/material';
+import SettingsIcon from '@mui/icons-material/Settings';
+import { Card, CardActions, CardContent, CardHeader, CardMedia, IconButton } from '@mui/material';
 import { ID } from 'dto/api/ApiDto';
-import { ReactNode } from 'react';
-import { Trans } from 'react-i18next';
+import { MouseEvent, ReactNode, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { DateUtils } from 'utils/date/DateUtils';
 
 export interface MDCardProps {
   id?: ID;
   title?: string;
+  date?: string;
   url?: string;
+  urlUpdate?: string;
+  avatar?: string;
   image?: string;
   sx?: any;
   className?: string;
@@ -17,37 +21,55 @@ export interface MDCardProps {
 
 const API_URL: string = window['ENV' as any]['API_URL' as any] as unknown as string;
 
-const MDCard: React.FC<MDCardProps> = ({ id, title, url, ...rest }: MDCardProps) => {
+const MDCard: React.FC<MDCardProps> = ({ id, title, url, urlUpdate, avatar, image, date, ...rest }: MDCardProps) => {
   const navigate = useNavigate();
 
-  const doClick = (): void => {
-    if (url) {
-      navigate(url + id);
-    }
-  };
+  const handleClick = useCallback(
+    (customUrl?: string) => (e: MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+      e.preventDefault();
+      customUrl && navigate(customUrl);
+    },
+    [navigate],
+  );
 
   return (
-    <Card {...rest} style={{ margin: '10px 0px' }} onClick={doClick}>
-      {/*<CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: 'red[500]' }} aria-label='recipe'>
-            R
-          </Avatar>
-        }
-        action={<IconButton aria-label='settings'></IconButton>}
-        title='Shrimp and Chorizo Paella'
-        subheader='September 14, 2016'
-      />*/}
-
-      {rest.image && <img alt={'Image : ' + title} src={API_URL + '/news/download?fileName=' + rest.image} width='100%' height='150px' />}
-      <CardContent>
-        {title && (
-          <Typography gutterBottom variant='h5' component='div'>
-            <Trans i18nKey={title} />
-          </Typography>
-        )}
-        {rest.children}
-      </CardContent>
+    <Card {...rest} style={{ margin: '10px', padding: '10px' }}>
+      {title && (
+        <CardHeader
+          onClick={handleClick(url)}
+          avatar={
+            avatar && (
+              <img
+                alt={'Image : ' + title}
+                src={API_URL + '/news/download?fileName=' + avatar}
+                width='40px'
+                height='40px'
+              />
+            )
+          }
+          action={
+            urlUpdate && (
+              <IconButton aria-label='delete' onClick={handleClick(urlUpdate)}>
+                <SettingsIcon />
+              </IconButton>
+            )
+          }
+          title={title}
+          subheader={date ? DateUtils.format(date, 'Le DD MMM YYYY à hhhmm') : ''}
+        />
+      )}
+      {image && (
+        <CardMedia>
+          <img
+            alt={'Image : ' + title}
+            src={API_URL + '/news/download?fileName=' + image}
+            width='100%'
+            height='150px'
+          />
+        </CardMedia>
+      )}
+      <CardContent>{rest.children}</CardContent>
       {rest.buttonchildren && <CardActions className='justify-end'>{rest.buttonchildren}</CardActions>}
     </Card>
   );

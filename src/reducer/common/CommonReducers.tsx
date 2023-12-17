@@ -41,7 +41,8 @@ export const CommonReducer = createSlice({
     },
     setMessageButton: (state: ApiState, action: PayloadAction<MessageButton>) => {
       const label: string = action.payload.label ?? 'Retour';
-      const url: string = action.payload.url ?? (state.history.length > 1 ? state.history[state.history.length - 2].link : '/home');
+      const url: string =
+        action.payload.url ?? (state.history.length > 1 ? state.history[state.history.length - 2].link : '/home');
       return {
         ...state,
         button: { label, url },

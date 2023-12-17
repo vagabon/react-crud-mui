@@ -84,7 +84,15 @@ const ApiService = {
     );
   },
 
-  findBy: <T,>(endPoint: string, champs: string, values: string, first: number, max: number, orderField: string, order: string) => {
+  findBy: <T,>(
+    endPoint: string,
+    champs: string,
+    values: string,
+    first: number,
+    max: number,
+    orderField: string,
+    order: string,
+  ) => {
     const orderType: string = order === 'asc' ? '' : 'Desc';
     const orderConst: string = orderField ? '>>' + orderField + orderType : '';
     const champsComplete = champs + orderConst;

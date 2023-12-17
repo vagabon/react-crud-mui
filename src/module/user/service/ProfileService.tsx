@@ -5,8 +5,22 @@ import ApiService from 'api/service/ApiService';
 import { CommonAction } from 'reducer/common/CommonReducers';
 
 const ProfileService = {
-  loadRoles: (filter: IProfileDto, first: number, max: number, orderField: string, order: string): Promise<IProfileDto[]> => {
-    return ApiService.findBy<IProfileDto[]>('/profiles/findBy', 'name%', filter.search + '', first, max, orderField, order);
+  loadRoles: (
+    filter: IProfileDto,
+    first: number,
+    max: number,
+    orderField: string,
+    order: string,
+  ): Promise<IProfileDto[]> => {
+    return ApiService.findBy<IProfileDto[]>(
+      '/profiles/findBy',
+      'name%',
+      filter.search + '',
+      first,
+      max,
+      orderField,
+      order,
+    );
   },
 
   countRoles: (search: string): Promise<number> => {

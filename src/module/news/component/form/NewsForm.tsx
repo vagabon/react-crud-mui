@@ -1,53 +1,85 @@
 import MDCard from 'mui/card/MDCard';
-import MDForm, { IMDFormPropsReturn } from 'mui/form/MDForm';
+import MDForm, { IMDFormPropsReturn, handleChangeType } from 'mui/form/MDForm';
 import MDInputText from 'mui/form/MDInputText';
-import { useCallback, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 
-import { JSONObject } from 'dto/api/ApiDto';
 import { useCreateNews } from 'module/news/hook/useCreateNews';
-import { MuiMarkdown } from 'mui-markdown';
 import MDFormFile from 'mui/form/MDFormFile';
-import { Highlight, themes } from 'prism-react-renderer';
 
-import InfiniteScrool from 'mui/infinite-scroll/InfiniteScrool';
+import { ID, JSONObject } from 'dto/api/ApiDto';
+import { INewsDto } from 'module/news/dto/NewsDto';
+import MDContent from 'mui/content/MDContent';
+import MDFormSwitch from 'mui/form/MDFormSwitch';
 import NEWS_SCHEMA from '../../schema/news.schema.json';
-
-const API_URL: string = window['ENV' as any]['API_URL' as any] as unknown as string;
+import NewsCard from '../card/NewsCard';
 
 const NewsForm: React.FC = () => {
-  const [file, setFile] = useState<File>();
-  const { news, createOrUpdateNews } = useCreateNews();
+  const { news, createOrUpdateNews, uploadNewsImage } = useCreateNews();
+  const [newsForm, setNewsForm] = useState<INewsDto>(news);
 
-  const handleChangeFile = useCallback((file: File) => {
-    setFile(file);
-  }, []);
+  useEffect(() => {
+    setNewsForm(news);
+  }, [news]);
+
+  const handleChange = useCallback(
+    (newsState: INewsDto, callback: handleChangeType) => (event: ChangeEvent<JSONObject>) => {
+      callback(event);
+      setNewsForm({
+        ...newsState,
+        [event.target['name' as keyof JSONObject]]: event.target['value' as keyof JSONObject],
+      });
+    },
+    [],
+  );
+
+  const handleChangeFile = useCallback(
+    (id: ID, callback: handleChangeType) => (name: string, file: File) => {
+      uploadNewsImage(id, file).then((data) => {
+        console.log('FILE UPLOAD : ', data);
+        const event = { target: { name, value: data } };
+        console.log(event);
+        callback(event);
+      });
+    },
+    [uploadNewsImage],
+  );
 
   return (
-    <InfiniteScrool id='infinite-container' callBack={() => {}} className={'props.className'}>
+    <MDContent id='news-form' className='markdown-form'>
       <MDCard title='Créer une news'>
-        <MDForm initialValues={news} validationSchema={NEWS_SCHEMA} onSubmit={createOrUpdateNews(file)}>
+        <MDForm initialValues={news} validationSchema={NEWS_SCHEMA} onSubmit={createOrUpdateNews}>
           {(props: IMDFormPropsReturn) => (
             <>
-              {props.values['image' as keyof JSONObject] && (
-                <img
-                  alt={'Image : ' + props.values['title' as keyof JSONObject]}
-                  src={API_URL + '/news/download?fileName=' + props.values['image' as keyof JSONObject]}
-                  width='100%'
-                  height='150px'
-                />
-              )}
-              <MDInputText label='Titre' name='title' {...props} />
-              <MDInputText label='Description' name='description' textarea={true} {...props} />
-              <MDFormFile handleChangeFile={handleChangeFile} />
-
-              <MuiMarkdown Highlight={Highlight} themes={themes} prismTheme={themes.github}>
-                {props.values['description' as keyof JSONObject]}
-              </MuiMarkdown>
+              <MDInputText
+                label='Titre'
+                name='title'
+                {...props}
+                handleChange={handleChange(newsForm, props.handleChange)}
+              />
+              <MDInputText
+                label='Description'
+                name='description'
+                textarea={10}
+                {...props}
+                handleChange={handleChange(newsForm, props.handleChange)}
+              />
+              <MDFormFile
+                name='avatar'
+                label='AVATAR'
+                handleChangeFile={handleChangeFile(newsForm.id, props.handleChange)}
+              />
+              <MDFormFile
+                name='image'
+                label='IMAGE'
+                handleChangeFile={handleChangeFile(newsForm.id, props.handleChange)}
+              />
+              <MDFormSwitch name='active' label='Actif' {...props} />;
             </>
           )}
         </MDForm>
       </MDCard>
-    </InfiniteScrool>
+      <NewsCard news={newsForm} />
+    </MDContent>
   );
 };
 

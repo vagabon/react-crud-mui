@@ -1,31 +1,44 @@
 import { INewsDto } from 'module/news/dto/NewsDto';
-import { MuiMarkdown } from 'mui-markdown';
-import { Highlight, themes } from 'prism-react-renderer';
-import MdButton from 'mui/button/MdButton';
 import MDCard from 'mui/card/MDCard';
+import MDContent from 'mui/content/MDContent';
+import { useId } from 'mui/hook/useId';
+import MdMarkdown from 'mui/markdown/MdMarkdown';
+import { useRole } from 'mui/role/useRole';
+import { useCallback, useState } from 'react';
 
 export interface INewsCardProps {
   news: INewsDto;
-  link?: boolean;
 }
 
 const NewsCard: React.FC<INewsCardProps> = (props: INewsCardProps) => {
-  return (
-    <MDCard
-      title={props.news.title}
-      image={props.news.image}
-      buttonchildren={<>{props.link && <MdButton label='Go to' variant='outlined' url={'/news/update/' + props.news.id} show={true} />}</>}>
-      <p>
-        <MuiMarkdown Highlight={Highlight} themes={themes} prismTheme={themes.github}>
-          {props.news.description}
-        </MuiMarkdown>
-      </p>
-    </MDCard>
-  );
-};
+  const { id } = useId();
+  const [summary, setSummary] = useState<string>('');
+  const { hasUserRole } = useRole();
 
-NewsCard.defaultProps = {
-  link: true,
+  const summaryCallback = useCallback(
+    (title?: string) => (newSummary: string) => {
+      let completeSummary = '[' + title + '](#' + id + ')\n\n';
+      completeSummary += newSummary;
+      setSummary(completeSummary);
+    },
+    [id],
+  );
+
+  return (
+    <MDContent id={id} className='mardown-with-summary'>
+      <MDCard
+        title={props.news.title}
+        avatar={props.news.avatar}
+        image={props.news.image}
+        date={props.news.updatedDate}
+        urlUpdate={hasUserRole(['ADMIN']) ? '/news/update/' + props.news.id : undefined}>
+        <MdMarkdown content={props.news.description} summaryCallback={summaryCallback(props.news.title)}></MdMarkdown>
+      </MDCard>
+      <MDCard>
+        <MdMarkdown content={summary}></MdMarkdown>
+      </MDCard>
+    </MDContent>
+  );
 };
 
 export default NewsCard;

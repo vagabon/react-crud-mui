@@ -141,11 +141,15 @@ describe('ApiService - findBy', () => {
   });
   test('HTTP GET ', async () => {
     assertCallGetMethod('name', 'asc');
-    expect(axios.get).toBeCalledWith('http://localhost:8090/test?fields=username%3E%3Ename&values=value&first=0&max=10');
+    expect(axios.get).toBeCalledWith(
+      'http://localhost:8090/test?fields=username%3E%3Ename&values=value&first=0&max=10',
+    );
   });
   test('HTTP GET ', async () => {
     assertCallGetMethod('name', 'desc');
-    expect(axios.get).toBeCalledWith('http://localhost:8090/test?fields=username%3E%3EnameDesc&values=value&first=0&max=10');
+    expect(axios.get).toBeCalledWith(
+      'http://localhost:8090/test?fields=username%3E%3EnameDesc&values=value&first=0&max=10',
+    );
   });
 
   test('HTTP GET WITHOUT HEADER WITH ERROR', async () => {

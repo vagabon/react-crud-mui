@@ -5,6 +5,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import MDCard from 'mui/card/MDCard';
+import MDContent from 'mui/content/MDContent';
 import MDForm, { IMDFormPropsReturn } from 'mui/form/MDForm';
 import MDInputText from 'mui/form/MDInputText';
 import { Trans } from 'react-i18next';
@@ -35,26 +36,32 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-      <MDCard title='AUTH:LOGIN.TITLE'>
-        <MDForm initialValues={DEFAULT_VALUES} validationSchema={LOGIN_SCHEMA} onSubmit={handleLogin} backButton={false}>
-          {(props: IMDFormPropsReturn) => (
-            <>
-              <MDInputText label='AUTH:FIELDS.LOGIN' name='username' {...props} />
-              <MDInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...props} />
-              <FormControlLabel
-                control={<Checkbox value='remember' color='primary' />}
-                label={<Trans i18nKey='AUTH:FIELDS.REMEMBER_ME' />}
-              />
-              <LoginGoogle />
-              <LoginFacebook />
-            </>
-          )}
-        </MDForm>
+    <MDContent>
+      <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+        <MDCard title='AUTH:LOGIN.TITLE'>
+          <MDForm
+            initialValues={DEFAULT_VALUES}
+            validationSchema={LOGIN_SCHEMA}
+            onSubmit={handleLogin}
+            backButton={false}>
+            {(props: IMDFormPropsReturn) => (
+              <>
+                <MDInputText label='AUTH:FIELDS.LOGIN' name='username' {...props} />
+                <MDInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...props} />
+                <FormControlLabel
+                  control={<Checkbox value='remember' color='primary' />}
+                  label={<Trans i18nKey='AUTH:FIELDS.REMEMBER_ME' />}
+                />
+                <LoginGoogle />
+                <LoginFacebook />
+              </>
+            )}
+          </MDForm>
 
-        <AuthFooter left={AuthFooterEnum.FORGETED_PASSWORD} rigth={AuthFooterEnum.SIGNUP} />
-      </MDCard>
-    </GoogleOAuthProvider>
+          <AuthFooter left={AuthFooterEnum.FORGETED_PASSWORD} rigth={AuthFooterEnum.SIGNUP} />
+        </MDCard>
+      </GoogleOAuthProvider>
+    </MDContent>
   );
 };
 

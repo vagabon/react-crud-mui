@@ -84,7 +84,9 @@ const TableWithPagination: React.FC<TableWithPagniationProps> = (props: TableWit
             {props?.datas.map(
               (data: JSONObject) =>
                 data && (
-                  <TableRow key={data['id' as keyof JSONObject]} onClick={() => handleClick(data['id' as keyof JSONObject])}>
+                  <TableRow
+                    key={data['id' as keyof JSONObject]}
+                    onClick={() => handleClick(data['id' as keyof JSONObject])}>
                     {props.cells?.map((cell: { name: string; label: string }) => (
                       <TableCell component='th' scope='row' key={cell.name}>
                         {showData(data, cell.name) as ReactNode}

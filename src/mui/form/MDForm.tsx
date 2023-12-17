@@ -9,22 +9,25 @@ import { IYupValidators, YupUtils } from 'utils/yup/YupUtils';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import MdButton from '../button/MdButton';
 
+export type handleChangeType = {
+  (e: ChangeEvent<JSONObject>): void;
+  <T = string | ChangeEvent<JSONObject>>(field: T): T extends ChangeEvent<JSONObject>
+    ? void
+    : (e: string | ChangeEvent<JSONObject>) => void;
+};
+export type handleBlurType = {
+  (e: FocusEvent<JSONObject, Element>): void;
+  <T = JSONObject>(fieldOrEvent: T): T extends string ? (e: JSONObject) => void : void;
+};
+
 export interface IMDFormPropsReturn {
   values: JSONObject;
   state: JSONObject;
   errors: JSONObject;
   touched: JSONObject;
   validationSchema: JSONObject;
-  handleChange: {
-    (e: ChangeEvent<JSONObject>): void;
-    <T = string | ChangeEvent<JSONObject>>(field: T): T extends ChangeEvent<JSONObject>
-      ? void
-      : (e: string | ChangeEvent<JSONObject>) => void;
-  };
-  handleBlur: {
-    (e: FocusEvent<JSONObject, Element>): void;
-    <T = JSONObject>(fieldOrEvent: T): T extends string ? (e: JSONObject) => void : void;
-  };
+  handleChange: handleChangeType;
+  handleBlur: handleBlurType;
   handleSubmit: () => void;
   setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
   setValues: (values: IApiDto, shouldValidate?: boolean) => void;
@@ -92,7 +95,17 @@ const MDForm: React.FC<IMDFormProps> = (props: IMDFormProps) => {
       onSubmit={onSubmit}
       autoComplete='off'
       enableReinitialize>
-      {({ values, errors, touched, handleChange, handleBlur, handleSubmit, validateForm, setFieldValue, setValues }) => (
+      {({
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        validateForm,
+        setFieldValue,
+        setValues,
+      }) => (
         <>
           {props.children({
             values,
@@ -107,9 +120,13 @@ const MDForm: React.FC<IMDFormProps> = (props: IMDFormProps) => {
             setValues,
           })}
           <div style={{ height: '20px' }}>&nbsp;</div>
-          <div className='flexRow justify-end'>
-            {props.backButton === true && history.length > 1 && <MdButton label='Retour' variant='text' onClick={goBack} />}
-            {props.submitButton === true && <MdButton label='COMMON:SUBMIT' onClick={() => doSubmit(values, validateForm)} />}
+          <div className='flex-row justify-end'>
+            {props.backButton === true && history.length > 1 && (
+              <MdButton label='Retour' variant='text' onClick={goBack} />
+            )}
+            {props.submitButton === true && (
+              <MdButton label='COMMON:SUBMIT' onClick={() => doSubmit(values, validateForm)} />
+            )}
           </div>
         </>
       )}

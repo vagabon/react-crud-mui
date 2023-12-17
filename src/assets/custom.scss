@@ -12,15 +12,13 @@ html, body, #root { height: 100%; }
 .alert-danger { color: red !important; }
 
 .flex { display: flex; flex-direction: column; }
-.flexRow, .flex-row { display: flex; flex-direction: row; }
-.fullwidth { width: 100%; }
-.flex1 { flex: 1;  }
+.flex-row { display: flex; flex-direction: row; }
+.flex1 { flex: 1; }
 .flex-wrap { 
   flex-wrap: wrap; flex-direction: row; 
   & > .flex { flex-wrap: wrap; flex-direction: row; & > div { width : calc(50% - 8px); margin: 4px !important; } }
   & > div { width : calc(50% - 8px); margin: 4px !important; align-self: baseline; } 
 }
-.width-auto { width: auto; }
 .align-center { align-items: center; }
 .align-end { align-items: end; }
 .justify-end { justify-content: flex-end; }
@@ -36,8 +34,9 @@ html, body, #root { height: 100%; }
 .heigth100 { height: 100%; }
 
 .main-container {
-  flex: 1; align-self: center; align-items: center; overflow: auto; width: 900px !important;
+  flex: 1; align-self: center; align-items: center; overflow: auto; width: 100% !important;
   .container { flex: 1;  overflow: auto; width: 100%; }
+  .width100  { max-width: 1200px; display: flex; flex-direction: column; flex: 1; }
 }
 
 .MuiToolbar-root { min-height: 48px !important; & > a { text-decoration: none; } }
@@ -79,4 +78,37 @@ html, body, #root { height: 100%; }
     .flex-wrap>div {width: 98% !important;  }
     .modale .MuiBox-root { width: 100% !important;  }
   }
+}
+
+.MuiCardHeader-title { font-size: 2rem !important; }
+
+.MuiPaper-root { margin: 10px; padding: 10px; width: calc(100% - 20px); }
+
+.news-list .flex { display: flex; flex-direction: row; align-items: start; & > div { width: 50% } }
+
+.markdown-form { display: flex; flex-direction: row; }
+
+.mardown-with-summary {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  .MuiPaper-root:nth-child(1) { width: 65%; }
+  .MuiPaper-root:nth-child(2) { width: 35%; position: static; }
+}
+
+@media screen and (min-width: 1200px) {
+  .mardown-with-summary {
+    .MuiPaper-root:nth-child(1) { width: 75%; }
+    .MuiPaper-root:nth-child(2) { width: 25%; }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .mardown-with-summary {
+    flex-direction: row;
+    .MuiPaper-root:nth-child(1) { width: 100%; }
+    .MuiPaper-root:nth-child(2) { display: none; }
+  }
+  .news-list .flex { flex-direction: column; & > div { width: 100% } }
+  
 }

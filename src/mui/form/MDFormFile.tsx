@@ -1,24 +1,32 @@
-import { ChangeEvent } from 'react';
+import { Box } from '@mui/material';
+import { useId } from 'mui/hook/useId';
+import { ChangeEvent, useCallback } from 'react';
+import { Trans } from 'react-i18next';
 
-interface IMDFormFile {
-  handleChangeFile: (file: File) => void;
+interface IMDFormFileProps {
+  name: string;
+  label: string;
+  handleChangeFile: (name: string, file: File) => void;
 }
 
-const MDFormFile: React.FC<IMDFormFile> = (props: IMDFormFile) => {
-  const handleCapture = ({ target }: ChangeEvent<HTMLInputElement & { files: FileList }>) => {
-    console.log(target.files[0]);
-    props.handleChangeFile(target.files[0]);
+const MDFormFile: React.FC<IMDFormFileProps> = (props: IMDFormFileProps) => {
+  const { id } = useId();
 
-    //fileReader.readAsDataURL(target.files[0]);
-    //fileReader.onload = (e) => {
-    //  e.target && setFile(e.target.result as string);
-    //};
-  };
+  const handleCapture = useCallback(
+    (callback: (name: string, file: File) => void) =>
+      ({ target }: ChangeEvent<HTMLInputElement & { files: FileList }>) => {
+        callback(props.name, target.files[0]);
+      },
+    [props.name],
+  );
   return (
-    <>
-      <input accept='image/*' className={''} id='news-file' onChange={handleCapture} type='file' />
-      <label htmlFor='news-file'></label>
-    </>
+    <Box
+      sx={{ width: '100%', margin: '5px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <label htmlFor={id} style={{ flex: '1' }}>
+        <Trans i18nKey={props.label} />
+      </label>
+      <input accept='image/*' id={id} onChange={handleCapture(props.handleChangeFile)} type='file' />
+    </Box>
   );
 };
 

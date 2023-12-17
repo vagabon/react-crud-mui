@@ -1,9 +1,6 @@
 import { Box } from '@mui/material';
-import { ICurrentUserDto } from 'dto/current-user/CurrentUserDto';
-import { IUserDto } from 'module/user/dto/UserDto';
 import { ReactNode } from 'react';
-import { useAppSelector } from 'store/store';
-import RoleUtils from 'utils/role/RoleUtils';
+import { useRole } from './useRole';
 
 export interface HasRoleProps {
   roles: string[];
@@ -12,12 +9,12 @@ export interface HasRoleProps {
 }
 
 const HasRole: React.FC<HasRoleProps> = (props: HasRoleProps) => {
-  const currentUser = useAppSelector<ICurrentUserDto<IUserDto> | null>((state) => state.auth.user);
+  const { hasUserRole } = useRole();
 
   return (
     <>
-      {RoleUtils.hasProfile(currentUser, props.roles) && props.children}
-      {!RoleUtils.hasProfile(currentUser, props.roles) && props.showError && (
+      {hasUserRole(props.roles) && props.children}
+      {!hasUserRole(props.roles) && props.showError && (
         <Box sx={{ marginTop: '20px' }}>Vous n'être pas habilité à voir ce contenu.</Box>
       )}
     </>

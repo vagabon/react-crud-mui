@@ -1,3 +1,18 @@
+const MONTHS = [
+  'janvier',
+  'février',
+  'mars',
+  'avril',
+  'mai',
+  'juin',
+  'juillet',
+  'août',
+  'septembre',
+  'octobre',
+  'novembre',
+  'décembre',
+];
+
 export const DateUtils = {
   format(date: string, format: string) {
     const year: string = date.length >= 3 ? date.substring(0, 4) : '';
@@ -9,6 +24,7 @@ export const DateUtils = {
 
     let dateFormat: string = format;
     dateFormat = dateFormat.replace('YYYY', year);
+    dateFormat = dateFormat.replace('MMM', MONTHS[parseInt(month) - 1]);
     dateFormat = dateFormat.replace('MM', month);
     dateFormat = dateFormat.replace('DD', day);
     dateFormat = dateFormat.replace('hh', hour);

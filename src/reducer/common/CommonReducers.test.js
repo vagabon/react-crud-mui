@@ -37,7 +37,10 @@ describe('CommonReducer', () => {
 
   test('Given CommonReducer When setMessageButton with a an history Then message button from state is update', () => {
     const data = { label: 'Test' };
-    const tested = CommonReducers({ history: [{ link: '/previus' }, { link: '/plouf' }] }, CommonAction.setMessageButton(data));
+    const tested = CommonReducers(
+      { history: [{ link: '/previus' }, { link: '/plouf' }] },
+      CommonAction.setMessageButton(data),
+    );
     expect(tested.button.label).toBe('Test');
     expect(tested.button.url).toBe('/previus');
   });

@@ -54,7 +54,10 @@ describe('API INTERCEPTOR', () => {
 
   test('Given axios response When its in error 401 and in retry Then refresh token is not called', () => {
     jest.spyOn(StorageUtils, 'getCurrentUser').mockReturnValue({ jwtRefresh: 'token' });
-    const error = { response: { data: { debugMessage: 'debugMessage' } }, config: { url: '/url', data: [], _retry: true } };
+    const error = {
+      response: { data: { debugMessage: 'debugMessage' } },
+      config: { url: '/url', data: [], _retry: true },
+    };
     const tested = axios.interceptors.response.handlers[0].rejected(error);
     expect(tested).not.toBeNull();
   });

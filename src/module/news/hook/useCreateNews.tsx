@@ -8,8 +8,9 @@ import NewsService from '../service/NewsService';
 
 export const useCreateNews = (): {
   news: INewsDto;
-  createOrUpdateNews: (file: File | undefined) => (news: INewsDto) => void;
+  createOrUpdateNews: (news: INewsDto) => void;
   fetchById: (id: ID) => void;
+  uploadNewsImage: (id: ID, file: File | undefined) => Promise<string>;
 } => {
   const { data: news } = useAppSelector((state) => state.news);
   const dispatch = useAppDispatch();
@@ -26,21 +27,22 @@ export const useCreateNews = (): {
   );
 
   const createOrUpdateNews = useCallback(
-    (file: File | undefined) => (news: INewsDto) => {
-      NewsService.createOrUpdate(news)(dispatch).then((newFromBack) => {
-        if (file && !newFromBack.image?.includes(file.name)) {
-          let formData = new FormData();
-          formData.append('file', file);
-          ApiService.post('/news/upload?id=' + news.id, formData, {
-            'Content-Type': 'multipart/form-data',
-          }).then((data) => {
-            console.log('FILE UPLOAD : ', data);
-          });
-        }
-      });
+    (news: INewsDto) => {
+      NewsService.createOrUpdate(news)(dispatch);
     },
     [dispatch],
   );
 
-  return { news, fetchById, createOrUpdateNews };
+  const uploadNewsImage = useCallback((id: ID, file: File | undefined): Promise<string> => {
+    console.log(id, file);
+    let formData = new FormData();
+    if (file) {
+      formData.append('file', file);
+    }
+    return ApiService.post('/news/upload?id=' + id, formData, {
+      'Content-Type': 'multipart/form-data',
+    });
+  }, []);
+
+  return { news, fetchById, createOrUpdateNews, uploadNewsImage };
 };
