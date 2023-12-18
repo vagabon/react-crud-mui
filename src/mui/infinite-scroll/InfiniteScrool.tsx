@@ -4,7 +4,7 @@ export interface InfiniteScroolProps {
   id: string;
   className?: string;
   children?: ReactNode;
-  callBack?: Function;
+  callBack?: () => void;
 }
 
 const InfiniteScrool: React.FC<InfiniteScroolProps> = (props: InfiniteScroolProps) => {

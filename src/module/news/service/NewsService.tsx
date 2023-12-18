@@ -1,7 +1,7 @@
-import ApiService from 'api/service/ApiService';
-import { ID } from 'dto/api/ApiDto';
-import { CommonAction } from 'reducer/common/CommonReducers';
 import { Dispatch } from 'redux';
+import ApiService from '../../../api/service/ApiService';
+import { ID } from '../../../dto/api/ApiDto';
+import { CommonAction } from '../../../reducer/common/CommonReducers';
 import { INewsDto } from '../dto/NewsDto';
 
 const ENDPOINT_NEWS = '/news';

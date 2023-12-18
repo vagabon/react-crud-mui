@@ -1,13 +1,14 @@
-import { useMessage } from 'hook/message/useMessage';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { CommonAction } from 'reducer/common/CommonReducers';
+import { JSON } from '../../dto/api/ApiDto';
+import { IMenuDto } from '../../dto/menu/MenuDto';
+import { useMessage } from '../../hook/message/useMessage';
+import { CommonAction } from '../../reducer/common/CommonReducers';
+import { useAppDispatch, useAppSelector } from '../../store/store';
+import { UuidUtils } from '../../utils/uuid/UuidUtils';
 
-import { useAppDispatch, useAppSelector } from 'store/store';
-import { UuidUtils } from 'utils/uuid/UuidUtils';
-
-export const useLocationHistory = (menus: any) => {
-  let location = useLocation();
+export const useLocationHistory = (menus: IMenuDto[]) => {
+  const location = useLocation();
   const dispatch = useAppDispatch();
   const { clearMessage } = useMessage();
   const { scrolls } = useAppSelector((state) => state.common);
@@ -20,11 +21,11 @@ export const useLocationHistory = (menus: any) => {
     newPathname !== '/home' && clearMessage();
     const pathnameWithoutParam = location.pathname.slice(0, location.pathname.lastIndexOf('/'));
     let title = newPathname;
-    menus.forEach((menu: any) => {
+    menus.forEach((menu: IMenuDto) => {
       if (menu.link === newPathname || menu.link === pathnameWithoutParam) {
         title = menu.title;
       }
-      menu.childrens?.forEach((chidren: any) => {
+      menu.childrens?.forEach((chidren: IMenuDto) => {
         if (chidren.link === newPathname || chidren.link === pathnameWithoutParam) {
           title = chidren.title;
         }
@@ -50,7 +51,7 @@ export const useLocationHistory = (menus: any) => {
 
   useEffect(() => {
     // NO LINTER HERE : the scroll muse happear when a new page is load after a navidate
-    const oldScroll = scrolls[pathname as keyof {}] ? scrolls[pathname as keyof {}] : 0;
+    const oldScroll = scrolls[pathname as keyof JSON] ? scrolls[pathname as keyof JSON] : 0;
     setTimeout(() => {
       window.scrollTo(0, oldScroll as number);
     }, 100);

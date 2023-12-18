@@ -1,6 +1,6 @@
-import MDCard from 'mui/card/MDCard';
-import MdMarkdown from 'mui/markdown/MdMarkdown';
-import { useRole } from 'mui/role/useRole';
+import MDCard from '../../../../mui/card/MDCard';
+import MdMarkdown from '../../../../mui/markdown/MdMarkdown';
+import { useRole } from '../../../../mui/role/useRole';
 import { INewsCardProps } from './NewsCard';
 
 export interface INewsCardSmallProps extends INewsCardProps {}

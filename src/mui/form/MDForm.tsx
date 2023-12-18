@@ -1,12 +1,12 @@
-import { IApiDto, JSONObject } from 'dto/api/ApiDto';
-import { IPathDto } from 'dto/path/PathDto';
 import { Formik, FormikErrors } from 'formik';
 import React, { ChangeEvent, FocusEvent, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { CommonAction } from 'reducer/common/CommonReducers';
-import { IYupValidators, YupUtils } from 'utils/yup/YupUtils';
+import { IApiDto, JSONObject } from '../../dto/api/ApiDto';
+import { IPathDto } from '../../dto/path/PathDto';
+import { CommonAction } from '../../reducer/common/CommonReducers';
 import { useAppDispatch, useAppSelector } from '../../store/store';
+import { IYupValidators, YupUtils } from '../../utils/yup/YupUtils';
 import MdButton from '../button/MdButton';
 
 export type handleChangeType = {
@@ -29,7 +29,7 @@ export interface IMDFormPropsReturn {
   handleChange: handleChangeType;
   handleBlur: handleBlurType;
   handleSubmit: () => void;
-  setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
+  setFieldValue: (field: string, value: JSONObject, shouldValidate?: boolean | undefined) => void;
   setValues: (values: IApiDto, shouldValidate?: boolean) => void;
 }
 

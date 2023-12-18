@@ -1,7 +1,7 @@
 import { Alert, Slide, SlideProps, Snackbar } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Trans } from 'react-i18next';
-import { useAppSelector } from 'store/store';
+import { useAppSelector } from '../../store/store';
 
 type TransitionProps = Omit<SlideProps, 'direction'>;
 function TransitionRight(props: TransitionProps) {

@@ -1,5 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import { IApiDto } from 'dto/api/ApiDto';
+import { IApiDto } from '../dto/api/ApiDto';
 
 export type ActionReturn = { payload: IApiDto; type: string };
 

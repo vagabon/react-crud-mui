@@ -23,7 +23,6 @@ global.mockComponentWithCallBack =
 /********************************** MOCK REDUX ***********************************/
 
 import * as redux from 'react-redux';
-import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import store from './store/store';
 
@@ -33,7 +32,7 @@ jest.mock('react-redux', () => ({
 }));
 global.useSelectorSpy = jest.spyOn(redux, 'useSelector');
 
-const middlewares = [thunk];
+const middlewares = [];
 global.mockStore = configureMockStore(middlewares)({});
 
 global.dispatch = jest.fn();

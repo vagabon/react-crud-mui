@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
+import ApiService from '../../../api/service/ApiService';
+import { CommonAction } from '../../../reducer/common/CommonReducers';
 import { IUserDto } from '../dto/UserDto';
-import ApiService from 'api/service/ApiService';
-import { CommonAction } from 'reducer/common/CommonReducers';
 
 const ENDPOINT_TEST_ALL = '/user/ping';
 const ENDPOINT_USERS_FINDBY = '/user/findBy';

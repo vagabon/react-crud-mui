@@ -1,12 +1,12 @@
-import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
+import { EnhancedStore } from '@reduxjs/toolkit/dist/configureStore';
 import axios, { AxiosError, AxiosHeaders, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { ICurrentUserDto } from 'dto/current-user/CurrentUserDto';
-import { LoginAction } from 'module/auth/reducer/AuthReducers';
-import { CommonAction } from 'reducer/common/CommonReducers';
-import { StorageUtils } from 'utils/storage/StorageUtils';
+import { ICurrentUserDto } from '../../dto/current-user/CurrentUserDto';
+import { LoginAction } from '../../module/auth/reducer/AuthReducers';
+import { CommonAction } from '../../reducer/common/CommonReducers';
+import { StorageUtils } from '../../utils/storage/StorageUtils';
 
 const AxiosInterceptor = <U,>(
-  store: ToolkitStore,
+  store: EnhancedStore,
   apiUrl: string,
   publicApi: string,
   loginEnpoint: string,

@@ -1,16 +1,16 @@
-import { AnyAction } from '@reduxjs/toolkit';
-import { IApiDto, JSONObject } from 'dto/api/ApiDto';
+import { Action } from '@reduxjs/toolkit';
 import { useEffect, useState } from 'react';
-import { useAppDispatch } from 'store/store';
+import { IApiDto, JSONObject } from '../dto/api/ApiDto';
+import { useAppDispatch } from '../store/store';
 
 interface ISearchPageHook {
   fetchDatas: (filter: JSONObject, first: number, max: number, orderField: string, order: string) => Promise<IApiDto[]>;
   countDatas: (search: string) => Promise<number>;
   action: {
-    setDatas: (state: IApiDto[]) => AnyAction;
-    setPage: (page: number) => AnyAction;
-    setSearch: (state: string) => AnyAction;
-    setCount: (state: number) => AnyAction;
+    setDatas: (state: IApiDto[]) => Action;
+    setPage: (page: number) => Action;
+    setSearch: (state: string) => Action;
+    setCount: (state: number) => Action;
   };
   search: string;
   page: number;
@@ -42,7 +42,12 @@ const useSearchPageHook = ({
   const [countDatasOnLoad] = useState<(search: string) => Promise<number>>(() => countDatas);
   const [pageOnLoad] = useState<number>(page);
   const [searchOnLoad] = useState<string>(search);
-  const [actionOnLoad] = useState<any>(action);
+  const [actionOnLoad] = useState<{
+    setDatas: (state: IApiDto[]) => Action;
+    setPage: (page: number) => Action;
+    setSearch: (state: string) => Action;
+    setCount: (state: number) => Action;
+  }>(action);
 
   useEffect(() => {
     countDatasOnLoad(searchOnLoad).then((count: number): void => {

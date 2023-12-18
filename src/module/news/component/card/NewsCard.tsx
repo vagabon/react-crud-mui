@@ -1,10 +1,10 @@
-import { INewsDto } from 'module/news/dto/NewsDto';
-import MDCard from 'mui/card/MDCard';
-import MDContent from 'mui/content/MDContent';
-import { useId } from 'mui/hook/useId';
-import MdMarkdown from 'mui/markdown/MdMarkdown';
-import { useRole } from 'mui/role/useRole';
 import { useCallback, useState } from 'react';
+import { INewsDto } from '../../../../module/news/dto/NewsDto';
+import MDCard from '../../../../mui/card/MDCard';
+import MDContent from '../../../../mui/content/MDContent';
+import { useId } from '../../../../mui/hook/useId';
+import MdMarkdown from '../../../../mui/markdown/MdMarkdown';
+import { useRole } from '../../../../mui/role/useRole';
 
 export interface INewsCardProps {
   news: INewsDto;

@@ -1,7 +1,7 @@
-import axios, { AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios';
-import { ID } from 'dto/api/ApiDto';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { IApiDto, ID, JSON } from '../../dto/api/ApiDto';
 
-const API_URL: string = window['ENV' as any]['API_URL' as any] as unknown as string;
+const API_URL: string = window['ENV' as keyof Window]['API_URL' as keyof Window] as unknown as string;
 
 const ApiService = {
   get: <T,>(endPoint: string, baseUrl: string = API_URL): Promise<T> => {
@@ -15,7 +15,7 @@ const ApiService = {
     );
   },
 
-  put: <T,>(endPoint: string, data: {}): Promise<T> => {
+  put: <T,>(endPoint: string, data: IApiDto): Promise<T> => {
     return axios.put(API_URL + endPoint, data).then(
       (response: AxiosResponse) => {
         return ApiService.returnPromise<T>(response);
@@ -28,8 +28,8 @@ const ApiService = {
 
   post: <T,>(
     endPoint: string,
-    data: {},
-    config: any = {
+    data: IApiDto | FormData | JSON,
+    config: JSON = {
       'Content-Type': 'application/json',
     },
   ): Promise<T> => {
@@ -43,7 +43,7 @@ const ApiService = {
     );
   },
 
-  patch: <T,>(endPoint: string, data: {}): Promise<T> => {
+  patch: <T,>(endPoint: string, data: IApiDto): Promise<T> => {
     return axios.patch(API_URL + endPoint, data).then(
       (response: AxiosResponse) => {
         return ApiService.returnPromise<T>(response);

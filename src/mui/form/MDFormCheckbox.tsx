@@ -1,8 +1,8 @@
 import { Checkbox, Typography } from '@mui/material';
-import { ChangeEvent, useEffect, useState } from 'react';
-import { IMDFormPropsReturn } from './MDForm';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { JSONObject } from 'dto/api/ApiDto';
+import { JSONObject } from '../../dto/api/ApiDto';
+import { IMDFormPropsReturn } from './MDForm';
 
 export interface IFormCheckboxProps extends IMDFormPropsReturn {
   label?: string;
@@ -13,7 +13,7 @@ const MDFormCheckbox: React.FC<IFormCheckboxProps> = (props: IFormCheckboxProps)
   const [error, setError] = useState<string>('');
   const { t } = useTranslation();
 
-  const [nameOnLoad] = useState(props.name);
+  const nameOnLoad = props.name;
 
   useEffect(() => {
     const error = props.errors[nameOnLoad as keyof JSONObject];
@@ -24,8 +24,8 @@ const MDFormCheckbox: React.FC<IFormCheckboxProps> = (props: IFormCheckboxProps)
     }
   }, [props.errors, props.touched, nameOnLoad]);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const checkked = !(props.values[nameOnLoad as keyof JSONObject] === true);
+  const handleChange = () => {
+    const checkked = props.values[nameOnLoad as keyof JSONObject] !== true;
     const newEvent = {
       target: {
         name: props.name,

@@ -13,7 +13,7 @@ export interface MdButtonProps {
   show?: boolean;
   label?: string;
   url?: string;
-  startIcon?: any;
+  startIcon?: JSX.Element;
   color?: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning' | 'google' | 'facebook';
   size?: 'small' | 'medium' | 'large';
   variant?: 'text' | 'outlined' | 'contained';

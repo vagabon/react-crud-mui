@@ -1,10 +1,10 @@
-import { JSONObject, Primitif } from 'dto/api/ApiDto';
-import MDInputTextSimple from 'mui/form/MDInputTextSimple';
 import React, { useRef } from 'react';
+import { JSONObject, Primitif } from '../../dto/api/ApiDto';
+import MDInputTextSimple from '../../mui/form/MDInputTextSimple';
 
 export interface SearchBarProps {
   search: Primitif;
-  callBack: Function;
+  callBack: (value: string) => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {

@@ -1,13 +1,13 @@
 import AddIcon from '@mui/icons-material/Add';
 import { Fab } from '@mui/material';
-import { ICurrentUserDto } from 'dto/current-user/CurrentUserDto';
-import { IUserDto } from 'module/user/dto/UserDto';
-import InfiniteScrool from 'mui/infinite-scroll/InfiniteScrool';
-import SearchBar from 'mui/searchbar/SearchBar';
 import React, { ReactNode, SyntheticEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from 'store/store';
-import RoleUtils from 'utils/role/RoleUtils';
+import { ICurrentUserDto } from '../../dto/current-user/CurrentUserDto';
+import { IUserDto } from '../../module/user/dto/UserDto';
+import InfiniteScrool from '../../mui/infinite-scroll/InfiniteScrool';
+import SearchBar from '../../mui/searchbar/SearchBar';
+import { useAppSelector } from '../../store/store';
+import RoleUtils from '../../utils/role/RoleUtils';
 
 export interface InfiniteScroolPageProps2 {
   className?: string;

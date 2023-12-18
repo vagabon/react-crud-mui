@@ -1,5 +1,5 @@
 import { IApiDto, JSONObject } from '../../dto/api/ApiDto';
-import { I18nUtils, I18nTranslate } from '../i18n/I18nUtils';
+import { I18nTranslate, I18nUtils } from '../i18n/I18nUtils';
 
 export interface IList extends IApiDto {
   libelle: string;
@@ -10,7 +10,7 @@ export type ListType = { id: string | number; name: string };
 export const ListUtils = {
   convertEnumToList: <T,>(enums: T, libelle: string, t: I18nTranslate): IList[] => {
     const list: IList[] = [];
-    for (let item in enums) {
+    for (const item in enums) {
       if (isNaN(Number(item))) {
         list.push({
           id: item,

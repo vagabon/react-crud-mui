@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { I18nUtils, I18nTranslate } from '../i18n/I18nUtils';
+import { I18nTranslate, I18nUtils } from '../i18n/I18nUtils';
 
 export interface IYupValidator {
   required?: boolean;

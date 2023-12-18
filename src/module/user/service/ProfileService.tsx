@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux';
 import { IProfileDto } from '../dto/ProfileDto';
 
-import ApiService from 'api/service/ApiService';
-import { CommonAction } from 'reducer/common/CommonReducers';
+import ApiService from '../../../api/service/ApiService';
+import { CommonAction } from '../../../reducer/common/CommonReducers';
 
 const ProfileService = {
   loadRoles: (

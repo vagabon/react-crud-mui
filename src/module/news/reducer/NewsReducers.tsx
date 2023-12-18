@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { DefaultState, ReducerCrudState, ReducersActions } from '../../../reducer/BaseReducer';
 import { INewsDto } from '../dto/NewsDto';
-import { DefaultState, ReducerCrudState, ReducersActions } from 'reducer/BaseReducer';
 
 export interface NewsReducerState extends ReducerCrudState {
   datas: INewsDto[];

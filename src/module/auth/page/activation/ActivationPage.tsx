@@ -1,10 +1,10 @@
-import MdButton from 'mui/button/MdButton';
-import MDCard from 'mui/card/MDCard';
-import MDContent from 'mui/content/MDContent';
 import React, { useEffect, useState } from 'react';
 import { Trans } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { useAppSelector } from 'store/store';
+import MdButton from '../../../../mui/button/MdButton';
+import MDCard from '../../../../mui/card/MDCard';
+import MDContent from '../../../../mui/content/MDContent';
+import { useAppSelector } from '../../../../store/store';
 import AuthService from '../../service/AuthService';
 
 const ActivationPage: React.FC = () => {

@@ -1,6 +1,6 @@
 import { Switch, Typography } from '@mui/material';
-import { JSONObject } from 'dto/api/ApiDto';
 import { useCallback, useEffect, useState } from 'react';
+import { JSONObject } from '../../dto/api/ApiDto';
 import { IMDFormPropsReturn, handleChangeType } from './MDForm';
 
 export interface FormSwitchProps extends IMDFormPropsReturn {

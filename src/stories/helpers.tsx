@@ -1,15 +1,15 @@
 import { withTests } from '@storybook/addon-jest';
-import { IApiDto, JSONObject } from 'dto/api/ApiDto';
-import MDForm, { IMDFormPropsReturn } from 'mui/form/MDForm';
-import { cloneElement } from 'react';
+import React, { cloneElement } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import store from 'store/store';
-import { IYupValidators } from 'utils/yup/YupUtils';
+import { IApiDto, JSONObject } from '../dto/api/ApiDto';
+import MDForm, { IMDFormPropsReturn } from '../mui/form/MDForm';
+import store from '../store/store';
+import { IYupValidators } from '../utils/yup/YupUtils';
 
-import results from 'jest-test-results.json';
+import results from '../jest-test-results.json';
 
-export const withProvider = (Story: any) => (
+export const withProvider = (Story: React.FC) => (
   <Provider store={store}>
     <BrowserRouter>
       <Story />

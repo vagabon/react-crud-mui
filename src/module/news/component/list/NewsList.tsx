@@ -1,5 +1,5 @@
-import InfiniteScrollPage from 'mui/page/InfiniteScrollPage';
 import { useEffect } from 'react';
+import InfiniteScrollPage from '../../../../mui/page/InfiniteScrollPage';
 import { INewsDto } from '../../dto/NewsDto';
 import { useFetchNews } from '../../hook/useFetchNews';
 import NewsCardSmall from '../card/NewsCardSmall';

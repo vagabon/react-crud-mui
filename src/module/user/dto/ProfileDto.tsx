@@ -1,4 +1,4 @@
-import { IApiDto } from 'dto/api/ApiDto';
+import { IApiDto } from '../../../dto/api/ApiDto';
 
 export interface IProfileDto extends IApiDto {
   name?: string;

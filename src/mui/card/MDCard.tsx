@@ -1,9 +1,10 @@
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Card, CardActions, CardContent, CardHeader, CardMedia, IconButton } from '@mui/material';
-import { ID } from 'dto/api/ApiDto';
 import { MouseEvent, ReactNode, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { DateUtils } from 'utils/date/DateUtils';
+import { ID } from '../../dto/api/ApiDto';
+import { DateUtils } from '../../utils/date/DateUtils';
+import { useId } from '../hook/useId';
 
 export interface MDCardProps {
   id?: ID;
@@ -13,16 +14,16 @@ export interface MDCardProps {
   urlUpdate?: string;
   avatar?: string;
   image?: string;
-  sx?: any;
   className?: string;
   children?: ReactNode;
   buttonchildren?: ReactNode;
 }
 
-const API_URL: string = window['ENV' as any]['API_URL' as any] as unknown as string;
+const API_URL: string = window['ENV' as keyof Window]['API_URL' as keyof Window] as unknown as string;
 
-const MDCard: React.FC<MDCardProps> = ({ id, title, url, urlUpdate, avatar, image, date, ...rest }: MDCardProps) => {
+const MDCard: React.FC<MDCardProps> = ({ title, url, urlUpdate, avatar, image, date, ...rest }: MDCardProps) => {
   const navigate = useNavigate();
+  const { id } = useId(rest.id as string);
 
   const handleClick = useCallback(
     (customUrl?: string) => (e: MouseEvent<HTMLButtonElement>) => {
@@ -34,7 +35,7 @@ const MDCard: React.FC<MDCardProps> = ({ id, title, url, urlUpdate, avatar, imag
   );
 
   return (
-    <Card {...rest} style={{ margin: '10px', padding: '10px' }}>
+    <Card {...rest} id={id} style={{ margin: '10px', padding: '10px' }}>
       {title && (
         <CardHeader
           onClick={handleClick(url)}

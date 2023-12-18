@@ -4,44 +4,29 @@
 @import '@fontsource/roboto/700.css';
 
 .App { text-align: center; }
-html { font-size: 100%; }
+html { font-size: 13px; }
 html, body, #root { height: 100%; }
-
-.label { margin: 20px; }
-
-.alert-danger { color: red !important; }
 
 .flex { display: flex; flex-direction: column; }
 .flex-row { display: flex; flex-direction: row; }
 .flex1 { flex: 1; }
-.flex-wrap { 
-  flex-wrap: wrap; flex-direction: row; 
-  & > .flex { flex-wrap: wrap; flex-direction: row; & > div { width : calc(50% - 8px); margin: 4px !important; } }
-  & > div { width : calc(50% - 8px); margin: 4px !important; align-self: baseline; } 
-}
 .align-center { align-items: center; }
 .align-end { align-items: end; }
 .justify-end { justify-content: flex-end; }
 .space-between { justify-content: space-between; }
 .margin-5 { margin: 5px; }
-.margin-border { margin: 0px 10px; }
 .margin-top-20 { margin-top: 20px; }
-.button-top-left { position: absolute; left: 10px; top: 2px;}
-.button-top-rigth { position: absolute; right: -4px; top: -6px;}
-.overflow-auto { overflow: auto;}
 
 .width100 { width: 100%; }
 .heigth100 { height: 100%; }
 
 .main-container {
   flex: 1; align-self: center; align-items: center; overflow: auto; width: 100% !important;
-  .container { flex: 1;  overflow: auto; width: 100%; }
-  .width100  { max-width: 1200px; display: flex; flex-direction: column; flex: 1; }
+  .container { flex: 1; overflow: auto; width: 100%; }
+  .MuiPaper-root { margin: 10px; padding: 10px; width: calc(100% - 20px); }
+  .MuiCardHeader-title { font-size: 2rem !important; }
+  .width100  { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; flex: 1; position: relative; flex-wrap: wrap; }
 }
-
-.MuiToolbar-root { min-height: 48px !important; & > a { text-decoration: none; } }
-.MuiCardContent-root { position: relative;  }
-.container .MuiButtonBase-root { padding: 9px 2px !important;}
 
 .roles { justify-content: space-between; flex-direction: row; align-items: baseline; width: 100%; }
 .roles > div .MuiChip-root { margin: 5px; }
@@ -53,12 +38,7 @@ html, body, #root { height: 100%; }
 .MuiInputLabel-root { line-height: 1em !important; top: -3px !important; }
 .MuiOutlinedInput-root { min-height: 40px !important; }
 
-.search-bar { width: 100%; padding: 10px 0; }
-.MuiCard-root { width: 100%; min-width: 100px !important;}
-
-@media screen and (max-width: 900px) {
-  .MuiCard-root { width: 100%; }
-}
+.search-bar { width: 100%; padding: 10px 0; max-width: 1200px; margin: 0 auto; }
 
 .modale .MuiBox-root { 
   width: 70% !important; height: 50% !important; min-height: 370px;
@@ -74,32 +54,31 @@ html, body, #root { height: 100%; }
   .main-container { width: 100% !important; 
     .search-bar { padding: 0px 5px !important; }
     .MuiPaper-root { margin: 5px 0px !important; width: calc(100% - 10px) !important; }
-    .flex-wrap { flex-direction: column; }
-    .flex-wrap>div {width: 98% !important;  }
     .modale .MuiBox-root { width: 100% !important;  }
   }
 }
 
-.MuiCardHeader-title { font-size: 2rem !important; }
+.news-list .flex { display: flex; flex-direction: row; align-items: start; & > div { width: calc(50% - 20px) } }
 
-.MuiPaper-root { margin: 10px; padding: 10px; width: calc(100% - 20px); }
-
-.news-list .flex { display: flex; flex-direction: row; align-items: start; & > div { width: 50% } }
-
-.markdown-form { display: flex; flex-direction: row; }
+.markdown-form { 
+  display: flex !important; flex-direction: row !important; 
+  & > div { width: calc(50% - 20px) !important;} 
+  .mardown-with-summary > .MuiPaper-root:nth-child(1) { width: 100%; }
+  .mardown-with-summary > .MuiPaper-root:nth-child(2) { width: 15%; position: fixed; right: 20px; }
+}
 
 .mardown-with-summary {
   display: flex;
-  flex-direction: row;
+  flex-direction: row !important;
   align-items: flex-start;
-  .MuiPaper-root:nth-child(1) { width: 65%; }
-  .MuiPaper-root:nth-child(2) { width: 35%; position: static; }
+  & > .MuiPaper-root:nth-child(1) { width: 65%; }
+  & > .MuiPaper-root:nth-child(2) {  width: 28%; position: fixed; right: 30px; }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1500px) {
   .mardown-with-summary {
-    .MuiPaper-root:nth-child(1) { width: 75%; }
-    .MuiPaper-root:nth-child(2) { width: 25%; }
+    & > .MuiPaper-root:nth-child(1) { width: 73%; }
+    & > .MuiPaper-root:nth-child(2) { width: 18%; right: 10%;}
   }
 }
 
@@ -111,4 +90,17 @@ html, body, #root { height: 100%; }
   }
   .news-list .flex { flex-direction: column; & > div { width: 100% } }
   
+}
+
+.MuiTableCell-root { font-size: 1rem !important; }
+thead th.MuiTableCell-root { background-color: var(--mui-palette-primary-main) !important; }
+
+@media (min-width: 600px) {
+  .MuiToolbar-root {
+      min-height: 48px !important;
+  }
+}
+
+:root {
+  --mui-palette-primary-main: #9f9f9f8e;
 }

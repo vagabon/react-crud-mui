@@ -1,6 +1,6 @@
-import { JSONValue } from 'dto/api/ApiDto';
 import { useCallback, useEffect, useState } from 'react';
-import { UuidUtils } from 'utils/uuid/UuidUtils';
+import { JSONValue } from '../../dto/api/ApiDto';
+import { UuidUtils } from '../../utils/uuid/UuidUtils';
 
 export const useFormValue = (type: string, value: JSONValue) => {
   const [key, setKey] = useState<string>();

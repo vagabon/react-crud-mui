@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ICurrentUserDto } from 'dto/current-user/CurrentUserDto';
-import { IUserDto } from 'module/user/dto/UserDto';
-import { StorageUtils } from 'utils/storage/StorageUtils';
+import { ICurrentUserDto } from '../../../dto/current-user/CurrentUserDto';
+import { IUserDto } from '../../../module/user/dto/UserDto';
+import { StorageUtils } from '../../../utils/storage/StorageUtils';
 
-let user: ICurrentUserDto<IUserDto> | null = StorageUtils.getCurrentUser();
+const user: ICurrentUserDto<IUserDto> | null = StorageUtils.getCurrentUser();
 
 export interface AuthReducerState {
   isLoggedIn: boolean;

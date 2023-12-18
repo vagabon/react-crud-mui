@@ -1,8 +1,8 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import HasRole from '../../../mui/role/HasRole';
 import NewsForm from '../component/form/NewsForm';
 import { useCreateNews } from '../hook/useCreateNews';
-import { useEffect } from 'react';
-import HasRole from 'mui/role/HasRole';
 
 const NewsUpdatePage: React.FC = () => {
   const params = useParams();

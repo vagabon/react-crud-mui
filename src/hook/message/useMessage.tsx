@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import { CommonAction } from 'reducer/common/CommonReducers';
-import { useAppDispatch } from 'store/store';
+import { CommonAction } from '../../reducer/common/CommonReducers';
+import { useAppDispatch } from '../../store/store';
 
 export const useMessage = () => {
   const dispatch = useAppDispatch();

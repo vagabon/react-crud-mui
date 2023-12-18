@@ -1,4 +1,4 @@
-import { IApiDto } from 'dto/api/ApiDto';
+import { IApiDto } from '../../../../../dto/api/ApiDto';
 
 export interface IRegisterDto extends IApiDto {
   username?: string;

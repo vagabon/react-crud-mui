@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
-import { useId } from 'mui/hook/useId';
 import { ChangeEvent, useCallback } from 'react';
 import { Trans } from 'react-i18next';
+import { useId } from '../../mui/hook/useId';
 
 interface IMDFormFileProps {
   name: string;

@@ -1,7 +1,7 @@
 import { TextField, TextFieldVariants } from '@mui/material';
-import { JSONValue } from 'dto/api/ApiDto';
-import { useFormValue } from 'mui/hook/useFormValue';
 import { useTranslation } from 'react-i18next';
+import { JSONValue } from '../../dto/api/ApiDto';
+import { useFormValue } from '../../mui/hook/useFormValue';
 import { handleBlurType, handleChangeType } from './MDForm';
 
 const DEFAULT_TEXT = 'text';

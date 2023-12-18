@@ -1,4 +1,4 @@
-import { ICurrentUserDto } from 'dto/current-user/CurrentUserDto';
+import { ICurrentUserDto } from '../../dto/current-user/CurrentUserDto';
 
 export const StorageUtils = {
   setCurrentUser: <U,>(data: ICurrentUserDto<U>): void => {
@@ -24,6 +24,6 @@ export const StorageUtils = {
 
   getJwt: (): string => {
     const user = StorageUtils.getCurrentUser();
-    return user && user.jwt ? user.jwt : '';
+    return user?.jwt ? user.jwt : '';
   },
 };

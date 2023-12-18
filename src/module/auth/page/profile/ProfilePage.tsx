@@ -1,11 +1,11 @@
-import { Primitif } from 'dto/api/ApiDto';
-import MdButton from 'mui/button/MdButton';
-import MDCard from 'mui/card/MDCard';
-import MDContent from 'mui/content/MDContent';
 import React from 'react';
 import { Trans } from 'react-i18next';
 import { Navigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from 'store/store';
+import { Primitif } from '../../../../dto/api/ApiDto';
+import MdButton from '../../../../mui/button/MdButton';
+import MDCard from '../../../../mui/card/MDCard';
+import MDContent from '../../../../mui/content/MDContent';
+import { useAppDispatch, useAppSelector } from '../../../../store/store';
 import { IProfileDto } from '../../../user/dto/ProfileDto';
 import AuthService from '../../service/AuthService';
 

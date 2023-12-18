@@ -1,15 +1,15 @@
-import MDCard from 'mui/card/MDCard';
-import MDForm, { IMDFormPropsReturn, handleChangeType } from 'mui/form/MDForm';
-import MDInputText from 'mui/form/MDInputText';
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import MDForm, { IMDFormPropsReturn, handleChangeType } from '../../../../mui/form/MDForm';
+import MDInputText from '../../../../mui/form/MDInputText';
 
-import { useCreateNews } from 'module/news/hook/useCreateNews';
-import MDFormFile from 'mui/form/MDFormFile';
+import { useCreateNews } from '../../../../module/news/hook/useCreateNews';
+import MDFormFile from '../../../../mui/form/MDFormFile';
 
-import { ID, JSONObject } from 'dto/api/ApiDto';
-import { INewsDto } from 'module/news/dto/NewsDto';
-import MDContent from 'mui/content/MDContent';
-import MDFormSwitch from 'mui/form/MDFormSwitch';
+import { ID, JSONObject } from '../../../../dto/api/ApiDto';
+import { INewsDto } from '../../../../module/news/dto/NewsDto';
+import MDCard from '../../../../mui/card/MDCard';
+import MDContent from '../../../../mui/content/MDContent';
+import MDFormSwitch from '../../../../mui/form/MDFormSwitch';
 import NEWS_SCHEMA from '../../schema/news.schema.json';
 import NewsCard from '../card/NewsCard';
 

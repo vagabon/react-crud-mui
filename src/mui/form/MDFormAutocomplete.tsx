@@ -1,8 +1,8 @@
 import { Autocomplete, FormControl, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { JSONObject } from '../../dto/api/ApiDto';
+import { ListType } from '../../utils/list/ListUtils';
 import { IMDFormPropsReturn } from './MDForm';
-import { JSONObject } from 'dto/api/ApiDto';
-import { ListType } from 'utils/list/ListUtils';
 
 export interface FormAutocompleteProps extends IMDFormPropsReturn {
   label: string;

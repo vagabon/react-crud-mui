@@ -3,7 +3,7 @@ import { useRef } from 'react';
 const useLoadState = () => {
   const firstRender = useRef(true);
 
-  const loadIt: Function = (length: number) => (call: Function) => {
+  const loadIt = (length: number) => (call: () => void) => {
     if ((firstRender.current && length === 0) || !firstRender.current) {
       call();
     }

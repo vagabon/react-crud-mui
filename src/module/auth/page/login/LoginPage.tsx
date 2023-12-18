@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import MDCard from 'mui/card/MDCard';
-import MDContent from 'mui/content/MDContent';
-import MDForm, { IMDFormPropsReturn } from 'mui/form/MDForm';
-import MDInputText from 'mui/form/MDInputText';
 import { Trans } from 'react-i18next';
+import MDCard from '../../../../mui/card/MDCard';
+import MDContent from '../../../../mui/content/MDContent';
+import MDForm, { IMDFormPropsReturn } from '../../../../mui/form/MDForm';
+import MDInputText from '../../../../mui/form/MDInputText';
 import { useAppDispatch } from '../../../../store/store';
 import { IUserDto } from '../../../user/dto/UserDto';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
@@ -23,7 +23,7 @@ const GOOGLE_CLIENT_ID: string = window['ENV' as keyof Window]['GOOGLE_CLIENT_ID
 const DEFAULT_VALUES = { email: '', password: '' };
 
 const LoginPage: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleLogin = (data: IUserDto) => {

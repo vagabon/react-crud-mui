@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
-import { JSONObject } from 'dto/api/ApiDto';
-import { useFormError } from 'mui/hook/useFormError';
+import { JSONObject } from '../../dto/api/ApiDto';
+import { useFormError } from '../../mui/hook/useFormError';
 import { IMDFormPropsReturn } from './MDForm';
 import MDInputTextSimple from './MDInputTextSimple';
 

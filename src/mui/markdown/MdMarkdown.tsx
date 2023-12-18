@@ -1,7 +1,7 @@
 import { MuiMarkdown } from 'mui-markdown';
-import { useId } from 'mui/hook/useId';
 import { Highlight, themes } from 'prism-react-renderer';
 import { useCallback, useEffect, useRef } from 'react';
+import { useId } from '../../mui/hook/useId';
 
 interface IMdMarkdownProps {
   content?: string;
@@ -41,7 +41,6 @@ const MdMarkdown: React.FC<IMdMarkdownProps> = (props) => {
         const newSummary = generateSummary(id);
         props.summaryCallback!(newSummary);
         count++;
-        console.log(count);
         if (count > 10) {
           interval.current && clearInterval(interval.current);
         }

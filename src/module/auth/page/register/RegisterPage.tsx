@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { JSONObject } from 'dto/api/ApiDto';
-import { useAppSelector } from 'store/store';
+import { JSONObject } from '../../../../dto/api/ApiDto';
+import { useAppSelector } from '../../../../store/store';
 import { IRegisterDto, RegisterDto } from './dto/RegisterDto';
 
-import MDCard from 'mui/card/MDCard';
-import MDContent from 'mui/content/MDContent';
-import MDForm, { IMDFormPropsReturn } from 'mui/form/MDForm';
-import MDInputText from 'mui/form/MDInputText';
-import { Trans } from 'react-i18next';
+import MDCard from '../../../../mui/card/MDCard';
+import MDContent from '../../../../mui/content/MDContent';
+import MDForm, { IMDFormPropsReturn } from '../../../../mui/form/MDForm';
+import MDInputText from '../../../../mui/form/MDInputText';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
 import AuthService from '../../service/AuthService';
@@ -18,7 +18,7 @@ import REGISTER_SCHEMA from './schema/register.schema.json';
 const DEFAULT_VALUES: JSONObject = new RegisterDto() as JSONObject;
 
 const RegisterPage: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [isRegister, setIsRegister] = useState<boolean>(false);
 
   const { isLoggedIn } = useAppSelector((state) => state.auth);

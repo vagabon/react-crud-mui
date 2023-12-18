@@ -1,6 +1,6 @@
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { IApiDto, JSONObject } from 'dto/api/ApiDto';
 import { useEffect, useState } from 'react';
+import { IApiDto, JSONObject } from '../../dto/api/ApiDto';
 import { IMDFormPropsReturn } from './MDForm';
 
 interface IList {
@@ -36,7 +36,7 @@ const MdFormSelect: React.FC<IMdFormSelectProps> = (props: IMdFormSelectProps) =
   }, [props.list]);
 
   const propsValues = props.values[nameOnLoad as keyof JSONObject];
-  let validationSchema = props.validationSchema[nameOnLoad as keyof JSONObject] ?? {};
+  const validationSchema = props.validationSchema[nameOnLoad as keyof JSONObject] ?? {};
 
   useEffect(() => {
     setValue(props.byId === true ? propsValues?.['id'] ?? '' : propsValues ?? '');

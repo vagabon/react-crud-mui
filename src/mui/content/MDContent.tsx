@@ -1,5 +1,5 @@
-import { useId } from 'mui/hook/useId';
 import { ReactNode } from 'react';
+import { useId } from '../../mui/hook/useId';
 
 interface IMDContentProps {
   id?: string;

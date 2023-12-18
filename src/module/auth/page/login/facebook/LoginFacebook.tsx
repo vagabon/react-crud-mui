@@ -1,11 +1,11 @@
 import FacebookLogin from '@greatsumini/react-facebook-login';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import { LoginAction } from 'module/auth/reducer/AuthReducers';
-import AuthService from 'module/auth/service/AuthService';
-import MdButton from 'mui/button/MdButton';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from 'store/store';
-import { StorageUtils } from 'utils/storage/StorageUtils';
+import { LoginAction } from '../../../../../module/auth/reducer/AuthReducers';
+import AuthService from '../../../../../module/auth/service/AuthService';
+import MdButton from '../../../../../mui/button/MdButton';
+import { useAppDispatch } from '../../../../../store/store';
+import { StorageUtils } from '../../../../../utils/storage/StorageUtils';
 
 const FACEBOOK_CLIENT_ID: string = window['ENV' as keyof Window]['FACEBOOK_CLIENT_ID' as keyof Window]?.toString();
 

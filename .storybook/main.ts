@@ -5,7 +5,12 @@ import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions', '@storybook/addon-jest'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
+    '@storybook/addon-jest',
+  ],
   framework: {
     name: '@storybook/react-vite',
     options: {},
@@ -14,7 +19,7 @@ const config: StorybookConfig = {
     config.resolve = {
       ...config.resolve,
       alias: {
-        ...config.resolve?.alias, 
+        ...config.resolve?.alias,
         path: require.resolve('path-browserify'),
       },
     };
@@ -27,14 +32,11 @@ const config: StorybookConfig = {
   },
   typescript: {
     check: false,
-    reactDocgen: "react-docgen-typescript",
+    reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
       shouldRemoveUndefinedFromOptional: true,
-      propFilter: (prop) =>
-        prop.parent
-          ? !/node_modules\/(?!@mui)/.test(prop.parent.fileName)
-          : true,
+      propFilter: (prop) => (prop.parent ? !/node_modules\/(?!@mui)/.test(prop.parent.fileName) : true),
     },
   },
 };

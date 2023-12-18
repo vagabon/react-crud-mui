@@ -10,9 +10,9 @@ import {
   TableRow,
   TableSortLabel,
 } from '@mui/material';
-import { JSONObject } from 'dto/api/ApiDto';
 import React, { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { JSONObject } from '../../dto/api/ApiDto';
 
 export interface TableWithPagniationProps {
   url?: string;
@@ -23,7 +23,7 @@ export interface TableWithPagniationProps {
   rowsPerPage: number;
   sortBy: string;
   sortByOrder: 'asc' | 'desc';
-  callBack: Function;
+  callBack: (newPage: number, rowsPerPage: number, sortBy: string, sortByOrder: 'asc' | 'desc') => void;
 }
 
 const TableWithPagination: React.FC<TableWithPagniationProps> = (props: TableWithPagniationProps) => {
@@ -34,7 +34,7 @@ const TableWithPagination: React.FC<TableWithPagniationProps> = (props: TableWit
   };
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
-    props.callBack(props.page, event.target.value, props.sortBy, props.sortByOrder);
+    props.callBack(props.page, parseInt(event.target.value), props.sortBy, props.sortByOrder);
   };
 
   const createSortHandle = (property: string) => (): void => {

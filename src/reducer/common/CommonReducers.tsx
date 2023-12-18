@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IPathDto } from 'dto/path/PathDto';
-import { UuidUtils } from 'utils/uuid/UuidUtils';
+import { IPathDto } from '../../dto/path/PathDto';
+import { UuidUtils } from '../../utils/uuid/UuidUtils';
 
 interface MessageButton {
   label?: string;

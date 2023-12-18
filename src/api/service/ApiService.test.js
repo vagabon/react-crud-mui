@@ -175,7 +175,7 @@ describe('ApiService - countBy', () => {
   };
 
   test('HTTP countBy ', async () => {
-    assertCallGetMethod({ accessToken: 'TOKEN' });
+    assertCallGetMethod();
     expect(axios.get).toBeCalledWith('http://localhost:8090/test?fields=username&values=value');
   });
 

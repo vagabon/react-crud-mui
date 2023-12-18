@@ -15,7 +15,7 @@ const HasRole: React.FC<HasRoleProps> = (props: HasRoleProps) => {
     <>
       {hasUserRole(props.roles) && props.children}
       {!hasUserRole(props.roles) && props.showError && (
-        <Box sx={{ marginTop: '20px' }}>Vous n'être pas habilité à voir ce contenu.</Box>
+        <Box sx={{ marginTop: '20px' }}>Vous n&apos;êtes pas habilité à voir ce contenu.</Box>
       )}
     </>
   );

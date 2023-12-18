@@ -1,6 +1,6 @@
-import ApiService from 'api/service/ApiService';
-import { ID } from 'dto/api/ApiDto';
 import { useCallback } from 'react';
+import ApiService from '../../../api/service/ApiService';
+import { ID } from '../../../dto/api/ApiDto';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { INewsDto } from '../dto/NewsDto';
 import { NewsAction } from '../reducer/NewsReducers';
@@ -35,7 +35,7 @@ export const useCreateNews = (): {
 
   const uploadNewsImage = useCallback((id: ID, file: File | undefined): Promise<string> => {
     console.log(id, file);
-    let formData = new FormData();
+    const formData = new FormData();
     if (file) {
       formData.append('file', file);
     }

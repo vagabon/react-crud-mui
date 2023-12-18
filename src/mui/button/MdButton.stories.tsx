@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { withProvider, withTest } from 'stories/helpers';
+import { withProvider, withTest } from '../../stories/helpers';
 
 import MdButton from './MdButton';
 
@@ -26,7 +26,7 @@ export const Primary: Story = {
   args: {
     label: 'label',
     url: 'url',
-    startIcon: '',
+    startIcon: undefined,
     color: 'inherit',
     size: 'small',
     variant: 'text',

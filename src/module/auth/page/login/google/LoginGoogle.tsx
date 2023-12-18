@@ -1,11 +1,11 @@
 import GoogleIcon from '@mui/icons-material/Google';
 import { useGoogleLogin } from '@react-oauth/google';
-import { LoginAction } from 'module/auth/reducer/AuthReducers';
-import AuthService from 'module/auth/service/AuthService';
-import MdButton from 'mui/button/MdButton';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from 'store/store';
-import { StorageUtils } from 'utils/storage/StorageUtils';
+import { LoginAction } from '../../../../../module/auth/reducer/AuthReducers';
+import AuthService from '../../../../../module/auth/service/AuthService';
+import MdButton from '../../../../../mui/button/MdButton';
+import { useAppDispatch } from '../../../../../store/store';
+import { StorageUtils } from '../../../../../utils/storage/StorageUtils';
 
 const LoginGoogle: React.FC = () => {
   const dispatch = useAppDispatch();

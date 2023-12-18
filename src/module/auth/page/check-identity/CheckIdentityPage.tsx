@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Trans } from 'react-i18next';
-import LoginService from '../../service/AuthService';
-
-import MDCard from 'mui/card/MDCard';
-import MDContent from 'mui/content/MDContent';
-import MDForm, { IMDFormPropsReturn } from 'mui/form/MDForm';
-import MDInputText from 'mui/form/MDInputText';
+import MDCard from '../../../../mui/card/MDCard';
+import MDContent from '../../../../mui/content/MDContent';
+import MDForm, { IMDFormPropsReturn } from '../../../../mui/form/MDForm';
+import MDInputText from '../../../../mui/form/MDInputText';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
+import LoginService from '../../service/AuthService';
 import { ICheckIdentityDto } from './dto/CheckIdentityDto';
 import CHECK_IDENTITY_SCHEMA from './schema/check.identity.schema.json';
 
