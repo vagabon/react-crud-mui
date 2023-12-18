@@ -12,6 +12,28 @@ Npm : [@vagabond-ts/react-crud-mui](https://www.npmjs.com/package/@vagabond-ts/r
 
 Example : [LostArk Roster](https://lostark-roster.vagabond.synology.me/)
 
+## libs
+
+npm install @mui/material @emotion/react @emotion/styled
+npm install @fontsource/roboto
+npm install @mui/icons-material
+
+npm install axios
+npm install react-router-dom
+npm install @reduxjs/toolkit react-redux
+npm install react-i18next i18next i18next-browser-languagedetector
+npm install formik yup
+npm install sass
+
+npm install --save-dev @testing-library/jest-dom @testing-library/react @testing-library/user-event
+npm install --save-dev @jest/globals ts-jest
+npm install redux-mock-store --save-dev
+
+npm install -D jest-sonar-reporter sonarqube-scanner
+
+npm install @react-oauth/google@latest
+npm i --save @greatsumini/react-facebook-login
+
 ## MUI
 
 https://mui.com/material-ui/getting-started/overview/

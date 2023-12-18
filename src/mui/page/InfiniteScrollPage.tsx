@@ -9,7 +9,7 @@ import SearchBar from '../../mui/searchbar/SearchBar';
 import { useAppSelector } from '../../store/Store';
 import RoleUtils from '../../utils/role/RoleUtils';
 
-export interface InfiniteScroolPageProps2 {
+export interface InfiniteScroolPageProps {
   className?: string;
   search?: string;
   urlAdd?: string;
@@ -19,7 +19,7 @@ export interface InfiniteScroolPageProps2 {
   doSearch?: (search: string) => void;
 }
 
-const InfiniteScrollPage: React.FC<InfiniteScroolPageProps2> = (props: InfiniteScroolPageProps2) => {
+const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = (props: InfiniteScroolPageProps) => {
   const currentUser = useAppSelector<ICurrentUserDto<IUserDto> | null>((state) => state.auth.user);
 
   const navigate = useNavigate();

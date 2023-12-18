@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { useId } from '../../mui/hook/useId';
 
-interface IMDContentProps {
+export interface IMDContentProps {
   id?: string;
   className?: string;
   children: ReactNode;
