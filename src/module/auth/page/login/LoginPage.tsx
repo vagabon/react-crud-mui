@@ -9,7 +9,7 @@ import MDCard from '../../../../mui/card/MDCard';
 import MDContent from '../../../../mui/content/MDContent';
 import MDForm, { IMDFormPropsReturn } from '../../../../mui/form/MDForm';
 import MDInputText from '../../../../mui/form/MDInputText';
-import { useAppDispatch } from '../../../../store/store';
+import { useAppDispatch } from '../../../../store/Store';
 import { IUserDto } from '../../../user/dto/UserDto';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';

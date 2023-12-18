@@ -35,7 +35,7 @@ const MDCard: React.FC<MDCardProps> = ({ title, url, urlUpdate, avatar, image, d
   );
 
   return (
-    <Card {...rest} id={id} style={{ margin: '10px', padding: '10px' }}>
+    <Card {...rest} id={id}>
       {title && (
         <CardHeader
           onClick={handleClick(url)}

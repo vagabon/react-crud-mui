@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
     "rootDir": "src",
     "target": "esnext",
     "module": "esnext",

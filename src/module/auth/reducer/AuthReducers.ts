@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ICurrentUserDto } from '../../../dto/current-user/CurrentUserDto';
-import { IUserDto } from '../../../module/user/dto/UserDto';
+import { IUserDto } from '../../user/dto/UserDto';
 import { StorageUtils } from '../../../utils/storage/StorageUtils';
 
 const user: ICurrentUserDto<IUserDto> | null = StorageUtils.getCurrentUser();

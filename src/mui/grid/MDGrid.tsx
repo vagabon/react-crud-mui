@@ -6,7 +6,7 @@ interface IMDGrid {
   container?: boolean;
   item?: boolean;
   xs?: boolean;
-  style?: CSSProperties | undefined;
+  style?: CSSProperties;
 }
 
 const MDGrid: React.FC<IMDGrid> = ({ children, ...rest }: IMDGrid) => {

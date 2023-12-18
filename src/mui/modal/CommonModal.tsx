@@ -4,7 +4,7 @@ import { IApiDto } from '../../dto/api/ApiDto';
 
 interface CommonModalProps {
   className?: string;
-  open: boolean;
+  open?: boolean;
   children?: ReactNode;
   handleClose: (data: IApiDto | undefined) => void;
 }
@@ -29,11 +29,9 @@ const CommonModal: React.FC<CommonModalProps> = (props: CommonModalProps) => {
   };
 
   return (
-    <>
-      <Modal className={props.className + ' modale'} open={props.open} onClose={handleClose}>
-        <Box sx={{ ...style, width: 250 }}>{props.children}</Box>
-      </Modal>
-    </>
+    <Modal className={props.className + ' modale'} open={props.open ?? false} onClose={handleClose}>
+      <Box sx={{ ...style, width: 250 }}>{props.children}</Box>
+    </Modal>
   );
 };
 

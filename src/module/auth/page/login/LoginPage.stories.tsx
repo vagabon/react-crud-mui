@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { withProvider, withTest } from '../../../../stories/helpers';
+import { withProvider, withTest } from '../../../../stories/Helpers';
 
 import LoginPage from './LoginPage';
 

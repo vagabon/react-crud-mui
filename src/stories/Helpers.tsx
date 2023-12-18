@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { IApiDto, JSONObject } from '../dto/api/ApiDto';
 import MDForm, { IMDFormPropsReturn } from '../mui/form/MDForm';
-import store from '../store/store';
+import store from '../store/Store';
 import { IYupValidators } from '../utils/yup/YupUtils';
 
 import results from '../jest-test-results.json';

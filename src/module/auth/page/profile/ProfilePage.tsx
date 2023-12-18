@@ -5,7 +5,7 @@ import { Primitif } from '../../../../dto/api/ApiDto';
 import MdButton from '../../../../mui/button/MdButton';
 import MDCard from '../../../../mui/card/MDCard';
 import MDContent from '../../../../mui/content/MDContent';
-import { useAppDispatch, useAppSelector } from '../../../../store/store';
+import { useAppDispatch, useAppSelector } from '../../../../store/Store';
 import { IProfileDto } from '../../../user/dto/ProfileDto';
 import AuthService from '../../service/AuthService';
 

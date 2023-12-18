@@ -6,7 +6,7 @@ import { useCreateNews } from '../../../../module/news/hook/useCreateNews';
 import MDFormFile from '../../../../mui/form/MDFormFile';
 
 import { ID, JSONObject } from '../../../../dto/api/ApiDto';
-import { INewsDto } from '../../../../module/news/dto/NewsDto';
+import { INewsDto } from '../../dto/NewsDto';
 import MDCard from '../../../../mui/card/MDCard';
 import MDContent from '../../../../mui/content/MDContent';
 import MDFormSwitch from '../../../../mui/form/MDFormSwitch';
@@ -46,7 +46,7 @@ const NewsForm: React.FC = () => {
 
   return (
     <MDContent id='news-form' className='markdown-form'>
-      <MDCard title='Créer une news'>
+      <MDCard title={news.id ? 'NEWS_UPDATE' : 'NEW_CREATE'}>
         <MDForm initialValues={news} validationSchema={NEWS_SCHEMA} onSubmit={createOrUpdateNews}>
           {(props: IMDFormPropsReturn) => (
             <>

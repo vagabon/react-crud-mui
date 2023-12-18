@@ -1,7 +1,7 @@
 import { Action } from '@reduxjs/toolkit';
 import { useEffect, useState } from 'react';
 import { IApiDto, JSONObject } from '../dto/api/ApiDto';
-import { useAppDispatch } from '../store/store';
+import { useAppDispatch } from '../store/Store';
 
 interface ISearchPageHook {
   fetchDatas: (filter: JSONObject, first: number, max: number, orderField: string, order: string) => Promise<IApiDto[]>;
@@ -38,16 +38,11 @@ const useSearchPageHook = ({
     });
   };
 
-  const [featchAdminUsersOnLoad] = useState<(search: string, page: number) => void>(() => featchAdminUsers);
-  const [countDatasOnLoad] = useState<(search: string) => Promise<number>>(() => countDatas);
-  const [pageOnLoad] = useState<number>(page);
-  const [searchOnLoad] = useState<string>(search);
-  const [actionOnLoad] = useState<{
-    setDatas: (state: IApiDto[]) => Action;
-    setPage: (page: number) => Action;
-    setSearch: (state: string) => Action;
-    setCount: (state: number) => Action;
-  }>(action);
+  const featchAdminUsersOnLoad = featchAdminUsers;
+  const countDatasOnLoad = countDatas;
+  const pageOnLoad = page;
+  const searchOnLoad = search;
+  const actionOnLoad = action;
 
   useEffect(() => {
     countDatasOnLoad(searchOnLoad).then((count: number): void => {

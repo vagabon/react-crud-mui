@@ -24,7 +24,7 @@ global.mockComponentWithCallBack =
 
 import * as redux from 'react-redux';
 import configureMockStore from 'redux-mock-store';
-import store from './store/store';
+import store from './store/Store';
 
 jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
@@ -37,7 +37,7 @@ global.mockStore = configureMockStore(middlewares)({});
 
 global.dispatch = jest.fn();
 
-jest.mock('./store/store', () => ({
+jest.mock('./store/Store', () => ({
   useAppSelector: () => jest.fn(() => Promise.resolve()),
   useAppDispatch: () => jest.fn(() => Promise.resolve()),
 }));
@@ -73,7 +73,7 @@ jest.mock('react-i18next', () => ({
       changeLanguage: () => new Promise(() => jest.fn()),
     },
   }),
-  Trans: ({ i18nKey }) => <span data-testid='Trans'>{i18nKey}</span>,
+  Trans: ({ i18nKey }) => <span data-testid='Trans'>{i18nKey}</span>, // NOSONAR
   initReactI18next: {
     type: '3rdParty',
     init: () => jest.fn(),

@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import ApiService from '../../../api/service/ApiService';
 import { ID } from '../../../dto/api/ApiDto';
-import { useAppDispatch, useAppSelector } from '../../../store/store';
+import { useAppDispatch, useAppSelector } from '../../../store/Store';
 import { INewsDto } from '../dto/NewsDto';
 import { NewsAction } from '../reducer/NewsReducers';
 import NewsService from '../service/NewsService';

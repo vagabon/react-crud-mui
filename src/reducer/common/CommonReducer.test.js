@@ -1,4 +1,4 @@
-import CommonReducers, { CommonAction } from './CommonReducers';
+import CommonReducers, { CommonAction } from './CommonReducer';
 
 const state = {
   message: '',
@@ -46,10 +46,6 @@ describe('CommonReducer', () => {
   });
 
   test('Given CommonReducer When clearMessage Then message from state is empty', () => {
-    const data = {
-      message: 'test',
-      isAlert: true,
-    };
     const tested = CommonReducers(state, CommonAction.clearMessage());
     expect(tested.message).toBe('');
   });

@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../store/store';
+import { useAppDispatch, useAppSelector } from '../../../store/Store';
 import { INewsDto } from '../dto/NewsDto';
 import { NewsAction } from '../reducer/NewsReducers';
 import NewsService from '../service/NewsService';

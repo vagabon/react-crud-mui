@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { INewsDto } from '../../../../module/news/dto/NewsDto';
+import { INewsDto } from '../../dto/NewsDto';
 import MDCard from '../../../../mui/card/MDCard';
 import MDContent from '../../../../mui/content/MDContent';
 import { useId } from '../../../../mui/hook/useId';

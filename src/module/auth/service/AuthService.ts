@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import ApiService from '../../../api/service/ApiService';
 import { ICurrentUserDto } from '../../../dto/current-user/CurrentUserDto';
-import { IUserDto } from '../../../module/user/dto/UserDto';
+import { IUserDto } from '../../user/dto/UserDto';
 import { StorageUtils } from '../../../utils/storage/StorageUtils';
 import { ICheckIdentityDto } from '../page/check-identity/dto/CheckIdentityDto';
 import { LoginAction } from '../reducer/AuthReducers';

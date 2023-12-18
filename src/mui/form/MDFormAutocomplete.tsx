@@ -13,7 +13,7 @@ export interface FormAutocompleteProps extends IMDFormPropsReturn {
 const MDFormAutocomplete: React.FC<FormAutocompleteProps> = (props: FormAutocompleteProps) => {
   const [error, setError] = useState<string>('');
 
-  const [nameOnLoad] = useState(props.name);
+  const nameOnLoad = props.name;
 
   useEffect(() => {
     const error = props.errors[nameOnLoad as keyof JSONObject];

@@ -86,8 +86,8 @@ export { default as TableWithPagination } from './mui/table/TableWithPagination'
 export type { TableWithPagniationProps } from './mui/table/TableWithPagination';
 export { DefaultState, ReducersActions } from './reducer/BaseReducer';
 export type { ActionReturn, ReducerCrudState } from './reducer/BaseReducer';
-export { CommonAction, CommonReducer, default as CommonReducers } from './reducer/common/CommonReducers';
-export type { MessageType } from './reducer/common/CommonReducers';
+export { CommonAction, CommonReducer, default as CommonReducers } from './reducer/common/CommonReducer';
+export type { MessageType } from './reducer/common/CommonReducer';
 export { SuspenceLoader } from './suspence/SuspenceLoader';
 export { DateUtils } from './utils/date/DateUtils';
 export { I18nUtils } from './utils/i18n/I18nUtils';

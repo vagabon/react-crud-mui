@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { IApiDto, ID } from '../../dto/api/ApiDto';
-import { useAppDispatch } from '../../store/store';
+import { useAppDispatch } from '../../store/Store';
 
 export interface ShowPageProps {
   data: IApiDto;

@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import ApiService from '../../../api/service/ApiService';
-import { CommonAction } from '../../../reducer/common/CommonReducers';
+import { CommonAction } from '../../../reducer/common/CommonReducer';
 import { IUserDto } from '../dto/UserDto';
 
 const ENDPOINT_TEST_ALL = '/user/ping';

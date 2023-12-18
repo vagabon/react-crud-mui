@@ -61,34 +61,33 @@ html, body, #root { height: 100%; }
 .news-list .flex { display: flex; flex-direction: row; align-items: start; & > div { width: calc(50% - 20px) } }
 
 .markdown-form { 
-  display: flex !important; flex-direction: row !important; 
+  display: flex !important; flex-direction: row !important; overflow: auto !important; flex-wrap: nowrap !important;
   & > div { width: calc(50% - 20px) !important;} 
-  .mardown-with-summary > .MuiPaper-root:nth-child(1) { width: 100%; }
-  .mardown-with-summary > .MuiPaper-root:nth-child(2) { width: 15%; position: fixed; right: 20px; }
+  & > .MuiPaper-root, & > div { overflow: auto !important; }
+  .mardown-with-summary > .MuiPaper-root:nth-child(1) { width: 100% !important; }
+  .mardown-with-summary > .MuiPaper-root:nth-child(2) { width: 15% !important; position: fixed !important; right: 20px !important; }
 }
 
 .mardown-with-summary {
-  display: flex;
-  flex-direction: row !important;
-  align-items: flex-start;
-  & > .MuiPaper-root:nth-child(1) { width: 65%; }
-  & > .MuiPaper-root:nth-child(2) {  width: 28%; position: fixed; right: 30px; }
+  display: flex !important; flex-direction: row !important; align-items: flex-start !important;
+  & > .MuiPaper-root:nth-child(1) { width: 65% !important; }
+  & > .MuiPaper-root:nth-child(2) {  width: 28% !important; position: fixed !important; right: 30px !important; }
 }
 
 @media screen and (min-width: 1500px) {
   .mardown-with-summary {
-    & > .MuiPaper-root:nth-child(1) { width: 73%; }
-    & > .MuiPaper-root:nth-child(2) { width: 18%; right: 10%;}
+    & > .MuiPaper-root:nth-child(1) { width: 73% !important; }
+    & > .MuiPaper-root:nth-child(2) { width: 18% !important; right: 10% !important; }
   }
 }
 
 @media screen and (max-width: 900px) {
   .mardown-with-summary {
-    flex-direction: row;
-    .MuiPaper-root:nth-child(1) { width: 100%; }
-    .MuiPaper-root:nth-child(2) { display: none; }
+    flex-direction: row !important;
+    .MuiPaper-root:nth-child(1) { width: 100% !important; }
+    .MuiPaper-root:nth-child(2) { display: none !important; }
   }
-  .news-list .flex { flex-direction: column; & > div { width: 100% } }
+  .news-list .flex { flex-direction: column !important; & > div { width: 100% !important; } }
   
 }
 

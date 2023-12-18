@@ -1,12 +1,13 @@
 import { Alert, Slide, SlideProps, Snackbar } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Trans } from 'react-i18next';
-import { useAppSelector } from '../../store/store';
+import { useAppSelector } from '../../store/Store';
 
 type TransitionProps = Omit<SlideProps, 'direction'>;
-function TransitionRight(props: TransitionProps) {
+
+const TransitionRight = (props: TransitionProps) => {
   return <Slide {...props} direction='left' />;
-}
+};
 
 const ShowMessage: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -23,19 +24,17 @@ const ShowMessage: React.FC = () => {
   };
 
   return (
-    <>
-      <Snackbar
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        open={open}
-        onClose={handleClose}
-        autoHideDuration={6000}
-        TransitionComponent={transition}
-        key={transition ? transition.name : ''}>
-        <Alert onClose={handleClose} severity={type} sx={{ width: '100%' }}>
-          <Trans i18nKey={message} />
-        </Alert>
-      </Snackbar>
-    </>
+    <Snackbar
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      open={open}
+      onClose={handleClose}
+      autoHideDuration={6000}
+      TransitionComponent={transition}
+      key={transition ? transition.name : ''}>
+      <Alert onClose={handleClose} severity={type} sx={{ width: '100%' }}>
+        <Trans i18nKey={message} />
+      </Alert>
+    </Snackbar>
   );
 };
 

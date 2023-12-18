@@ -6,7 +6,7 @@ import { ICurrentUserDto } from '../../dto/current-user/CurrentUserDto';
 import { IUserDto } from '../../module/user/dto/UserDto';
 import InfiniteScrool from '../../mui/infinite-scroll/InfiniteScrool';
 import SearchBar from '../../mui/searchbar/SearchBar';
-import { useAppSelector } from '../../store/store';
+import { useAppSelector } from '../../store/Store';
 import RoleUtils from '../../utils/role/RoleUtils';
 
 export interface InfiniteScroolPageProps2 {

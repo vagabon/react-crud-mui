@@ -6,6 +6,7 @@ import dts from 'rollup-plugin-dts';
 import external from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
 import scss from 'rollup-plugin-scss';
+import terser from '@rollup/plugin-terser';
 
 const packageJson = require('./package.json');
 
@@ -41,6 +42,7 @@ export default [
       postcss(),
       json(),
       scss(),
+      terser(),
     ],
   },
   {

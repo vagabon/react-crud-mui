@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { IApiDto, JSONObject } from '../../dto/api/ApiDto';
 import { IPathDto } from '../../dto/path/PathDto';
-import { CommonAction } from '../../reducer/common/CommonReducers';
-import { useAppDispatch, useAppSelector } from '../../store/store';
+import { CommonAction } from '../../reducer/common/CommonReducer';
+import { useAppDispatch, useAppSelector } from '../../store/Store';
 import { IYupValidators, YupUtils } from '../../utils/yup/YupUtils';
 import MdButton from '../button/MdButton';
 
@@ -29,8 +29,12 @@ export interface IMDFormPropsReturn {
   handleChange: handleChangeType;
   handleBlur: handleBlurType;
   handleSubmit: () => void;
-  setFieldValue: (field: string, value: JSONObject, shouldValidate?: boolean | undefined) => void;
-  setValues: (values: IApiDto, shouldValidate?: boolean) => void;
+  setFieldValue: (
+    field: string,
+    value: JSONObject,
+    shouldValidate?: boolean | undefined,
+  ) => Promise<void | FormikErrors<IApiDto>>;
+  setValues: (values: IApiDto, shouldValidate?: boolean) => Promise<void | FormikErrors<IApiDto>>;
 }
 
 export interface IMDFormProps {

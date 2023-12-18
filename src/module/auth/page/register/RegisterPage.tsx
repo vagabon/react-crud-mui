@@ -3,7 +3,7 @@ import { Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { JSONObject } from '../../../../dto/api/ApiDto';
-import { useAppSelector } from '../../../../store/store';
+import { useAppSelector } from '../../../../store/Store';
 import { IRegisterDto, RegisterDto } from './dto/RegisterDto';
 
 import MDCard from '../../../../mui/card/MDCard';

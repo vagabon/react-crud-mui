@@ -3,8 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { JSON } from '../../dto/api/ApiDto';
 import { IMenuDto } from '../../dto/menu/MenuDto';
 import { useMessage } from '../../hook/message/useMessage';
-import { CommonAction } from '../../reducer/common/CommonReducers';
-import { useAppDispatch, useAppSelector } from '../../store/store';
+import { CommonAction } from '../../reducer/common/CommonReducer';
+import { useAppDispatch, useAppSelector } from '../../store/Store';
 import { UuidUtils } from '../../utils/uuid/UuidUtils';
 
 export const useLocationHistory = (menus: IMenuDto[]) => {

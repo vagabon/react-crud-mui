@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import MdButton from '../../../../mui/button/MdButton';
 import MDCard from '../../../../mui/card/MDCard';
 import MDContent from '../../../../mui/content/MDContent';
-import { useAppSelector } from '../../../../store/store';
+import { useAppSelector } from '../../../../store/Store';
 import AuthService from '../../service/AuthService';
 
 const ActivationPage: React.FC = () => {
