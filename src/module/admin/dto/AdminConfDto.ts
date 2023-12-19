@@ -4,6 +4,8 @@ export interface IFormDto {
   label: string;
   required: boolean;
   type: string;
+  email?: boolean;
+  disable?: boolean;
 }
 
 export interface IAdminTabDto {
