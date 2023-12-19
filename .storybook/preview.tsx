@@ -1,7 +1,7 @@
 import { CssBaseline, PaletteColorOptions, ThemeProvider, createTheme } from '@mui/material';
 import React from 'react';
+import '../config';
 import '../src/assets/custom.scss';
-import '../src/config';
 import '../src/i18n/i18n';
 
 declare module '@mui/material/styles' {
