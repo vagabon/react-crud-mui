@@ -10,13 +10,13 @@ import {
   TableRow,
   TableSortLabel,
 } from '@mui/material';
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { JSONObject } from '../../dto/api/ApiDto';
 
 export interface TableWithPagniationProps {
   url?: string;
-  cells: { name: string; label: string; order: boolean }[];
+  cells: { name: string; label: string; order?: boolean }[];
   datas: JSONObject[];
   count: number;
   page: number;
@@ -45,7 +45,7 @@ const TableWithPagination: React.FC<TableWithPagniationProps> = (props: TableWit
     props.url && navigate(props.url + id);
   };
 
-  const showData = (data: JSONObject, name: string): JSONObject | string => {
+  const showData = (data: JSONObject, name: string): string => {
     let value: JSONObject | string = data;
     const splits = name.split('.');
     value = value[splits[0] as keyof JSONObject] ?? '';
@@ -58,7 +58,7 @@ const TableWithPagination: React.FC<TableWithPagniationProps> = (props: TableWit
     } else if (splits[1] !== undefined) {
       value = value[splits[1] as keyof JSONObject];
     }
-    return value;
+    return '' + value;
   };
 
   return (
@@ -67,7 +67,7 @@ const TableWithPagination: React.FC<TableWithPagniationProps> = (props: TableWit
         <Table size='small' aria-label='a dense table'>
           <TableHead>
             <TableRow>
-              {props.cells?.map((cell: { name: string; label: string; order: boolean }) => (
+              {props.cells?.map((cell: { name: string; label: string; order?: boolean }) => (
                 <TableCell key={cell.name}>
                   <TableSortLabel
                     active={props.sortBy === cell.name}
@@ -89,7 +89,7 @@ const TableWithPagination: React.FC<TableWithPagniationProps> = (props: TableWit
                     onClick={() => handleClick(data['id' as keyof JSONObject])}>
                     {props.cells?.map((cell: { name: string; label: string }) => (
                       <TableCell component='th' scope='row' key={cell.name}>
-                        {showData(data, cell.name) as ReactNode}
+                        {showData(data, cell.name)}
                       </TableCell>
                     ))}
                   </TableRow>

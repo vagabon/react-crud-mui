@@ -12,10 +12,12 @@ export { useMessage } from './hook/message/useMessage';
 export { useModal } from './hook/modal/useModal';
 export type { IModalReturnProps } from './hook/modal/useModal';
 export { useThemeSelector } from './hook/theme/useThemeSelector';
-export { useMdTrans } from './hook/trans/useMdTrans';
-export { default as MDtrans } from './hook/trans/useMdTrans';
+export { default as MDtrans, useMdTrans } from './hook/trans/useMdTrans';
 export { default as useLoadState } from './hook/useLoadState';
 export { default as useSearchPageHook } from './hook/useSearchPageHook';
+
+export { default as AdminRouter } from './module/admin/AdminRouter';
+
 export { default as AuthRouter } from './module/auth/AuthRouter';
 export { default as AuthFooter } from './module/auth/component/auth.footer/AuthFooter';
 export { AuthFooterEnum } from './module/auth/component/auth.footer/enum/AuthFooterEnum';
@@ -52,10 +54,10 @@ export { default as UserService } from './module/user/service/UserService';
 
 export { default as MDBox } from './mui/box/MDBox';
 export type { IMDBoxProps } from './mui/box/MDBox';
-export { default as MDBouttonGroup } from './mui/button/group/MDBouttonGroup';
-export type { IMDBouttonGroupProps } from './mui/button/group/MDBouttonGroup';
 export { default as MdButton } from './mui/button/MdButton';
 export type { MdButtonProps } from './mui/button/MdButton';
+export { default as MDBouttonGroup } from './mui/button/group/MDBouttonGroup';
+export type { IMDBouttonGroupProps } from './mui/button/group/MDBouttonGroup';
 export { default as MDCard } from './mui/card/MDCard';
 export type { MDCardProps } from './mui/card/MDCard';
 export { default as MDChip } from './mui/chip/MDChip';
@@ -89,14 +91,14 @@ export type { IMDLinearProgressProps } from './mui/linear-progress/MDLinearProgr
 export { default as MDLink } from './mui/link/MDLink';
 export type { IMDLinkProps } from './mui/link/MDLink';
 
+export { default as MDListItemText } from './mui/list/MDListItemText';
+export type { IMDListItemTextProps } from './mui/list/MDListItemText';
 export { default as MDlist } from './mui/list/MDlist';
 export type { IMDListProps } from './mui/list/MDlist';
 export { default as MDlistItem } from './mui/list/MDlistItem';
 export type { IMDlistItemProps } from './mui/list/MDlistItem';
 export { default as MDlistItemButton } from './mui/list/MDlistItemButton';
 export type { IMDlistItemButtonProps } from './mui/list/MDlistItemButton';
-export { default as MDListItemText } from './mui/list/MDListItemText';
-export type { IMDListItemTextProps } from './mui/list/MDListItemText';
 
 export { default as MDMenuItem } from './mui/menu/MDMenuItem';
 export type { MDMenuItemProps } from './mui/menu/MDMenuItem';
@@ -123,7 +125,7 @@ export type { TableWithPagniationProps } from './mui/table/TableWithPagination';
 export { default as MDTab } from './mui/tabs/MDTab';
 export type { IMDTabProps } from './mui/tabs/MDTab';
 export { default as MDTabs } from './mui/tabs/MDTabs';
-export type { IMDTabsProps } from './mui/tabs/MDTabs';
+export type { IMDTabsProps, TabsType } from './mui/tabs/MDTabs';
 
 export { default as MDThemeProvider } from './mui/theme/MDThemeProvider';
 export { useTheme } from './mui/theme/useTheme';

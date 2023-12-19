@@ -1,5 +1,10 @@
-import { Tabs } from '@mui/material';
-import { ReactNode, SyntheticEvent, useCallback } from 'react';
+import { Tab, Tabs } from '@mui/material';
+import { SyntheticEvent, useCallback } from 'react';
+
+export type TabsType = {
+  name: string;
+  label: string;
+};
 
 export interface IMDTabsProps {
   value: string;
@@ -9,7 +14,7 @@ export interface IMDTabsProps {
   label?: string;
   variant?: 'standard' | 'scrollable' | 'fullWidth';
   scrollButtons?: 'auto' | true | false;
-  tabs: ReactNode[];
+  tabs: TabsType[];
 }
 
 const MDTabs: React.FC<IMDTabsProps> = ({
@@ -39,7 +44,9 @@ const MDTabs: React.FC<IMDTabsProps> = ({
       aria-label={label ?? ''}
       variant={variant ?? 'scrollable'}
       scrollButtons={scrollButtons ?? 'auto'}>
-      {tabs}
+      {tabs.map((tab) => (
+        <Tab key={tab.name} value={tab.name} label={tab.label} />
+      ))}
     </Tabs>
   );
 };

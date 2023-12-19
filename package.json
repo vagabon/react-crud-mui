@@ -1,6 +1,6 @@
 {
   "name": "@vagabond-ts/react-crud-mui",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "description": "React lib with MUI, redux, i18n, router-dom, axios",
   "private": false,
   "scripts": {
@@ -9,7 +9,7 @@
     "test": "jest",
     "test:json": "npm run test -- --json --outputFile=src/jest-test-results.json",
     "coverage": "npm run test -- --coverage ",
-    "format": "npm run lint && tsc",
+    "format": "npm run lint && npm run tsc",
     "format:all": "npm run test:json && npm run format && npm i && npm run build",
     "ci": "npm run format && npm run coverage -- --testResultsProcessor jest-sonar-reporter",
     "sonar": "npm run ci && npx sonar-scanner -Dsonar.login=$SONAR_TOKEN",
@@ -137,6 +137,7 @@
       "@typescript-eslint"
     ],
     "rules": {
+      "@typescript-eslint/no-unused-vars": "warn",
       "react/prop-types": "off",
       "@typescript-eslint/triple-slash-reference": "off",
       "jsx-a11y/anchor-is-valid": "off",
