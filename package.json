@@ -157,6 +157,7 @@
     },
     "ignorePatterns": [
       "dist/**",
+      "config.js",
       "**/*babel*",
       "**/*.stories.*",
       "**/*Store.*",
