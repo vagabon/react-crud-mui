@@ -1,44 +1,47 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { IApiDto } from '../../../dto/api/ApiDto';
-import { AdminStateProps } from '../dto/AdminConfDto';
+import { useAppDispatch } from '../../../store/Store';
+import { IAdminTabDto } from '../dto/AdminConfDto';
+import { IAdminStateDto } from '../dto/AdminReducerDto';
+import { AdminAction } from '../reducer/AdminReducer';
 import AdminService from '../service/AdminService';
 
-export const useAdminList = (pageConf: AdminStateProps) => {
-  const [search, setSearch] = useState<string>('');
-  const [count, setCount] = useState<number>(0);
-  const [page, setPage] = useState<number>(0);
-  const [datas, setDatas] = useState<IApiDto[]>([]);
+export const useAdminList = (activePage: string, pageConf: IAdminTabDto, state: IAdminStateDto) => {
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (!pageConf) {
+    if (!pageConf || !state?.filter || pageConf.name !== activePage) {
       return;
     }
-    AdminService.count(pageConf.name, pageConf.findByChamps, search).then((count) => {
-      setCount(count);
+    AdminService.count(pageConf.name, pageConf.findByChamps, state.filter.search).then((count) => {
+      dispatch(AdminAction.setCount({ activePage, count }));
     });
     AdminService.findBy(
       pageConf.name,
       pageConf.findByChamps,
-      search,
-      page * pageConf.rowsPerPage,
-      pageConf.rowsPerPage,
-      pageConf.sortBy,
-      pageConf.sortByOrder,
+      state.filter.search,
+      state.table.page * state.table.rowsPerPage,
+      state.table.rowsPerPage,
+      state.table.sortBy,
+      state.table.sortByOrder,
     ).then((datas) => {
-      setDatas(datas as IApiDto[]);
+      dispatch(AdminAction.setDatas({ activePage, datas: datas as IApiDto[] }));
     });
-  }, [pageConf, search, page]);
+  }, [dispatch, activePage, pageConf, state?.filter, state?.table]);
 
-  const handleSearch = useCallback((search: string) => {
-    setSearch(search);
-  }, []);
+  const handleSearch = useCallback(
+    (search: string) => {
+      dispatch(AdminAction.setFilter({ activePage, filter: { search: search } }));
+    },
+    [dispatch, activePage],
+  );
 
   const handleTableChange = useCallback(
     (page: number, rowsPerPage: number, sortBy: string, sortByOrder: 'asc' | 'desc') => {
-      setPage(page);
+      dispatch(AdminAction.setPage({ activePage, table: { page, rowsPerPage, sortBy, sortByOrder } }));
     },
-    [],
+    [dispatch, activePage],
   );
 
-  return { search, count, page, datas, handleSearch, handleTableChange };
+  return { handleSearch, handleTableChange };
 };

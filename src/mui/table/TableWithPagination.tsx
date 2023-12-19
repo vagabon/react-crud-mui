@@ -14,9 +14,15 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { JSONObject } from '../../dto/api/ApiDto';
 
+export interface ITableProps {
+  name: string;
+  label: string;
+  order?: boolean;
+}
+
 export interface TableWithPagniationProps {
   url?: string;
-  cells: { name: string; label: string; order?: boolean }[];
+  cells: ITableProps[];
   datas: JSONObject[];
   count: number;
   page: number;
@@ -67,7 +73,7 @@ const TableWithPagination: React.FC<TableWithPagniationProps> = (props: TableWit
         <Table size='small' aria-label='a dense table'>
           <TableHead>
             <TableRow>
-              {props.cells?.map((cell: { name: string; label: string; order?: boolean }) => (
+              {props.cells?.map((cell: ITableProps) => (
                 <TableCell key={cell.name}>
                   <TableSortLabel
                     active={props.sortBy === cell.name}
@@ -87,7 +93,7 @@ const TableWithPagination: React.FC<TableWithPagniationProps> = (props: TableWit
                   <TableRow
                     key={data['id' as keyof JSONObject]}
                     onClick={() => handleClick(data['id' as keyof JSONObject])}>
-                    {props.cells?.map((cell: { name: string; label: string }) => (
+                    {props.cells?.map((cell: ITableProps) => (
                       <TableCell component='th' scope='row' key={cell.name}>
                         {showData(data, cell.name)}
                       </TableCell>

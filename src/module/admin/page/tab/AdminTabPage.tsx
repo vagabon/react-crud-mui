@@ -3,11 +3,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import MDContent from '../../../../mui/content/MDContent';
 import HasRole from '../../../../mui/role/HasRole';
 import MDTabs, { TabsType } from '../../../../mui/tabs/MDTabs';
-import { IAdminConfDto } from '../../dto/AdminConfDto';
+import { IAdminTabConfDto } from '../../dto/AdminConfDto';
 import AdminListPage from '../llist/AdminListPage';
 
 interface IAdminTabsPageProps {
-  conf: IAdminConfDto;
+  conf: IAdminTabConfDto;
   tabs: TabsType[];
 }
 

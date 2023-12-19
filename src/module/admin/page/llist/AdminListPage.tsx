@@ -1,23 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { JSONObject } from '../../../../dto/api/ApiDto';
 import MDCard from '../../../../mui/card/MDCard';
 import MDContent from '../../../../mui/content/MDContent';
 import MDFab from '../../../../mui/fab/MDFab';
 import HasRole from '../../../../mui/role/HasRole';
 import SearchBar from '../../../../mui/searchbar/SearchBar';
 import TableWithPagination from '../../../../mui/table/TableWithPagination';
-import { AdminStateProps, IAdminConfDto } from '../../dto/AdminConfDto';
+import { IAdminTabConfDto, IAdminTabDto } from '../../dto/AdminConfDto';
+import { IAdminStateDto } from '../../dto/AdminReducerDto';
 import { useAdminList } from '../../hook/useAdminList';
+import { useAdminState } from '../../hook/useAdminState';
 
-interface IAdminListPageProps {
+export interface IAdminListPageProps {
   activePage: string;
-  conf: IAdminConfDto;
+  conf: IAdminTabConfDto;
 }
 const AdminListPage: React.FC<IAdminListPageProps> = ({ activePage, conf }) => {
   const navigate = useNavigate();
 
-  const [pageConf, setPageConf] = useState<AdminStateProps>();
-  const { search, count, page, datas, handleSearch, handleTableChange } = useAdminList(pageConf as AdminStateProps);
+  const [pageConf, setPageConf] = useState<IAdminTabDto>();
+  const { state } = useAdminState(activePage, pageConf as IAdminTabDto);
+
+  const { handleSearch, handleTableChange } = useAdminList(
+    activePage,
+    pageConf as IAdminTabDto,
+    state as IAdminStateDto,
+  );
 
   useEffect(() => {
     const pageConf = conf.tabs.find((tab) => tab.name === activePage);
@@ -32,16 +41,16 @@ const AdminListPage: React.FC<IAdminListPageProps> = ({ activePage, conf }) => {
     <MDContent>
       <MDCard>
         <HasRole roles={['ADMIN']}>
-          <SearchBar callBack={handleSearch} search={search} />
-          {pageConf && (
+          <SearchBar callBack={handleSearch} search={state?.filter.search} />
+          {pageConf && state && (
             <TableWithPagination
-              count={count}
-              datas={datas}
-              page={page}
+              count={state?.count}
+              datas={state?.datas as JSONObject[]}
+              page={state?.table.page}
               cells={pageConf.cells}
-              rowsPerPage={pageConf.rowsPerPage}
-              sortBy={pageConf.sortBy}
-              sortByOrder={pageConf.sortByOrder}
+              rowsPerPage={state?.table.rowsPerPage}
+              sortBy={state?.table.sortBy}
+              sortByOrder={state?.table.sortByOrder}
               url={'/admin/update/' + activePage + '/'}
               callBack={handleTableChange}
             />

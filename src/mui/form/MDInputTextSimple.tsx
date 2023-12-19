@@ -24,12 +24,16 @@ export interface IMDInputTextSimpleProps {
 
 const MDInputTextSimple: React.FC<IMDInputTextSimpleProps> = (props: IMDInputTextSimpleProps) => {
   const { t } = useTranslation();
-  const { key, defaultValue, readonly, handleFocus } = useFormValue(props.type ?? DEFAULT_TEXT, props.value);
+  const { uref, key, defaultValue, readonly, handleFocus, handleBlur } = useFormValue(
+    props.type ?? DEFAULT_TEXT,
+    props.value,
+  );
 
   return (
     <div style={{ width: '100%' }}>
       <TextField
         key={key}
+        inputRef={uref}
         className={props.className}
         type={props.type}
         margin='normal'
@@ -43,7 +47,7 @@ const MDInputTextSimple: React.FC<IMDInputTextSimpleProps> = (props: IMDInputTex
         fullWidth={props.fullWidth}
         onFocus={handleFocus}
         onChange={props.handleChange}
-        onBlur={props.handleBlur}
+        onBlur={handleBlur(props.handleBlur)}
         inputProps={{
           autoComplete: 'off',
           form: {

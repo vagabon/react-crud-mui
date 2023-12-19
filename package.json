@@ -1,6 +1,6 @@
 {
   "name": "@vagabond-ts/react-crud-mui",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "description": "React lib with MUI, redux, i18n, router-dom, axios",
   "private": false,
   "scripts": {
@@ -81,7 +81,6 @@
     "redux-mock-store": "~1.5.4",
     "rollup": "~4.9.1",
     "rollup-plugin-dts": "~6.1.0",
-    "rollup-plugin-minification": "~0.2.0",
     "rollup-plugin-peer-deps-external": "~2.2.4",
     "rollup-plugin-postcss": "~4.0.2",
     "rollup-plugin-scss": "~4.0.0",

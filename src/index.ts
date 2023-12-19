@@ -17,6 +17,14 @@ export { default as useLoadState } from './hook/useLoadState';
 export { default as useSearchPageHook } from './hook/useSearchPageHook';
 
 export { default as AdminRouter } from './module/admin/AdminRouter';
+export type { IAdminTabDto, IAdminTabConfDto } from './module/admin/dto/AdminConfDto.ts';
+export type {
+  IAdminReducerDto,
+  IAdminStateDto,
+  IAdminTableDto,
+  IAdminFilterDto,
+} from './module/admin/dto/AdminReducerDto.ts';
+export { AdminAction, AdminReducers } from './module/admin/reducer/AdminReducer';
 
 export { default as AuthRouter } from './module/auth/AuthRouter';
 export { default as AuthFooter } from './module/auth/component/auth.footer/AuthFooter';

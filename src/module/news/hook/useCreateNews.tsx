@@ -34,7 +34,6 @@ export const useCreateNews = (): {
   );
 
   const uploadNewsImage = useCallback((id: ID, file: File | undefined): Promise<string> => {
-    console.log(id, file);
     const formData = new FormData();
     if (file) {
       formData.append('file', file);

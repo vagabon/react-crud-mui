@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import ApiService from '../../../api/service/ApiService';
-import { IApiDto, JSONObject } from '../../../dto/api/ApiDto';
+import { IApiDto } from '../../../dto/api/ApiDto';
 import { CommonAction } from '../../../reducer/common/CommonReducer';
 
 const ENDPOINT_FINDBY = '/findBy';
@@ -51,9 +51,9 @@ const AdminService = {
     );
   },
 
-  findById: (endPoint: string, id: string | undefined): Promise<JSONObject> => {
-    return ApiService.get<JSONObject>('/' + endPoint + ENDPOINT_FINDBY_ID + id).then(
-      (data: JSONObject) => {
+  findById: <T>(endPoint: string, id: string | undefined) => {
+    return ApiService.get<T>('/' + endPoint + ENDPOINT_FINDBY_ID + id).then(
+      (data: T) => {
         return Promise.resolve(data);
       },
       () => {

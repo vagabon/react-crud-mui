@@ -6,10 +6,10 @@ import { useCreateNews } from '../../../../module/news/hook/useCreateNews';
 import MDFormFile from '../../../../mui/form/MDFormFile';
 
 import { ID, JSONObject } from '../../../../dto/api/ApiDto';
-import { INewsDto } from '../../dto/NewsDto';
 import MDCard from '../../../../mui/card/MDCard';
 import MDContent from '../../../../mui/content/MDContent';
 import MDFormSwitch from '../../../../mui/form/MDFormSwitch';
+import { INewsDto } from '../../dto/NewsDto';
 import NEWS_SCHEMA from '../../schema/news.schema.json';
 import NewsCard from '../card/NewsCard';
 
@@ -35,9 +35,8 @@ const NewsForm: React.FC = () => {
   const handleChangeFile = useCallback(
     (id: ID, callback: handleChangeType) => (name: string, file: File) => {
       uploadNewsImage(id, file).then((data) => {
-        console.log('FILE UPLOAD : ', data);
         const event = { target: { name, value: data } };
-        console.log(event);
+        console.log('FILE UPLOAD : ', data, event);
         callback(event);
       });
     },
@@ -64,16 +63,16 @@ const NewsForm: React.FC = () => {
                 handleChange={handleChange(newsForm, props.handleChange)}
               />
               <MDFormFile
-                name='avatar'
                 label='AVATAR'
+                name='avatar'
                 handleChangeFile={handleChangeFile(newsForm.id, props.handleChange)}
               />
               <MDFormFile
-                name='image'
                 label='IMAGE'
+                name='image'
                 handleChangeFile={handleChangeFile(newsForm.id, props.handleChange)}
               />
-              <MDFormSwitch name='active' label='Actif' {...props} />;
+              <MDFormSwitch label='Actif' name='active' {...props} />;
             </>
           )}
         </MDForm>

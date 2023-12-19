@@ -2,6 +2,7 @@ import * as Yup from 'yup';
 import { I18nTranslate, I18nUtils } from '../i18n/I18nUtils';
 
 export interface IYupValidator {
+  type?: string;
   required?: boolean;
   disabled?: boolean;
   hidden?: boolean;
@@ -25,10 +26,8 @@ export const YupUtils = {
   convertToYup: (datas: IYupValidators, t: I18nTranslate): Yup.Schema => {
     let shape: IYupShape = {};
 
-    Object.entries(datas).forEach((data: [string, IYupValidator]) => {
-      const [key, value] = data;
-
-      if (value.listId) {
+    Object.entries(datas).forEach(([key, value]: [string, IYupValidator]) => {
+      if (value.listId || value.type === 'date') {
         shape = YupUtils.getObjectSchema(shape, value, key, t);
       } else {
         shape = YupUtils.getStringSchema(shape, value, key, t);
@@ -60,7 +59,7 @@ export const YupUtils = {
   getStringSchemaYup(value: IYupValidator, t: I18nTranslate): Yup.Schema {
     let yup: Yup.StringSchema = Yup.string();
 
-    if (value.required) {
+    if (value.required === true) {
       yup = yup.required(I18nUtils.translate(t, 'ERRORS:REQUIRED'));
     }
     if (value.regexp) {

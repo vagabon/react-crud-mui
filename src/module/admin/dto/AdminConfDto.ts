@@ -1,41 +1,22 @@
-export interface IAdminCellDto {
-  name: string;
+import { ITableProps } from '../../../mui/table/TableWithPagination';
+
+export interface IFormDto {
   label: string;
-  order?: boolean;
+  required: boolean;
+  type: string;
 }
 
-export interface IAdminReducerDto {
-  datas: JSON[];
-  data: JSON;
-  search: string;
-  page: number;
-  count: number;
-}
-
-export interface AdminStateProps {
+export interface IAdminTabDto {
   name: string;
   findByChamps: string;
   rowsPerPage: number;
   sortBy: string;
   sortByOrder: 'asc' | 'desc';
-  cells: IAdminCellDto[];
+  cells: ITableProps[];
+  form: { [x: string]: IFormDto };
 }
 
-export interface IAdminConfDto {
+export interface IAdminTabConfDto {
   max: number;
-  tabs: AdminStateProps[];
+  tabs: IAdminTabDto[];
 }
-
-const max: number = 10;
-const order: 'asc' | 'desc' = 'asc';
-
-const defaultState = {
-  datas: [],
-  data: {},
-  search: '',
-  page: 0,
-  count: 0,
-  max: max,
-  order: order,
-  refresh: true,
-};

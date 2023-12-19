@@ -4,7 +4,7 @@ import { IApiDto, ID, JSON } from '../../dto/api/ApiDto';
 const API_URL: string = window['ENV' as keyof Window]['API_URL' as keyof Window] as unknown as string;
 
 const ApiService = {
-  get: <T,>(endPoint: string, baseUrl: string = API_URL): Promise<T> => {
+  get: <T>(endPoint: string, baseUrl: string = API_URL): Promise<T> => {
     return axios.get(baseUrl + endPoint).then(
       (response: AxiosResponse) => {
         return ApiService.returnPromise<T>(response);
@@ -15,7 +15,7 @@ const ApiService = {
     );
   },
 
-  put: <T,>(endPoint: string, data: IApiDto): Promise<T> => {
+  put: <T>(endPoint: string, data: IApiDto): Promise<T> => {
     return axios.put(API_URL + endPoint, data).then(
       (response: AxiosResponse) => {
         return ApiService.returnPromise<T>(response);
@@ -26,7 +26,7 @@ const ApiService = {
     );
   },
 
-  post: <T,>(
+  post: <T>(
     endPoint: string,
     data: IApiDto | FormData | JSON,
     config: JSON = {
@@ -43,7 +43,7 @@ const ApiService = {
     );
   },
 
-  patch: <T,>(endPoint: string, data: IApiDto): Promise<T> => {
+  patch: <T>(endPoint: string, data: IApiDto): Promise<T> => {
     return axios.patch(API_URL + endPoint, data).then(
       (response: AxiosResponse) => {
         return ApiService.returnPromise<T>(response);
@@ -54,7 +54,7 @@ const ApiService = {
     );
   },
 
-  delete: <T,>(endPoint: string): Promise<T> => {
+  delete: <T>(endPoint: string): Promise<T> => {
     return axios.delete(API_URL + endPoint).then(
       (response: AxiosResponse) => {
         return ApiService.returnPromise<T>(response);
@@ -65,7 +65,7 @@ const ApiService = {
     );
   },
 
-  returnPromise: <T,>(response: AxiosResponse<T, AxiosRequestConfig>): Promise<T> => {
+  returnPromise: <T>(response: AxiosResponse<T, AxiosRequestConfig>): Promise<T> => {
     if (response.data) {
       return Promise.resolve(response.data);
     } else {
@@ -73,7 +73,7 @@ const ApiService = {
     }
   },
 
-  findById: <T,>(endPoint: string, id: ID): Promise<T> => {
+  findById: <T>(endPoint: string, id: ID): Promise<T> => {
     return ApiService.get<T>(endPoint + '/' + id).then(
       (data: T) => {
         return Promise.resolve(data);
@@ -84,7 +84,7 @@ const ApiService = {
     );
   },
 
-  findBy: <T,>(
+  findBy: <T>(
     endPoint: string,
     champs: string,
     values: string,

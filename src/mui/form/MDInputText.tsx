@@ -4,6 +4,8 @@ import { useFormError } from '../../mui/hook/useFormError';
 import { IMDFormPropsReturn } from './MDForm';
 import MDInputTextSimple from './MDInputTextSimple';
 
+export type FormInputType = 'date' | 'text' | 'number' | 'password' | 'email';
+
 export interface IMDInputProps extends IMDFormPropsReturn {
   label: string;
   name: string;
