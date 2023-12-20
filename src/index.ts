@@ -159,5 +159,6 @@ export type { IList, ListType } from './utils/list/ListUtils';
 export { default as RoleUtils } from './utils/role/RoleUtils';
 export { StorageUtils } from './utils/storage/StorageUtils';
 export { UuidUtils } from './utils/uuid/UuidUtils';
+export { WindowUtils } from './utils/window/WindowUtils';
 export { YupUtils } from './utils/yup/YupUtils';
 export type { IYupValidator, IYupValidators } from './utils/yup/YupUtils';

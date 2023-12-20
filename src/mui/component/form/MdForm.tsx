@@ -1,5 +1,5 @@
 import { Formik, FormikErrors } from 'formik';
-import React, { ChangeEvent, FocusEvent, useCallback, useEffect, useState } from 'react';
+import { ChangeEvent, FocusEvent, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { IApiDto, JSONObject } from '../../../dto/api/ApiDto';

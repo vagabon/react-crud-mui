@@ -1,6 +1,6 @@
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import React, { Fragment, useEffect } from 'react';
+import { Fragment, useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { IApiDto } from '../../../../dto/api/ApiDto';
 import MdCard from '../../../../mui/component/card/MdCard';
@@ -40,19 +40,22 @@ const AdminShowPage: React.FC<IAdminShowPageProps> = ({ conf }) => {
     }
   }, [dispatch, page, id]);
 
-  const handleUpdate = (data: IApiDto) => {
-    if (data.id !== null && data.id !== undefined && data.id !== '' && Number(data.id) > 0) {
-      AdminService.update(page, data)(dispatch);
-    } else {
-      AdminService.create(
-        page,
-        data,
-      )(dispatch).then((dataNew: IApiDto) => {
-        data.id = dataNew.id;
-        dispatch(AdminAction.setData({ activePage: page, data: data }));
-      });
-    }
-  };
+  const handleUpdate = useCallback(
+    (data: IApiDto) => {
+      if (data.id !== null && data.id !== undefined && data.id !== '' && Number(data.id) > 0) {
+        AdminService.update(page, data)(dispatch);
+      } else {
+        AdminService.create(
+          page,
+          data,
+        )(dispatch).then((dataNew: IApiDto) => {
+          data.id = dataNew.id;
+          dispatch(AdminAction.setData({ activePage: page, data: data }));
+        });
+      }
+    },
+    [dispatch, page],
+  );
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>

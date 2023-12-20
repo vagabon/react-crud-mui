@@ -49,13 +49,16 @@ const MdButton: React.FC<IMdButtonProps> = (props: IMdButtonProps) => {
     setIcon(newIcon);
   }, [props.icon]);
 
-  const onClick = () => {
-    if (props.onClick) {
-      props.onClick();
-    } else if (props.url) {
-      navigate(props.url);
-    }
-  };
+  const onClick = useCallback(
+    (callback?: () => void) => () => {
+      if (callback) {
+        callback();
+      } else if (props.url) {
+        navigate(props.url);
+      }
+    },
+    [props.url, navigate],
+  );
 
   const showContent = useCallback(() => {
     return <>{icon ? <>{icon}</> : <Trans i18nKey={props.label}></Trans>}</>;
@@ -67,7 +70,7 @@ const MdButton: React.FC<IMdButtonProps> = (props: IMdButtonProps) => {
         <Button
           size={props.size ?? 'small'}
           variant={props.variant}
-          onClick={onClick}
+          onClick={onClick(props.onClick)}
           startIcon={props.startIcon}
           color={props.color ?? 'primary'}>
           {showContent()}

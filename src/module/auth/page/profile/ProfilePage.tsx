@@ -1,6 +1,6 @@
-import React from 'react';
+import { useCallback } from 'react';
 import { Trans } from 'react-i18next';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { Primitif } from '../../../../dto/api/ApiDto';
 import MdButton from '../../../../mui/component/button/MdButton';
 import MdCard from '../../../../mui/component/card/MdCard';
@@ -11,18 +11,15 @@ import AuthService from '../../service/AuthService';
 
 const ProfilePage: React.FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { user: currentUser } = useAppSelector((state) => state.auth);
 
-  if (!currentUser) {
-    return <Navigate to='/auth/signin' />;
-  }
-
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     AuthService.logout()(dispatch);
-    return <Navigate to='/home' />;
-  };
+    navigate('/home');
+  }, [navigate, dispatch]);
 
-  const showField = (key: string, value: Primitif) => {
+  const showField = useCallback((key: string, value: Primitif) => {
     return (
       <p>
         <b>
@@ -31,7 +28,11 @@ const ProfilePage: React.FC = () => {
         {value}
       </p>
     );
-  };
+  }, []);
+
+  if (!currentUser) {
+    return <Navigate to='/auth/signin' />;
+  }
 
   return (
     <MdContent>

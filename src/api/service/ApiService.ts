@@ -1,7 +1,8 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { IApiDto, ID, JSON } from '../../dto/api/ApiDto';
+import { WindowUtils } from '../../utils/window/WindowUtils';
 
-const API_URL: string = window['ENV' as keyof Window]['API_URL' as keyof Window] as unknown as string;
+const API_URL: string = WindowUtils.getEnv('API_URL');
 
 const ApiService = {
   get: <T>(endPoint: string, baseUrl: string = API_URL): Promise<T> => {

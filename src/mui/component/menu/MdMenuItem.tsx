@@ -2,8 +2,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import * as React from 'react';
-import { Fragment, useState } from 'react';
+import { Fragment, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export interface IMdMenuItemProps {
@@ -17,21 +16,27 @@ const MdMenuItem: React.FC<IMdMenuItemProps> = (props: IMdMenuItemProps) => {
   const [anchorEl, setAnchorEl] = useState<Element>();
   const open = Boolean(anchorEl);
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-    if (!props.childrens) {
-      navigate(props.url);
-    }
-  };
+  const handleClick = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      setAnchorEl(event.currentTarget);
+      if (!props.childrens) {
+        navigate(props.url);
+      }
+    },
+    [navigate, props.childrens, props.url],
+  );
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setAnchorEl(undefined);
-  };
+  }, []);
 
-  const handleCloseWithUrl = (url: string) => {
-    setAnchorEl(undefined);
-    navigate(url);
-  };
+  const handleCloseWithUrl = useCallback(
+    (url: string) => {
+      setAnchorEl(undefined);
+      navigate(url);
+    },
+    [navigate],
+  );
 
   return (
     <Fragment>

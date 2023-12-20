@@ -1,9 +1,9 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { useCallback } from 'react';
 import { Trans } from 'react-i18next';
 import MdCard from '../../../../mui/component/card/MdCard';
 import MdContent from '../../../../mui/component/content/MdContent';
@@ -26,14 +26,17 @@ const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const handleLogin = (data: IUserDto) => {
-    LoginService.login(
-      data.username as string,
-      data.password as string,
-    )(dispatch).then(() => {
-      navigate('/auth/profile');
-    });
-  };
+  const handleLogin = useCallback(
+    (data: IUserDto) => {
+      LoginService.login(
+        data.username as string,
+        data.password as string,
+      )(dispatch).then(() => {
+        navigate('/auth/profile');
+      });
+    },
+    [navigate, dispatch],
+  );
 
   return (
     <MdContent>

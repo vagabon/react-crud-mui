@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
@@ -29,13 +29,13 @@ const RegisterPage: React.FC = () => {
     }
   }, [isLoggedIn, navigate]);
 
-  const handleLogin = (data: IRegisterDto) => {
+  const handleLogin = useCallback((data: IRegisterDto) => {
     if (data.username && data.email && data.password) {
       AuthService.register(data.username, data.email, data.password).then(() => {
         setIsRegister(true);
       });
     }
-  };
+  }, []);
 
   return (
     <MdContent>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Trans } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import MdButton from '../../../../mui/component/button/MdButton';

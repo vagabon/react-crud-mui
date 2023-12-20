@@ -1,6 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
 import { Fab } from '@mui/material';
-import React, { ReactNode, SyntheticEvent } from 'react';
+import { ReactNode, SyntheticEvent, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ICurrentUserDto } from '../../dto/current-user/CurrentUserDto';
 import { IUserDto } from '../../module/user/dto/UserDto';
@@ -24,18 +24,27 @@ const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = (props: InfiniteSc
 
   const navigate = useNavigate();
 
-  const handleSearch = (search: string) => {
-    props.doSearch!(search);
-  };
+  const handleSearch = useCallback(
+    (callback?: (search: string) => void) => (search: string) => {
+      callback?.(search);
+    },
+    [],
+  );
 
-  const onScroll = () => {
-    props.doChangePage(1);
-  };
+  const onScroll = useCallback(
+    (callback: (pageToAdd: number) => void) => () => {
+      callback(1);
+    },
+    [],
+  );
 
-  const doCreate = (event: SyntheticEvent<Element, Event>) => {
-    event.stopPropagation();
-    props.urlAdd && navigate(props.urlAdd);
-  };
+  const doCreate = useCallback(
+    (event: SyntheticEvent<Element, Event>) => {
+      event.stopPropagation();
+      props.urlAdd && navigate(props.urlAdd);
+    },
+    [props.urlAdd, navigate],
+  );
 
   const fabStyle = {
     position: 'absolute',
@@ -45,8 +54,8 @@ const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = (props: InfiniteSc
 
   return (
     <>
-      {props.search !== undefined && <MdSearchBar callBack={handleSearch} search={props.search} />}
-      <MdInfiniteScrool id='infinite-container' callBack={onScroll} className={props.className}>
+      {props.search !== undefined && <MdSearchBar callBack={handleSearch(props.doSearch)} search={props.search} />}
+      <MdInfiniteScrool id='infinite-container' callBack={onScroll(props.doChangePage)} className={props.className}>
         {props.children}
       </MdInfiniteScrool>
       {props.urlAdd && RoleUtils.hasProfile(currentUser, props.urlAddRole) && (

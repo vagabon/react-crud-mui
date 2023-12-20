@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Trans } from 'react-i18next';
 import MdCard from '../../../../mui/component/card/MdCard';
 import MdContent from '../../../../mui/component/content/MdContent';
@@ -15,7 +15,7 @@ const DEFAULT_VALUES = { token: '' };
 const CheckIdentityPage: React.FC = () => {
   const [state, setState] = useState<boolean>(false);
 
-  const handleCheckIdentity = (data: ICheckIdentityDto) => {
+  const handleCheckIdentity = useCallback((data: ICheckIdentityDto) => {
     LoginService.checkIdentityToken(data.token as string).then((data: ICheckIdentityDto) => {
       if (data.token !== '') {
         LoginService.resetPassword(data.token as string).then((data: ICheckIdentityDto) => {
@@ -25,7 +25,7 @@ const CheckIdentityPage: React.FC = () => {
         });
       }
     });
-  };
+  }, []);
 
   return (
     <MdContent>

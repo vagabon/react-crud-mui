@@ -1,5 +1,5 @@
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { IApiDto, JSONObject } from '../../../dto/api/ApiDto';
 import { IMdFormPropsReturnDto } from './MdForm';
 
@@ -52,13 +52,16 @@ const MdFormSelect: React.FC<IMdFormSelectProps> = (props: IMdFormSelectProps) =
     }
   }, [props.errors, props.byId, props.touched, nameOnLoad]);
 
-  const doChange = (event: SelectChangeEvent<string | JSONObject>) => {
-    event.preventDefault();
-    const value: string | JSONObject = event.target.value;
-    event.target.value = props.byId === true ? { id: value } : value;
-    props.handleChange(event);
-    props.callBack?.((value as string).toString());
-  };
+  const doChange = useCallback(
+    (event: SelectChangeEvent<string | JSONObject>) => {
+      event.preventDefault();
+      const value: string | JSONObject = event.target.value;
+      event.target.value = props.byId === true ? { id: value } : value;
+      props.handleChange(event);
+      props.callBack?.((value as string).toString());
+    },
+    [props],
+  );
 
   return (
     <div style={{ width: '100%' }}>

@@ -1,8 +1,8 @@
 import { Checkbox, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { JSONObject } from '../../../dto/api/ApiDto';
-import { IMdFormPropsReturnDto } from './MdForm';
+import { HandleChangeType, IMdFormPropsReturnDto } from './MdForm';
 
 export interface IMdFormCheckboxProps extends IMdFormPropsReturnDto {
   label?: string;
@@ -24,16 +24,19 @@ const MdFormCheckbox: React.FC<IMdFormCheckboxProps> = (props: IMdFormCheckboxPr
     }
   }, [props.errors, props.touched, nameOnLoad]);
 
-  const handleChange = () => {
-    const checkked = props.values[nameOnLoad as keyof JSONObject] !== true;
-    const newEvent = {
-      target: {
-        name: props.name,
-        value: checkked,
-      },
-    };
-    props.handleChange(newEvent);
-  };
+  const handleChange = useCallback(
+    (callback: HandleChangeType) => () => {
+      const checkked = props.values[nameOnLoad as keyof JSONObject] !== true;
+      const newEvent = {
+        target: {
+          name: props.name,
+          value: checkked,
+        },
+      };
+      callback(newEvent);
+    },
+    [props, nameOnLoad],
+  );
 
   return (
     <div className='flex '>
@@ -41,7 +44,7 @@ const MdFormCheckbox: React.FC<IMdFormCheckboxProps> = (props: IMdFormCheckboxPr
       <Checkbox
         name={props.name}
         checked={props.values[nameOnLoad as keyof JSONObject] === true}
-        onChange={handleChange}
+        onChange={handleChange(props.handleChange)}
         onBlur={props.handleBlur}
         inputProps={{ 'aria-label': 'controlled' }}
       />

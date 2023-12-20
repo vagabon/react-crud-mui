@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { JSONObject } from '../../../dto/api/ApiDto';
 import MdCard from '../../../mui/component/card/MdCard';
@@ -32,9 +32,9 @@ const AdminTable: React.FC<IAdminListPageProps> = ({ activePage, conf }) => {
     pageConf && setPageConf(pageConf);
   }, [activePage, conf.tabs]);
 
-  const doCreate = () => {
+  const doCreate = useCallback(() => {
     navigate('/admin/update/' + activePage + '/-1');
-  };
+  }, [navigate, activePage]);
 
   return (
     <MdCard className='no-margin flexflex1'>

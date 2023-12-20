@@ -1,9 +1,9 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { IUserDto } from '../../../user/dto/UserDto';
 import LoginService from '../../service/AuthService';
 
+import { useCallback } from 'react';
 import MdCard from '../../../../mui/component/card/MdCard';
 import MdContent from '../../../../mui/component/content/MdContent';
 import MdForm, { IMdFormPropsReturnDto } from '../../../../mui/component/form/MdForm';
@@ -17,11 +17,14 @@ const DEFAULT_VALUES = { email: '' };
 const ForgetPasswordPage: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleForgetPassword = (data: IUserDto) => {
-    LoginService.createIdentityToken(data.email as string).then(() => {
-      navigate('/auth/check/identity');
-    });
-  };
+  const handleForgetPassword = useCallback(
+    (data: IUserDto) => {
+      LoginService.createIdentityToken(data.email as string).then(() => {
+        navigate('/auth/check/identity');
+      });
+    },
+    [navigate],
+  );
 
   return (
     <MdContent>

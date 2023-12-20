@@ -1,5 +1,5 @@
 import { Box, Modal } from '@mui/material';
-import { ReactNode } from 'react';
+import { ReactNode, useCallback } from 'react';
 import { IApiDto } from '../../../dto/api/ApiDto';
 
 interface CommonModalProps {
@@ -24,12 +24,15 @@ const style = {
 };
 
 const MdCommonModal: React.FC<CommonModalProps> = (props) => {
-  const handleClose = () => {
-    props.handleClose(undefined);
-  };
+  const handleClose = useCallback(
+    (callback: (data: IApiDto | undefined) => void) => () => {
+      callback(undefined);
+    },
+    [],
+  );
 
   return (
-    <Modal className={props.className + ' modale'} open={props.open ?? false} onClose={handleClose}>
+    <Modal className={props.className + ' modale'} open={props.open ?? false} onClose={handleClose(props.handleClose)}>
       <Box sx={{ ...style, width: 250 }}>{props.children}</Box>
     </Modal>
   );

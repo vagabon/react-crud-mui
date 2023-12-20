@@ -1,7 +1,7 @@
 import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
 import { IconButton, InputAdornment } from '@mui/material';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { JSONObject, Primitif } from '../../../dto/api/ApiDto';
 import MdInputTextSimple from '../form/MdInputTextSimple';
 

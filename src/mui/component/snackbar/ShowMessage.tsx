@@ -1,5 +1,5 @@
 import { Alert, Slide, SlideProps, Snackbar } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Trans } from 'react-i18next';
 import { useAppSelector } from '../../../store/Store';
 
@@ -19,9 +19,9 @@ const ShowMessage: React.FC = () => {
     setOpen(message !== '');
   }, [message, type]);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setOpen(false);
-  };
+  }, []);
 
   return (
     <Snackbar

@@ -1,6 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
 import { Fab } from '@mui/material';
-import React, { ReactNode, SyntheticEvent } from 'react';
+import { ReactNode, SyntheticEvent, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export interface CrudPageProps {
@@ -13,14 +13,17 @@ export interface CrudPageProps {
 const CrudPage: React.FC<CrudPageProps> = (props: CrudPageProps) => {
   const navigate = useNavigate();
 
-  const doCreate = (event: SyntheticEvent<Element, Event>) => {
-    event.stopPropagation();
-    if (props.doCreate) {
-      props.doCreate();
-    } else if (props.urlAdd) {
-      navigate(props.urlAdd);
-    }
-  };
+  const doCreate = useCallback(
+    (callback?: () => void) => (event: SyntheticEvent<Element, Event>) => {
+      event.stopPropagation();
+      if (callback) {
+        callback();
+      } else if (props.urlAdd) {
+        navigate(props.urlAdd);
+      }
+    },
+    [props.urlAdd, navigate],
+  );
 
   const fabStyle = {
     position: 'absolute',
@@ -35,7 +38,7 @@ const CrudPage: React.FC<CrudPageProps> = (props: CrudPageProps) => {
       </div>
       {(props.urlAdd || props.doCreate) && (
         <div style={{ position: 'relative', display: 'flex', alignSelf: 'end' }}>
-          <Fab size='medium' color='primary' aria-label='add' sx={fabStyle} onClick={doCreate}>
+          <Fab size='medium' color='primary' aria-label='add' sx={fabStyle} onClick={doCreate(props.doCreate)}>
             <AddIcon />
           </Fab>
         </div>

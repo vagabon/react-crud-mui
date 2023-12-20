@@ -8,11 +8,18 @@ import {
   TableRow,
   TableSortLabel,
 } from '@mui/material';
-import React, { Fragment, useEffect, useState } from 'react';
+import { Fragment, useCallback, useEffect, useState } from 'react';
 import { Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { JSONObject } from '../../../dto/api/ApiDto';
 import { UuidUtils } from '../../../utils/uuid/UuidUtils';
+
+export type TablePaginateCallbackType = (
+  newPage: number,
+  rowsPerPage: number,
+  sortBy: string,
+  sortByOrder: 'asc' | 'desc',
+) => void;
 
 export interface ITableDto {
   name: string;
@@ -29,7 +36,7 @@ export interface IMdTableWithPaginationProps {
   rowsPerPage: number;
   sortBy: string;
   sortByOrder: 'asc' | 'desc';
-  callBack: (newPage: number, rowsPerPage: number, sortBy: string, sortByOrder: 'asc' | 'desc') => void;
+  callBack: TablePaginateCallbackType;
 }
 
 const MdTableWithPagination: React.FC<IMdTableWithPaginationProps> = (props: IMdTableWithPaginationProps) => {
@@ -48,21 +55,36 @@ const MdTableWithPagination: React.FC<IMdTableWithPaginationProps> = (props: IMd
     setDatas(newDatas);
   }, [props.datas, props.rowsPerPage]);
 
-  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number): void => {
-    props.callBack(newPage, props.rowsPerPage, props.sortBy, props.sortByOrder);
-  };
+  const handleChangePage = useCallback(
+    (callBack: TablePaginateCallbackType) =>
+      (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number): void => {
+        event?.stopPropagation();
+        callBack(newPage, props.rowsPerPage, props.sortBy, props.sortByOrder);
+      },
+    [props.rowsPerPage, props.sortBy, props.sortByOrder],
+  );
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
-    props.callBack(props.page, parseInt(event.target.value), props.sortBy, props.sortByOrder);
-  };
+  const handleChangeRowsPerPage = useCallback(
+    (callBack: TablePaginateCallbackType) =>
+      (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+        callBack(props.page, parseInt(event.target.value), props.sortBy, props.sortByOrder);
+      },
+    [props.page, props.sortBy, props.sortByOrder],
+  );
 
-  const createSortHandle = (property: string) => (): void => {
-    props.callBack(0, props.rowsPerPage, property, props.sortByOrder === 'asc' ? 'desc' : 'asc');
-  };
+  const createSortHandle = useCallback(
+    (callBack: TablePaginateCallbackType, property: string) => (): void => {
+      callBack(0, props.rowsPerPage, property, props.sortByOrder === 'asc' ? 'desc' : 'asc');
+    },
+    [props.rowsPerPage, props.sortByOrder],
+  );
 
-  const handleClick = (id: string) => {
-    props.url && navigate(props.url + id);
-  };
+  const handleClick = useCallback(
+    (id: string) => {
+      props.url && navigate(props.url + id);
+    },
+    [navigate, props.url],
+  );
 
   const showData = (data: JSONObject, name: string): string => {
     let value: JSONObject | string = data;
@@ -94,7 +116,7 @@ const MdTableWithPagination: React.FC<IMdTableWithPaginationProps> = (props: IMd
                   <TableSortLabel
                     active={props.sortBy === cell.name}
                     direction={props.sortBy === cell.name ? props.sortByOrder : 'asc'}
-                    onClick={cell.order ? createSortHandle(cell.name) : () => {}}
+                    onClick={cell.order ? createSortHandle(props.callBack, cell.name) : () => {}}
                     hideSortIcon={!cell.order}>
                     {cell.label}
                   </TableSortLabel>
@@ -138,8 +160,8 @@ const MdTableWithPagination: React.FC<IMdTableWithPaginationProps> = (props: IMd
                 count={props.count}
                 rowsPerPage={props.rowsPerPage}
                 page={props.page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
+                onPageChange={handleChangePage(props.callBack)}
+                onRowsPerPageChange={handleChangeRowsPerPage(props.callBack)}
               />
             </TableRow>
           </TableFooter>

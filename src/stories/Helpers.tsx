@@ -1,5 +1,5 @@
 import { withTests } from '@storybook/addon-jest';
-import React, { cloneElement } from 'react';
+import { cloneElement } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { IApiDto, JSONObject } from '../dto/api/ApiDto';

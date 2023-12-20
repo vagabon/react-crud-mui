@@ -4,6 +4,7 @@ import { MouseEvent, ReactNode, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ID } from '../../../dto/api/ApiDto';
 import { DateUtils } from '../../../utils/date/DateUtils';
+import { WindowUtils } from '../../../utils/window/WindowUtils';
 import { useId } from '../../hook/useId';
 
 export interface IMdCardProps {
@@ -19,7 +20,7 @@ export interface IMdCardProps {
   buttonchildren?: ReactNode;
 }
 
-const API_URL: string = window['ENV' as keyof Window]['API_URL' as keyof Window] as unknown as string;
+const API_URL: string = WindowUtils.getEnv('API_URL');
 
 const MdCard: React.FC<IMdCardProps> = ({ title, url, urlUpdate, avatar, image, date, ...rest }: IMdCardProps) => {
   const navigate = useNavigate();
@@ -33,6 +34,8 @@ const MdCard: React.FC<IMdCardProps> = ({ title, url, urlUpdate, avatar, image, 
     },
     [navigate],
   );
+
+  // TODO : remove '/news/download?fileName=' + avatar
 
   return (
     <Card {...rest} id={id}>

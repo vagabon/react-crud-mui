@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import MdGrid from '../../../../mui/component/grid/MdGrid';
 import MdLink from '../../../../mui/component/link/MdLink';
 import { AuthFooterEnum } from './enum/AuthFooterEnum';
@@ -8,7 +9,7 @@ interface IAuthFooter {
 }
 
 const AuthFooter: React.FC<IAuthFooter> = (props: IAuthFooter) => {
-  const getLink = (type: AuthFooterEnum) => {
+  const getLink = useCallback((type: AuthFooterEnum) => {
     switch (type) {
       case AuthFooterEnum.SIGNIN:
         return <MdLink label='AUTH:LOGIN.GET_ACCOUNT' href='/auth/signin' variant='body2' />;
@@ -17,7 +18,7 @@ const AuthFooter: React.FC<IAuthFooter> = (props: IAuthFooter) => {
       case AuthFooterEnum.FORGETED_PASSWORD:
         return <MdLink label='AUTH:LOGIN.FORGET_PASSWORD' href='/auth/forget/password' variant='body2' />;
     }
-  };
+  }, []);
 
   return (
     <MdGrid container style={{ marginTop: '15px' }}>

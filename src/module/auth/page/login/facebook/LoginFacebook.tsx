@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import MdButton from '../../../../../mui/component/button/MdButton';
 import { useAppDispatch } from '../../../../../store/Store';
 import { StorageUtils } from '../../../../../utils/storage/StorageUtils';
+import { WindowUtils } from '../../../../../utils/window/WindowUtils';
 import { LoginAction } from '../../../reducer/AuthReducers';
 import AuthService from '../../../service/AuthService';
 
-const FACEBOOK_CLIENT_ID: string = window['ENV' as keyof Window]['FACEBOOK_CLIENT_ID' as keyof Window]?.toString();
+const FACEBOOK_CLIENT_ID: string = WindowUtils.getEnv('FACEBOOK_CLIENT_ID');
 
 const LoginFacebook: React.FC = () => {
   const dispatch = useAppDispatch();

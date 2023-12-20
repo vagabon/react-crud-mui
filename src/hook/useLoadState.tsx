@@ -1,16 +1,19 @@
-import { useRef } from 'react';
+import { useCallback, useRef } from 'react';
 
 const useLoadState = () => {
   const firstRender = useRef(true);
 
-  const loadIt = (length: number) => (call: () => void) => {
-    if ((firstRender.current && length === 0) || !firstRender.current) {
-      call();
-    }
-    firstRender.current = false;
-  };
+  const loadIt = useCallback(
+    (length: number) => (call: () => void) => {
+      if ((firstRender.current && length === 0) || !firstRender.current) {
+        call();
+      }
+      firstRender.current = false;
+    },
+    [],
+  );
 
-  return [loadIt];
+  return { loadIt };
 };
 
 export default useLoadState;

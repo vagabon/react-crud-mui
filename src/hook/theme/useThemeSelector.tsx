@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export const useThemeSelector = () => {
   const [open, setOpen] = useState<boolean>(false);
 
-  const handleTheme = (newOpen: boolean) => () => {
-    setOpen(newOpen);
-    document.body.style.overflow = newOpen ? 'hidden' : '';
-  };
+  const handleTheme = useCallback(
+    (newOpen: boolean) => () => {
+      setOpen(newOpen);
+      document.body.style.overflow = newOpen ? 'hidden' : '';
+    },
+    [],
+  );
 
   return { open, handleTheme };
 };
