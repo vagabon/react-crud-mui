@@ -28,7 +28,7 @@ export const useFormValue = (type: string, value: JSONValue) => {
   const handleBlur = useCallback(
     (callback?: handleBlurType) => (event: FocusEvent<JSONObject, Element>) => {
       isFocusRef.current = false;
-      callback!(event);
+      callback?.(event);
     },
     [],
   );

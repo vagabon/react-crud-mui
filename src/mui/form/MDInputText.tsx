@@ -1,4 +1,3 @@
-import { Box } from '@mui/material';
 import { JSONObject } from '../../dto/api/ApiDto';
 import { useFormError } from '../../mui/hook/useFormError';
 import { IMDFormPropsReturn } from './MDForm';
@@ -17,7 +16,7 @@ export interface IMDInputProps extends IMDFormPropsReturn {
 }
 
 const MDInputText: React.FC<IMDInputProps> = (props: IMDInputProps) => {
-  const { error } = useFormError(props.name, props.errors, props.touched);
+  const { showError } = useFormError(props.name, props.errors, props.touched);
 
   return (
     <div style={{ width: '100%' }}>
@@ -34,15 +33,9 @@ const MDInputText: React.FC<IMDInputProps> = (props: IMDInputProps) => {
         fullWidth={props.fullWidth}
         handleChange={props.handleChange}
         handleBlur={props.handleBlur}
-        textarea={props.textarea}></MDInputTextSimple>
-
-      {error && (
-        <div className='form-group'>
-          <Box className='alert' role='alert'>
-            {error}
-          </Box>
-        </div>
-      )}
+        textarea={props.textarea}
+      />
+      {showError()}
     </div>
   );
 };

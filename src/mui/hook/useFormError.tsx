@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { Box } from '@mui/material';
+import { useCallback, useEffect, useState } from 'react';
 import { JSONObject } from '../../dto/api/ApiDto';
 
 export const useFormError = (name: string, errors: JSONObject, touched: JSONObject) => {
@@ -14,5 +15,19 @@ export const useFormError = (name: string, errors: JSONObject, touched: JSONObje
     }
   }, [errors, touched, name]);
 
-  return { error };
+  const showError = useCallback(() => {
+    return (
+      <>
+        {error && (
+          <div className='form-group'>
+            <Box className='alert' role='alert'>
+              {error}
+            </Box>
+          </div>
+        )}
+      </>
+    );
+  }, [error]);
+
+  return { error, showError };
 };

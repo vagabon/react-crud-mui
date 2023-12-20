@@ -39,14 +39,14 @@ const MdMarkdown: React.FC<IMdMarkdownProps> = (props) => {
       let count = 0;
       interval.current = setInterval(() => {
         const newSummary = generateSummary(id);
-        props.summaryCallback!(newSummary);
+        props.summaryCallback?.(newSummary);
         count++;
         if (count > 10) {
           interval.current && clearInterval(interval.current);
         }
       }, 100);
     }
-  }, [id, generateSummary, props.summaryCallback]);
+  }, [id, generateSummary, props]);
 
   return (
     <div id={id}>

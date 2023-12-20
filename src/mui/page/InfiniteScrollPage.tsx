@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { ICurrentUserDto } from '../../dto/current-user/CurrentUserDto';
 import { IUserDto } from '../../module/user/dto/UserDto';
 import InfiniteScrool from '../../mui/infinite-scroll/InfiniteScrool';
-import SearchBar from '../../mui/searchbar/SearchBar';
 import { useAppSelector } from '../../store/Store';
 import RoleUtils from '../../utils/role/RoleUtils';
+import MdSearchBar from '../searchbar/MdSearchBar';
 
 export interface InfiniteScroolPageProps {
   className?: string;
@@ -45,7 +45,7 @@ const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = (props: InfiniteSc
 
   return (
     <>
-      {props.search !== undefined && <SearchBar callBack={handleSearch} search={props.search} />}
+      {props.search !== undefined && <MdSearchBar callBack={handleSearch} search={props.search} />}
       <InfiniteScrool id='infinite-container' callBack={onScroll} className={props.className}>
         {props.children}
       </InfiniteScrool>

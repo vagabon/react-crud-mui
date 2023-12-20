@@ -1,4 +1,4 @@
-import { TextField, TextFieldVariants } from '@mui/material';
+import { InputProps, TextField, TextFieldVariants } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { JSONValue } from '../../dto/api/ApiDto';
 import { useFormValue } from '../../mui/hook/useFormValue';
@@ -18,6 +18,7 @@ export interface IMDInputTextSimpleProps {
   required?: boolean;
   className?: string;
   fullWidth?: boolean;
+  inputProps?: Partial<InputProps>;
   handleChange?: handleChangeType;
   handleBlur?: handleBlurType;
 }
@@ -48,11 +49,9 @@ const MDInputTextSimple: React.FC<IMDInputTextSimpleProps> = (props: IMDInputTex
         onFocus={handleFocus}
         onChange={props.handleChange}
         onBlur={handleBlur(props.handleBlur)}
-        inputProps={{
+        InputProps={{
+          ...props.inputProps,
           autoComplete: 'off',
-          form: {
-            autoComplete: 'off',
-          },
           readOnly: readonly,
         }}
         multiline={(props.textarea ?? 0) > 0}

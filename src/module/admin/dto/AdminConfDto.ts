@@ -1,19 +1,17 @@
-import { ITableProps } from '../../../mui/table/TableWithPagination';
+import { ITableProps } from '../../../mui/table/MDTableWithPagination';
 
 export interface IFormDto {
   label: string;
   required: boolean;
   type: string;
   email?: boolean;
-  disable?: boolean;
+  disabled?: boolean;
 }
 
 export interface IAdminTabDto {
   name: string;
   findByChamps: string;
-  rowsPerPage: number;
   sortBy: string;
-  sortByOrder: 'asc' | 'desc';
   cells: ITableProps[];
   form: { [x: string]: IFormDto };
 }

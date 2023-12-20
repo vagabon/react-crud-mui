@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom';
 
 console.error = jest.fn();
-console.log = jest.fn();
 
 /********************************* MOCK COMPONENT ********************************/
 

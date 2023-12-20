@@ -27,7 +27,7 @@ export const YupUtils = {
     let shape: IYupShape = {};
 
     Object.entries(datas).forEach(([key, value]: [string, IYupValidator]) => {
-      if (value.listId || value.type === 'date') {
+      if (value.listId || value.type === 'date' || value.type === 'datetime') {
         shape = YupUtils.getObjectSchema(shape, value, key, t);
       } else {
         shape = YupUtils.getStringSchema(shape, value, key, t);

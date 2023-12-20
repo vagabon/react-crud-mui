@@ -3,8 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import MDContent from '../../../../mui/content/MDContent';
 import HasRole from '../../../../mui/role/HasRole';
 import MDTabs, { TabsType } from '../../../../mui/tabs/MDTabs';
+import AdminTable from '../../component/AdminTable';
 import { IAdminTabConfDto } from '../../dto/AdminConfDto';
-import AdminListPage from '../llist/AdminListPage';
 
 interface IAdminTabsPageProps {
   conf: IAdminTabConfDto;
@@ -29,10 +29,10 @@ const AdminTabsPage: React.FC<IAdminTabsPageProps> = ({ conf, tabs }) => {
   );
 
   return (
-    <MDContent>
+    <MDContent className='margin-5'>
       <HasRole roles={['ADMIN']}>
         {activeTab && <MDTabs value={activeTab} callback={handleChange} tabs={tabs} />}
-        {activeTab && <AdminListPage activePage={activeTab} conf={conf} />}
+        {activeTab && <AdminTable activePage={activeTab} conf={conf} />}
       </HasRole>
     </MDContent>
   );

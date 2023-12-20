@@ -30,7 +30,7 @@ const MDTabs: React.FC<IMDTabsProps> = ({
   const handleChange = useCallback(
     (event: SyntheticEvent<Element, Event>, newValue: React.SetStateAction<string>) => {
       event.stopPropagation();
-      callback!(newValue as string);
+      callback?.(newValue as string);
     },
     [callback],
   );

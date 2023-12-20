@@ -35,6 +35,7 @@ export interface IMDFormPropsReturn {
     shouldValidate?: boolean | undefined,
   ) => Promise<void | FormikErrors<IApiDto>>;
   setValues: (values: IApiDto, shouldValidate?: boolean) => Promise<void | FormikErrors<IApiDto>>;
+  disabled?: boolean;
 }
 
 export interface IMDFormProps {

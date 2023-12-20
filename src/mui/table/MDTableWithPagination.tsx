@@ -1,18 +1,18 @@
 import {
-  Paper,
   Table,
   TableBody,
   TableCell,
-  TableContainer,
   TableFooter,
   TableHead,
   TablePagination,
   TableRow,
   TableSortLabel,
 } from '@mui/material';
-import React from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
+import { Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { JSONObject } from '../../dto/api/ApiDto';
+import { UuidUtils } from '../../utils/uuid/UuidUtils';
 
 export interface ITableProps {
   name: string;
@@ -34,6 +34,19 @@ export interface TableWithPagniationProps {
 
 const TableWithPagination: React.FC<TableWithPagniationProps> = (props: TableWithPagniationProps) => {
   const navigate = useNavigate();
+  const [datas, setDatas] = useState<JSONObject[]>([]);
+
+  useEffect(() => {
+    const newDatas: JSONObject[] = [];
+    for (let i = 0; i < props.rowsPerPage; i++) {
+      if (props?.datas[i]) {
+        newDatas.push(props.datas[i]);
+      } else {
+        newDatas.push({ empty: true, id: UuidUtils.createUUID() });
+      }
+    }
+    setDatas(newDatas);
+  }, [props.datas, props.rowsPerPage]);
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number): void => {
     props.callBack(newPage, props.rowsPerPage, props.sortBy, props.sortByOrder);
@@ -68,9 +81,12 @@ const TableWithPagination: React.FC<TableWithPagniationProps> = (props: TableWit
   };
 
   return (
-    <div style={{ flex: '1', width: '100%' }}>
-      <TableContainer component={Paper}>
-        <Table size='small' aria-label='a dense table'>
+    <>
+      <h3>
+        <Trans i18nKey='RESULTAT' /> : {props.count}
+      </h3>
+      <div style={{ overflow: 'auto' }}>
+        <Table size='small'>
           <TableHead>
             <TableRow>
               {props.cells?.map((cell: ITableProps) => (
@@ -87,25 +103,38 @@ const TableWithPagination: React.FC<TableWithPagniationProps> = (props: TableWit
             </TableRow>
           </TableHead>
           <TableBody>
-            {props?.datas.map(
-              (data: JSONObject) =>
-                data && (
-                  <TableRow
-                    key={data['id' as keyof JSONObject]}
-                    onClick={() => handleClick(data['id' as keyof JSONObject])}>
-                    {props.cells?.map((cell: ITableProps) => (
-                      <TableCell component='th' scope='row' key={cell.name}>
-                        {showData(data, cell.name)}
+            {!props?.datas || props.datas?.length === 0 ? (
+              <TableRow>
+                <TableCell component='th' scope='row' colSpan={props.cells?.length}>
+                  <Trans i18nKey='NOT_FOUND' />
+                </TableCell>
+              </TableRow>
+            ) : (
+              datas.map((data: JSONObject) => (
+                <Fragment key={data['id' as keyof JSONObject]}>
+                  {data && !data['empty' as keyof JSONObject] ? (
+                    <TableRow onClick={() => handleClick(data['id' as keyof JSONObject])}>
+                      {props.cells?.map((cell: ITableProps) => (
+                        <TableCell component='th' scope='row' key={cell.name}>
+                          {showData(data, cell.name)}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  ) : (
+                    <TableRow key={data['id' as keyof JSONObject]}>
+                      <TableCell component='th' scope='row' colSpan={props.cells?.length}>
+                        &nbsp;
                       </TableCell>
-                    ))}
-                  </TableRow>
-                ),
+                    </TableRow>
+                  )}
+                </Fragment>
+              ))
             )}
           </TableBody>
           <TableFooter>
             <TableRow>
               <TablePagination
-                rowsPerPageOptions={[2, 10, 20, 50]}
+                rowsPerPageOptions={[2, 5, 10, 20, 50]}
                 count={props.count}
                 rowsPerPage={props.rowsPerPage}
                 page={props.page}
@@ -115,8 +144,8 @@ const TableWithPagination: React.FC<TableWithPagniationProps> = (props: TableWit
             </TableRow>
           </TableFooter>
         </Table>
-      </TableContainer>
-    </div>
+      </div>
+    </>
   );
 };
 

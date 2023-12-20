@@ -57,7 +57,7 @@ const MdFormSelect: React.FC<IMdFormSelectProps> = (props: IMdFormSelectProps) =
     const value: string | JSONObject = event.target.value;
     event.target.value = props.byId === true ? { id: value } : value;
     props.handleChange(event);
-    props.callBack!((value as string).toString());
+    props.callBack?.((value as string).toString());
   };
 
   return (

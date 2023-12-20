@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { JSONObject } from '../../../../dto/api/ApiDto';
-import MDCard from '../../../../mui/card/MDCard';
-import MDFab from '../../../../mui/fab/MDFab';
-import HasRole from '../../../../mui/role/HasRole';
-import MdSearchBar from '../../../../mui/searchbar/MdSearchBar';
-import TableWithPagination from '../../../../mui/table/MDTableWithPagination';
-import { IAdminTabConfDto, IAdminTabDto } from '../../dto/AdminConfDto';
-import { IAdminStateDto } from '../../dto/AdminReducerDto';
-import { useAdminList } from '../../hook/useAdminList';
-import { useAdminState } from '../../hook/useAdminState';
+import { JSONObject } from '../../../dto/api/ApiDto';
+import MDCard from '../../../mui/card/MDCard';
+import MDFab from '../../../mui/fab/MDFab';
+import HasRole from '../../../mui/role/HasRole';
+import MdSearchBar from '../../../mui/searchbar/MdSearchBar';
+import TableWithPagination from '../../../mui/table/MDTableWithPagination';
+import { IAdminTabConfDto, IAdminTabDto } from '../dto/AdminConfDto';
+import { IAdminStateDto } from '../dto/AdminReducerDto';
+import { useAdminList } from '../hook/useAdminList';
+import { useAdminState } from '../hook/useAdminState';
 
 export interface IAdminListPageProps {
   activePage: string;
   conf: IAdminTabConfDto;
 }
-const AdminListPage: React.FC<IAdminListPageProps> = ({ activePage, conf }) => {
+const AdminTable: React.FC<IAdminListPageProps> = ({ activePage, conf }) => {
   const navigate = useNavigate();
 
   const [pageConf, setPageConf] = useState<IAdminTabDto>();
@@ -37,7 +37,7 @@ const AdminListPage: React.FC<IAdminListPageProps> = ({ activePage, conf }) => {
   };
 
   return (
-    <MDCard className='no-margin'>
+    <MDCard className='no-margin flexflex1'>
       <HasRole roles={['ADMIN']}>
         <MdSearchBar callBack={handleSearch} search={state?.filter?.search} />
         {pageConf && state && state?.table && (
@@ -53,7 +53,7 @@ const AdminListPage: React.FC<IAdminListPageProps> = ({ activePage, conf }) => {
             callBack={handleTableChange}
           />
         )}
-        <div style={{ position: 'relative', display: 'flex', justifyContent: 'flex-end' }}>
+        <div style={{ position: 'absolute', bottom: '8px', right: '8px' }}>
           <MDFab size='medium' color='primary' aria-label='add' callback={doCreate} />
         </div>
       </HasRole>
@@ -61,4 +61,4 @@ const AdminListPage: React.FC<IAdminListPageProps> = ({ activePage, conf }) => {
   );
 };
 
-export default AdminListPage;
+export default AdminTable;

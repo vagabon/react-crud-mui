@@ -1,13 +1,16 @@
+import ClearIcon from '@mui/icons-material/Clear';
+import SearchIcon from '@mui/icons-material/Search';
+import { IconButton, InputAdornment } from '@mui/material';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { JSONObject, Primitif } from '../../dto/api/ApiDto';
-import MDInputTextSimple from '../../mui/form/MDInputTextSimple';
+import MDInputTextSimple from '../form/MDInputTextSimple';
 
-export interface SearchBarProps {
+export interface IMdSearchBarProps {
   search: Primitif;
   callBack: (value: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
+const MdSearchBar: React.FC<IMdSearchBarProps> = (props) => {
   const [defaultValue, setDefaultValue] = useState<string>('');
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -26,6 +29,14 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
     [],
   );
 
+  const handleReset = useCallback(
+    (callback: (value: string) => void) => () => {
+      setDefaultValue('');
+      callback('');
+    },
+    [],
+  );
+
   return (
     <section className='search-bar'>
       <MDInputTextSimple
@@ -36,9 +47,23 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
         placeholder='Search...'
         size='small'
         value={defaultValue}
+        inputProps={{
+          startAdornment: (
+            <InputAdornment position='start'>
+              <SearchIcon sx={{ fontSize: 20 }} />
+            </InputAdornment>
+          ),
+          endAdornment: (
+            <IconButton
+              sx={{ visibility: defaultValue !== '' ? 'visible' : 'hidden' }}
+              onClick={handleReset(props.callBack)}>
+              <ClearIcon />
+            </IconButton>
+          ),
+        }}
       />
     </section>
   );
 };
 
-export default SearchBar;
+export default MdSearchBar;
