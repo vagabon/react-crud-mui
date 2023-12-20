@@ -2,12 +2,12 @@ import { CssBaseline, Theme, ThemeProvider } from '@mui/material';
 import { ReactNode } from 'react';
 import { ITheme, useTheme } from './useTheme';
 
-interface IMDThemeProviderProps {
+interface IMdThemeProviderProps {
   theme: ITheme;
   children: ReactNode;
 }
 
-const MDThemeProvider: React.FC<IMDThemeProviderProps> = (props) => {
+const MdThemeProvider: React.FC<IMdThemeProviderProps> = (props) => {
   const { theme } = useTheme(props.theme as Theme);
 
   return (
@@ -18,4 +18,4 @@ const MDThemeProvider: React.FC<IMDThemeProviderProps> = (props) => {
   );
 };
 
-export default MDThemeProvider;
+export default MdThemeProvider;

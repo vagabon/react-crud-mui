@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { IUserDto } from '../../../user/dto/UserDto';
 import LoginService from '../../service/AuthService';
 
-import MDCard from '../../../../mui/component/card/MDCard';
-import MDContent from '../../../../mui/component/content/MDContent';
-import MDForm, { IMDFormPropsReturn } from '../../../../mui/component/form/MDForm';
-import MDInputText from '../../../../mui/component/form/MDInputText';
+import MdCard from '../../../../mui/component/card/MdCard';
+import MdContent from '../../../../mui/component/content/MdContent';
+import MdForm, { IMdFormPropsReturnDto } from '../../../../mui/component/form/MdForm';
+import MdInputText from '../../../../mui/component/form/MdInputText';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
 import FORGET_PASSWORD_SCHEMA from './schema/forget.password.schema.json';
@@ -24,19 +24,19 @@ const ForgetPasswordPage: React.FC = () => {
   };
 
   return (
-    <MDContent>
-      <MDCard title='AUTH:FORGET_PASSWORD.TITLE'>
-        <MDForm
+    <MdContent>
+      <MdCard title='AUTH:FORGET_PASSWORD.TITLE'>
+        <MdForm
           initialValues={DEFAULT_VALUES}
           validationSchema={FORGET_PASSWORD_SCHEMA}
           onSubmit={handleForgetPassword}
           backButton={false}>
-          {(props: IMDFormPropsReturn) => <MDInputText label='AUTH:FIELDS.EMAIL' name='email' {...props} />}
-        </MDForm>
+          {(props: IMdFormPropsReturnDto) => <MdInputText label='AUTH:FIELDS.EMAIL' name='email' {...props} />}
+        </MdForm>
 
         <AuthFooter left={AuthFooterEnum.SIGNIN} rigth={AuthFooterEnum.SIGNUP} />
-      </MDCard>
-    </MDContent>
+      </MdCard>
+    </MdContent>
   );
 };
 

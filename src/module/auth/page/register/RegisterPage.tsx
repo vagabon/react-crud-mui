@@ -6,10 +6,10 @@ import { JSONObject } from '../../../../dto/api/ApiDto';
 import { useAppSelector } from '../../../../store/Store';
 import { IRegisterDto, RegisterDto } from './dto/RegisterDto';
 
-import MDCard from '../../../../mui/component/card/MDCard';
-import MDContent from '../../../../mui/component/content/MDContent';
-import MDForm, { IMDFormPropsReturn } from '../../../../mui/component/form/MDForm';
-import MDInputText from '../../../../mui/component/form/MDInputText';
+import MdCard from '../../../../mui/component/card/MdCard';
+import MdContent from '../../../../mui/component/content/MdContent';
+import MdForm, { IMdFormPropsReturnDto } from '../../../../mui/component/form/MdForm';
+import MdInputText from '../../../../mui/component/form/MdInputText';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
 import AuthService from '../../service/AuthService';
@@ -38,28 +38,28 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <MDContent>
-      <MDCard title='AUTH:REGISTER.TITLE'>
+    <MdContent>
+      <MdCard title='AUTH:REGISTER.TITLE'>
         {!isRegister && (
-          <MDForm
+          <MdForm
             initialValues={DEFAULT_VALUES}
             validationSchema={REGISTER_SCHEMA}
             onSubmit={handleLogin}
             backButton={false}>
-            {(props: IMDFormPropsReturn) => (
+            {(props: IMdFormPropsReturnDto) => (
               <>
-                <MDInputText label='AUTH:FIELDS.LOGIN' name='username' {...props} />
-                <MDInputText label='AUTH:FIELDS.EMAIL' name='email' {...props} />
-                <MDInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...props} />
-                <MDInputText label='AUTH:FIELDS.PASSWORD_CONFIRM' name='password2' type='password' {...props} />
+                <MdInputText label='AUTH:FIELDS.LOGIN' name='username' {...props} />
+                <MdInputText label='AUTH:FIELDS.EMAIL' name='email' {...props} />
+                <MdInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...props} />
+                <MdInputText label='AUTH:FIELDS.PASSWORD_CONFIRM' name='password2' type='password' {...props} />
               </>
             )}
-          </MDForm>
+          </MdForm>
         )}
         {isRegister && <Trans i18nKey='AUTH:REGISTER.SUCCESS' />}
         <AuthFooter left={AuthFooterEnum.FORGETED_PASSWORD} rigth={AuthFooterEnum.SIGNIN} />
-      </MDCard>
-    </MDContent>
+      </MdCard>
+    </MdContent>
   );
 };
 

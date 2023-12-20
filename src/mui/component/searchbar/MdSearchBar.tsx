@@ -3,7 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { IconButton, InputAdornment } from '@mui/material';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { JSONObject, Primitif } from '../../../dto/api/ApiDto';
-import MDInputTextSimple from '../form/MDInputTextSimple';
+import MdInputTextSimple from '../form/MdInputTextSimple';
 
 export interface IMdSearchBarProps {
   search: Primitif;
@@ -39,7 +39,7 @@ const MdSearchBar: React.FC<IMdSearchBarProps> = (props) => {
 
   return (
     <section className='search-bar'>
-      <MDInputTextSimple
+      <MdInputTextSimple
         name='searching'
         handleChange={handleChange(props.callBack)}
         label='SEARCH'

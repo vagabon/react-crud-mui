@@ -3,17 +3,17 @@ import dayjs from 'dayjs';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { JSONObject } from '../../../dto/api/ApiDto';
 import { useFormError } from '../../hook/useFormError';
-import { IMDFormPropsReturn, handleChangeType } from './MDForm';
+import { HandleChangeType, IMdFormPropsReturnDto } from './MdForm';
 
 export type FormInputType = 'date' | 'text' | 'number' | 'password' | 'email';
 
-export interface IMDInputProps extends IMDFormPropsReturn {
+export interface IMdInputDatepickerProps extends IMdFormPropsReturnDto {
   className?: string;
   label: string;
   name: string;
 }
 
-const MDInputDatepicker: React.FC<IMDInputProps> = (props: IMDInputProps) => {
+const MdInputDatepicker: React.FC<IMdInputDatepickerProps> = (props: IMdInputDatepickerProps) => {
   const { showError } = useFormError(props.name, props.errors, props.touched);
   const defaultValue = useRef(props.state[props.name as keyof JSONObject]);
 
@@ -25,7 +25,7 @@ const MDInputDatepicker: React.FC<IMDInputProps> = (props: IMDInputProps) => {
   }, [defaultValue]);
 
   const handleChange = useCallback(
-    (callback: handleChangeType) => (newValue?: string | null) => {
+    (callback: HandleChangeType) => (newValue?: string | null) => {
       const newValueString = JSON.stringify(newValue).replaceAll('\\', '').replaceAll('"', '');
       callback({ target: { name: props.name, value: newValueString } });
     },
@@ -50,4 +50,4 @@ const MDInputDatepicker: React.FC<IMDInputProps> = (props: IMDInputProps) => {
   );
 };
 
-export default MDInputDatepicker;
+export default MdInputDatepicker;

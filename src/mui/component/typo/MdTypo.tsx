@@ -3,7 +3,7 @@ import { Variant } from '@mui/material/styles/createTypography';
 import { ReactNode } from 'react';
 import { Trans } from 'react-i18next';
 
-export interface IMDTypoProps {
+export interface IMdTypoProps {
   label?: string;
   paragraph?: boolean;
   variant?: Variant | 'inherit';
@@ -14,7 +14,7 @@ export interface IMDTypoProps {
   sx?: SxProps<Theme>;
 }
 
-const MDTypo: React.FC<IMDTypoProps> = ({ label, paragraph, variant, color, align, noWrap, sx, children }) => {
+const MdTypo: React.FC<IMdTypoProps> = ({ label, paragraph, variant, color, align, noWrap, sx, children }) => {
   return (
     <Typography paragraph={paragraph} variant={variant} color={color} align={align} noWrap={noWrap} sx={sx}>
       {label && <Trans i18next={label} />}
@@ -23,4 +23,4 @@ const MDTypo: React.FC<IMDTypoProps> = ({ label, paragraph, variant, color, alig
   );
 };
 
-export default MDTypo;
+export default MdTypo;

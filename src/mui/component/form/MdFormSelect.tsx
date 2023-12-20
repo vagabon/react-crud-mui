@@ -1,14 +1,14 @@
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { IApiDto, JSONObject } from '../../../dto/api/ApiDto';
-import { IMDFormPropsReturn } from './MDForm';
+import { IMdFormPropsReturnDto } from './MdForm';
 
 interface IList {
   value: string | number;
   name: string;
 }
 
-export interface IMdFormSelectProps extends IMDFormPropsReturn {
+export interface IMdFormSelectProps extends IMdFormPropsReturnDto {
   label: string;
   name: string;
   list: IApiDto[];

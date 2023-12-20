@@ -1,12 +1,12 @@
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { ID, JSONObject } from '../../../../dto/api/ApiDto';
 import { useCreateNews } from '../../../../module/news/hook/useCreateNews';
-import MDCard from '../../../../mui/component/card/MDCard';
-import MDContent from '../../../../mui/component/content/MDContent';
-import MDForm, { IMDFormPropsReturn, handleChangeType } from '../../../../mui/component/form/MDForm';
-import MDFormFile from '../../../../mui/component/form/MDFormFile';
-import MDFormSwitch from '../../../../mui/component/form/MDFormSwitch';
-import MDInputText from '../../../../mui/component/form/MDInputText';
+import MdCard from '../../../../mui/component/card/MdCard';
+import MdContent from '../../../../mui/component/content/MdContent';
+import MdForm, { HandleChangeType, IMdFormPropsReturnDto } from '../../../../mui/component/form/MdForm';
+import MdFormFile from '../../../../mui/component/form/MdFormFile';
+import MdFormSwitch from '../../../../mui/component/form/MdFormSwitch';
+import MdInputText from '../../../../mui/component/form/MdInputText';
 import { INewsDto } from '../../dto/NewsDto';
 import NEWS_SCHEMA from '../../schema/news.schema.json';
 import NewsCard from '../card/NewsCard';
@@ -20,7 +20,7 @@ const NewsForm: React.FC = () => {
   }, [news]);
 
   const handleChange = useCallback(
-    (newsState: INewsDto, callback: handleChangeType) => (event: ChangeEvent<JSONObject>) => {
+    (newsState: INewsDto, callback: HandleChangeType) => (event: ChangeEvent<JSONObject>) => {
       callback(event);
       setNewsForm({
         ...newsState,
@@ -31,7 +31,7 @@ const NewsForm: React.FC = () => {
   );
 
   const handleChangeFile = useCallback(
-    (id: ID, callback: handleChangeType) => (name: string, file: File) => {
+    (id: ID, callback: HandleChangeType) => (name: string, file: File) => {
       uploadNewsImage(id, file).then((data) => {
         const event = { target: { name, value: data } };
         console.log('FILE UPLOAD : ', data, event);
@@ -42,41 +42,41 @@ const NewsForm: React.FC = () => {
   );
 
   return (
-    <MDContent id='news-form' className='markdown-form'>
-      <MDCard title={news.id ? 'NEWS_UPDATE' : 'NEW_CREATE'}>
-        <MDForm initialValues={news} validationSchema={NEWS_SCHEMA} onSubmit={createOrUpdateNews}>
-          {(props: IMDFormPropsReturn) => (
+    <MdContent id='news-form' className='markdown-form'>
+      <MdCard title={news.id ? 'NEWS_UPDATE' : 'NEW_CREATE'}>
+        <MdForm initialValues={news} validationSchema={NEWS_SCHEMA} onSubmit={createOrUpdateNews}>
+          {(props: IMdFormPropsReturnDto) => (
             <>
-              <MDInputText
+              <MdInputText
                 label='Titre'
                 name='title'
                 {...props}
                 handleChange={handleChange(newsForm, props.handleChange)}
               />
-              <MDInputText
+              <MdInputText
                 label='Description'
                 name='description'
                 textarea={10}
                 {...props}
                 handleChange={handleChange(newsForm, props.handleChange)}
               />
-              <MDFormFile
+              <MdFormFile
                 label='AVATAR'
                 name='avatar'
                 handleChangeFile={handleChangeFile(newsForm.id, props.handleChange)}
               />
-              <MDFormFile
+              <MdFormFile
                 label='IMAGE'
                 name='image'
                 handleChangeFile={handleChangeFile(newsForm.id, props.handleChange)}
               />
-              <MDFormSwitch label='Actif' name='active' {...props} />;
+              <MdFormSwitch label='Actif' name='active' {...props} />;
             </>
           )}
-        </MDForm>
-      </MDCard>
+        </MdForm>
+      </MdCard>
       <NewsCard news={newsForm} />
-    </MDContent>
+    </MdContent>
   );
 };
 

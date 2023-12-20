@@ -2,14 +2,14 @@ import { Checkbox, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { JSONObject } from '../../../dto/api/ApiDto';
-import { IMDFormPropsReturn } from './MDForm';
+import { IMdFormPropsReturnDto } from './MdForm';
 
-export interface IFormCheckboxProps extends IMDFormPropsReturn {
+export interface IMdFormCheckboxProps extends IMdFormPropsReturnDto {
   label?: string;
   name: string;
 }
 
-const MDFormCheckbox: React.FC<IFormCheckboxProps> = (props: IFormCheckboxProps) => {
+const MdFormCheckbox: React.FC<IMdFormCheckboxProps> = (props: IMdFormCheckboxProps) => {
   const [error, setError] = useState<string>('');
   const { t } = useTranslation();
 
@@ -57,4 +57,4 @@ const MDFormCheckbox: React.FC<IFormCheckboxProps> = (props: IFormCheckboxProps)
   );
 };
 
-export default MDFormCheckbox;
+export default MdFormCheckbox;

@@ -1,12 +1,12 @@
 import { Tab } from '@mui/material';
 
-export interface IMDTabProps {
+export interface IMdTabProps {
   value: string;
   label: string;
 }
 
-const MDTab: React.FC<IMDTabProps> = ({ value, label }) => {
+const MdTab: React.FC<IMdTabProps> = ({ value, label }) => {
   return <Tab value={value} label={label} />;
 };
 
-export default MDTab;
+export default MdTab;

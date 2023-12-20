@@ -1,5 +1,5 @@
-import MDGrid from '../../../../mui/component/grid/MDGrid';
-import MDLink from '../../../../mui/component/link/MDLink';
+import MdGrid from '../../../../mui/component/grid/MdGrid';
+import MdLink from '../../../../mui/component/link/MdLink';
 import { AuthFooterEnum } from './enum/AuthFooterEnum';
 
 interface IAuthFooter {
@@ -11,21 +11,21 @@ const AuthFooter: React.FC<IAuthFooter> = (props: IAuthFooter) => {
   const getLink = (type: AuthFooterEnum) => {
     switch (type) {
       case AuthFooterEnum.SIGNIN:
-        return <MDLink label='AUTH:LOGIN.GET_ACCOUNT' href='/auth/signin' variant='body2' />;
+        return <MdLink label='AUTH:LOGIN.GET_ACCOUNT' href='/auth/signin' variant='body2' />;
       case AuthFooterEnum.SIGNUP:
-        return <MDLink label='AUTH:LOGIN.NO_ACCOUNT' href='/auth/signup' variant='body2' />;
+        return <MdLink label='AUTH:LOGIN.NO_ACCOUNT' href='/auth/signup' variant='body2' />;
       case AuthFooterEnum.FORGETED_PASSWORD:
-        return <MDLink label='AUTH:LOGIN.FORGET_PASSWORD' href='/auth/forget/password' variant='body2' />;
+        return <MdLink label='AUTH:LOGIN.FORGET_PASSWORD' href='/auth/forget/password' variant='body2' />;
     }
   };
 
   return (
-    <MDGrid container style={{ marginTop: '15px' }}>
-      <MDGrid item xs>
+    <MdGrid container style={{ marginTop: '15px' }}>
+      <MdGrid item xs>
         {getLink(props.left)}
-      </MDGrid>
-      <MDGrid item>{getLink(props.rigth)}</MDGrid>
-    </MDGrid>
+      </MdGrid>
+      <MdGrid item>{getLink(props.rigth)}</MdGrid>
+    </MdGrid>
   );
 };
 

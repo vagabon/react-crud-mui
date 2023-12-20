@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { TabsType } from '../../mui/component/tabs/MDTabs';
+import { TabsType } from '../../mui/component/tabs/MdTabs';
 import { IAdminTabConfDto } from './dto/AdminConfDto';
 import AdminShowPage from './page/show/AdminShowPage';
 import AdminTabsPage from './page/tab/AdminTabPage';

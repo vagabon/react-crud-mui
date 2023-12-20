@@ -1,13 +1,13 @@
 import { ButtonGroup } from '@mui/material';
 import { ReactNode } from 'react';
 
-export interface IMDBouttonGroupProps {
+export interface IMdBouttonGroupProps {
   variant: 'text' | 'outlined' | 'contained';
   size: 'small' | 'medium' | 'large';
   children?: ReactNode;
 }
 
-const MDBouttonGroup: React.FC<IMDBouttonGroupProps> = ({ variant, size, children }) => {
+const MdBouttonGroup: React.FC<IMdBouttonGroupProps> = ({ variant, size, children }) => {
   return (
     <ButtonGroup variant={variant ?? 'text'} size={size ?? 'large'}>
       {children}
@@ -15,4 +15,4 @@ const MDBouttonGroup: React.FC<IMDBouttonGroupProps> = ({ variant, size, childre
   );
 };
 
-export default MDBouttonGroup;
+export default MdBouttonGroup;

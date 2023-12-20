@@ -1,8 +1,10 @@
 import axios from 'axios';
-import AxiosInterceptor from './AxiosInterceptor';
 import { StorageUtils } from '../../utils/storage/StorageUtils';
+import AxiosInterceptor from './AxiosInterceptor';
 
 const store = { dispatch: jest.fn() };
+
+console.log = jest.fn();
 
 describe('API INTERCEPTOR', () => {
   AxiosInterceptor(store);

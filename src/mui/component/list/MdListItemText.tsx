@@ -1,13 +1,13 @@
 import { ListItemText } from '@mui/material';
 import { useMdTrans } from '../../../hook/trans/useMdTrans';
 
-export interface IMDListItemTextProps {
+export interface IMdListItemTextProps {
   label: string;
 }
-const MDListItemText: React.FC<IMDListItemTextProps> = ({ label }) => {
+const MdListItemText: React.FC<IMdListItemTextProps> = ({ label }) => {
   const { t } = useMdTrans();
 
   return <ListItemText primary={t(label)} />;
 };
 
-export default MDListItemText;
+export default MdListItemText;

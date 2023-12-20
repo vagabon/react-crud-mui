@@ -1,13 +1,13 @@
 import { Box, SxProps, Theme } from '@mui/material';
 import { ReactNode } from 'react';
 
-export interface IMDBoxProps {
+export interface IMdBoxProps {
   component: React.ElementType;
   sx: SxProps<Theme>;
   children: ReactNode;
 }
 
-const MDBox: React.FC<IMDBoxProps> = ({ component, sx, children }) => {
+const MdBox: React.FC<IMdBoxProps> = ({ component, sx, children }) => {
   return (
     <Box component={component} sx={sx}>
       {children}
@@ -15,4 +15,4 @@ const MDBox: React.FC<IMDBoxProps> = ({ component, sx, children }) => {
   );
 };
 
-export default MDBox;
+export default MdBox;

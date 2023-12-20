@@ -2,7 +2,7 @@ import { TypographyOwnProps } from '@mui/material';
 import Link from '@mui/material/Link';
 import { Trans } from 'react-i18next';
 
-export interface IMDLinkProps {
+export interface IMdLinkProps {
   href: string;
   variant?: TypographyOwnProps['variant'];
   label?: string;
@@ -11,7 +11,7 @@ export interface IMDLinkProps {
   show?: boolean;
 }
 
-const MDLink: React.FC<IMDLinkProps> = ({ href, variant, label, color, target, ...rest }) => {
+const MdLink: React.FC<IMdLinkProps> = ({ href, variant, label, color, target, ...rest }) => {
   return (
     <>
       {rest.show && (
@@ -23,8 +23,8 @@ const MDLink: React.FC<IMDLinkProps> = ({ href, variant, label, color, target, .
   );
 };
 
-MDLink.defaultProps = {
+MdLink.defaultProps = {
   show: true,
 };
 
-export default MDLink;
+export default MdLink;

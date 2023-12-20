@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next';
 
-const MDtrans = Trans;
+const Mdtrans = Trans;
 
 export const useMdTrans = () => {
   const { t } = useTranslation();
@@ -8,4 +8,4 @@ export const useMdTrans = () => {
   return { t };
 };
 
-export default MDtrans;
+export default Mdtrans;

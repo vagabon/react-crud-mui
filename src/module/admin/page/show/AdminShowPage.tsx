@@ -3,12 +3,12 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import React, { Fragment, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { IApiDto } from '../../../../dto/api/ApiDto';
-import MDCard from '../../../../mui/component/card/MDCard';
-import MDContent from '../../../../mui/component/content/MDContent';
-import MDForm, { IMDFormPropsReturn } from '../../../../mui/component/form/MDForm';
-import MDFormSwitch from '../../../../mui/component/form/MDFormSwitch';
-import MDInputDatepicker from '../../../../mui/component/form/MDInputDatepicker';
-import MDInputText, { FormInputType } from '../../../../mui/component/form/MDInputText';
+import MdCard from '../../../../mui/component/card/MdCard';
+import MdContent from '../../../../mui/component/content/MdContent';
+import MdForm, { IMdFormPropsReturnDto } from '../../../../mui/component/form/MdForm';
+import MdFormSwitch from '../../../../mui/component/form/MdFormSwitch';
+import MdInputDatepicker from '../../../../mui/component/form/MdInputDatepicker';
+import MdInputText, { FormInputType } from '../../../../mui/component/form/MdInputText';
 import HasRole from '../../../../mui/component/role/HasRole';
 import { useAppDispatch } from '../../../../store/Store';
 import { IYupValidators } from '../../../../utils/yup/YupUtils';
@@ -56,34 +56,34 @@ const AdminShowPage: React.FC<IAdminShowPageProps> = ({ conf }) => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <MDContent>
+      <MdContent>
         <HasRole roles={['ADMIN']}>
-          <MDCard>
+          <MdCard>
             {state && (
-              <MDForm
+              <MdForm
                 initialValues={state.data}
                 validationSchema={pageConf?.form as IYupValidators}
                 onSubmit={handleUpdate}>
-                {(props: IMDFormPropsReturn) => (
+                {(props: IMdFormPropsReturnDto) => (
                   <>
                     {formConf?.map(([key, form]: [string, IFormDto]) => (
                       <Fragment key={key}>
                         {(form.type === 'text' || form.type === 'date' || form.type === 'password') && (
-                          <MDInputText label={form.label} name={key} {...props} type={form.type as FormInputType} />
+                          <MdInputText label={form.label} name={key} {...props} type={form.type as FormInputType} />
                         )}
                         {form.type === 'datetime' && (
-                          <MDInputDatepicker label={form.label} name={key} {...props} disabled={form.disabled} />
+                          <MdInputDatepicker label={form.label} name={key} {...props} disabled={form.disabled} />
                         )}
-                        {form.type === 'switch' && <MDFormSwitch label={form.label} name={key} {...props} />}
+                        {form.type === 'switch' && <MdFormSwitch label={form.label} name={key} {...props} />}
                       </Fragment>
                     ))}
                   </>
                 )}
-              </MDForm>
+              </MdForm>
             )}
-          </MDCard>
+          </MdCard>
         </HasRole>
-      </MDContent>
+      </MdContent>
     </LocalizationProvider>
   );
 };

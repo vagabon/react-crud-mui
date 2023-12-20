@@ -2,15 +2,15 @@ import { Autocomplete, FormControl, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { JSONObject } from '../../../dto/api/ApiDto';
 import { ListType } from '../../../utils/list/ListUtils';
-import { IMDFormPropsReturn } from './MDForm';
+import { IMdFormPropsReturnDto } from './MdForm';
 
-export interface FormAutocompleteProps extends IMDFormPropsReturn {
+export interface IMdFormAutocompleteProps extends IMdFormPropsReturnDto {
   label: string;
   name: string;
   list: ListType[];
 }
 
-const MDFormAutocomplete: React.FC<FormAutocompleteProps> = (props: FormAutocompleteProps) => {
+const MdFormAutocomplete: React.FC<IMdFormAutocompleteProps> = (props: IMdFormAutocompleteProps) => {
   const [error, setError] = useState<string>('');
 
   const nameOnLoad = props.name;
@@ -49,6 +49,6 @@ const MDFormAutocomplete: React.FC<FormAutocompleteProps> = (props: FormAutocomp
   );
 };
 
-MDFormAutocomplete.defaultProps = {};
+MdFormAutocomplete.defaultProps = {};
 
-export default MDFormAutocomplete;
+export default MdFormAutocomplete;

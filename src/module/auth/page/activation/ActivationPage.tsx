@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Trans } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import MdButton from '../../../../mui/component/button/MdButton';
-import MDCard from '../../../../mui/component/card/MDCard';
-import MDContent from '../../../../mui/component/content/MDContent';
+import MdCard from '../../../../mui/component/card/MdCard';
+import MdContent from '../../../../mui/component/content/MdContent';
 import { useAppSelector } from '../../../../store/Store';
 import AuthService from '../../service/AuthService';
 
@@ -30,8 +30,8 @@ const ActivationPage: React.FC = () => {
   }, [message]);
 
   return (
-    <MDContent>
-      <MDCard title='AUTH:ACTIVATION.TITLE'>
+    <MdContent>
+      <MdCard title='AUTH:ACTIVATION.TITLE'>
         {isActivated === undefined && <Trans i18nKey='AUTH:ACTIVATION.CURRENT' />}
         {isActivated === false && <Trans i18nKey='AUTH:ACTIVATION.FAIL' />}
         {isActivated === true && (
@@ -42,8 +42,8 @@ const ActivationPage: React.FC = () => {
             </div>
           </>
         )}
-      </MDCard>
-    </MDContent>
+      </MdCard>
+    </MdContent>
   );
 };
 

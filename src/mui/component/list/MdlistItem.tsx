@@ -1,12 +1,12 @@
 import { ListItem } from '@mui/material';
 import { ReactNode } from 'react';
 
-export interface IMDlistItemProps {
+export interface IMdlistItemProps {
   component?: React.ElementType;
   disablePadding?: boolean;
   children: ReactNode;
 }
-const MDlistItem: React.FC<IMDlistItemProps> = ({ component, disablePadding, children }) => {
+const MdlistItem: React.FC<IMdlistItemProps> = ({ component, disablePadding, children }) => {
   return (
     <ListItem component={component ?? 'div'} disablePadding={disablePadding ?? true}>
       {children}
@@ -14,4 +14,4 @@ const MDlistItem: React.FC<IMDlistItemProps> = ({ component, disablePadding, chi
   );
 };
 
-export default MDlistItem;
+export default MdlistItem;

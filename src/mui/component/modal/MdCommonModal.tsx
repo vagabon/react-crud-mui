@@ -23,7 +23,7 @@ const style = {
   pb: 3,
 };
 
-const CommonModal: React.FC<CommonModalProps> = (props: CommonModalProps) => {
+const MdCommonModal: React.FC<CommonModalProps> = (props) => {
   const handleClose = () => {
     props.handleClose(undefined);
   };
@@ -35,8 +35,8 @@ const CommonModal: React.FC<CommonModalProps> = (props: CommonModalProps) => {
   );
 };
 
-CommonModal.defaultProps = {
+MdCommonModal.defaultProps = {
   open: false,
 };
 
-export default CommonModal;
+export default MdCommonModal;

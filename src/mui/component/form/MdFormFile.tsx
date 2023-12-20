@@ -3,13 +3,13 @@ import { ChangeEvent, useCallback } from 'react';
 import { Trans } from 'react-i18next';
 import { useId } from '../../hook/useId';
 
-interface IMDFormFileProps {
+interface IMdFormFileProps {
   name: string;
   label: string;
   handleChangeFile: (name: string, file: File) => void;
 }
 
-const MDFormFile: React.FC<IMDFormFileProps> = (props: IMDFormFileProps) => {
+const MdFormFile: React.FC<IMdFormFileProps> = (props: IMdFormFileProps) => {
   const { id } = useId();
 
   const handleCapture = useCallback(
@@ -30,4 +30,4 @@ const MDFormFile: React.FC<IMDFormFileProps> = (props: IMDFormFileProps) => {
   );
 };
 
-export default MDFormFile;
+export default MdFormFile;

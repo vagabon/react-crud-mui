@@ -1,12 +1,12 @@
 import { InputProps, TextField, TextFieldVariants } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { JSONValue } from '../../../dto/api/ApiDto';
-import { useFormValue } from '../../../mui/hook/useFormValue';
-import { handleBlurType, handleChangeType } from './MDForm';
+import { useFormValue } from '../../hook/useFormValue';
+import { HandleBlurType, HandleChangeType } from './MdForm';
 
 const DEFAULT_TEXT = 'text';
 
-export interface IMDInputTextSimpleProps {
+export interface IMdInputTextSimpleProps {
   label: string;
   value: JSONValue;
   variant?: TextFieldVariants;
@@ -19,11 +19,11 @@ export interface IMDInputTextSimpleProps {
   className?: string;
   fullWidth?: boolean;
   inputProps?: Partial<InputProps>;
-  handleChange?: handleChangeType;
-  handleBlur?: handleBlurType;
+  handleChange?: HandleChangeType;
+  handleBlur?: HandleBlurType;
 }
 
-const MDInputTextSimple: React.FC<IMDInputTextSimpleProps> = (props: IMDInputTextSimpleProps) => {
+const MdInputTextSimple: React.FC<IMdInputTextSimpleProps> = (props: IMdInputTextSimpleProps) => {
   const { t } = useTranslation();
   const { uref, key, defaultValue, readonly, handleFocus, handleBlur } = useFormValue(
     props.type ?? DEFAULT_TEXT,
@@ -60,7 +60,7 @@ const MDInputTextSimple: React.FC<IMDInputTextSimpleProps> = (props: IMDInputTex
   );
 };
 
-MDInputTextSimple.defaultProps = {
+MdInputTextSimple.defaultProps = {
   type: DEFAULT_TEXT,
   textarea: 0,
   required: false,
@@ -68,4 +68,4 @@ MDInputTextSimple.defaultProps = {
   className: '',
 };
 
-export default MDInputTextSimple;
+export default MdInputTextSimple;

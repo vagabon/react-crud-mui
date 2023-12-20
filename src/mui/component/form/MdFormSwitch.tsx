@@ -1,14 +1,14 @@
 import { Switch, Typography } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
 import { JSONObject } from '../../../dto/api/ApiDto';
-import { IMDFormPropsReturn, handleChangeType } from './MDForm';
+import { HandleChangeType, IMdFormPropsReturnDto } from './MdForm';
 
-export interface FormSwitchProps extends IMDFormPropsReturn {
+export interface IMdFormSwitchProps extends IMdFormPropsReturnDto {
   label: string;
   name: string;
 }
 
-const MDFormSwitch: React.FC<FormSwitchProps> = (props: FormSwitchProps) => {
+const MdFormSwitch: React.FC<IMdFormSwitchProps> = (props: IMdFormSwitchProps) => {
   const [checked, setChecked] = useState<boolean>(false);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const MDFormSwitch: React.FC<FormSwitchProps> = (props: FormSwitchProps) => {
   }, [props.name, props.values]);
 
   const handleChange = useCallback(
-    (oldValue: boolean, callback: handleChangeType) => () => {
+    (oldValue: boolean, callback: HandleChangeType) => () => {
       const newEvent = { target: { name: props.name, value: !oldValue } };
       callback(newEvent);
     },
@@ -36,4 +36,4 @@ const MDFormSwitch: React.FC<FormSwitchProps> = (props: FormSwitchProps) => {
   );
 };
 
-export default MDFormSwitch;
+export default MdFormSwitch;

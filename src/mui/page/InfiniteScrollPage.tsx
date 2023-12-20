@@ -6,7 +6,7 @@ import { ICurrentUserDto } from '../../dto/current-user/CurrentUserDto';
 import { IUserDto } from '../../module/user/dto/UserDto';
 import { useAppSelector } from '../../store/Store';
 import RoleUtils from '../../utils/role/RoleUtils';
-import InfiniteScrool from '../component/infinite-scroll/InfiniteScrool';
+import MdInfiniteScrool from '../component/infinite-scroll/MdInfiniteScrool';
 import MdSearchBar from '../component/searchbar/MdSearchBar';
 
 export interface InfiniteScroolPageProps {
@@ -46,9 +46,9 @@ const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = (props: InfiniteSc
   return (
     <>
       {props.search !== undefined && <MdSearchBar callBack={handleSearch} search={props.search} />}
-      <InfiniteScrool id='infinite-container' callBack={onScroll} className={props.className}>
+      <MdInfiniteScrool id='infinite-container' callBack={onScroll} className={props.className}>
         {props.children}
-      </InfiniteScrool>
+      </MdInfiniteScrool>
       {props.urlAdd && RoleUtils.hasProfile(currentUser, props.urlAddRole) && (
         <div style={{ position: 'relative', display: 'flex', alignSelf: 'end' }}>
           <Fab size='medium' color='primary' aria-label='add' sx={fabStyle} onClick={doCreate}>

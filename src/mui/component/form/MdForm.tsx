@@ -7,27 +7,27 @@ import { IPathDto } from '../../../dto/path/PathDto';
 import { CommonAction } from '../../../reducer/common/CommonReducer';
 import { useAppDispatch, useAppSelector } from '../../../store/Store';
 import { IYupValidators, YupUtils } from '../../../utils/yup/YupUtils';
-import MdButton from '../../component/button/MdButton';
+import MdButton from '../button/MdButton';
 
-export type handleChangeType = {
+export type HandleChangeType = {
   (e: ChangeEvent<JSONObject>): void;
   <T = string | ChangeEvent<JSONObject>>(field: T): T extends ChangeEvent<JSONObject>
     ? void
     : (e: string | ChangeEvent<JSONObject>) => void;
 };
-export type handleBlurType = {
+export type HandleBlurType = {
   (e: FocusEvent<JSONObject, Element>): void;
   <T = JSONObject>(fieldOrEvent: T): T extends string ? (e: JSONObject) => void : void;
 };
 
-export interface IMDFormPropsReturn {
+export interface IMdFormPropsReturnDto {
   values: JSONObject;
   state: JSONObject;
   errors: JSONObject;
   touched: JSONObject;
   validationSchema: JSONObject;
-  handleChange: handleChangeType;
-  handleBlur: handleBlurType;
+  handleChange: HandleChangeType;
+  handleBlur: HandleBlurType;
   handleSubmit: () => void;
   setFieldValue: (
     field: string,
@@ -38,17 +38,17 @@ export interface IMDFormPropsReturn {
   disabled?: boolean;
 }
 
-export interface IMDFormProps {
+export interface IMdFormProps {
   initialValues: JSONObject;
   validationSchema: IYupValidators;
   onSubmit: (values: IApiDto) => void;
   onGoBack?: () => void;
-  children: (props: IMDFormPropsReturn) => JSX.Element;
+  children: (props: IMdFormPropsReturnDto) => JSX.Element;
   backButton?: boolean;
   submitButton?: boolean;
 }
 
-const MDForm: React.FC<IMDFormProps> = (props: IMDFormProps) => {
+const MdForm: React.FC<IMdFormProps> = (props: IMdFormProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { history } = useAppSelector((state) => state.common);
@@ -139,9 +139,9 @@ const MDForm: React.FC<IMDFormProps> = (props: IMDFormProps) => {
   );
 };
 
-MDForm.defaultProps = {
+MdForm.defaultProps = {
   backButton: true,
   submitButton: true,
 };
 
-export default MDForm;
+export default MdForm;

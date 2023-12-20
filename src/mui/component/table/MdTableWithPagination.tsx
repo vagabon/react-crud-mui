@@ -14,15 +14,15 @@ import { useNavigate } from 'react-router-dom';
 import { JSONObject } from '../../../dto/api/ApiDto';
 import { UuidUtils } from '../../../utils/uuid/UuidUtils';
 
-export interface ITableProps {
+export interface ITableDto {
   name: string;
   label: string;
   order?: boolean;
 }
 
-export interface TableWithPagniationProps {
+export interface IMdTableWithPaginationProps {
   url?: string;
-  cells: ITableProps[];
+  cells: ITableDto[];
   datas: JSONObject[];
   count: number;
   page: number;
@@ -32,7 +32,7 @@ export interface TableWithPagniationProps {
   callBack: (newPage: number, rowsPerPage: number, sortBy: string, sortByOrder: 'asc' | 'desc') => void;
 }
 
-const TableWithPagination: React.FC<TableWithPagniationProps> = (props: TableWithPagniationProps) => {
+const MdTableWithPagination: React.FC<IMdTableWithPaginationProps> = (props: IMdTableWithPaginationProps) => {
   const navigate = useNavigate();
   const [datas, setDatas] = useState<JSONObject[]>([]);
 
@@ -89,7 +89,7 @@ const TableWithPagination: React.FC<TableWithPagniationProps> = (props: TableWit
         <Table size='small'>
           <TableHead>
             <TableRow>
-              {props.cells?.map((cell: ITableProps) => (
+              {props.cells?.map((cell: ITableDto) => (
                 <TableCell key={cell.name}>
                   <TableSortLabel
                     active={props.sortBy === cell.name}
@@ -114,7 +114,7 @@ const TableWithPagination: React.FC<TableWithPagniationProps> = (props: TableWit
                 <Fragment key={data['id' as keyof JSONObject]}>
                   {data && !data['empty' as keyof JSONObject] ? (
                     <TableRow onClick={() => handleClick(data['id' as keyof JSONObject])}>
-                      {props.cells?.map((cell: ITableProps) => (
+                      {props.cells?.map((cell: ITableDto) => (
                         <TableCell component='th' scope='row' key={cell.name}>
                           {showData(data, cell.name)}
                         </TableCell>
@@ -149,4 +149,4 @@ const TableWithPagination: React.FC<TableWithPagniationProps> = (props: TableWit
   );
 };
 
-export default TableWithPagination;
+export default MdTableWithPagination;

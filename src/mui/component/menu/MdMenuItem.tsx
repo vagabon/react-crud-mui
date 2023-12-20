@@ -6,13 +6,13 @@ import * as React from 'react';
 import { Fragment, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export interface MDMenuItemProps {
+export interface IMdMenuItemProps {
   name: string;
   url: string;
   childrens: { title: string; link: string }[] | undefined;
 }
 
-const MDMenuItem: React.FC<MDMenuItemProps> = (props: MDMenuItemProps) => {
+const MdMenuItem: React.FC<IMdMenuItemProps> = (props: IMdMenuItemProps) => {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<Element>();
   const open = Boolean(anchorEl);
@@ -58,4 +58,4 @@ const MDMenuItem: React.FC<MDMenuItemProps> = (props: MDMenuItemProps) => {
   );
 };
 
-export default MDMenuItem;
+export default MdMenuItem;

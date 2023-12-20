@@ -6,7 +6,7 @@ export type TabsType = {
   label: string;
 };
 
-export interface IMDTabsProps {
+export interface IMdTabsProps {
   value: string;
   callback?: (value: string) => void;
   indicatorColor?: 'secondary' | 'primary';
@@ -17,7 +17,7 @@ export interface IMDTabsProps {
   tabs: TabsType[];
 }
 
-const MDTabs: React.FC<IMDTabsProps> = ({
+const MdTabs: React.FC<IMdTabsProps> = ({
   value,
   callback,
   indicatorColor,
@@ -51,4 +51,4 @@ const MDTabs: React.FC<IMDTabsProps> = ({
   );
 };
 
-export default MDTabs;
+export default MdTabs;

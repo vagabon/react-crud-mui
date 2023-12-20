@@ -1,4 +1,4 @@
-import { ITableProps } from '../../../mui/component/table/MDTableWithPagination';
+import { ITableDto } from '../../../mui/component/table/MdTableWithPagination';
 
 export interface IFormDto {
   label: string;
@@ -12,7 +12,7 @@ export interface IAdminTabDto {
   name: string;
   findByChamps: string;
   sortBy: string;
-  cells: ITableProps[];
+  cells: ITableDto[];
   form: { [x: string]: IFormDto };
 }
 

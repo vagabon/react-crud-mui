@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
-import MDCard from '../../../../mui/component/card/MDCard';
-import MDContent from '../../../../mui/component/content/MDContent';
+import MdCard from '../../../../mui/component/card/MdCard';
+import MdContent from '../../../../mui/component/content/MdContent';
 import MdMarkdown from '../../../../mui/component/markdown/MdMarkdown';
 import { useRole } from '../../../../mui/component/role/useRole';
 import { useId } from '../../../../mui/hook/useId';
@@ -25,19 +25,19 @@ const NewsCard: React.FC<INewsCardProps> = (props: INewsCardProps) => {
   );
 
   return (
-    <MDContent id={id} className='mardown-with-summary'>
-      <MDCard
+    <MdContent id={id} className='mardown-with-summary'>
+      <MdCard
         title={props.news.title}
         avatar={props.news.avatar}
         image={props.news.image}
         date={props.news.updatedDate}
         urlUpdate={hasUserRole(['ADMIN']) ? '/news/update/' + props.news.id : undefined}>
         <MdMarkdown content={props.news.description} summaryCallback={summaryCallback(props.news.title)}></MdMarkdown>
-      </MDCard>
-      <MDCard>
+      </MdCard>
+      <MdCard>
         <MdMarkdown content={summary}></MdMarkdown>
-      </MDCard>
-    </MDContent>
+      </MdCard>
+    </MdContent>
   );
 };
 

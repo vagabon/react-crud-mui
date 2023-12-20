@@ -1,13 +1,13 @@
 import { ReactNode } from 'react';
-import { useId } from '../../../mui/hook/useId';
+import { useId } from '../../hook/useId';
 
-export interface IMDContentProps {
+export interface IMdContentProps {
   id?: string;
   className?: string;
   children: ReactNode;
 }
 
-const MDContent: React.FC<IMDContentProps> = (props) => {
+const MdContent: React.FC<IMdContentProps> = (props) => {
   const { id } = useId(props.id);
 
   return (
@@ -17,4 +17,4 @@ const MDContent: React.FC<IMDContentProps> = (props) => {
   );
 };
 
-export default MDContent;
+export default MdContent;

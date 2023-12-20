@@ -6,7 +6,7 @@ import { ID } from '../../../dto/api/ApiDto';
 import { DateUtils } from '../../../utils/date/DateUtils';
 import { useId } from '../../hook/useId';
 
-export interface MDCardProps {
+export interface IMdCardProps {
   id?: ID;
   title?: string;
   date?: string;
@@ -21,7 +21,7 @@ export interface MDCardProps {
 
 const API_URL: string = window['ENV' as keyof Window]['API_URL' as keyof Window] as unknown as string;
 
-const MDCard: React.FC<MDCardProps> = ({ title, url, urlUpdate, avatar, image, date, ...rest }: MDCardProps) => {
+const MdCard: React.FC<IMdCardProps> = ({ title, url, urlUpdate, avatar, image, date, ...rest }: IMdCardProps) => {
   const navigate = useNavigate();
   const { id } = useId(rest.id as string);
 
@@ -76,4 +76,4 @@ const MDCard: React.FC<MDCardProps> = ({ title, url, urlUpdate, avatar, image, d
   );
 };
 
-export default MDCard;
+export default MdCard;

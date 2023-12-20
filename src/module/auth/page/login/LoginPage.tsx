@@ -5,10 +5,10 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Trans } from 'react-i18next';
-import MDCard from '../../../../mui/component/card/MDCard';
-import MDContent from '../../../../mui/component/content/MDContent';
-import MDForm, { IMDFormPropsReturn } from '../../../../mui/component/form/MDForm';
-import MDInputText from '../../../../mui/component/form/MDInputText';
+import MdCard from '../../../../mui/component/card/MdCard';
+import MdContent from '../../../../mui/component/content/MdContent';
+import MdForm, { IMdFormPropsReturnDto } from '../../../../mui/component/form/MdForm';
+import MdInputText from '../../../../mui/component/form/MdInputText';
 import { useAppDispatch } from '../../../../store/Store';
 import { IUserDto } from '../../../user/dto/UserDto';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
@@ -36,18 +36,18 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <MDContent>
+    <MdContent>
       <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-        <MDCard title='AUTH:LOGIN.TITLE'>
-          <MDForm
+        <MdCard title='AUTH:LOGIN.TITLE'>
+          <MdForm
             initialValues={DEFAULT_VALUES}
             validationSchema={LOGIN_SCHEMA}
             onSubmit={handleLogin}
             backButton={false}>
-            {(props: IMDFormPropsReturn) => (
+            {(props: IMdFormPropsReturnDto) => (
               <>
-                <MDInputText label='AUTH:FIELDS.LOGIN' name='username' {...props} />
-                <MDInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...props} />
+                <MdInputText label='AUTH:FIELDS.LOGIN' name='username' {...props} />
+                <MdInputText label='AUTH:FIELDS.PASSWORD' name='password' type='password' {...props} />
                 <FormControlLabel
                   control={<Checkbox value='remember' color='primary' />}
                   label={<Trans i18nKey='AUTH:FIELDS.REMEMBER_ME' />}
@@ -56,12 +56,12 @@ const LoginPage: React.FC = () => {
                 <LoginFacebook />
               </>
             )}
-          </MDForm>
+          </MdForm>
 
           <AuthFooter left={AuthFooterEnum.FORGETED_PASSWORD} rigth={AuthFooterEnum.SIGNUP} />
-        </MDCard>
+        </MdCard>
       </GoogleOAuthProvider>
-    </MDContent>
+    </MdContent>
   );
 };
 

@@ -3,12 +3,11 @@ import React, { cloneElement } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { IApiDto, JSONObject } from '../dto/api/ApiDto';
+import MdForm, { IMdFormPropsReturnDto } from '../mui/component/form/MdForm';
 import store from '../store/Store';
 import { IYupValidators } from '../utils/yup/YupUtils';
 
-import { MDForm } from '..';
 import results from '../jest-test-results.json';
-import { IMDFormPropsReturn } from '../mui/component/form/MDForm';
 
 export const withProvider = (Story: React.FC) => (
   <Provider store={store}>
@@ -27,9 +26,9 @@ interface IRadioWithFormProps {
 
 export const FormWrapper = (props: IRadioWithFormProps) => {
   return (
-    <MDForm initialValues={props.initialValues} validationSchema={props.validationSchema} onSubmit={props.onSubmit}>
-      {(formikProps: IMDFormPropsReturn) => <>{cloneElement(props.children, formikProps)}</>}
-    </MDForm>
+    <MdForm initialValues={props.initialValues} validationSchema={props.validationSchema} onSubmit={props.onSubmit}>
+      {(formikProps: IMdFormPropsReturnDto) => <>{cloneElement(props.children, formikProps)}</>}
+    </MdForm>
   );
 };
 

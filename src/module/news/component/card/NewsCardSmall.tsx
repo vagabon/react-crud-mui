@@ -1,4 +1,4 @@
-import MDCard from '../../../../mui/component/card/MDCard';
+import MdCard from '../../../../mui/component/card/MdCard';
 import MdMarkdown from '../../../../mui/component/markdown/MdMarkdown';
 import { useRole } from '../../../../mui/component/role/useRole';
 import { INewsCardProps } from './NewsCard';
@@ -9,7 +9,7 @@ const NewsCardSmall: React.FC<INewsCardSmallProps> = (props: INewsCardSmallProps
   const { hasUserRole } = useRole();
 
   return (
-    <MDCard
+    <MdCard
       title={props.news.title}
       avatar={props.news.avatar}
       image={props.news.image}
@@ -17,7 +17,7 @@ const NewsCardSmall: React.FC<INewsCardSmallProps> = (props: INewsCardSmallProps
       url={'/news/show/' + props.news.id}
       urlUpdate={hasUserRole(['ADMIN']) ? '/news/update/' + props.news.id : undefined}>
       <MdMarkdown content={props.news.description?.split('\n')![0]}></MdMarkdown>
-    </MDCard>
+    </MdCard>
   );
 };
 

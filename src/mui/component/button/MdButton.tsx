@@ -1,9 +1,9 @@
+import { ArrowBackIos } from '@mui/icons-material';
+import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
+import { ReactNode, useCallback, useEffect, useState } from 'react';
 import { Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import AddIcon from '@mui/icons-material/Add';
-import { ReactNode, useCallback, useEffect, useState } from 'react';
-import { ArrowBackIos } from '@mui/icons-material';
 
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
@@ -12,7 +12,7 @@ declare module '@mui/material/Button' {
   }
 }
 
-export interface MdButtonProps {
+export interface IMdButtonProps {
   show?: boolean;
   label?: string;
   url?: string;
@@ -24,7 +24,7 @@ export interface MdButtonProps {
   onClick?: () => void;
 }
 
-const MdButton: React.FC<MdButtonProps> = (props: MdButtonProps) => {
+const MdButton: React.FC<IMdButtonProps> = (props: IMdButtonProps) => {
   const navigate = useNavigate();
   const [icon, setIcon] = useState<ReactNode | undefined>(undefined);
 

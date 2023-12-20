@@ -1,13 +1,13 @@
 import { ReactNode, useState } from 'react';
 
-export interface InfiniteScroolProps {
+export interface IMdInfiniteScroolProps {
   id: string;
   className?: string;
   children?: ReactNode;
   callBack?: () => void;
 }
 
-const InfiniteScrool: React.FC<InfiniteScroolProps> = (props: InfiniteScroolProps) => {
+const MdInfiniteScrool: React.FC<IMdInfiniteScroolProps> = (props: IMdInfiniteScroolProps) => {
   const [stopScroll, setStopScroll] = useState(false);
 
   const handleNavigation = () => {
@@ -35,9 +35,9 @@ const InfiniteScrool: React.FC<InfiniteScroolProps> = (props: InfiniteScroolProp
   );
 };
 
-InfiniteScrool.defaultProps = {
+MdInfiniteScrool.defaultProps = {
   callBack: () => {},
   className: '',
 };
 
-export default InfiniteScrool;
+export default MdInfiniteScrool;

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Trans } from 'react-i18next';
-import MDCard from '../../../../mui/component/card/MDCard';
-import MDContent from '../../../../mui/component/content/MDContent';
-import MDForm, { IMDFormPropsReturn } from '../../../../mui/component/form/MDForm';
-import MDInputText from '../../../../mui/component/form/MDInputText';
+import MdCard from '../../../../mui/component/card/MdCard';
+import MdContent from '../../../../mui/component/content/MdContent';
+import MdForm, { IMdFormPropsReturnDto } from '../../../../mui/component/form/MdForm';
+import MdInputText from '../../../../mui/component/form/MdInputText';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
 import LoginService from '../../service/AuthService';
@@ -28,16 +28,16 @@ const CheckIdentityPage: React.FC = () => {
   };
 
   return (
-    <MDContent>
-      <MDCard title='AUTH:CHECK_IDENTITY.TITLE'>
+    <MdContent>
+      <MdCard title='AUTH:CHECK_IDENTITY.TITLE'>
         {state === false && (
-          <MDForm
+          <MdForm
             initialValues={DEFAULT_VALUES}
             validationSchema={CHECK_IDENTITY_SCHEMA}
             onSubmit={handleCheckIdentity}
             backButton={false}>
-            {(props: IMDFormPropsReturn) => <MDInputText label='AUTH:FIELDS.CODE' name='token' {...props} />}
-          </MDForm>
+            {(props: IMdFormPropsReturnDto) => <MdInputText label='AUTH:FIELDS.CODE' name='token' {...props} />}
+          </MdForm>
         )}
         {state === true && (
           <div>
@@ -47,8 +47,8 @@ const CheckIdentityPage: React.FC = () => {
         )}
 
         <AuthFooter left={AuthFooterEnum.FORGETED_PASSWORD} rigth={AuthFooterEnum.SIGNIN} />
-      </MDCard>
-    </MDContent>
+      </MdCard>
+    </MdContent>
   );
 };
 

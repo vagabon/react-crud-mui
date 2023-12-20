@@ -3,8 +3,8 @@ import { Trans } from 'react-i18next';
 import { Navigate } from 'react-router-dom';
 import { Primitif } from '../../../../dto/api/ApiDto';
 import MdButton from '../../../../mui/component/button/MdButton';
-import MDCard from '../../../../mui/component/card/MDCard';
-import MDContent from '../../../../mui/component/content/MDContent';
+import MdCard from '../../../../mui/component/card/MdCard';
+import MdContent from '../../../../mui/component/content/MdContent';
 import { useAppDispatch, useAppSelector } from '../../../../store/Store';
 import { IProfileDto } from '../../../user/dto/ProfileDto';
 import AuthService from '../../service/AuthService';
@@ -34,8 +34,8 @@ const ProfilePage: React.FC = () => {
   };
 
   return (
-    <MDContent>
-      <MDCard title='AUTH:PROFILE.TITLE'>
+    <MdContent>
+      <MdCard title='AUTH:PROFILE.TITLE'>
         {showField('AUTH:FIELDS.LOGIN', currentUser.user?.username)}
         {showField(
           'AUTH:FIELDS.TOKEN',
@@ -53,8 +53,8 @@ const ProfilePage: React.FC = () => {
           ))}
         </ul>
         <MdButton label='COMMON:LOGOUT' onClick={handleLogout} />
-      </MDCard>
-    </MDContent>
+      </MdCard>
+    </MdContent>
   );
 };
 

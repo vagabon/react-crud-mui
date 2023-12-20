@@ -1,11 +1,11 @@
 import { JSONObject } from '../../../dto/api/ApiDto';
 import { useFormError } from '../../hook/useFormError';
-import { IMDFormPropsReturn } from './MDForm';
-import MDInputTextSimple from './MDInputTextSimple';
+import { IMdFormPropsReturnDto } from './MdForm';
+import MdInputTextSimple from './MdInputTextSimple';
 
 export type FormInputType = 'date' | 'text' | 'number' | 'password' | 'email';
 
-export interface IMDInputProps extends IMDFormPropsReturn {
+export interface IMdInputTextProps extends IMdFormPropsReturnDto {
   label: string;
   name: string;
   type?: 'date' | 'text' | 'number' | 'password' | 'email';
@@ -15,12 +15,12 @@ export interface IMDInputProps extends IMDFormPropsReturn {
   fullWidth?: boolean;
 }
 
-const MDInputText: React.FC<IMDInputProps> = (props: IMDInputProps) => {
+const MdInputText: React.FC<IMdInputTextProps> = (props: IMdInputTextProps) => {
   const { showError } = useFormError(props.name, props.errors, props.touched);
 
   return (
     <div style={{ width: '100%' }}>
-      <MDInputTextSimple
+      <MdInputTextSimple
         className={props.className}
         type={props.type}
         label={props.label}
@@ -40,7 +40,7 @@ const MDInputText: React.FC<IMDInputProps> = (props: IMDInputProps) => {
   );
 };
 
-MDInputText.defaultProps = {
+MdInputText.defaultProps = {
   type: 'text',
   textarea: 0,
   required: false,
@@ -48,4 +48,4 @@ MDInputText.defaultProps = {
   className: '',
 };
 
-export default MDInputText;
+export default MdInputText;
