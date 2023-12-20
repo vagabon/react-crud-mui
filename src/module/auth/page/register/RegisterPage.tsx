@@ -6,10 +6,10 @@ import { JSONObject } from '../../../../dto/api/ApiDto';
 import { useAppSelector } from '../../../../store/Store';
 import { IRegisterDto, RegisterDto } from './dto/RegisterDto';
 
-import MDCard from '../../../../mui/card/MDCard';
-import MDContent from '../../../../mui/content/MDContent';
-import MDForm, { IMDFormPropsReturn } from '../../../../mui/form/MDForm';
-import MDInputText from '../../../../mui/form/MDInputText';
+import MDCard from '../../../../mui/component/card/MDCard';
+import MDContent from '../../../../mui/component/content/MDContent';
+import MDForm, { IMDFormPropsReturn } from '../../../../mui/component/form/MDForm';
+import MDInputText from '../../../../mui/component/form/MDInputText';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
 import AuthService from '../../service/AuthService';

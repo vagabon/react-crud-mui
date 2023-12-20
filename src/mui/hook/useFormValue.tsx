@@ -1,7 +1,7 @@
 import { FocusEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { JSONObject, JSONValue } from '../../dto/api/ApiDto';
 import { UuidUtils } from '../../utils/uuid/UuidUtils';
-import { handleBlurType } from '../form/MDForm';
+import { handleBlurType } from '../component/form/MDForm';
 
 export const useFormValue = (type: string, value: JSONValue) => {
   const [key, setKey] = useState<string>();

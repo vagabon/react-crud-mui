@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { IUserDto } from '../../../user/dto/UserDto';
 import LoginService from '../../service/AuthService';
 
-import MDCard from '../../../../mui/card/MDCard';
-import MDContent from '../../../../mui/content/MDContent';
-import MDForm, { IMDFormPropsReturn } from '../../../../mui/form/MDForm';
-import MDInputText from '../../../../mui/form/MDInputText';
+import MDCard from '../../../../mui/component/card/MDCard';
+import MDContent from '../../../../mui/component/content/MDContent';
+import MDForm, { IMDFormPropsReturn } from '../../../../mui/component/form/MDForm';
+import MDInputText from '../../../../mui/component/form/MDInputText';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
 import FORGET_PASSWORD_SCHEMA from './schema/forget.password.schema.json';

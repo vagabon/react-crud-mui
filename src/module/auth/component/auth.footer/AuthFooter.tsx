@@ -1,5 +1,5 @@
-import MDGrid from '../../../../mui/grid/MDGrid';
-import MDLink from '../../../../mui/link/MDLink';
+import MDGrid from '../../../../mui/component/grid/MDGrid';
+import MDLink from '../../../../mui/component/link/MDLink';
 import { AuthFooterEnum } from './enum/AuthFooterEnum';
 
 interface IAuthFooter {

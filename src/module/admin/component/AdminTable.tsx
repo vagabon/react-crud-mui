@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { JSONObject } from '../../../dto/api/ApiDto';
-import MDCard from '../../../mui/card/MDCard';
-import MDFab from '../../../mui/fab/MDFab';
-import HasRole from '../../../mui/role/HasRole';
-import MdSearchBar from '../../../mui/searchbar/MdSearchBar';
-import TableWithPagination from '../../../mui/table/MDTableWithPagination';
+import MDCard from '../../../mui/component/card/MDCard';
+import MDFab from '../../../mui/component/fab/MDFab';
+import HasRole from '../../../mui/component/role/HasRole';
+import MdSearchBar from '../../../mui/component/searchbar/MdSearchBar';
+import TableWithPagination from '../../../mui/component/table/MDTableWithPagination';
 import { IAdminTabConfDto, IAdminTabDto } from '../dto/AdminConfDto';
 import { IAdminStateDto } from '../dto/AdminReducerDto';
 import { useAdminList } from '../hook/useAdminList';

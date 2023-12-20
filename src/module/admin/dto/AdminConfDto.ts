@@ -1,4 +1,4 @@
-import { ITableProps } from '../../../mui/table/MDTableWithPagination';
+import { ITableProps } from '../../../mui/component/table/MDTableWithPagination';
 
 export interface IFormDto {
   label: string;

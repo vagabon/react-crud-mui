@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import HasRole from '../../../mui/role/HasRole';
+import HasRole from '../../../mui/component/role/HasRole';
 import NewsCard from '../component/card/NewsCard';
 import { useCreateNews } from '../hook/useCreateNews';
 
