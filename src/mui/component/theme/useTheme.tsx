@@ -1,17 +1,17 @@
-import { PaletteColorOptions, Theme, createTheme } from '@mui/material';
+import { PaletteColorOptions, PaletteOptions, ThemeOptions, createTheme } from '@mui/material';
 
-interface CustomPalette {
-  primary: PaletteColorOptions;
+interface ICustomPalette extends PaletteOptions {
   google: PaletteColorOptions;
   facebook: PaletteColorOptions;
 }
 
-interface Palette extends CustomPalette {}
-interface PaletteOptions extends CustomPalette {}
+interface ICustomTheme extends ThemeOptions {
+  palette: ICustomPalette;
+}
 
-export type ITheme = Theme | { palette: Palette | PaletteOptions; typography: { htmlFontSize: number } };
+export type ITheme = ICustomTheme;
 
-export const useTheme = (newTheme: Theme) => {
+export const useTheme = (newTheme: ITheme) => {
   const theme = createTheme(newTheme);
 
   return { theme };

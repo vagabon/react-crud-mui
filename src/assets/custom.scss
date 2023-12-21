@@ -15,6 +15,7 @@ html, body, #root { height: 100%; }
 .justify-end { justify-content: flex-end; }
 .space-between { justify-content: space-between; }
 .no-margin { margin: 0px !important; width: 100% !important; }
+.relative { position: relative; }
 .margin-5 { 
   margin: 0px 10px !important; width: calc(100% - 20px) !important;  overflow: auto;
   & > .MuiPaper-root { display: flex; }
@@ -33,6 +34,8 @@ html, body, #root { height: 100%; }
 }
 
 .news-list .width100 { flex-wrap: wrap; flex-direction: column; flex: 1; }
+
+.md-summary ul { padding: 0; margin-left: 30px; ul { margin-left: 20px; } }
 
 .roles { justify-content: space-between; flex-direction: row; align-items: baseline; width: 100%; }
 .roles > div .MuiChip-root { margin: 5px; }

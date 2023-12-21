@@ -1,4 +1,4 @@
-import { CssBaseline, Theme, ThemeProvider } from '@mui/material';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import { ReactNode } from 'react';
 import { ITheme, useTheme } from './useTheme';
 
@@ -8,7 +8,7 @@ interface IMdThemeProviderProps {
 }
 
 const MdThemeProvider: React.FC<IMdThemeProviderProps> = (props) => {
-  const { theme } = useTheme(props.theme as Theme);
+  const { theme } = useTheme(props.theme);
 
   return (
     <ThemeProvider theme={theme}>

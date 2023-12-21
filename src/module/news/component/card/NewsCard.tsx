@@ -11,7 +11,7 @@ export interface INewsCardProps {
 }
 
 const NewsCard: React.FC<INewsCardProps> = (props: INewsCardProps) => {
-  const { id } = useId();
+  const { id } = useId('title');
   const [summary, setSummary] = useState<string>('');
   const { hasUserRole } = useRole();
 
@@ -34,7 +34,7 @@ const NewsCard: React.FC<INewsCardProps> = (props: INewsCardProps) => {
         urlUpdate={hasUserRole(['ADMIN']) ? '/news/update/' + props.news.id : undefined}>
         <MdMarkdown content={props.news.description} summaryCallback={summaryCallback(props.news.title)}></MdMarkdown>
       </MdCard>
-      <MdCard>
+      <MdCard className='md-summary'>
         <MdMarkdown content={summary}></MdMarkdown>
       </MdCard>
     </MdContent>
