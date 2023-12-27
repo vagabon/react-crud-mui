@@ -73,8 +73,8 @@ const MdTableWithPagination: React.FC<IMdTableWithPaginationProps> = (props: IMd
   );
 
   const createSortHandle = useCallback(
-    (callBack: TablePaginateCallbackType, property: string) => (): void => {
-      callBack(0, props.rowsPerPage, property, props.sortByOrder === 'asc' ? 'desc' : 'asc');
+    (property: string, callBack?: TablePaginateCallbackType) => (): void => {
+      callBack?.(0, props.rowsPerPage, property, props.sortByOrder === 'asc' ? 'desc' : 'asc');
     },
     [props.rowsPerPage, props.sortByOrder],
   );
@@ -103,71 +103,73 @@ const MdTableWithPagination: React.FC<IMdTableWithPaginationProps> = (props: IMd
   };
 
   return (
-    <>
+    <div style={{ display: 'grid' }}>
       <h3>
         <Trans i18nKey='RESULTAT' /> : {props.count}
       </h3>
       <div style={{ overflow: 'auto' }}>
-        <Table size='small'>
-          <TableHead>
-            <TableRow>
-              {props.cells?.map((cell: ITableDto) => (
-                <TableCell key={cell.name}>
-                  <TableSortLabel
-                    active={props.sortBy === cell.name}
-                    direction={props.sortBy === cell.name ? props.sortByOrder : 'asc'}
-                    onClick={cell.order ? createSortHandle(props.callBack, cell.name) : () => {}}
-                    hideSortIcon={!cell.order}>
-                    {cell.label}
-                  </TableSortLabel>
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {!props?.datas || props.datas?.length === 0 ? (
+        <div>
+          <Table size='small'>
+            <TableHead>
               <TableRow>
-                <TableCell component='th' scope='row' colSpan={props.cells?.length}>
-                  <Trans i18nKey='NOT_FOUND' />
-                </TableCell>
+                {props.cells?.map((cell: ITableDto) => (
+                  <TableCell key={cell.name}>
+                    <TableSortLabel
+                      active={props.sortBy === cell.name}
+                      direction={props.sortBy === cell.name ? props.sortByOrder : 'asc'}
+                      onClick={createSortHandle(cell.name, cell.order ? props.callBack : undefined)}
+                      hideSortIcon={!cell.order}>
+                      <Trans i18nKey={cell.label} />
+                    </TableSortLabel>
+                  </TableCell>
+                ))}
               </TableRow>
-            ) : (
-              datas.map((data: JSONObject) => (
-                <Fragment key={data['id' as keyof JSONObject]}>
-                  {data && !data['empty' as keyof JSONObject] ? (
-                    <TableRow onClick={() => handleClick(data['id' as keyof JSONObject])}>
-                      {props.cells?.map((cell: ITableDto) => (
-                        <TableCell component='th' scope='row' key={cell.name}>
-                          {showData(data, cell.name)}
+            </TableHead>
+            <TableBody>
+              {!props?.datas || props.datas?.length === 0 ? (
+                <TableRow>
+                  <TableCell component='th' scope='row' colSpan={props.cells?.length}>
+                    <Trans i18nKey='NOT_FOUND' />
+                  </TableCell>
+                </TableRow>
+              ) : (
+                datas.map((data: JSONObject) => (
+                  <Fragment key={data['id' as keyof JSONObject]}>
+                    {data && !data['empty' as keyof JSONObject] ? (
+                      <TableRow onClick={() => handleClick(data['id' as keyof JSONObject])}>
+                        {props.cells?.map((cell: ITableDto) => (
+                          <TableCell component='th' scope='row' key={cell.name}>
+                            {showData(data, cell.name)}
+                          </TableCell>
+                        ))}
+                      </TableRow>
+                    ) : (
+                      <TableRow key={data['id' as keyof JSONObject]}>
+                        <TableCell component='th' scope='row' colSpan={props.cells?.length}>
+                          &nbsp;
                         </TableCell>
-                      ))}
-                    </TableRow>
-                  ) : (
-                    <TableRow key={data['id' as keyof JSONObject]}>
-                      <TableCell component='th' scope='row' colSpan={props.cells?.length}>
-                        &nbsp;
-                      </TableCell>
-                    </TableRow>
-                  )}
-                </Fragment>
-              ))
-            )}
-          </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TablePagination
-                rowsPerPageOptions={[2, 5, 10, 20, 50]}
-                count={props.count}
-                rowsPerPage={props.rowsPerPage}
-                page={props.page}
-                onPageChange={handleChangePage(props.callBack)}
-                onRowsPerPageChange={handleChangeRowsPerPage(props.callBack)}
-              />
-            </TableRow>
-          </TableFooter>
-        </Table>
+                      </TableRow>
+                    )}
+                  </Fragment>
+                ))
+              )}
+            </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  rowsPerPageOptions={[2, 5, 10, 20, 50]}
+                  count={props.count}
+                  rowsPerPage={props.rowsPerPage}
+                  page={props.page}
+                  onPageChange={handleChangePage(props.callBack)}
+                  onRowsPerPageChange={handleChangeRowsPerPage(props.callBack)}
+                />
+              </TableRow>
+            </TableFooter>
+          </Table>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

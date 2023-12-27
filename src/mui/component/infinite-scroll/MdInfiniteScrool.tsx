@@ -36,7 +36,7 @@ const MdInfiniteScrool: React.FC<IMdInfiniteScroolProps> = (props: IMdInfiniteSc
       id={props.id}
       className={'flex container ' + props.className}
       onScroll={handleNavigation(stopScroll, props.callBack)}>
-      <div className='flex width100'>{props.children}</div>
+      <div className='flex max-width'>{props.children}</div>
     </div>
   );
 };

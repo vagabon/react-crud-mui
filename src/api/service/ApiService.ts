@@ -104,7 +104,7 @@ const ApiService = {
         return Promise.resolve(data);
       },
       () => {
-        return Promise.resolve([]);
+        return Promise.resolve({} as T);
       },
     );
   },

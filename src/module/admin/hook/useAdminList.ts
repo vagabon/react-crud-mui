@@ -1,5 +1,4 @@
 import { useCallback, useEffect } from 'react';
-import { IApiDto } from '../../../dto/api/ApiDto';
 import { useAppDispatch } from '../../../store/Store';
 import { IAdminTabDto } from '../dto/AdminConfDto';
 import { IAdminStateDto } from '../dto/AdminReducerDto';
@@ -13,9 +12,6 @@ export const useAdminList = (activePage: string, pageConf: IAdminTabDto, state: 
     if (!pageConf || !state?.filter || pageConf.name !== activePage) {
       return;
     }
-    AdminService.count(pageConf.name, pageConf.findByChamps, state.filter.search).then((count) => {
-      dispatch(AdminAction.setCount({ activePage, count }));
-    });
     AdminService.findBy(
       pageConf.name,
       pageConf.findByChamps,
@@ -24,8 +20,9 @@ export const useAdminList = (activePage: string, pageConf: IAdminTabDto, state: 
       state.table.rowsPerPage,
       state.table.sortBy,
       state.table.sortByOrder,
-    ).then((datas) => {
-      dispatch(AdminAction.setDatas({ activePage, datas: datas as IApiDto[] }));
+    ).then((data) => {
+      dispatch(AdminAction.setCount({ activePage, count: data.totalElements }));
+      dispatch(AdminAction.setDatas({ activePage, datas: data.content }));
     });
   }, [dispatch, activePage, pageConf, state?.filter, state?.table]);
 

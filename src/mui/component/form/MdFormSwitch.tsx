@@ -1,9 +1,11 @@
 import { Switch, Typography } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
+import { Trans } from 'react-i18next';
 import { JSONObject } from '../../../dto/api/ApiDto';
 import { HandleChangeType, IMdFormPropsReturnDto } from './MdForm';
 
 export interface IMdFormSwitchProps extends IMdFormPropsReturnDto {
+  className?: string;
   label: string;
   name: string;
 }
@@ -24,10 +26,12 @@ const MdFormSwitch: React.FC<IMdFormSwitchProps> = (props: IMdFormSwitchProps) =
   );
 
   return (
-    <div className='flex roles'>
-      <Typography paragraph={true}>{props.label}</Typography>
+    <div className={'flex switch ' + props.className}>
+      <Typography paragraph={true}>
+        <Trans i18nKey={props.label} />
+      </Typography>
       <Switch
-        color='primary'
+        color='secondary'
         checked={checked}
         onChange={handleChange(checked, props.handleChange)}
         onBlur={props.handleBlur}

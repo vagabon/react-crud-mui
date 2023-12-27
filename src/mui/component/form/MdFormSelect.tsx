@@ -1,6 +1,7 @@
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
 import { IApiDto, JSONObject } from '../../../dto/api/ApiDto';
+import { useFormError } from '../../hook/useFormError';
 import { IMdFormPropsReturnDto } from './MdForm';
 
 interface IList {
@@ -18,12 +19,10 @@ export interface IMdFormSelectProps extends IMdFormPropsReturnDto {
 }
 
 const MdFormSelect: React.FC<IMdFormSelectProps> = (props: IMdFormSelectProps) => {
-  const [error, setError] = useState<string>('');
+  const { showError } = useFormError(props.name, props.errors, props.touched);
 
   const [value, setValue] = useState<string>('');
   const [values, setValues] = useState<IList[]>([]);
-
-  const nameOnLoad = props.name;
 
   useEffect(() => {
     const values: IList[] = [];
@@ -35,22 +34,12 @@ const MdFormSelect: React.FC<IMdFormSelectProps> = (props: IMdFormSelectProps) =
     setValues(values);
   }, [props.list]);
 
-  const propsValues = props.values[nameOnLoad as keyof JSONObject];
-  const validationSchema = props.validationSchema[nameOnLoad as keyof JSONObject] ?? {};
+  const propsValues = props.values[props.name as keyof JSONObject];
+  const validationSchema = props.validationSchema[props.name as keyof JSONObject] ?? {};
 
   useEffect(() => {
     setValue(props.byId === true ? propsValues?.['id'] ?? '' : propsValues ?? '');
   }, [propsValues, props.byId]);
-
-  useEffect(() => {
-    const propsError = props.errors[nameOnLoad as keyof JSONObject];
-    const error = props.byId === true && propsError ? propsError['id'] : propsError;
-    if (error !== undefined && error !== '') {
-      setError(error);
-    } else {
-      setError('');
-    }
-  }, [props.errors, props.byId, props.touched, nameOnLoad]);
 
   const doChange = useCallback(
     (event: SelectChangeEvent<string | JSONObject>) => {
@@ -92,13 +81,7 @@ const MdFormSelect: React.FC<IMdFormSelectProps> = (props: IMdFormSelectProps) =
         )}
       </FormControl>
 
-      {error && (
-        <div className='form-group'>
-          <div className='alert alert-danger' role='alert'>
-            {error}
-          </div>
-        </div>
-      )}
+      {showError()}
     </div>
   );
 };

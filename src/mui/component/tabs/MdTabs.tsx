@@ -1,5 +1,6 @@
 import { Tab, Tabs } from '@mui/material';
 import { SyntheticEvent, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export type TabsType = {
   name: string;
@@ -27,6 +28,8 @@ const MdTabs: React.FC<IMdTabsProps> = ({
   scrollButtons,
   tabs,
 }) => {
+  const { t } = useTranslation();
+
   const handleChange = useCallback(
     (event: SyntheticEvent<Element, Event>, newValue: React.SetStateAction<string>) => {
       event.stopPropagation();
@@ -45,7 +48,7 @@ const MdTabs: React.FC<IMdTabsProps> = ({
       variant={variant ?? 'scrollable'}
       scrollButtons={scrollButtons ?? 'auto'}>
       {tabs.map((tab) => (
-        <Tab key={tab.name} value={tab.name} label={tab.label} />
+        <Tab key={tab.name} value={tab.name} label={t(tab.label)} />
       ))}
     </Tabs>
   );

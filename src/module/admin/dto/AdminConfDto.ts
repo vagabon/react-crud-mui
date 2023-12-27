@@ -6,10 +6,12 @@ export interface IFormDto {
   type: string;
   email?: boolean;
   disabled?: boolean;
+  className?: string;
 }
 
 export interface IAdminTabDto {
   name: string;
+  label: string;
   findByChamps: string;
   sortBy: string;
   cells: ITableDto[];

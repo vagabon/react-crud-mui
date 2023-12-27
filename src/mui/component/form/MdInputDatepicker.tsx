@@ -1,6 +1,7 @@
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import dayjs from 'dayjs';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { JSONObject } from '../../../dto/api/ApiDto';
 import { useFormError } from '../../hook/useFormError';
 import { HandleChangeType, IMdFormPropsReturnDto } from './MdForm';
@@ -14,6 +15,7 @@ export interface IMdInputDatepickerProps extends IMdFormPropsReturnDto {
 }
 
 const MdInputDatepicker: React.FC<IMdInputDatepickerProps> = (props: IMdInputDatepickerProps) => {
+  const { t } = useTranslation();
   const { showError } = useFormError(props.name, props.errors, props.touched);
   const defaultValue = useRef(props.state[props.name as keyof JSONObject]);
 
@@ -33,13 +35,12 @@ const MdInputDatepicker: React.FC<IMdInputDatepickerProps> = (props: IMdInputDat
   );
 
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '100%' }} className={props.className ?? ''}>
       <DateTimePicker
         format='DD/MM/YYYY HH:mm:ss'
         ampm={false}
-        className={props.className ?? ''}
         sx={{ width: '100%' }}
-        label={props.label}
+        label={t(props.label)}
         name={props.name}
         onChange={handleChange(props.handleChange)}
         value={value as string}

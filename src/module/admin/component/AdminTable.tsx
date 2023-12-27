@@ -31,7 +31,7 @@ const AdminTable: React.FC<IAdminListPageProps> = ({ activePage, conf }) => {
 
   return (
     <>
-      <MdCard className='no-margin flexflex1'>
+      <MdCard className='no-margin flex flex1'>
         <HasRole roles={['ADMIN']}>
           <MdSearchBar callBack={handleSearch} search={state?.filter?.search} />
           {pageConf && state && state?.table && (

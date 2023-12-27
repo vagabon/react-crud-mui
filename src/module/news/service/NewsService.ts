@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux';
 import ApiService from '../../../api/service/ApiService';
 import { ID } from '../../../dto/api/ApiDto';
+import { IPageableDto } from '../../../dto/pageable/PageableDto';
 import { CommonAction } from '../../../reducer/common/CommonReducer';
 import { INewsDto } from '../dto/NewsDto';
 
@@ -9,10 +10,24 @@ const ENDPOINT_NEWS_FINDBY = '/news/findBy';
 const ENDPOINT_NEWS_COUNTBY = '/news/countBy';
 
 const NewsService = {
-  fetchNews: (filter: INewsDto, first: number, max: number, orderField: string, order: string): Promise<INewsDto[]> => {
+  fetchNews: (
+    filter: INewsDto,
+    first: number,
+    max: number,
+    orderField: string,
+    order: string,
+  ): Promise<IPageableDto<INewsDto[]>> => {
     const champs = '(title%And|Description%)';
     const values = filter.search + ',' + filter.search;
-    return ApiService.findBy<INewsDto[]>(ENDPOINT_NEWS_FINDBY, champs, values, first, max, orderField, order);
+    return ApiService.findBy<IPageableDto<INewsDto[]>>(
+      ENDPOINT_NEWS_FINDBY,
+      champs,
+      values,
+      first,
+      max,
+      orderField,
+      order,
+    );
   },
 
   countNews: (filter: INewsDto): Promise<number> => {

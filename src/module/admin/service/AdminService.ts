@@ -1,10 +1,10 @@
 import { Dispatch } from 'redux';
 import ApiService from '../../../api/service/ApiService';
 import { IApiDto } from '../../../dto/api/ApiDto';
+import { IPageableDto } from '../../../dto/pageable/PageableDto';
 import { CommonAction } from '../../../reducer/common/CommonReducer';
 
 const ENDPOINT_FINDBY = '/findBy';
-const ENDPOINT_COUNTBY = '/countBy';
 const ENDPOINT_FINDBY_ID = '/';
 const ENDPOINT_CREATE = '/';
 const ENDPOINT_UPDATE = '/';
@@ -18,35 +18,21 @@ const AdminService = {
     max: number,
     orderField: string,
     order: string,
-  ): Promise<JSON[]> => {
+  ): Promise<IPageableDto<IApiDto[]>> => {
     const orderString = order === 'asc' ? '' : 'Desc';
     const orderConst = orderField ? '>>' + orderField + orderString : '';
     const values = value + ',' + value + ',' + value + ',' + value + ',' + value;
-    return ApiService.get<JSON[]>(
+    return ApiService.get<IPageableDto<IApiDto[]>>(
       '/' +
         endPoint +
         ENDPOINT_FINDBY +
         encodeURI('?fields=' + champs + orderConst + '&values=' + values + '&first=' + first + '&max=' + max),
     ).then(
-      (data: JSON[]) => {
+      (data) => {
         return Promise.resolve(data);
       },
       () => {
-        return Promise.resolve([]);
-      },
-    );
-  },
-
-  count: (endPoint: string, champs: string, value: string): Promise<number> => {
-    const values = value + ',' + value + ',' + value + ',' + value + ',' + value;
-    return ApiService.get<{ count: number }>(
-      '/' + endPoint + ENDPOINT_COUNTBY + encodeURI('?fields=' + champs + '&values=' + values),
-    ).then(
-      (data: { count: number }) => {
-        return Promise.resolve(data.count);
-      },
-      () => {
-        return Promise.resolve(-1);
+        return Promise.resolve({} as IPageableDto<IApiDto[]>);
       },
     );
   },

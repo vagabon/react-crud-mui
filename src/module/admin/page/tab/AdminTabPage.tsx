@@ -2,16 +2,15 @@ import { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import MdContent from '../../../../mui/component/content/MdContent';
 import HasRole from '../../../../mui/component/role/HasRole';
-import MdTabs, { TabsType } from '../../../../mui/component/tabs/MdTabs';
+import MdTabs from '../../../../mui/component/tabs/MdTabs';
 import AdminTable from '../../component/AdminTable';
 import { IAdminTabConfDto } from '../../dto/AdminConfDto';
 
 interface IAdminTabsPageProps {
   conf: IAdminTabConfDto;
-  tabs: TabsType[];
 }
 
-const AdminTabsPage: React.FC<IAdminTabsPageProps> = ({ conf, tabs }) => {
+const AdminTabsPage: React.FC<IAdminTabsPageProps> = ({ conf }) => {
   const navigate = useNavigate();
   const { tab } = useParams();
   const [activeTab, setActiveTab] = useState<string>();
@@ -29,9 +28,9 @@ const AdminTabsPage: React.FC<IAdminTabsPageProps> = ({ conf, tabs }) => {
   );
 
   return (
-    <MdContent className='margin-5'>
+    <MdContent className='margin-5 flex1'>
       <HasRole roles={['ADMIN']}>
-        {activeTab && <MdTabs value={activeTab} callback={handleChange} tabs={tabs} />}
+        {activeTab && <MdTabs value={activeTab} callback={handleChange} tabs={conf.tabs} />}
         {activeTab && <AdminTable activePage={activeTab} conf={conf} />}
       </HasRole>
     </MdContent>

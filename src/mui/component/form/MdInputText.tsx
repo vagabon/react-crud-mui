@@ -19,9 +19,8 @@ const MdInputText: React.FC<IMdInputTextProps> = (props: IMdInputTextProps) => {
   const { showError } = useFormError(props.name, props.errors, props.touched);
 
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '100%' }} className={props.className}>
       <MdInputTextSimple
-        className={props.className}
         type={props.type}
         label={props.label}
         name={props.name}

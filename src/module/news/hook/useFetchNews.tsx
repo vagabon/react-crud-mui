@@ -20,10 +20,11 @@ export const useFetchNews = (): {
   const fetchNews = useCallback(
     (filter: INewsDto, page: number, max: number, orderBy: string, orderByAsc: string = 'asc') => {
       NewsService.fetchNews(filter, page * max, max, orderBy, orderByAsc).then((data) => {
-        if (data.length === 0 && page > 0) {
+        if (data.content.length === 0 && page > 0) {
           setStopLoad(true);
         } else {
-          dispatch(page === 0 ? NewsAction.setDatas(data) : NewsAction.addDatas(data));
+          dispatch(NewsAction.setCount(data.totalElements));
+          dispatch(page === 0 ? NewsAction.setDatas(data.content) : NewsAction.addDatas(data.content));
           setStopLoad(false);
         }
       });

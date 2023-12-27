@@ -39,6 +39,7 @@ export interface IMdFormPropsReturnDto {
 }
 
 export interface IMdFormProps {
+  className?: string;
   initialValues: JSONObject;
   validationSchema: IYupValidators;
   onSubmit: (values: IApiDto) => void;
@@ -111,7 +112,7 @@ const MdForm: React.FC<IMdFormProps> = (props: IMdFormProps) => {
         setFieldValue,
         setValues,
       }) => (
-        <>
+        <div className={props.className}>
           {props.children({
             values,
             state,
@@ -124,8 +125,8 @@ const MdForm: React.FC<IMdFormProps> = (props: IMdFormProps) => {
             setFieldValue,
             setValues,
           })}
-          <div style={{ height: '20px' }}>&nbsp;</div>
-          <div className='flex-row justify-end'>
+          <div style={{ height: '30px' }}>&nbsp;</div>
+          <div className='width100 flex-row justify-end'>
             {props.backButton === true && history.length > 1 && (
               <MdButton label='Retour' variant='text' onClick={goBack} />
             )}
@@ -133,7 +134,7 @@ const MdForm: React.FC<IMdFormProps> = (props: IMdFormProps) => {
               <MdButton label='COMMON:SUBMIT' onClick={() => doSubmit(values, validateForm)} />
             )}
           </div>
-        </>
+        </div>
       )}
     </Formik>
   );

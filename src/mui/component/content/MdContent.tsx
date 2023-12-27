@@ -11,7 +11,7 @@ const MdContent: React.FC<IMdContentProps> = (props) => {
   const { id } = useId(props.id);
 
   return (
-    <div id={id} className={'flex width100 ' + props.className}>
+    <div id={id} className={'flex max-width ' + props.className}>
       {props.children}
     </div>
   );

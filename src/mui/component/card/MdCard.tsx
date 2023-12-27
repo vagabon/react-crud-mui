@@ -35,8 +35,6 @@ const MdCard: React.FC<IMdCardProps> = ({ title, url, urlUpdate, avatar, image, 
     [navigate],
   );
 
-  // TODO : remove '/news/download?fileName=' + avatar
-
   return (
     <Card {...rest} id={id}>
       {title && (
@@ -44,12 +42,7 @@ const MdCard: React.FC<IMdCardProps> = ({ title, url, urlUpdate, avatar, image, 
           onClick={handleClick(url)}
           avatar={
             avatar && (
-              <img
-                alt={'Image : ' + title}
-                src={API_URL + '/news/download?fileName=' + avatar}
-                width='40px'
-                height='40px'
-              />
+              <img alt={'Image : ' + title} src={API_URL + '/download?fileName=' + avatar} width='40px' height='40px' />
             )
           }
           action={
@@ -65,12 +58,7 @@ const MdCard: React.FC<IMdCardProps> = ({ title, url, urlUpdate, avatar, image, 
       )}
       {image && (
         <CardMedia>
-          <img
-            alt={'Image : ' + title}
-            src={API_URL + '/news/download?fileName=' + image}
-            width='100%'
-            height='150px'
-          />
+          <img alt={'Image : ' + title} src={API_URL + '/download?fileName=' + image} width='100%' height='150px' />
         </CardMedia>
       )}
       <CardContent>{rest.children}</CardContent>

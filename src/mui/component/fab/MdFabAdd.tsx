@@ -6,7 +6,6 @@ import { ICurrentUserDto } from '../../../dto/current-user/CurrentUserDto';
 import { IUserDto } from '../../../module/user/dto/UserDto';
 import { useAppSelector } from '../../../store/Store';
 import RoleUtils from '../../../utils/role/RoleUtils';
-import MdContent from '../content/MdContent';
 
 export interface IMdFabAddProps {
   urlAdd?: string;
@@ -32,15 +31,15 @@ const MdFabAdd: React.FC<IMdFabAddProps> = (props) => {
   );
 
   return (
-    <MdContent className='relative'>
+    <div className='max-width relative'>
       {props.urlAdd && RoleUtils.hasProfile(currentUser, props.urlAddRole) && (
-        <div style={{ position: 'absolute', bottom: '13px', right: '13px' }}>
+        <div style={{ position: 'absolute', bottom: '5px', right: '5px' }}>
           <Fab size='medium' color='primary' aria-label='add' sx={fabStyle} onClick={doCreate}>
             <AddIcon />
           </Fab>
         </div>
       )}
-    </MdContent>
+    </div>
   );
 };
 
