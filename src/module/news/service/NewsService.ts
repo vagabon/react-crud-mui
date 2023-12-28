@@ -7,7 +7,6 @@ import { INewsDto } from '../dto/NewsDto';
 
 const ENDPOINT_NEWS = '/news';
 const ENDPOINT_NEWS_FINDBY = '/news/findBy';
-const ENDPOINT_NEWS_COUNTBY = '/news/countBy';
 
 const NewsService = {
   fetchNews: (
@@ -29,12 +28,6 @@ const NewsService = {
       orderField,
       order,
     );
-  },
-
-  countNews: (filter: INewsDto): Promise<number> => {
-    const champs = '(title%And!Description%)';
-    const values = filter.search + ',' + filter.search;
-    return ApiService.countBy(ENDPOINT_NEWS_COUNTBY, champs, values);
   },
 
   fetchById: (id: ID): Promise<INewsDto> => {

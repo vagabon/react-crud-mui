@@ -13,7 +13,7 @@ import { useAppDispatch } from '../../../../store/Store';
 import { IUserDto } from '../../../user/dto/UserDto';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
-import LoginService from '../../service/AuthService';
+import AuthService from '../../service/AuthService';
 import LoginFacebook from './facebook/LoginFacebook';
 import LoginGoogle from './google/LoginGoogle';
 import LOGIN_SCHEMA from './schema/login.schema.json';
@@ -28,7 +28,7 @@ const LoginPage: React.FC = () => {
 
   const handleLogin = useCallback(
     (data: IUserDto) => {
-      LoginService.login(
+      AuthService.login(
         data.username as string,
         data.password as string,
       )(dispatch).then(() => {

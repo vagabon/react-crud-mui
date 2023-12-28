@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import NewsShowPage from './page/NewsShowPage';
-import NewsUpdatePage from './page/NewsUpdatePage';
+import NewsShowPage from './page/show/NewsShowPage';
+import NewsUpdatePage from './page/update/NewsUpdatePage';
 
 const NewsRouter: React.FC = () => {
   return (

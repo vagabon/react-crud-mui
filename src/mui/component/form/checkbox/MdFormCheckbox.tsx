@@ -1,9 +1,9 @@
 import { Checkbox, Typography } from '@mui/material';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { JSONObject } from '../../../dto/api/ApiDto';
-import { useFormError } from '../../hook/useFormError';
-import { HandleChangeType, IMdFormPropsReturnDto } from './MdForm';
+import { JSONObject } from '../../../../dto/api/ApiDto';
+import { useFormError } from '../../../hook/useFormError';
+import { HandleChangeType, IMdFormPropsReturnDto } from '../MdForm';
 
 export interface IMdFormCheckboxProps extends IMdFormPropsReturnDto {
   label?: string;

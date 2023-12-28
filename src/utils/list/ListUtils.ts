@@ -26,6 +26,7 @@ export const ListUtils = {
     list.push({ id: 'false', libelle: I18nUtils.translate(t, 'NON') });
     return list;
   },
+  // @Deprecated
   toSelectData(datas: JSONObject[]): ListType[] {
     return datas.map((data: JSONObject) => ({
       name: data['name' as keyof JSONObject] || '',

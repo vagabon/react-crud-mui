@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { JSONObject } from '../../../dto/api/ApiDto';
 import MdCard from '../../../mui/component/card/MdCard';
-import MdFabAdd from '../../../mui/component/fab/MdFabAdd';
+import MdFabAdd from '../../../mui/component/fab/add/MdFabAdd';
 import HasRole from '../../../mui/component/role/HasRole';
 import MdSearchBar from '../../../mui/component/searchbar/MdSearchBar';
 import MdTableWithPagination from '../../../mui/component/table/MdTableWithPagination';

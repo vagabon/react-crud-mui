@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { IUserDto } from '../../../user/dto/UserDto';
-import LoginService from '../../service/AuthService';
+import AuthService from '../../service/AuthService';
 
 import { useCallback } from 'react';
 import MdCard from '../../../../mui/component/card/MdCard';
@@ -19,7 +19,7 @@ const ForgetPasswordPage: React.FC = () => {
 
   const handleForgetPassword = useCallback(
     (data: IUserDto) => {
-      LoginService.createIdentityToken(data.email as string).then(() => {
+      AuthService.createIdentityToken(data.email as string).then(() => {
         navigate('/auth/check/identity');
       });
     },

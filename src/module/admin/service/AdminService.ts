@@ -27,25 +27,15 @@ const AdminService = {
         endPoint +
         ENDPOINT_FINDBY +
         encodeURI('?fields=' + champs + orderConst + '&values=' + values + '&first=' + first + '&max=' + max),
-    ).then(
-      (data) => {
-        return Promise.resolve(data);
-      },
-      () => {
-        return Promise.resolve({} as IPageableDto<IApiDto[]>);
-      },
-    );
+    ).then((data) => {
+      return Promise.resolve(data);
+    });
   },
 
   findById: <T>(endPoint: string, id: string | undefined) => {
-    return ApiService.get<T>('/' + endPoint + ENDPOINT_FINDBY_ID + id).then(
-      (data: T) => {
-        return Promise.resolve(data);
-      },
-      () => {
-        return Promise.resolve({});
-      },
-    );
+    return ApiService.get<T>('/' + endPoint + ENDPOINT_FINDBY_ID + id).then((data: T) => {
+      return Promise.resolve(data);
+    });
   },
 
   create:

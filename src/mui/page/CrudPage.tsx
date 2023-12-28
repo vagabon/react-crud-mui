@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import MdFabAdd, { IMdFabAddProps } from '../component/fab/MdFabAdd';
+import MdFabAdd, { IMdFabAddProps } from '../component/fab/add/MdFabAdd';
 
 export interface CrudPageProps extends IMdFabAddProps {
   className?: string;

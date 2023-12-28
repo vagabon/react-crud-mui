@@ -79,6 +79,101 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
+/***************************** MUI *****************************/
+
+/* global jest */
+jest.mock('@mui/material', () => ({
+  Alert: ({ children }) => <span data-testid='Alert'>{children}</span>,
+  Autocomplete: ({ name, value, onChange, onBlur, renderInput }) => (
+    <>
+      <input data-testid='Autocomplete' name={name} value={value} onClick={onChange} onBlur={onBlur} />
+      {renderInput()}
+    </>
+  ),
+  Box: ({ children }) => <span data-testid='Box'>{children}</span>,
+  ButtonGroup: ({ children }) => <span data-testid='ButtonGroup'>{children}</span>,
+  Card: ({ children }) => <span data-testid='Card'>{children}</span>,
+  CardActions: ({ children }) => <span data-testid='CardActions'>{children}</span>,
+  CardContent: ({ children }) => <span data-testid='CardContent'>{children}</span>,
+  CardHeader: ({ title, children }) => (
+    <span data-testid='CardHeader'>
+      {title}
+      {children}
+    </span>
+  ),
+  CardMedia: ({ children }) => <span data-testid='CardMedia'>{children}</span>,
+  Checkbox: ({ name, checked, onChange, onBlur }) => (
+    <input data-testid='Checkbox' name={name} checked={checked} onClick={onChange} onBlur={onBlur} />
+  ),
+  Chip: ({ label, onDelete }) => <input data-testid='Chip' value={label} onClick={onDelete} />,
+  Container: ({ children }) => <span data-testid='Container'>{children}</span>,
+  CssBaseline: ({ children }) => <span data-testid='CssBaseline'>{children}</span>,
+  Fab: ({ children }) => <span data-testid='Fab'>{children}</span>,
+  FormControl: ({ children }) => <span data-testid='FormControl'>{children}</span>,
+  Grid: ({ children }) => <span data-testid='Grid'>{children}</span>,
+  IconButton: ({ children }) => <span data-testid='IconButton'>{children}</span>,
+  InputLabel: ({ children }) => <span data-testid='InputLabel'>{children}</span>,
+  InputAdornment: ({ children }) => <span data-testid='InputAdornment'>{children}</span>,
+  LinearProgress: ({ children }) => <span data-testid='LinearProgress'>{children}</span>,
+  List: ({ children }) => <span data-testid='List'>{children}</span>,
+  ListItem: ({ children }) => <span data-testid='ListItem'>{children}</span>,
+  ListItemButton: ({ children }) => <span data-testid='ListItemButton'>{children}</span>,
+  ListItemText: ({ children }) => <span data-testid='ListItemText'>{children}</span>,
+  ListItemText: ({ children }) => <span data-testid='ListItemText'>{children}</span>,
+  Modal: ({ children }) => <span data-testid='Modal'>{children}</span>,
+  Select: ({ children }) => <span data-testid='Select'>{children}</span>,
+  Snackbar: ({ children }) => <span data-testid='Snackbar'>{children}</span>,
+  Switch: ({ children }) => <span data-testid='Switch'>{children}</span>,
+  Table: ({ children }) => <span data-testid='Table'>{children}</span>,
+  TableBody: ({ children }) => <span data-testid='TableBody'>{children}</span>,
+  TableCell: ({ children }) => <span data-testid='TableCell'>{children}</span>,
+  TableFooter: ({ children }) => <span data-testid='TableFooter'>{children}</span>,
+  TableHead: ({ children }) => <span data-testid='TableHead'>{children}</span>,
+  TablePagination: ({ children }) => <span data-testid='TablePagination'>{children}</span>,
+  TableRow: ({ children }) => <span data-testid='TableRow'>{children}</span>,
+  TableSortLabel: ({ children }) => <span data-testid='TableSortLabel'>{children}</span>,
+  Tab: ({ children }) => <span data-testid='Tab'>{children}</span>,
+  Tabs: ({ children }) => <span data-testid='Tabs'>{children}</span>,
+  TextField: ({ label, name, onChange, children }) => (
+    <>
+      <label>{label}</label>
+      <input data-testid='TextField' name={name} onChange={onChange}>
+        {children}
+      </input>
+    </>
+  ),
+  ThemeProvider: ({ children }) => <span data-testid='ThemeProvider'>{children}</span>,
+  Toolbar: ({ children }) => <span data-testid='Toolbar'>{children}</span>,
+  Typography: ({ children }) => <span data-testid='Typography'>{children}</span>,
+  createTheme: jest.fn(),
+}));
+
+jest.mock('@mui/material/Button', () => ({ children, onClick }) => (
+  <button data-testid='BUTTON' onClick={onClick}>
+    {children}
+  </button>
+));
+
+jest.mock('@mui/material/Menu', () => ({ children, onClose }) => (
+  <button data-testid='Menu' onClick={onClose}>
+    {children}
+  </button>
+));
+
+jest.mock('@mui/material/MenuItem', () => ({ children, onClick }) => (
+  <button data-testid='MenuItem' onClick={onClick}>
+    {children}
+  </button>
+));
+
+jest.mock('mui-markdown', () => ({
+  MuiMarkdown: ({ children }) => <span data-testid='MuiMarkdown'>{children}</span>,
+}));
+
+jest.mock('@mui/x-date-pickers/DateTimePicker', () => ({
+  DateTimePicker: ({ children }) => <span data-testid='DateTimePicker'>{children}</span>,
+}));
+
 /***************************** AFTER EACH RESET MOCK *****************************/
 
 beforeEach(() => {});

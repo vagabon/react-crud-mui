@@ -29,7 +29,7 @@ export const Primary: Story = {
     startIcon: undefined,
     color: 'inherit',
     size: 'small',
-    variant: 'text',
+    variant: 'contained',
     onClick: () => {},
   },
 };

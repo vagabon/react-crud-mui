@@ -1,5 +1,5 @@
-import HasRole from '../../../mui/component/role/HasRole';
-import NewsList from '../component/list/NewsList';
+import HasRole from '../../../../mui/component/role/HasRole';
+import NewsList from '../../component/list/NewsList';
 
 const NewsListPage: React.FC = () => {
   return (

@@ -1,6 +1,6 @@
 {
   "name": "@vagabond-ts/react-crud-mui",
-  "version": "0.0.35",
+  "version": "0.0.36",
   "description": "React lib with MUI, redux, i18n, router-dom, axios",
   "private": false,
   "scripts": {
@@ -10,7 +10,6 @@
     "test:json": "npm run test -- --json --outputFile=src/jest-test-results.json",
     "coverage": "npm run test -- --coverage ",
     "format": "npm run lint && npm run tsc",
-    "format:all": "npm run test:json && npm run format && npm i && npm run build",
     "ci": "npm run format && npm run coverage -- --testResultsProcessor jest-sonar-reporter",
     "sonar": "npm run ci && npx sonar-scanner -Dsonar.login=$SONAR_TOKEN",
     "clean": "rm -rf dist",
@@ -21,7 +20,7 @@
     "ssh:add": "ssh-add ~/.ssh/id_ed25519",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
-    "prepublishOnly": "npm run format:all"
+    "prepublishOnly": "npm run test:json && npm run format && npm i && npm run build"
   },
   "dependencies": {
     "@emotion/react": "~11.11.1",

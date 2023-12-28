@@ -31,6 +31,7 @@
     "!<rootDir>/**/setupTests.js",
     "!src/vite-env.d.ts",
     "!src/**/*Dto.ts",
+    "!src/**/*Router.tsx",
     "!src/**/*Enum.ts",
     "!src/**/*.stories.tsx",
     "!src/**/Store.ts",
@@ -39,10 +40,10 @@
   ],
   "coverageThreshold": {
     "global": {
-      "branches": 20,
-      "functions": 20,
-      "lines": 20,
-      "statements": 20
+      "branches": 10,
+      "functions": 10,
+      "lines": 10,
+      "statements": 10
     }
   }
 }

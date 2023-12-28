@@ -19,9 +19,7 @@ const MdMenuItem: React.FC<IMdMenuItemProps> = (props: IMdMenuItemProps) => {
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
       setAnchorEl(event.currentTarget);
-      if (!props.childrens) {
-        navigate(props.url);
-      }
+      !props.childrens && navigate(props.url);
     },
     [navigate, props.childrens, props.url],
   );

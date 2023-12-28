@@ -6,7 +6,7 @@ import MdForm, { IMdFormPropsReturnDto } from '../../../../mui/component/form/Md
 import MdInputText from '../../../../mui/component/form/MdInputText';
 import AuthFooter from '../../component/auth.footer/AuthFooter';
 import { AuthFooterEnum } from '../../component/auth.footer/enum/AuthFooterEnum';
-import LoginService from '../../service/AuthService';
+import AuthService from '../../service/AuthService';
 import { ICheckIdentityDto } from './dto/CheckIdentityDto';
 import CHECK_IDENTITY_SCHEMA from './schema/check.identity.schema.json';
 
@@ -16,9 +16,9 @@ const CheckIdentityPage: React.FC = () => {
   const [state, setState] = useState<boolean>(false);
 
   const handleCheckIdentity = useCallback((data: ICheckIdentityDto) => {
-    LoginService.checkIdentityToken(data.token as string).then((data: ICheckIdentityDto) => {
+    AuthService.checkIdentityToken(data.token as string).then((data: ICheckIdentityDto) => {
       if (data.token !== '') {
-        LoginService.resetPassword(data.token as string).then((data: ICheckIdentityDto) => {
+        AuthService.resetPassword(data.token as string).then((data: ICheckIdentityDto) => {
           if (data.token !== '') {
             setState(true);
           }
