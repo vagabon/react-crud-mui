@@ -19,7 +19,7 @@ export const useFetchNews = (): {
 
   const fetchNews = useCallback(
     (filter: INewsDto, page: number, max: number, orderBy: string, orderByAsc: string = 'asc') => {
-      NewsService.fetchNews(filter, page * max, max, orderBy, orderByAsc).then((data) => {
+      NewsService.fetchNews(filter, page, max, orderBy, orderByAsc).then((data) => {
         if (data.content.length === 0 && page > 0) {
           setStopLoad(true);
         } else {

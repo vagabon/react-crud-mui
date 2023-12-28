@@ -39,8 +39,14 @@ html, body, #root { height: 100%; }
 
 .md-summary ul { padding: 0; margin-left: 30px; ul { margin-left: 20px; } }
 
-.roles { justify-content: space-between; flex-direction: row; align-items: baseline; width: 100%; }
-.roles > div .MuiChip-root { margin: 5px; }
+.m2m {
+  flex-direction: column;
+  & > div {
+    display: flex; justify-content: space-between; flex-direction: row; align-items: baseline;
+    & > div .MuiChip-root { margin: 5px; }
+    & button { min-width: 25px !important;}
+  }
+}
 
 .modalList { max-height: 380px; overflow: auto; }
 
@@ -54,14 +60,21 @@ html, body, #root { height: 100%; }
   .width100 { width: calc(100% - 10px) !important; }
   .width50 { width: calc(50% - 10px) !important; }
   .switch { 
-    flex-direction: row !important; align-items: center !important; justify-content: space-between !important; min-height: 4rem; margin-top: 1rem;
-    & > p { padding-left: 10px; }
-    & > p, & > span { align-self: center !important; margin: 0 !important; } 
+    & > div {
+      display: flex; flex-direction: row !important; align-items: center !important; justify-content: space-between !important; 
+      min-height: 4rem; margin-top: 1rem;
+      & > p { padding-left: 10px; }
+      & > p, & > span { align-self: center !important; margin: 0 !important; } 
+    }
   }
 }
 
 @media screen and (max-width: 700px) {
   .flex-wrap { gap: 0px; .width100, .width50 { width: calc(100%) !important; } }
+}
+
+.MuiInputLabel-root.Mui-disabled {
+  color: rgba(255, 255, 255, 0.5) !important;
 }
 
 .MuiCardContent-root { display: flex; flex-direction: column; flex: 1; }

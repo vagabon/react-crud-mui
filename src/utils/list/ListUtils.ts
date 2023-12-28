@@ -8,7 +8,7 @@ export interface IList extends IApiDto {
 export type ListType = { id: string | number; name: string };
 
 export const ListUtils = {
-  convertEnumToList: <T,>(enums: T, libelle: string, t: I18nTranslate): IList[] => {
+  convertEnumToList: <T>(enums: T, libelle: string, t: I18nTranslate): IList[] => {
     const list: IList[] = [];
     for (const item in enums) {
       if (isNaN(Number(item))) {

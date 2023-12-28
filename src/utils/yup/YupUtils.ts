@@ -14,6 +14,7 @@ export interface IYupValidator {
   same?: string;
   sameLabel?: string;
   listId?: boolean;
+  array?: boolean;
 }
 
 export interface IYupValidators {
@@ -27,8 +28,10 @@ export const YupUtils = {
     let shape: IYupShape = {};
 
     Object.entries(datas).forEach(([key, value]: [string, IYupValidator]) => {
-      if (value.listId || value.type === 'date' || value.type === 'datetime') {
+      if (value.listId) {
         shape = YupUtils.getObjectSchema(shape, value, key, t);
+      } else if (value.array) {
+        shape = YupUtils.getArraySchema(shape, value, key, t);
       } else {
         shape = YupUtils.getStringSchema(shape, value, key, t);
       }
@@ -44,10 +47,24 @@ export const YupUtils = {
     }
     return shape;
   },
+  getArraySchema(shape: IYupShape, value: IYupValidator, key: string, t: I18nTranslate): IYupShape {
+    if (value.required) {
+      shape = {
+        ...shape,
+        [key]: Yup.array()
+          .of(
+            Yup.object().shape({
+              id: Yup.string().required(I18nUtils.translate(t, 'ERRORS:REQUIRED')),
+            }),
+          )
+          .defined(I18nUtils.translate(t, 'ERRORS:REQUIRED'))
+          .test('required', I18nUtils.translate(t, 'ERRORS:REQUIRED'), (value) => value && value.length > 0),
+      };
+    }
+    return shape;
+  },
   getObjectSchemaRequired(t: I18nTranslate): Yup.Schema {
-    return Yup.object().shape({
-      id: Yup.string().required(I18nUtils.translate(t, 'ERRORS:REQUIRED')),
-    });
+    return Yup.object().required(I18nUtils.translate(t, 'ERRORS:REQUIRED'));
   },
   getStringSchema(shape: IYupShape, value: IYupValidator, key: string, t: I18nTranslate): IYupShape {
     shape = {

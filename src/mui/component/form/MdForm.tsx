@@ -15,25 +15,28 @@ export type HandleChangeType = {
     ? void
     : (e: string | ChangeEvent<JSONObject>) => void;
 };
+
 export type HandleBlurType = {
   (e: FocusEvent<JSONObject, Element>): void;
   <T = JSONObject>(fieldOrEvent: T): T extends string ? (e: JSONObject) => void : void;
 };
+
+export type SetFieldValueType = (
+  field: string,
+  value: JSONObject,
+  shouldValidate?: boolean | undefined,
+) => Promise<void | FormikErrors<IApiDto>>;
 
 export interface IMdFormPropsReturnDto {
   values: JSONObject;
   state: JSONObject;
   errors: JSONObject;
   touched: JSONObject;
-  validationSchema: JSONObject;
+  validationSchema: IYupValidators;
   handleChange: HandleChangeType;
   handleBlur: HandleBlurType;
   handleSubmit: () => void;
-  setFieldValue: (
-    field: string,
-    value: JSONObject,
-    shouldValidate?: boolean | undefined,
-  ) => Promise<void | FormikErrors<IApiDto>>;
+  setFieldValue: SetFieldValueType;
   setValues: (values: IApiDto, shouldValidate?: boolean) => Promise<void | FormikErrors<IApiDto>>;
   disabled?: boolean;
 }
@@ -64,8 +67,8 @@ const MdForm: React.FC<IMdFormProps> = (props: IMdFormProps) => {
   const doSubmit = useCallback(
     (values: IApiDto, validateForm: (values?: IApiDto) => Promise<FormikErrors<IApiDto>>): void => {
       dispatch(CommonAction.setMessage({ message: '', type: 'success' }));
-      validateForm().then((errors) => {
-        console.log('form errors : ', errors);
+      validateForm().then((errors: FormikErrors<IApiDto>) => {
+        console.log('form errors', values, errors);
         if (Object.keys(errors).length > 0) {
           dispatch(CommonAction.setMessage({ message: 'COMMON:FORM.ERROR', type: 'error' }));
         } else {

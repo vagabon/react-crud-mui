@@ -19,7 +19,7 @@ const LoginGoogle: React.FC = () => {
         navigate('/auth/profile');
       });
     },
-    onError: (error) => console.log('Login Failed:', error),
+    onError: (error) => console.log('Google Login Failed:', error),
   });
 
   return (

@@ -1,0 +1,37 @@
+import { useEffect, useState } from 'react';
+import ApiService from '../../../../api/service/ApiService';
+import { IApiDto } from '../../../../dto/api/ApiDto';
+import { IPageableDto } from '../../../../dto/pageable/PageableDto';
+import { IMdFormPropsReturnDto } from '../../../../mui/component/form/MdForm';
+import MdFormSelect from '../../../../mui/component/form/MdFormSelect';
+import { IList } from '../../../../utils/list/ListUtils';
+import { IFormDto } from '../../../admin/dto/AdminConfDto';
+
+export interface ICustomFormSelectProps extends IMdFormPropsReturnDto {
+  conf: IFormDto;
+  label: string;
+  name: string;
+  listId: boolean;
+}
+
+const CustomFormSelect: React.FC<ICustomFormSelectProps> = ({ conf, label, name, listId, ...rest }) => {
+  const [datas, setDatas] = useState<IList[]>([]);
+
+  useEffect(() => {
+    conf.listEndPoint &&
+      ApiService.get<IPageableDto<IApiDto[]>>(conf.listEndPoint).then((data) => {
+        setDatas(
+          data.content.map((dat) => {
+            return {
+              id: dat.id,
+              libelle: dat[conf.listName as keyof IApiDto],
+            } as IList;
+          }),
+        );
+      });
+  }, [conf]);
+
+  return <MdFormSelect label={label} name={name} list={datas} byId={listId} {...rest} />;
+};
+
+export default CustomFormSelect;

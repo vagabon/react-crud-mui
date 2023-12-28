@@ -1,5 +1,4 @@
 import { useCallback } from 'react';
-import ApiService from '../../../api/service/ApiService';
 import { ID } from '../../../dto/api/ApiDto';
 import { useAppDispatch, useAppSelector } from '../../../store/Store';
 import { INewsDto } from '../dto/NewsDto';
@@ -10,7 +9,6 @@ export const useCreateNews = (): {
   news: INewsDto;
   createOrUpdateNews: (news: INewsDto) => void;
   fetchById: (id: ID) => void;
-  uploadNewsImage: (id: ID, file: File | undefined) => Promise<string>;
 } => {
   const { data: news } = useAppSelector((state) => state.news);
   const dispatch = useAppDispatch();
@@ -33,15 +31,5 @@ export const useCreateNews = (): {
     [dispatch],
   );
 
-  const uploadNewsImage = useCallback((id: ID, file: File | undefined): Promise<string> => {
-    const formData = new FormData();
-    if (file) {
-      formData.append('file', file);
-    }
-    return ApiService.post('/news/upload?id=' + id, formData, {
-      'Content-Type': 'multipart/form-data',
-    });
-  }, []);
-
-  return { news, fetchById, createOrUpdateNews, uploadNewsImage };
+  return { news, fetchById, createOrUpdateNews };
 };

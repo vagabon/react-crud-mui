@@ -1,9 +1,10 @@
 import { useCallback } from 'react';
 import { CommonAction } from '../../reducer/common/CommonReducer';
-import { useAppDispatch } from '../../store/Store';
+import { useAppDispatch, useAppSelector } from '../../store/Store';
 
 export const useMessage = () => {
   const dispatch = useAppDispatch();
+  const { message } = useAppSelector((state) => state.common);
 
   const setMessage = useCallback(
     (message: string, type: 'success' | 'error' = 'error') => {
@@ -23,5 +24,5 @@ export const useMessage = () => {
     dispatch(CommonAction.clearMessage());
   }, [dispatch]);
 
-  return { setMessage, setMessageButton, clearMessage };
+  return { message, setMessage, setMessageButton, clearMessage };
 };

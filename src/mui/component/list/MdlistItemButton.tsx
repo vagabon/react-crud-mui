@@ -2,7 +2,7 @@ import { ListItemButton } from '@mui/material';
 import { ReactNode } from 'react';
 
 export interface IMdlistItemButtonProps {
-  callback: () => void;
+  callback?: () => void;
   children: ReactNode;
 }
 const MdlistItemButton: React.FC<IMdlistItemButtonProps> = ({ callback, children }) => {

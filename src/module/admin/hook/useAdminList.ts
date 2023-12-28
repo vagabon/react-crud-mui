@@ -16,7 +16,7 @@ export const useAdminList = (activePage: string, pageConf: IAdminTabDto, state: 
       pageConf.name,
       pageConf.findByChamps,
       state.filter.search,
-      state.table.page * state.table.rowsPerPage,
+      state.table.page,
       state.table.rowsPerPage,
       state.table.sortBy,
       state.table.sortByOrder,

@@ -16,11 +16,12 @@ export interface IMdInputTextProps extends IMdFormPropsReturnDto {
 }
 
 const MdInputText: React.FC<IMdInputTextProps> = (props: IMdInputTextProps) => {
-  const { showError } = useFormError(props.name, props.errors, props.touched);
+  const { error, showError } = useFormError(props.name, props.errors, props.touched);
 
   return (
     <div style={{ width: '100%' }} className={props.className}>
       <MdInputTextSimple
+        error={error !== ''}
         type={props.type}
         label={props.label}
         name={props.name}

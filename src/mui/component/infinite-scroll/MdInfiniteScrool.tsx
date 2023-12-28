@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useState } from 'react';
+import { ReactNode, useCallback, useRef } from 'react';
 
 export interface IMdInfiniteScroolProps {
   id: string;
@@ -8,23 +8,22 @@ export interface IMdInfiniteScroolProps {
 }
 
 const MdInfiniteScrool: React.FC<IMdInfiniteScroolProps> = (props: IMdInfiniteScroolProps) => {
-  const [stopScroll, setStopScroll] = useState(false);
+  const stopScroll = useRef(false);
 
   const handleNavigation = useCallback(
-    (actualStopScroll: boolean, callBack?: () => void) => () => {
+    (callBack?: () => void) => () => {
       const wrappedElement = document.getElementById(props.id);
       if (
         wrappedElement &&
         callBack &&
         wrappedElement.scrollHeight - wrappedElement.scrollTop <= wrappedElement.clientHeight + 30
       ) {
-        if (actualStopScroll === false) {
-          setStopScroll(true);
-          console.log('scroll bottom reached');
+        if (stopScroll.current === false) {
+          stopScroll.current = true;
           callBack();
           setTimeout(() => {
-            setStopScroll(false);
-          }, 500);
+            stopScroll.current = false;
+          }, 1000);
         }
       }
     },
@@ -32,10 +31,7 @@ const MdInfiniteScrool: React.FC<IMdInfiniteScroolProps> = (props: IMdInfiniteSc
   );
 
   return (
-    <div
-      id={props.id}
-      className={'flex container ' + props.className}
-      onScroll={handleNavigation(stopScroll, props.callBack)}>
+    <div id={props.id} className={'flex container ' + props.className} onScroll={handleNavigation(props.callBack)}>
       <div className='flex max-width'>{props.children}</div>
     </div>
   );

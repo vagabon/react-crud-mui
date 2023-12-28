@@ -3,7 +3,7 @@ import { IAdminTabConfDto, IAdminTabDto, IFormDto } from '../dto/AdminConfDto';
 
 export const useAdminConf = (activePage: string, conf: IAdminTabConfDto) => {
   const [pageConf, setPageConf] = useState<IAdminTabDto>();
-  const [formConf, setFormConf] = useState<[string, IFormDto][]>();
+  const [formConf, setFormConf] = useState<[string, IFormDto][]>([]);
 
   useEffect(() => {
     const pageConf = conf.tabs.find((tab) => tab.name === activePage);

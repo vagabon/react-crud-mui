@@ -32,8 +32,8 @@ const AxiosInterceptor = <U>(
       return config;
     },
     (error: AxiosError) => {
-      store.dispatch(CommonAction.setLoading(false));
       console.log(error);
+      store.dispatch(CommonAction.setLoading(false));
       return error;
     },
   );
@@ -41,11 +41,13 @@ const AxiosInterceptor = <U>(
   axios.interceptors.response.use(
     (response: AxiosResponse) => {
       store.dispatch(CommonAction.setLoading(false));
+      let data;
       try {
-        console.log(response.config.url, JSON.parse(response.config.data), response.status, response.data);
+        data = JSON.parse(response.config.data);
       } catch (e) {
-        console.log(response.config.url, response.config.data, response.status, response.data);
+        data = response.config.data;
       }
+      console.log(response.config.url, data, response.status, response.data);
       return response;
     },
     async (error: AxiosError<U>) => {

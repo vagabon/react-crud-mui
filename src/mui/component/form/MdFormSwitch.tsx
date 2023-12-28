@@ -2,6 +2,7 @@ import { Switch, Typography } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
 import { Trans } from 'react-i18next';
 import { JSONObject } from '../../../dto/api/ApiDto';
+import { useFormError } from '../../hook/useFormError';
 import { HandleChangeType, IMdFormPropsReturnDto } from './MdForm';
 
 export interface IMdFormSwitchProps extends IMdFormPropsReturnDto {
@@ -12,6 +13,7 @@ export interface IMdFormSwitchProps extends IMdFormPropsReturnDto {
 
 const MdFormSwitch: React.FC<IMdFormSwitchProps> = (props: IMdFormSwitchProps) => {
   const [checked, setChecked] = useState<boolean>(false);
+  const { showError } = useFormError(props.name, props.errors, props.touched);
 
   useEffect(() => {
     setChecked(props.values[props.name as keyof JSONObject] === true);
@@ -27,15 +29,19 @@ const MdFormSwitch: React.FC<IMdFormSwitchProps> = (props: IMdFormSwitchProps) =
 
   return (
     <div className={'flex switch ' + props.className}>
-      <Typography paragraph={true}>
-        <Trans i18nKey={props.label} />
-      </Typography>
-      <Switch
-        color='secondary'
-        checked={checked}
-        onChange={handleChange(checked, props.handleChange)}
-        onBlur={props.handleBlur}
-      />
+      <div>
+        <Typography paragraph={true}>
+          <Trans i18nKey={props.label} />
+          {props.validationSchema?.[props.name as keyof JSONObject]?.required ? ' *' : ''}
+        </Typography>
+        <Switch
+          color='secondary'
+          checked={checked}
+          onChange={handleChange(checked, props.handleChange)}
+          onBlur={props.handleBlur}
+        />
+      </div>
+      {showError()}
     </div>
   );
 };

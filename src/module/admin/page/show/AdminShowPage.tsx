@@ -1,21 +1,16 @@
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { Fragment, useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import ApiService from '../../../../api/service/ApiService';
-import { IApiDto, ID } from '../../../../dto/api/ApiDto';
+import { IApiDto, JSONObject } from '../../../../dto/api/ApiDto';
 import MdCard from '../../../../mui/component/card/MdCard';
 import MdContent from '../../../../mui/component/content/MdContent';
-import MdForm, { HandleChangeType, IMdFormPropsReturnDto } from '../../../../mui/component/form/MdForm';
-import MdFormFile from '../../../../mui/component/form/MdFormFile';
-import MdFormSwitch from '../../../../mui/component/form/MdFormSwitch';
-import MdInputDatepicker from '../../../../mui/component/form/MdInputDatepicker';
-import MdInputText, { FormInputType } from '../../../../mui/component/form/MdInputText';
 import HasRole from '../../../../mui/component/role/HasRole';
 import { useAppDispatch } from '../../../../store/Store';
 import { IYupValidators } from '../../../../utils/yup/YupUtils';
-import { IAdminTabConfDto, IAdminTabDto, IFormDto } from '../../dto/AdminConfDto';
+import CustomForm from '../../../custom/form/component/CustomForm';
+import { IAdminTabConfDto, IAdminTabDto } from '../../dto/AdminConfDto';
 import { useAdminConf } from '../../hook/useAdminConf';
 import { useAdminState } from '../../hook/useAdminState';
 import { AdminAction } from '../../reducer/AdminReducer';
@@ -34,15 +29,22 @@ const AdminShowPage: React.FC<IAdminShowPageProps> = ({ conf }) => {
   const { state } = useAdminState(page, pageConf as IAdminTabDto);
 
   useEffect(() => {
-    if (id !== '-1') {
+    if (id !== '-1' && pageConf?.name === page) {
       AdminService.findById<IApiDto>(page, id).then((data) => {
-        dispatch(AdminAction.setData({ activePage: page, data: data }));
+        let newData = data;
+        formConf.forEach(([key, form]) => {
+          const value = newData[key as keyof JSONObject];
+          if (!form.array && !form.listId && (!value || value === null)) {
+            newData = { ...newData, [key as keyof JSONObject]: '' };
+          }
+        });
+        dispatch(AdminAction.setData({ activePage: page, data: newData }));
       });
     } else {
       const data: IApiDto = { id: '' };
       dispatch(AdminAction.setData({ activePage: page, data }));
     }
-  }, [dispatch, page, id]);
+  }, [dispatch, page, id, pageConf, formConf]);
 
   const handleUpdate = useCallback(
     (data: IApiDto) => {
@@ -72,83 +74,20 @@ const AdminShowPage: React.FC<IAdminShowPageProps> = ({ conf }) => {
     return title;
   }, [id, t, pageConf]);
 
-  const uploadNewsImage = useCallback(
-    (id: ID, file: File | undefined): Promise<string> => {
-      const formData = new FormData();
-      if (file) {
-        formData.append('file', file);
-      }
-      return ApiService.post('/' + page + '/upload?id=' + id, formData, {
-        'Content-Type': 'multipart/form-data',
-      });
-    },
-    [page],
-  );
-
-  const handleChangeFile = useCallback(
-    (id: ID, callback: HandleChangeType) => (name: string, file: File) => {
-      uploadNewsImage(id, file).then((data) => {
-        const event = { target: { name, value: data } };
-        console.log('FILE UPLOAD : ', data, event);
-        callback(event);
-      });
-    },
-    [uploadNewsImage],
-  );
-
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <MdContent>
         <HasRole roles={['ADMIN']}>
           <MdCard title={getTitle()}>
             {state && (
-              <MdForm
-                className='flex-row flex-wrap form'
-                initialValues={state.data}
-                validationSchema={pageConf?.form as IYupValidators}
-                onSubmit={handleUpdate}>
-                {(props: IMdFormPropsReturnDto) => (
-                  <>
-                    {formConf?.map(([key, form]: [string, IFormDto]) => (
-                      <Fragment key={key}>
-                        {(form.type === 'text' ||
-                          form.type === 'textarea' ||
-                          form.type === 'date' ||
-                          form.type === 'password') && (
-                          <MdInputText
-                            label={form.label}
-                            className={form.className ?? 'width100'}
-                            name={key}
-                            textarea={form.type === 'textarea' ? 10 : undefined}
-                            {...props}
-                            type={form.type as FormInputType}
-                          />
-                        )}
-                        {form.type === 'datetime' && (
-                          <MdInputDatepicker
-                            label={form.label}
-                            className={form.className}
-                            name={key}
-                            {...props}
-                            disabled={form.disabled}
-                          />
-                        )}
-                        {form.type === 'upload' && (
-                          <MdFormFile
-                            label={form.label}
-                            name={key}
-                            values={props.values}
-                            handleChangeFile={handleChangeFile(state.data.id, props.handleChange)}
-                          />
-                        )}
-                        {form.type === 'switch' && (
-                          <MdFormSwitch className={form.className} label={form.label} name={key} {...props} />
-                        )}
-                      </Fragment>
-                    ))}
-                  </>
-                )}
-              </MdForm>
+              <CustomForm
+                endPoint={page}
+                urlGoBack={'/admin/tab/' + page}
+                conf={formConf}
+                values={state.data}
+                schema={pageConf?.form as IYupValidators}
+                handleUpdate={handleUpdate}
+              />
             )}
           </MdCard>
         </HasRole>

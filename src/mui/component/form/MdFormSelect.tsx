@@ -1,5 +1,6 @@
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { IApiDto, JSONObject } from '../../../dto/api/ApiDto';
 import { useFormError } from '../../hook/useFormError';
 import { IMdFormPropsReturnDto } from './MdForm';
@@ -19,7 +20,8 @@ export interface IMdFormSelectProps extends IMdFormPropsReturnDto {
 }
 
 const MdFormSelect: React.FC<IMdFormSelectProps> = (props: IMdFormSelectProps) => {
-  const { showError } = useFormError(props.name, props.errors, props.touched);
+  const { t } = useTranslation();
+  const { error, showError } = useFormError(props.name, props.errors, props.touched);
 
   const [value, setValue] = useState<string>('');
   const [values, setValues] = useState<IList[]>([]);
@@ -28,7 +30,7 @@ const MdFormSelect: React.FC<IMdFormSelectProps> = (props: IMdFormSelectProps) =
     const values: IList[] = [];
     props.list.forEach((value) => {
       if (value.id) {
-        values.push({ value: value.id, name: value['name' as keyof JSONObject] });
+        values.push({ value: value.id, name: value['libelle' as keyof JSONObject] });
       }
     });
     setValues(values);
@@ -42,10 +44,15 @@ const MdFormSelect: React.FC<IMdFormSelectProps> = (props: IMdFormSelectProps) =
   }, [propsValues, props.byId]);
 
   const doChange = useCallback(
-    (event: SelectChangeEvent<string | JSONObject>) => {
+    (event: SelectChangeEvent<string | JSONObject | undefined>) => {
       event.preventDefault();
-      const value: string | JSONObject = event.target.value;
-      event.target.value = props.byId === true ? { id: value } : value;
+      let value: string | JSONObject | undefined = event.target.value;
+      if (value === '') {
+        value = undefined;
+      } else {
+        value = props.byId === true ? { id: value } : value;
+      }
+      event.target.value = value;
       props.handleChange(event);
       props.callBack?.((value as string).toString());
     },
@@ -55,12 +62,13 @@ const MdFormSelect: React.FC<IMdFormSelectProps> = (props: IMdFormSelectProps) =
   return (
     <div style={{ width: '100%' }}>
       <FormControl fullWidth sx={{ marginBottom: '8px', marginTop: '16px' }} disabled={props.disabled}>
-        <InputLabel id={props.name + '-label'}>
-          {props.label}
-          {validationSchema['required'] ? '*' : ''}
+        <InputLabel id={props.name + '-label'} error={error !== ''}>
+          {t(props.label)}
+          {validationSchema['required'] ? ' *' : ''}
         </InputLabel>
         {values && values.length > 0 && (
           <Select
+            error={error !== ''}
             labelId={props.name + '-label'}
             id={props.name}
             name={props.name}
@@ -68,8 +76,10 @@ const MdFormSelect: React.FC<IMdFormSelectProps> = (props: IMdFormSelectProps) =
             required={validationSchema['required']}
             label={props.label}
             onChange={doChange}
-            sx={{ width: '95%' }}>
-            <MenuItem key='' value=''></MenuItem>
+            className='width100'>
+            <MenuItem key='' value=''>
+              Aucun
+            </MenuItem>
             {values &&
               values.length > 0 &&
               values.map((myValue) => (

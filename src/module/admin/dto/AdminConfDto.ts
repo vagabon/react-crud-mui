@@ -1,12 +1,20 @@
 import { ITableDto } from '../../../mui/component/table/MdTableWithPagination';
+import { IYupValidator } from '../../../utils/yup/YupUtils';
 
-export interface IFormDto {
+export interface IManyToManyDto {
+  name: string;
+  endPoint: string;
+  fields: string;
+  order: string;
+  orderBy: string;
+}
+
+export interface IFormDto extends IYupValidator {
   label: string;
-  required: boolean;
-  type: string;
-  email?: boolean;
-  disabled?: boolean;
   className?: string;
+  listEndPoint?: string;
+  listName?: string;
+  m2m?: IManyToManyDto;
 }
 
 export interface IAdminTabDto {

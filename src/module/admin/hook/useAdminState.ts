@@ -20,7 +20,7 @@ export const useAdminState = (activePage: string, pageConf: IAdminTabDto) => {
 
   useEffect(() => {
     let newState = state;
-    if (!newState && pageConf) {
+    if (!newState?.datas && pageConf) {
       newState = {
         count: 0,
         datas: [],

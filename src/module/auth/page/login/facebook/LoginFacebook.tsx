@@ -25,7 +25,7 @@ const LoginFacebook: React.FC = () => {
         });
       }}
       onFail={(error) => {
-        console.log('Login Failed!', error);
+        console.log('Facebook Login Failed !', error);
       }}
       render={({ onClick }) => (
         <div className='flex align-center margin-5'>

@@ -13,7 +13,7 @@ interface IMdFormFileProps {
 
 const MdFormFile: React.FC<IMdFormFileProps> = (props: IMdFormFileProps) => {
   const { id } = useId();
-  console.log(props.values);
+
   const handleCapture = useCallback(
     (callback: (name: string, file: File) => void) =>
       ({ target }: ChangeEvent<HTMLInputElement & { files: FileList }>) => {
@@ -21,14 +21,19 @@ const MdFormFile: React.FC<IMdFormFileProps> = (props: IMdFormFileProps) => {
       },
     [props.name],
   );
+
   return (
     <Box
       sx={{ width: '100%', margin: '5px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
       <label htmlFor={id} style={{ flex: '1' }}>
         <Trans i18nKey={props.label} />
       </label>
-      <div className='flex'>
-        <p style={{ textOverflow: 'ellipsis' }}>{props.values?.[props.name as keyof JSONObject]}</p>
+      <div className='' style={{ maxWidth: '18%', margin: '0px 5px' }}>
+        <p
+          style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
+          title={props.values?.[props.name as keyof JSONObject]}>
+          {props.values?.[props.name as keyof JSONObject]}
+        </p>
       </div>
       <input accept='image/*' id={id} onChange={handleCapture(props.handleChangeFile)} type='file' />
     </Box>

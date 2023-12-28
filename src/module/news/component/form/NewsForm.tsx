@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import { ID, JSONObject } from '../../../../dto/api/ApiDto';
+import { JSONObject } from '../../../../dto/api/ApiDto';
 import { useCreateNews } from '../../../../module/news/hook/useCreateNews';
 import MdCard from '../../../../mui/component/card/MdCard';
 import MdContent from '../../../../mui/component/content/MdContent';
@@ -7,13 +7,15 @@ import MdForm, { HandleChangeType, IMdFormPropsReturnDto } from '../../../../mui
 import MdFormFile from '../../../../mui/component/form/MdFormFile';
 import MdFormSwitch from '../../../../mui/component/form/MdFormSwitch';
 import MdInputText from '../../../../mui/component/form/MdInputText';
+import { useCustomFormUpload } from '../../../custom/form/hook/useCustomFormUpload';
 import { INewsDto } from '../../dto/NewsDto';
 import NEWS_SCHEMA from '../../schema/news.schema.json';
 import NewsCard from '../card/NewsCard';
 
 const NewsForm: React.FC = () => {
-  const { news, createOrUpdateNews, uploadNewsImage } = useCreateNews();
+  const { news, createOrUpdateNews } = useCreateNews();
   const [newsForm, setNewsForm] = useState<INewsDto>(news);
+  const { handleChangeFile } = useCustomFormUpload('news');
 
   useEffect(() => {
     setNewsForm(news);
@@ -28,17 +30,6 @@ const NewsForm: React.FC = () => {
       });
     },
     [],
-  );
-
-  const handleChangeFile = useCallback(
-    (id: ID, callback: HandleChangeType) => (name: string, file: File) => {
-      uploadNewsImage(id, file).then((data) => {
-        const event = { target: { name, value: data } };
-        console.log('FILE UPLOAD : ', data, event);
-        callback(event);
-      });
-    },
-    [uploadNewsImage],
   );
 
   return (
@@ -63,12 +54,12 @@ const NewsForm: React.FC = () => {
               <MdFormFile
                 label='AVATAR'
                 name='avatar'
-                handleChangeFile={handleChangeFile(newsForm.id, props.handleChange)}
+                handleChangeFile={handleChangeFile(newsForm.id, handleChange(newsForm, props.handleChange))}
               />
               <MdFormFile
                 label='IMAGE'
                 name='image'
-                handleChangeFile={handleChangeFile(newsForm.id, props.handleChange)}
+                handleChangeFile={handleChangeFile(newsForm.id, handleChange(newsForm, props.handleChange))}
               />
               <MdFormSwitch label='Actif' name='active' {...props} />;
             </>

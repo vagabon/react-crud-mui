@@ -1,6 +1,6 @@
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import dayjs from 'dayjs';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { JSONObject } from '../../../dto/api/ApiDto';
 import { useFormError } from '../../hook/useFormError';
@@ -16,19 +16,20 @@ export interface IMdInputDatepickerProps extends IMdFormPropsReturnDto {
 
 const MdInputDatepicker: React.FC<IMdInputDatepickerProps> = (props: IMdInputDatepickerProps) => {
   const { t } = useTranslation();
-  const { showError } = useFormError(props.name, props.errors, props.touched);
-  const defaultValue = useRef(props.state[props.name as keyof JSONObject]);
-
-  const [value, setValue] = useState<dayjs.Dayjs | string>(dayjs(defaultValue.current));
+  const [value, setValue] = useState<dayjs.Dayjs | string | undefined>();
+  const { error } = useFormError(props.name, props.errors, props.touched);
 
   useEffect(() => {
-    const newValue = defaultValue.current;
+    const newValue = props.state[props.name as keyof JSONObject];
     newValue && setValue(dayjs(newValue));
-  }, [defaultValue]);
+  }, [props.state, props.name]);
 
   const handleChange = useCallback(
     (callback: HandleChangeType) => (newValue?: string | null) => {
-      const newValueString = JSON.stringify(newValue).replaceAll('\\', '').replaceAll('"', '');
+      let newValueString: string = '';
+      if (newValue) {
+        newValueString = JSON.stringify(newValue).replaceAll('\\', '').replaceAll('"', '');
+      }
       callback({ target: { name: props.name, value: newValueString } });
     },
     [props.name],
@@ -37,16 +38,22 @@ const MdInputDatepicker: React.FC<IMdInputDatepickerProps> = (props: IMdInputDat
   return (
     <div style={{ width: '100%' }} className={props.className ?? ''}>
       <DateTimePicker
+        slotProps={{
+          textField: {
+            variant: 'outlined',
+            error: error !== '',
+          },
+          field: { clearable: true },
+        }}
         format='DD/MM/YYYY HH:mm:ss'
         ampm={false}
         sx={{ width: '100%' }}
         label={t(props.label)}
         name={props.name}
         onChange={handleChange(props.handleChange)}
-        value={value as string}
+        value={(value as string) ?? ''}
         disabled={props.disabled ?? false}
       />
-      {showError()}
     </div>
   );
 };

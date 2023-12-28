@@ -18,7 +18,8 @@ const NewsService = {
     order: string,
   ): Promise<IPageableDto<INewsDto[]>> => {
     const champs = '(title%And|Description%)';
-    const values = filter.search + ',' + filter.search;
+    const value = filter.search ?? '';
+    const values = value + ',' + value;
     return ApiService.findBy<IPageableDto<INewsDto[]>>(
       ENDPOINT_NEWS_FINDBY,
       champs,

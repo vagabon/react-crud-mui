@@ -18,6 +18,7 @@ export interface IMdInputTextSimpleProps {
   required?: boolean;
   className?: string;
   fullWidth?: boolean;
+  error?: boolean;
   inputProps?: Partial<InputProps>;
   handleChange?: HandleChangeType;
   handleBlur?: HandleBlurType;
@@ -33,6 +34,7 @@ const MdInputTextSimple: React.FC<IMdInputTextSimpleProps> = (props: IMdInputTex
   return (
     <div style={{ width: '100%' }}>
       <TextField
+        error={props.error}
         key={key}
         inputRef={uref}
         className={props.className}
