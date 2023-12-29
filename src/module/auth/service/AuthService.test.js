@@ -1,4 +1,4 @@
-import ApiService from '../../../api/service/ApiService';
+import { ApiService } from '../../../api/service/ApiService';
 import AuthService from './AuthService';
 
 describe('AuthService', () => {

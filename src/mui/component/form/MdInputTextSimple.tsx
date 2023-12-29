@@ -9,9 +9,9 @@ const DEFAULT_TEXT = 'text';
 export interface IMdInputTextSimpleProps {
   label: string;
   value: JSONValue;
+  name: string;
   variant?: TextFieldVariants;
   placeholder?: string;
-  name: string;
   size?: 'small' | 'medium';
   type?: 'date' | 'text' | 'number' | 'password' | 'email';
   textarea?: number;

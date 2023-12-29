@@ -5,7 +5,7 @@ import { LoginAction } from '../../module/auth/reducer/AuthReducers';
 import { CommonAction } from '../../reducer/common/CommonReducer';
 import { StorageUtils } from '../../utils/storage/StorageUtils';
 
-const AxiosInterceptor = <U>(
+export const AxiosInterceptor = <U>(
   store: EnhancedStore,
   apiUrl: string,
   publicApi: string,
@@ -90,5 +90,3 @@ const AxiosInterceptor = <U>(
     },
   );
 };
-
-export default AxiosInterceptor;

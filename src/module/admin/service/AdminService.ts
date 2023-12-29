@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import ApiService from '../../../api/service/ApiService';
+import { ApiService } from '../../../api/service/ApiService';
 import { IApiDto } from '../../../dto/api/ApiDto';
 import { IPageableDto } from '../../../dto/pageable/PageableDto';
 import { CommonAction } from '../../../reducer/common/CommonReducer';

@@ -10,7 +10,7 @@ html, body, #root { height: 100%; }
 .flex { display: flex; flex-direction: column; }
 .flex-row { display: flex; flex-direction: row; }
 .flex-wrap { flex-wrap: wrap; }
-.flex1 { flex: 1; }
+.flex1 { flex: 1; &.MuiPaper-root { display: flex } .MuiCardContent-root { flex: 1; padding: 0px !important; } }
 .align-center { align-items: center; }
 .align-end { align-items: end; }
 .justify-end { justify-content: flex-end; }
@@ -22,6 +22,8 @@ html, body, #root { height: 100%; }
   & > .MuiPaper-root { display: flex; }
 }
 .margin-top-20 { margin-top: 20px; }
+.overflow { overflow: auto; }
+.no-overflow { overflow: hidden; }
 
 .width100 { width: 100%; }
 .heigth100 { height: 100%; }
@@ -141,6 +143,8 @@ thead th.MuiTableCell-root { background-color: var(--mui-palette-primary-main) !
       min-height: 48px !important;
   }
 }
+
+.form-modale .MuiBox-root { overflow: auto; }
 
 :root {
   --mui-palette-primary-main: #9f9f9f8e;

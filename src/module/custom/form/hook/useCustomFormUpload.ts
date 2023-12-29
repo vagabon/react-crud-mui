@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import ApiService from '../../../../api/service/ApiService';
+import { ApiService } from '../../../../api/service/ApiService';
 import { ID } from '../../../../dto/api/ApiDto';
 import { HandleChangeType } from '../../../../mui/component/form/MdForm';
 

@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { useEffect } from 'react';
-import ApiService from '../../../../api/service/ApiService';
+import { ApiService } from '../../../../api/service/ApiService';
 import { useCustomFormUpload } from './useCustomFormUpload';
 
 describe('useCustomFormUpload', () => {

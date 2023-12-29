@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import ApiService from '../../../../api/service/ApiService';
+import { ApiService } from '../../../../api/service/ApiService';
 import { IApiDto } from '../../../../dto/api/ApiDto';
 import { IPageableDto } from '../../../../dto/pageable/PageableDto';
 import { IMdFormPropsReturnDto } from '../../../../mui/component/form/MdForm';

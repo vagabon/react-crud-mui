@@ -1,5 +1,6 @@
-export { default as AxiosInterceptor } from './api/interceptor/AxiosInterceptor';
-export { default as ApiService } from './api/service/ApiService';
+export { AxiosInterceptor } from './api/interceptor/AxiosInterceptor';
+export { ApiService } from './api/service/ApiService';
+export { ApiCrudService } from './api/service/crud/ApiCrudService';
 export type { IApiDto, ID, JSON, JSONObject, JSONValue, Primitif } from './dto/api/ApiDto';
 export type { IAuthUserDto, ICurrentUserDto } from './dto/current-user/CurrentUserDto';
 export type { IMenuDto } from './dto/menu/MenuDto';
@@ -74,17 +75,21 @@ export { default as MdContent } from './mui/component/content/MdContent';
 export type { IMdContentProps } from './mui/component/content/MdContent';
 export { default as MdFab } from './mui/component/fab/MdFab';
 export type { IMdFabProps } from './mui/component/fab/MdFab';
+export { default as MdFabAdd } from './mui/component/fab/add/MdFabAdd';
+export type { IMdFabAddProps } from './mui/component/fab/add/MdFabAdd';
 
 export { default as MdForm } from './mui/component/form/MdForm';
 export type { IMdFormProps, IMdFormPropsReturnDto } from './mui/component/form/MdForm';
 export { default as MdFormSwitch } from './mui/component/form/MdFormSwitch';
-export type { IMdFormSwitchProps as FormSwitchProps } from './mui/component/form/MdFormSwitch';
+export type { IMdFormSwitchProps } from './mui/component/form/MdFormSwitch';
 export { default as MdInputText } from './mui/component/form/MdInputText';
-export type { IMdInputTextProps as IMdInputProps } from './mui/component/form/MdInputText';
+export type { IMdInputTextProps } from './mui/component/form/MdInputText';
+export { default as MdInputTextSimple } from './mui/component/form/MdInputTextSimple';
+export type { IMdInputTextSimpleProps } from './mui/component/form/MdInputTextSimple';
 export { default as MdFormAutocomplete } from './mui/component/form/autocomplete/MdFormAutocomplete';
-export type { IMdFormAutocompleteProps as FormAutocompleteProps } from './mui/component/form/autocomplete/MdFormAutocomplete';
+export type { IMdFormAutocompleteProps } from './mui/component/form/autocomplete/MdFormAutocomplete';
 export { default as MdFormCheckbox } from './mui/component/form/checkbox/MdFormCheckbox';
-export type { IMdFormCheckboxProps as IFormCheckboxProps } from './mui/component/form/checkbox/MdFormCheckbox';
+export type { IMdFormCheckboxProps } from './mui/component/form/checkbox/MdFormCheckbox';
 export { default as MdFormSelect } from './mui/component/form/select/MdFormSelect';
 export type { IMdFormSelectProps } from './mui/component/form/select/MdFormSelect';
 
@@ -100,14 +105,14 @@ export type { IMdLinkProps } from './mui/component/link/MdLink';
 export { default as MdListItemText } from './mui/component/list/MdListItemText';
 export type { IMdListItemTextProps } from './mui/component/list/MdListItemText';
 export { default as Mdlist } from './mui/component/list/Mdlist';
-export type { IMdlistProps as IMdListProps } from './mui/component/list/Mdlist';
+export type { IMdlistProps } from './mui/component/list/Mdlist';
 export { default as MdlistItem } from './mui/component/list/MdlistItem';
 export type { IMdlistItemProps } from './mui/component/list/MdlistItem';
 export { default as MdlistItemButton } from './mui/component/list/MdlistItemButton';
 export type { IMdlistItemButtonProps } from './mui/component/list/MdlistItemButton';
 
 export { default as MdMenuItem } from './mui/component/menu/MdMenuItem';
-export type { IMdMenuItemProps as MdMenuItemProps } from './mui/component/menu/MdMenuItem';
+export type { IMdMenuItemProps } from './mui/component/menu/MdMenuItem';
 
 export { default as MdCommonModal } from './mui/component/modal/MdCommonModal';
 
@@ -120,13 +125,14 @@ export type { ShowPageProps } from './mui/page/ShowPage';
 
 export { default as HasRole } from './mui/component/role/HasRole';
 export type { HasRoleProps } from './mui/component/role/HasRole';
+export { useRole } from './mui/component/role/useRole';
 
 export { default as MdSearchBar } from './mui/component/searchbar/MdSearchBar';
-export type { IMdSearchBarProps as SearchBarProps } from './mui/component/searchbar/MdSearchBar';
+export type { IMdSearchBarProps } from './mui/component/searchbar/MdSearchBar';
 export { default as ShowMessage } from './mui/component/snackbar/ShowMessage';
 
 export { default as MdTableWithPagination } from './mui/component/table/MdTableWithPagination';
-export type { IMdTableWithPaginationProps as TableWithPagniationProps } from './mui/component/table/MdTableWithPagination';
+export type { IMdTableWithPaginationProps } from './mui/component/table/MdTableWithPagination';
 
 export { default as MdTabs } from './mui/component/tabs/MdTabs';
 export type { IMdTabsProps, TabsType } from './mui/component/tabs/MdTabs';

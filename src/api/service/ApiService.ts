@@ -4,7 +4,7 @@ import { WindowUtils } from '../../utils/window/WindowUtils';
 
 const API_URL: string = WindowUtils.getEnv('API_URL');
 
-const ApiService = {
+export const ApiService = {
   get: <T>(endPoint: string, baseUrl: string = API_URL): Promise<T> => {
     return axios.get(baseUrl + endPoint).then(
       (response: AxiosResponse) => {
@@ -120,5 +120,3 @@ const ApiService = {
     );
   },
 };
-
-export default ApiService;

@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import { IProfileDto } from '../dto/ProfileDto';
 
-import ApiService from '../../../api/service/ApiService';
+import { ApiService } from '../../../api/service/ApiService';
 import { CommonAction } from '../../../reducer/common/CommonReducer';
 
 const ProfileService = {

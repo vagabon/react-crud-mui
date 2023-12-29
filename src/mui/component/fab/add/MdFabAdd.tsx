@@ -1,5 +1,5 @@
 import AddIcon from '@mui/icons-material/Add';
-import { Fab } from '@mui/material';
+import { Fab, PropTypes } from '@mui/material';
 import { SyntheticEvent, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ICurrentUserDto } from '../../../../dto/current-user/CurrentUserDto';
@@ -8,8 +8,10 @@ import { useAppSelector } from '../../../../store/Store';
 import RoleUtils from '../../../../utils/role/RoleUtils';
 
 export interface IMdFabAddProps {
+  color?: PropTypes.Color | 'success' | 'error' | 'info' | 'warning';
   urlAdd?: string;
   urlAddRole?: string[];
+  callback?: () => void;
 }
 
 const fabStyle = {
@@ -23,18 +25,24 @@ const MdFabAdd: React.FC<IMdFabAddProps> = (props) => {
   const navigate = useNavigate();
 
   const doCreate = useCallback(
-    (event: SyntheticEvent<Element, Event>) => {
+    (callback?: () => void) => (event: SyntheticEvent<Element, Event>) => {
       event.stopPropagation();
       props.urlAdd && navigate(props.urlAdd);
+      callback?.();
     },
     [props.urlAdd, navigate],
   );
 
   return (
     <div className='max-width relative'>
-      {props.urlAdd && RoleUtils.hasProfile(currentUser, props.urlAddRole) && (
+      {props.urlAddRole && RoleUtils.hasProfile(currentUser, props.urlAddRole) && (
         <div style={{ position: 'absolute', bottom: '5px', right: '5px' }}>
-          <Fab size='medium' color='primary' aria-label='add' sx={fabStyle} onClick={doCreate}>
+          <Fab
+            size='medium'
+            color={props.color ?? 'primary'}
+            aria-label='add'
+            sx={fabStyle}
+            onClick={doCreate(props.callback)}>
             <AddIcon />
           </Fab>
         </div>
