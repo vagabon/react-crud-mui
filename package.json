@@ -1,12 +1,12 @@
 {
   "name": "@vagabond-ts/react-crud-mui",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "description": "React lib with MUI, redux, i18n, router-dom, axios",
   "private": false,
   "scripts": {
     "lint": "eslint \"{src/**/*,*}.{js,ts,jsx,tsx}\"",
     "tsc": "tsc",
-    "test": "jest",
+    "test": "jest --runInBand",
     "test:json": "npm run test -- --json --outputFile=src/jest-test-results.json",
     "coverage": "npm run test -- --coverage ",
     "format": "npm run lint && npm run tsc",

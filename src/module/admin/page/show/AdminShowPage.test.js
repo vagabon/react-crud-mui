@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+import AdminService from '../../service/AdminService';
 import AdminShowPage from './AdminShowPage';
 
 const COMMON_INPUT = {
@@ -21,6 +22,15 @@ const PROFILE_M2M = {
   order: 'name',
   orderBy: 'asc',
 };
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useParams: () => ({
+    id: 2,
+    page: 'user',
+  }),
+  ...mockRouter,
+}));
 
 describe('AdminShowPage', () => {
   test('Given AdminShowPage when its mount then ', () => {
@@ -59,6 +69,7 @@ describe('AdminShowPage', () => {
         },
       ],
     };
+    jest.spyOn(AdminService, 'findById').mockReturnValue(Promise.resolve({}));
     render(<AdminShowPage conf={mockConf} />);
   });
 });

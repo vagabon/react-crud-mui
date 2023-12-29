@@ -77,8 +77,6 @@ export type { IMdFabProps } from './mui/component/fab/MdFab';
 
 export { default as MdForm } from './mui/component/form/MdForm';
 export type { IMdFormProps, IMdFormPropsReturnDto } from './mui/component/form/MdForm';
-export { default as MdFormSelect } from './mui/component/form/MdFormSelect';
-export type { IMdFormSelectProps } from './mui/component/form/MdFormSelect';
 export { default as MdFormSwitch } from './mui/component/form/MdFormSwitch';
 export type { IMdFormSwitchProps as FormSwitchProps } from './mui/component/form/MdFormSwitch';
 export { default as MdInputText } from './mui/component/form/MdInputText';
@@ -87,6 +85,8 @@ export { default as MdFormAutocomplete } from './mui/component/form/autocomplete
 export type { IMdFormAutocompleteProps as FormAutocompleteProps } from './mui/component/form/autocomplete/MdFormAutocomplete';
 export { default as MdFormCheckbox } from './mui/component/form/checkbox/MdFormCheckbox';
 export type { IMdFormCheckboxProps as IFormCheckboxProps } from './mui/component/form/checkbox/MdFormCheckbox';
+export { default as MdFormSelect } from './mui/component/form/select/MdFormSelect';
+export type { IMdFormSelectProps } from './mui/component/form/select/MdFormSelect';
 
 export { default as MdGrid } from './mui/component/grid/MdGrid';
 export type { IMdGridProps } from './mui/component/grid/MdGrid';

@@ -1,9 +1,9 @@
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IApiDto, JSONObject } from '../../../dto/api/ApiDto';
-import { useFormError } from '../../hook/useFormError';
-import { IMdFormPropsReturnDto } from './MdForm';
+import { IApiDto, JSONObject } from '../../../../dto/api/ApiDto';
+import { useFormError } from '../../../hook/useFormError';
+import { IMdFormPropsReturnDto } from '../MdForm';
 
 interface IList {
   value: string | number;
@@ -29,9 +29,7 @@ const MdFormSelect: React.FC<IMdFormSelectProps> = (props: IMdFormSelectProps) =
   useEffect(() => {
     const values: IList[] = [];
     props.list.forEach((value) => {
-      if (value.id) {
-        values.push({ value: value.id, name: value['libelle' as keyof JSONObject] });
-      }
+      value.id && values.push({ value: value.id, name: value['libelle' as keyof JSONObject] });
     });
     setValues(values);
   }, [props.list]);
@@ -43,7 +41,7 @@ const MdFormSelect: React.FC<IMdFormSelectProps> = (props: IMdFormSelectProps) =
     setValue(props.byId === true ? propsValues?.['id'] ?? '' : propsValues ?? '');
   }, [propsValues, props.byId]);
 
-  const doChange = useCallback(
+  const handleChange = useCallback(
     (event: SelectChangeEvent<string | JSONObject | undefined>) => {
       event.preventDefault();
       let value: string | JSONObject | undefined = event.target.value;
@@ -75,11 +73,9 @@ const MdFormSelect: React.FC<IMdFormSelectProps> = (props: IMdFormSelectProps) =
             value={value ?? ''}
             required={validationSchema['required']}
             label={props.label}
-            onChange={doChange}
+            onChange={handleChange}
             className='width100'>
-            <MenuItem key='' value=''>
-              Aucun
-            </MenuItem>
+            <MenuItem value=''>Aucun</MenuItem>
             {values &&
               values.length > 0 &&
               values.map((myValue) => (

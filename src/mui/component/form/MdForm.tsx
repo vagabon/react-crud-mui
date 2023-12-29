@@ -47,7 +47,7 @@ export interface IMdFormProps {
   validationSchema: IYupValidators;
   onSubmit: (values: IApiDto) => void;
   onGoBack?: () => void;
-  children: (props: IMdFormPropsReturnDto) => JSX.Element;
+  children: (props: IMdFormPropsReturnDto) => React.JSX.Element;
   backButton?: boolean;
   submitButton?: boolean;
 }

@@ -3,7 +3,7 @@ import ApiService from '../../../../api/service/ApiService';
 import { IApiDto } from '../../../../dto/api/ApiDto';
 import { IPageableDto } from '../../../../dto/pageable/PageableDto';
 import { IMdFormPropsReturnDto } from '../../../../mui/component/form/MdForm';
-import MdFormSelect from '../../../../mui/component/form/MdFormSelect';
+import MdFormSelect from '../../../../mui/component/form/select/MdFormSelect';
 import { IList } from '../../../../utils/list/ListUtils';
 import { IFormDto } from '../../../admin/dto/AdminConfDto';
 

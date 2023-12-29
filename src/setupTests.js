@@ -59,6 +59,12 @@ jest.mock('react-router-dom', () => ({
   Link: mockComponentWithCallBack('Link'),
 }));
 
+global.mockRouter = {
+  useNavigate: () => mockedUsedNavigate,
+  useLocation: () => mockeUsedLocation,
+  Link: mockComponentWithCallBack('Link'),
+};
+
 global.mockedUsedNavigate = mockedUsedNavigate;
 global.mockeUsedLocation = mockeUsedLocation;
 
@@ -108,7 +114,11 @@ jest.mock('@mui/material', () => ({
   Chip: ({ label, onDelete }) => <input data-testid='Chip' value={label} onClick={onDelete} />,
   Container: ({ children }) => <span data-testid='Container'>{children}</span>,
   CssBaseline: ({ children }) => <span data-testid='CssBaseline'>{children}</span>,
-  Fab: ({ children }) => <span data-testid='Fab'>{children}</span>,
+  Fab: ({ children, onClick }) => (
+    <div data-testid='Fab' onClick={onClick}>
+      {children}
+    </div>
+  ),
   FormControl: ({ children }) => <span data-testid='FormControl'>{children}</span>,
   Grid: ({ children }) => <span data-testid='Grid'>{children}</span>,
   IconButton: ({ children }) => <span data-testid='IconButton'>{children}</span>,
@@ -119,9 +129,18 @@ jest.mock('@mui/material', () => ({
   ListItem: ({ children }) => <span data-testid='ListItem'>{children}</span>,
   ListItemButton: ({ children }) => <span data-testid='ListItemButton'>{children}</span>,
   ListItemText: ({ children }) => <span data-testid='ListItemText'>{children}</span>,
-  ListItemText: ({ children }) => <span data-testid='ListItemText'>{children}</span>,
+  MenuItem: ({ value, children }) => (
+    <option data-testid='Modal' value={value}>
+      {children}
+    </option>
+  ),
   Modal: ({ children }) => <span data-testid='Modal'>{children}</span>,
-  Select: ({ children }) => <span data-testid='Select'>{children}</span>,
+  Select: ({ name, onChange, children }) => (
+    <>
+      <input name={name} data-testid='Select' onChange={onChange}></input>
+      {children}
+    </>
+  ),
   Snackbar: ({ children }) => <span data-testid='Snackbar'>{children}</span>,
   Switch: ({ children }) => <span data-testid='Switch'>{children}</span>,
   Table: ({ children }) => <span data-testid='Table'>{children}</span>,

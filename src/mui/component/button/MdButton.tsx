@@ -16,7 +16,7 @@ export interface IMdButtonProps {
   show?: boolean;
   label?: string;
   url?: string;
-  startIcon?: JSX.Element;
+  startIcon?: React.JSX.Element;
   icon?: string;
   color?: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning' | 'google' | 'facebook';
   size?: 'small' | 'medium' | 'large';
