@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import MdFormAutocomplete from './MdFormAutocomplete';
 
 describe('MdFormAutocomplete', () => {
-  test('Given MdFormAutocomplete when its mount then Checkbox is shown', () => {
+  test('Given MdFormAutocomplete when its mount then Autocomplete is shown', () => {
     useAppSelectorSpy.mockImplementation((callback) =>
       callback({
         common: { message: '' },
@@ -13,7 +13,7 @@ describe('MdFormAutocomplete', () => {
       <MdFormAutocomplete
         label='label'
         name='name'
-        list={[{ id: 1, name: 'name' }]}
+        list={['name']}
         values={{ name: 'name' }}
         errors={[]}
         handleChange={handleChange}

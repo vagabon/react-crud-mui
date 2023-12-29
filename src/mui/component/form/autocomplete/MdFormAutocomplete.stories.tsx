@@ -18,8 +18,8 @@ export const Primary: Story = {
   args: {
     label: 'label',
     name: 'name',
-    list: [{ id: 1, name: 'name' }],
-    values: { name: 'name' },
+    list: ['name'],
+    values: { name: '' },
     errors: [],
   },
 };

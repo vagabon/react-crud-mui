@@ -14,7 +14,7 @@ export interface IMdFormSelectProps extends IMdFormPropsReturnDto {
   label: string;
   name: string;
   list: IApiDto[];
-  callBack?: (value: string) => void;
+  callBack?: (value?: string | JSONObject) => void;
   disabled?: boolean;
   byId?: boolean;
 }
@@ -52,7 +52,7 @@ const MdFormSelect: React.FC<IMdFormSelectProps> = (props: IMdFormSelectProps) =
       }
       event.target.value = value;
       props.handleChange(event);
-      props.callBack?.((value as string).toString());
+      props.callBack?.(value);
     },
     [props],
   );

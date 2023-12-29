@@ -14,12 +14,22 @@ const meta: Meta<typeof MdFormCheckbox> = {
 export default meta;
 type Story = StoryObj<typeof MdFormCheckbox>;
 
+let checked = true;
+let values = { name: checked };
+
+const handleChange = () => {
+  console.log(checked);
+  checked = !checked;
+  values = { name: checked };
+};
+
 export const Primary: Story = {
   args: {
     label: 'label',
     name: 'name',
-    values: { name: 'name' },
+    values: values,
     errors: [],
+    handleChange: handleChange,
   },
 };
 Primary.parameters = {
