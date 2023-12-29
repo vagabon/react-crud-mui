@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { StorageUtils } from '../../utils/storage/StorageUtils';
-import AxiosInterceptor from './AxiosInterceptor';
+import { AxiosInterceptor } from './AxiosInterceptor';
 
 const store = { dispatch: jest.fn() };
 
