@@ -15,7 +15,9 @@ const meta: Meta<typeof MdFormSelect> = {
 export default meta;
 type Story = StoryObj<typeof MdFormSelect>;
 
-const callBack = () => {};
+const callBack = () => {
+  // DO NOTHING
+};
 
 export const Primary: Story = {
   args: {

@@ -5,5 +5,5 @@ npm install eslint --save-dev
 npm install eslint-config-react-app --save-dev
 npm outdated
 
-npx sonar-scanner -Dsonar.login=TOKEN -Dsonar.host.url=http://localhost:9000 -Dsonar.exclusions=src/assets/**
+npx sonar-scanner -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=http://localhost:9000 -Dsonar.exclusions=src/assets/**
 sudo sysctl -w vm.max_map_count=262144

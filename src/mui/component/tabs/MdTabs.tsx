@@ -42,8 +42,8 @@ const MdTabs: React.FC<IMdTabsProps> = ({
     <Tabs
       value={value}
       onChange={handleChange}
-      indicatorColor={indicatorColor ?? 'primary'}
-      textColor={color ?? 'primary'}
+      indicatorColor={indicatorColor ?? 'secondary'}
+      textColor={color ?? 'secondary'}
       aria-label={label ?? ''}
       variant={variant ?? 'scrollable'}
       scrollButtons={scrollButtons ?? 'auto'}>

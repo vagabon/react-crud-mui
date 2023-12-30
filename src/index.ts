@@ -42,6 +42,10 @@ export type { IRegisterDto } from './module/auth/page/register/dto/RegisterDto';
 export { AuthReducer, default as AuthReducers, LoginAction } from './module/auth/reducer/AuthReducers';
 export type { AuthReducerState } from './module/auth/reducer/AuthReducers';
 export { default as AuthService } from './module/auth/service/AuthService';
+
+export { default as CustomList } from './module/custom/list/component/CustomList';
+export type { ICustomList, ICustomListDto } from './module/custom/list/component/CustomList';
+
 export { default as NewsRouter } from './module/news/NewsRouter';
 export { default as NewsCard } from './module/news/component/card/NewsCard';
 export type { INewsCardProps } from './module/news/component/card/NewsCard';

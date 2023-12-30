@@ -11,3 +11,8 @@ export interface IApiDto {
   deletedDate?: string;
   active?: boolean;
 }
+
+// TODO : remove it on objectUtils
+export const getApiDtoValue = (data: IApiDto, name: string) => {
+  return data[name as keyof IApiDto];
+};

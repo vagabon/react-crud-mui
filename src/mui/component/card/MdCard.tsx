@@ -1,9 +1,10 @@
-import SettingsIcon from '@mui/icons-material/Settings';
-import { Card, CardActions, CardContent, CardHeader, CardMedia, IconButton } from '@mui/material';
-import { MouseEvent, ReactNode, useCallback } from 'react';
+import { Card, CardActions, CardContent, CardHeader, CardMedia, Typography } from '@mui/material';
+import { ReactNode, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ID } from '../../../dto/api/ApiDto';
+import CustomIcon from '../../../module/custom/icon/component/CustomIcon';
 import { DateUtils } from '../../../utils/date/DateUtils';
+import { ObjectUtils } from '../../../utils/object/OjectUtils';
 import { WindowUtils } from '../../../utils/window/WindowUtils';
 import { useId } from '../../hook/useId';
 
@@ -27,9 +28,7 @@ const MdCard: React.FC<IMdCardProps> = ({ title, url, urlUpdate, avatar, image, 
   const { id } = useId(rest.id as string);
 
   const handleClick = useCallback(
-    (customUrl?: string) => (e: MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation();
-      e.preventDefault();
+    (customUrl?: string) => () => {
       customUrl && navigate(customUrl);
     },
     [navigate],
@@ -45,14 +44,12 @@ const MdCard: React.FC<IMdCardProps> = ({ title, url, urlUpdate, avatar, image, 
               <img alt={'Image : ' + title} src={API_URL + '/download?fileName=' + avatar} width='40px' height='40px' />
             )
           }
-          action={
-            urlUpdate && (
-              <IconButton aria-label='delete' onClick={handleClick(urlUpdate)}>
-                <SettingsIcon />
-              </IconButton>
-            )
+          action={urlUpdate && <CustomIcon color='primary' icon='settings' callback={handleClick(urlUpdate)} />}
+          title={
+            <Typography variant='h4' color='secondary'>
+              {ObjectUtils.capitalize(title)}
+            </Typography>
           }
-          title={title}
           subheader={date ? DateUtils.format(date, 'Le DD MMM YYYY à hhhmm') : ''}
         />
       )}

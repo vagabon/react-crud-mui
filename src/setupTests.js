@@ -89,70 +89,82 @@ jest.mock('react-i18next', () => ({
 
 /* global jest */
 jest.mock('@mui/material', () => ({
-  Alert: ({ children }) => <span data-testid='Alert'>{children}</span>,
+  Alert: ({ children }) => <div data-testid='Alert'>{children}</div>,
+  Avatar: ({ children }) => <div data-testid='Avatar'>{children}</div>,
   Autocomplete: ({ name, value, onChange, onBlur, renderInput }) => (
     <>
       <input data-testid='Autocomplete' name={name} value={value} onClick={onChange} onBlur={onBlur} />
       {renderInput()}
     </>
   ),
-  Box: ({ children }) => <span data-testid='Box'>{children}</span>,
-  ButtonGroup: ({ children }) => <span data-testid='ButtonGroup'>{children}</span>,
-  Card: ({ children }) => <span data-testid='Card'>{children}</span>,
-  CardActions: ({ children }) => <span data-testid='CardActions'>{children}</span>,
-  CardContent: ({ children }) => <span data-testid='CardContent'>{children}</span>,
+  Box: ({ children }) => <div data-testid='Box'>{children}</div>,
+  ButtonGroup: ({ children }) => <div data-testid='ButtonGroup'>{children}</div>,
+  Card: ({ children }) => <div data-testid='Card'>{children}</div>,
+  CardActions: ({ children }) => <div data-testid='CardActions'>{children}</div>,
+  CardContent: ({ children }) => <div data-testid='CardContent'>{children}</div>,
   CardHeader: ({ title, children }) => (
-    <span data-testid='CardHeader'>
+    <div data-testid='CardHeader'>
       {title}
       {children}
-    </span>
+    </div>
   ),
-  CardMedia: ({ children }) => <span data-testid='CardMedia'>{children}</span>,
-  Checkbox: ({ name, checked, onChange, onBlur }) => (
-    <input data-testid='Checkbox' name={name} checked={checked} onClick={onChange} onBlur={onBlur} />
+  CardMedia: ({ children }) => <div data-testid='CardMedia'>{children}</div>,
+  Checkbox: ({ name, checked, onClick, onChange, onBlur }) => (
+    <input data-testid='Checkbox' name={name} checked={checked} onClick={onClick} onChange={onChange} onBlur={onBlur} />
   ),
   Chip: ({ label, onDelete }) => <input data-testid='Chip' value={label} onClick={onDelete} />,
-  Container: ({ children }) => <span data-testid='Container'>{children}</span>,
-  CssBaseline: ({ children }) => <span data-testid='CssBaseline'>{children}</span>,
+  Container: ({ children }) => <div data-testid='Container'>{children}</div>,
+  CssBaseline: ({ children }) => <div data-testid='CssBaseline'>{children}</div>,
+  Divider: ({ children }) => <div data-testid='Divider'>{children}</div>,
   Fab: ({ children, onClick }) => (
     <div data-testid='Fab' onClick={onClick}>
       {children}
     </div>
   ),
-  FormControl: ({ children }) => <span data-testid='FormControl'>{children}</span>,
-  Grid: ({ children }) => <span data-testid='Grid'>{children}</span>,
-  IconButton: ({ children }) => <span data-testid='IconButton'>{children}</span>,
-  InputLabel: ({ children }) => <span data-testid='InputLabel'>{children}</span>,
-  InputAdornment: ({ children }) => <span data-testid='InputAdornment'>{children}</span>,
-  LinearProgress: ({ children }) => <span data-testid='LinearProgress'>{children}</span>,
-  List: ({ children }) => <span data-testid='List'>{children}</span>,
-  ListItem: ({ children }) => <span data-testid='ListItem'>{children}</span>,
-  ListItemButton: ({ children }) => <span data-testid='ListItemButton'>{children}</span>,
-  ListItemText: ({ children }) => <span data-testid='ListItemText'>{children}</span>,
+  FormControl: ({ children }) => <div data-testid='FormControl'>{children}</div>,
+  Grid: ({ children }) => <div data-testid='Grid'>{children}</div>,
+  IconButton: ({ children, onClick }) => (
+    <div data-testid='IconButton' onClick={onClick}>
+      {children}
+    </div>
+  ),
+  InputLabel: ({ children }) => <div data-testid='InputLabel'>{children}</div>,
+  InputAdornment: ({ children }) => <div data-testid='InputAdornment'>{children}</div>,
+  LinearProgress: ({ children }) => <div data-testid='LinearProgress'>{children}</div>,
+  List: ({ children }) => <div data-testid='List'>{children}</div>,
+  ListItem: ({ onClick, children }) => (
+    <div data-testid='ListItem' onClick={onClick}>
+      {children}
+    </div>
+  ),
+  ListItemAvatar: ({ children }) => <div data-testid='ListItemAvatar'>{children}</div>,
+  ListItemButton: ({ children }) => <div data-testid='ListItemButton'>{children}</div>,
+  ListItemIcon: ({ children }) => <div data-testid='ListItemIcon'>{children}</div>,
+  ListItemText: ({ children }) => <div data-testid='ListItemText'>{children}</div>,
   MenuItem: ({ value, children }) => (
     <option data-testid='Modal' value={value}>
       {children}
     </option>
   ),
-  Modal: ({ children }) => <span data-testid='Modal'>{children}</span>,
+  Modal: ({ children }) => <div data-testid='Modal'>{children}</div>,
   Select: ({ name, onChange, children }) => (
     <>
       <input name={name} data-testid='Select' onChange={onChange}></input>
       {children}
     </>
   ),
-  Snackbar: ({ children }) => <span data-testid='Snackbar'>{children}</span>,
-  Switch: ({ children }) => <span data-testid='Switch'>{children}</span>,
-  Table: ({ children }) => <span data-testid='Table'>{children}</span>,
-  TableBody: ({ children }) => <span data-testid='TableBody'>{children}</span>,
-  TableCell: ({ children }) => <span data-testid='TableCell'>{children}</span>,
-  TableFooter: ({ children }) => <span data-testid='TableFooter'>{children}</span>,
-  TableHead: ({ children }) => <span data-testid='TableHead'>{children}</span>,
-  TablePagination: ({ children }) => <span data-testid='TablePagination'>{children}</span>,
-  TableRow: ({ children }) => <span data-testid='TableRow'>{children}</span>,
-  TableSortLabel: ({ children }) => <span data-testid='TableSortLabel'>{children}</span>,
-  Tab: ({ children }) => <span data-testid='Tab'>{children}</span>,
-  Tabs: ({ children }) => <span data-testid='Tabs'>{children}</span>,
+  Snackbar: ({ children }) => <div data-testid='Snackbar'>{children}</div>,
+  Switch: ({ children }) => <div data-testid='Switch'>{children}</div>,
+  Table: ({ children }) => <div data-testid='Table'>{children}</div>,
+  TableBody: ({ children }) => <div data-testid='TableBody'>{children}</div>,
+  TableCell: ({ children }) => <div data-testid='TableCell'>{children}</div>,
+  TableFooter: ({ children }) => <div data-testid='TableFooter'>{children}</div>,
+  TableHead: ({ children }) => <div data-testid='TableHead'>{children}</div>,
+  TablePagination: ({ children }) => <div data-testid='TablePagination'>{children}</div>,
+  TableRow: ({ children }) => <div data-testid='TableRow'>{children}</div>,
+  TableSortLabel: ({ children }) => <div data-testid='TableSortLabel'>{children}</div>,
+  Tab: ({ children }) => <div data-testid='Tab'>{children}</div>,
+  Tabs: ({ children }) => <div data-testid='Tabs'>{children}</div>,
   TextField: ({ label, name, onChange, children }) => (
     <>
       <label>{label}</label>
@@ -161,9 +173,9 @@ jest.mock('@mui/material', () => ({
       </input>
     </>
   ),
-  ThemeProvider: ({ children }) => <span data-testid='ThemeProvider'>{children}</span>,
-  Toolbar: ({ children }) => <span data-testid='Toolbar'>{children}</span>,
-  Typography: ({ children }) => <span data-testid='Typography'>{children}</span>,
+  ThemeProvider: ({ children }) => <div data-testid='ThemeProvider'>{children}</div>,
+  Toolbar: ({ children }) => <div data-testid='Toolbar'>{children}</div>,
+  Typography: ({ children }) => <div data-testid='Typography'>{children}</div>,
   createTheme: jest.fn(),
 }));
 
@@ -186,11 +198,11 @@ jest.mock('@mui/material/MenuItem', () => ({ children, onClick }) => (
 ));
 
 jest.mock('mui-markdown', () => ({
-  MuiMarkdown: ({ children }) => <span data-testid='MuiMarkdown'>{children}</span>,
+  MuiMarkdown: ({ children }) => <div data-testid='MuiMarkdown'>{children}</div>,
 }));
 
 jest.mock('@mui/x-date-pickers/DateTimePicker', () => ({
-  DateTimePicker: ({ children }) => <span data-testid='DateTimePicker'>{children}</span>,
+  DateTimePicker: ({ children }) => <div data-testid='DateTimePicker'>{children}</div>,
 }));
 
 /***************************** AFTER EACH RESET MOCK *****************************/

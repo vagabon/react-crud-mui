@@ -45,7 +45,8 @@ const MdMenuItem: React.FC<IMdMenuItemProps> = (props: IMdMenuItemProps) => {
         aria-haspopup='true'
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-        endIcon={props.childrens && <KeyboardArrowDownIcon />}>
+        endIcon={props.childrens && <KeyboardArrowDownIcon />}
+        color='secondary'>
         {props.name}
       </Button>
       {props.childrens && (
