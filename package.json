@@ -20,7 +20,7 @@
     "ssh:add": "ssh-add ~/.ssh/id_ed25519",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
-    "prepublishOnly": "npm run format && npm i && npm run build"
+    "prepublishOnly": "npm run test:json && npm run format && npm i && npm run build"
   },
   "dependencies": {
     "@emotion/react": "~11.11.1",
