@@ -18,7 +18,6 @@ let checked = true;
 let values = { name: checked };
 
 const handleChange = () => {
-  console.log(checked);
   checked = !checked;
   values = { name: checked };
 };

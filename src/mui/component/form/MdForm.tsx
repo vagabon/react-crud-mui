@@ -115,19 +115,21 @@ const MdForm: React.FC<IMdFormProps> = (props: IMdFormProps) => {
         setFieldValue,
         setValues,
       }) => (
-        <div className={props.className}>
-          {props.children({
-            values,
-            state,
-            errors,
-            touched,
-            validationSchema: props.validationSchema,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            setFieldValue,
-            setValues,
-          })}
+        <>
+          <div className={'form-content ' + props.className}>
+            {props.children({
+              values,
+              state,
+              errors,
+              touched,
+              validationSchema: props.validationSchema,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              setFieldValue,
+              setValues,
+            })}
+          </div>
           <div style={{ height: '30px' }}>&nbsp;</div>
           <div className='width100 flex-row justify-end'>
             {props.backButton === true && history.length > 1 && (
@@ -137,7 +139,7 @@ const MdForm: React.FC<IMdFormProps> = (props: IMdFormProps) => {
               <MdButton label='COMMON:SUBMIT' onClick={() => doSubmit(values, validateForm)} />
             )}
           </div>
-        </div>
+        </>
       )}
     </Formik>
   );

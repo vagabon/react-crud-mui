@@ -2,14 +2,14 @@ import { IconButton } from '@mui/material';
 import { MouseEvent, useCallback } from 'react';
 import { ColorType, useIcon } from '../../../../mui/hook/useIcon';
 
-export interface ICustomIcon {
+export interface ICustomIconProps {
   icon: string;
   color?: ColorType;
   disabled?: boolean;
   callback?: () => void;
 }
 
-const CustomIcon: React.FC<ICustomIcon> = ({ icon, color, disabled, callback }) => {
+const CustomIcon: React.FC<ICustomIconProps> = ({ icon, color, disabled, callback }) => {
   const { getIcon } = useIcon();
 
   const handleClickIcon = useCallback(

@@ -1,5 +1,4 @@
 import FacebookLogin from '@greatsumini/react-facebook-login';
-import FacebookIcon from '@mui/icons-material/Facebook';
 import { useNavigate } from 'react-router-dom';
 import MdButton from '../../../../../mui/component/button/MdButton';
 import { useAppDispatch } from '../../../../../store/Store';
@@ -32,7 +31,7 @@ const LoginFacebook: React.FC = () => {
           <MdButton
             label='AUTH:LOGIN.FACEBOOK'
             variant='outlined'
-            startIcon={<FacebookIcon />}
+            startIcon='facebook'
             onClick={onClick}
             color='facebook'></MdButton>
         </div>

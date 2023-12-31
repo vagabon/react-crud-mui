@@ -8,12 +8,6 @@ jest.mock('@react-oauth/google', () => ({
   },
 }));
 
-const GoogleMock = () => {
-  return <div></div>;
-};
-
-jest.mock('@mui/icons-material/Google', () => GoogleMock);
-
 describe('LoginPage', () => {
   test('Given LoginPage when its mount then ', () => {
     const { container } = render(<LoginPage />);

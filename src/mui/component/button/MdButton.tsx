@@ -1,8 +1,8 @@
 import Button from '@mui/material/Button';
-import { ReactNode, useCallback, useEffect, useState } from 'react';
+import { MouseEvent, ReactNode, useCallback, useEffect, useState } from 'react';
 import { Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { useIcon } from '../../hook/useIcon';
+import { ColorType, useIcon } from '../../hook/useIcon';
 
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
@@ -15,8 +15,9 @@ export interface IMdButtonProps {
   show?: boolean;
   label?: string;
   url?: string;
-  startIcon?: React.JSX.Element;
+  startIcon?: string;
   icon?: string;
+  iconColor?: ColorType;
   color?: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning' | 'google' | 'facebook';
   size?: 'small' | 'medium' | 'large';
   variant?: 'text' | 'outlined' | 'contained';
@@ -29,11 +30,13 @@ const MdButton: React.FC<IMdButtonProps> = (props: IMdButtonProps) => {
   const { getIcon } = useIcon();
 
   useEffect(() => {
-    setIcon(getIcon(props.icon));
-  }, [props.icon]);
+    setIcon(getIcon(props.icon, props.iconColor));
+  }, [props.icon, props.iconColor, getIcon]);
 
   const onClick = useCallback(
-    (callback?: () => void) => () => {
+    (callback?: () => void) => (event: MouseEvent) => {
+      event.stopPropagation();
+      event.preventDefault();
       if (callback) {
         callback();
       } else if (props.url) {
@@ -54,7 +57,7 @@ const MdButton: React.FC<IMdButtonProps> = (props: IMdButtonProps) => {
           size={props.size ?? 'small'}
           variant={props.variant}
           onClick={onClick(props.onClick)}
-          startIcon={props.startIcon}
+          startIcon={getIcon(props.startIcon)}
           color={props.color ?? 'primary'}>
           {showContent()}
         </Button>

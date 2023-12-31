@@ -4,6 +4,7 @@ import { IProfileDto } from './ProfileDto';
 export interface IUserDto extends IApiDto {
   username?: string;
   email?: string;
+  avatar?: string;
   password?: string;
   profiles?: IProfileDto[];
   search?: '';

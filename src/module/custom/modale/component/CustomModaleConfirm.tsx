@@ -4,16 +4,18 @@ import { ID } from '../../../../dto/api/ApiDto';
 import MdButton from '../../../../mui/component/button/MdButton';
 import MdCard from '../../../../mui/component/card/MdCard';
 import MdCommonModal from '../../../../mui/component/modal/MdCommonModal';
+import { ColorType } from '../../../../mui/hook/useIcon';
 import CustomIcon from '../../icon/component/CustomIcon';
 
 export interface ICustomModaleConfirmProps {
   id?: ID;
   label?: string;
   icon?: string;
-  callback: (id: ID) => void;
+  iconColor?: ColorType;
+  callback?: (id: ID) => void;
 }
 
-const CustomModaleConfirm: React.FC<ICustomModaleConfirmProps> = ({ id, label, icon, callback }) => {
+const CustomModaleConfirm: React.FC<ICustomModaleConfirmProps> = ({ id, label, icon, iconColor, callback }) => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = useCallback(
@@ -25,7 +27,7 @@ const CustomModaleConfirm: React.FC<ICustomModaleConfirmProps> = ({ id, label, i
 
   const handleYes = useCallback(() => {
     setOpen(false);
-    callback(id);
+    callback?.(id);
   }, [id, callback]);
 
   return (
@@ -42,7 +44,7 @@ const CustomModaleConfirm: React.FC<ICustomModaleConfirmProps> = ({ id, label, i
           <Trans i18nKey={label ?? 'CONFIRMATIOn.MESSAGE'} />
         </MdCard>
       </MdCommonModal>
-      {icon && <CustomIcon color='error' icon={icon} callback={handleOpen(true)} />}
+      {icon && <CustomIcon color={iconColor ?? 'error'} icon={icon} callback={handleOpen(true)} />}
     </>
   );
 };

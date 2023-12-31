@@ -1,34 +1,43 @@
-import { Avatar, Checkbox, Divider, ListItem, ListItemAvatar, ListItemIcon } from '@mui/material';
+import { Checkbox, Divider, ListItem, ListItemAvatar, ListItemIcon } from '@mui/material';
 import { Fragment, MouseEvent, useCallback } from 'react';
 import { IApiDto, ID } from '../../../../dto/api/ApiDto';
 import { useMdTrans } from '../../../../hook/trans/useMdTrans';
+import MdAvatar from '../../../../mui/component/avatar/MdAvatar';
+import MdChip from '../../../../mui/component/chip/MdChip';
 import MdListItemText from '../../../../mui/component/list/MdListItemText';
 import Mdlist from '../../../../mui/component/list/Mdlist';
 import MdlistItem from '../../../../mui/component/list/MdlistItem';
-import MdlistItemButton from '../../../../mui/component/list/MdlistItemButton';
 import CustomIcon from '../../icon/component/CustomIcon';
 import CustomModaleConfirm from '../../modale/component/CustomModaleConfirm';
 
 export interface ICustomListDto extends IApiDto {
   avatar?: string;
   icon?: string;
+  chip?: string;
+  secondary?: string;
   name: string;
   checked?: boolean;
 }
 
-export interface ICustomList {
+export interface ICustomListProps {
   datas: ICustomListDto[];
   callback?: (data: IApiDto) => void;
   callbackCheckbox?: (id: ID) => void;
   callbackDelete?: (id: ID) => void;
+  callbackSettings?: (data: IApiDto) => void;
 }
 
-const CustomList: React.FC<ICustomList> = ({ datas, callback, callbackCheckbox, callbackDelete }) => {
+const CustomList: React.FC<ICustomListProps> = ({
+  datas,
+  callback,
+  callbackCheckbox,
+  callbackDelete,
+  callbackSettings,
+}) => {
   const { t } = useMdTrans();
 
   const handleClick = useCallback(
     (data: IApiDto) => () => {
-      console.log('ok');
       callback?.(data);
     },
     [callback],
@@ -42,13 +51,28 @@ const CustomList: React.FC<ICustomList> = ({ datas, callback, callbackCheckbox, 
     [],
   );
 
+  const getIconColor = useCallback(
+    (checked?: boolean) => {
+      if (!callbackCheckbox) {
+        return 'info';
+      } else {
+        return checked ? 'success' : 'error';
+      }
+    },
+    [callbackCheckbox],
+  );
+
+  const getTextColor = useCallback((checked?: boolean) => {
+    return checked ? 'success' : '';
+  }, []);
+
   return (
     <Mdlist className='overflow'>
       {!datas || datas.length === 0 ? (
         <MdlistItem component='div' disablePadding>
-          <MdlistItemButton>
+          <MdlistItem>
             <MdListItemText label={t('NO_RESULT')} />
-          </MdlistItemButton>
+          </MdlistItem>
         </MdlistItem>
       ) : (
         datas?.map((data) => (
@@ -57,12 +81,12 @@ const CustomList: React.FC<ICustomList> = ({ datas, callback, callbackCheckbox, 
               <ListItem onClick={handleClick(data)}>
                 {data.avatar && (
                   <ListItemAvatar>
-                    <Avatar alt={data.avatar} src={data.avatar} />
+                    <MdAvatar name={data.avatar} image={data.avatar} />
                   </ListItemAvatar>
                 )}
                 {data.icon && (
                   <ListItemIcon>
-                    <CustomIcon icon={data.icon} color='info' disabled={true} />
+                    <CustomIcon icon={data.icon} color={getIconColor(data.checked)} disabled={true} />
                   </ListItemIcon>
                 )}
                 {callbackCheckbox && (
@@ -76,10 +100,15 @@ const CustomList: React.FC<ICustomList> = ({ datas, callback, callbackCheckbox, 
                     />
                   </ListItemIcon>
                 )}
-                <MdListItemText label={data.name} />
-                {callbackDelete && (
+                <MdListItemText
+                  color={getTextColor(data.checked)}
+                  label={data.name}
+                  secondary={<>{data.secondary}</>}
+                />
+                {data.chip && <MdChip label={data.chip} />}
+                {callbackSettings && (
                   <ListItemIcon>
-                    <CustomIcon icon='settings' />
+                    <CustomIcon icon='settings' color='primary' callback={() => callbackSettings(data)} />
                   </ListItemIcon>
                 )}
                 {callbackDelete && (

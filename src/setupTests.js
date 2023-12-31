@@ -89,6 +89,7 @@ jest.mock('react-i18next', () => ({
 
 /* global jest */
 jest.mock('@mui/material', () => ({
+  Avatar: ({ children }) => <div data-testid='Avatar'>{children}</div>,
   Alert: ({ children }) => <div data-testid='Alert'>{children}</div>,
   Avatar: ({ children }) => <div data-testid='Avatar'>{children}</div>,
   Autocomplete: ({ name, value, onChange, onBlur, renderInput }) => (

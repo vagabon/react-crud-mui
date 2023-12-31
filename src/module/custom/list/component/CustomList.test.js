@@ -13,7 +13,7 @@ describe('CustomList', () => {
     const callbackDelete = jest.fn();
     render(
       <CustomList
-        datas={[{ id: 1, avatar: 'avatar', name: 'name', icon: 'icon', checked: true }]}
+        datas={[{ id: 1, avatar: 'avatar', chip: 'chip', name: 'name', icon: 'icon', checked: true }]}
         callback={callback}
         callbackCheckbox={callbackCheckbox}
         callbackDelete={callbackDelete}

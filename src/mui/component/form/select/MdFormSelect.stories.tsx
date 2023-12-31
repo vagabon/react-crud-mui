@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { withProvider, withTest } from '../../../../stories/Helpers';
 
-import { IList } from '../../../../utils/list/ListUtils';
+import { IListDto } from '../../../../utils/list/ListUtils';
 import MdFormSelect from './MdFormSelect';
 
 const meta: Meta<typeof MdFormSelect> = {
@@ -23,7 +23,7 @@ export const Primary: Story = {
   args: {
     label: 'label',
     name: 'name',
-    list: [{ id: 1, libelle: 'name' }] as IList[],
+    list: [{ id: 1, libelle: 'name' }] as IListDto[],
     values: { name: 'name' },
     validationSchema: { name: { required: true, listId: true } },
     errors: [],

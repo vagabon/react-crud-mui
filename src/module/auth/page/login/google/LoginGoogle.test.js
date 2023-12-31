@@ -9,10 +9,6 @@ jest.mock('@react-oauth/google', () => ({
   },
 }));
 
-jest.mock('@mui/icons-material/Google', () => () => {
-  return <div></div>;
-});
-
 jest.mock('../../../../../mui/component/button/MdButton', () => ({ onClick }) => {
   return <button onClick={onClick}></button>;
 });

@@ -7,7 +7,7 @@ export interface InfiniteScroolPageProps extends IMdFabAddProps {
   className?: string;
   search?: string;
   children: ReactNode;
-  doChangePage: (pageToAdd: number) => void;
+  doChangePage?: (pageToAdd: number) => void;
   doSearch?: (search: string) => void;
 }
 
@@ -20,8 +20,8 @@ const InfiniteScrollPage: React.FC<InfiniteScroolPageProps> = (props: InfiniteSc
   );
 
   const onScroll = useCallback(
-    (callback: (pageToAdd: number) => void) => () => {
-      callback(1);
+    (callback?: (pageToAdd: number) => void) => () => {
+      callback?.(1);
     },
     [],
   );

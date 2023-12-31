@@ -45,7 +45,6 @@ describe('AuthService', () => {
   });
 
   test('Given AuthService when logout then ApiService is called', () => {
-    AuthService.logout()(mockDispatch);
-    expect(mockDispatch).toBeCalledTimes(1);
+    AuthService.logout();
   });
 });

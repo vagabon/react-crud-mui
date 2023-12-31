@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ID } from '../../../dto/api/ApiDto';
 import CustomIcon from '../../../module/custom/icon/component/CustomIcon';
 import { DateUtils } from '../../../utils/date/DateUtils';
-import { ObjectUtils } from '../../../utils/object/OjectUtils';
+import { ObjectUtils } from '../../../utils/object/ObjectUtils';
 import { WindowUtils } from '../../../utils/window/WindowUtils';
 import { useId } from '../../hook/useId';
 

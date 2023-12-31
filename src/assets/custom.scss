@@ -23,7 +23,8 @@ html, body, #root { height: 100%; }
 }
 .margin-top-20 { margin-top: 20px; }
 .overflow { overflow: auto; }
-.no-overflow { overflow: hidden; }
+.no-overflow { overflow: hidden; .MuiCardContent-root { overflow: auto; } }
+.input-add { gap: 10px; button { margin: 25px 0px 6px !important; min-width: 30px !important; } }
 
 .width100 { width: 100%; }
 .heigth100 { height: 100%; }
@@ -145,6 +146,11 @@ html, body, #root { height: 100%; }
 
 .MuiTableCell-root { font-size: 1rem !important; }
 thead th.MuiTableCell-root { background-color: var(--mui-palette-primary-main) !important; }
+.MuiAvatar-root { background-color: var(--mui-palette-secondary-main) !important; }
+.MuiToolbar-root .MuiAvatar-root { width: 30px; height: 30px; }
+.info { color: var(--mui-palette-info-main) !important; }
+.success { color: var(--mui-palette-success-main) !important; }
+.error { color: var(--mui-palette-error-main) !important; }
 
 @media (min-width: 600px) {
   .MuiToolbar-root {
@@ -152,8 +158,19 @@ thead th.MuiTableCell-root { background-color: var(--mui-palette-primary-main) !
   }
 }
 
-.form-modale .MuiBox-root { overflow: auto; }
+.form-modale .MuiBox-root { 
+  height: 70% !important; min-height: 480px !important; display: flex; flex-direction: column;
+  .form-content { flex: 1; overflow: auto; }
+}
+
+@media (max-height: 500px) {
+  .form-modale { .MuiBox-root {  height: 70% !important; min-height: 100% !important; } }
+}
+@media (max-height: 300px) {
+  .modale { .MuiBox-root {  min-height: 100% !important; } }
+}
 
 :root {
   --mui-palette-primary-main: #9f9f9f8e;
+  --mui-palette-secondary-main: #9f9f9f8e;
 }

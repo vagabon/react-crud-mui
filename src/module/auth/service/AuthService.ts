@@ -73,9 +73,8 @@ const AuthService = {
     });
   },
 
-  logout: () => (dispatch: Dispatch) => {
+  logout: () => {
     StorageUtils.removeCurrentUser();
-    dispatch(LoginAction.setLoginError());
   },
 };
 

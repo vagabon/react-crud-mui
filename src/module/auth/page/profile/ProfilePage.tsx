@@ -1,23 +1,17 @@
 import { useCallback } from 'react';
 import { Trans } from 'react-i18next';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { Primitif } from '../../../../dto/api/ApiDto';
+import { useUserAuth } from '../../../../hook/user/useUserAuth';
 import MdButton from '../../../../mui/component/button/MdButton';
 import MdCard from '../../../../mui/component/card/MdCard';
 import MdContent from '../../../../mui/component/content/MdContent';
-import { useAppDispatch, useAppSelector } from '../../../../store/Store';
+import { useAppSelector } from '../../../../store/Store';
 import { IProfileDto } from '../../../user/dto/ProfileDto';
-import AuthService from '../../service/AuthService';
 
 const ProfilePage: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const { user: currentUser } = useAppSelector((state) => state.auth);
-
-  const handleLogout = useCallback(() => {
-    AuthService.logout()(dispatch);
-    navigate('/home');
-  }, [navigate, dispatch]);
+  const { handleLogout } = useUserAuth();
 
   const showField = useCallback((key: string, value: Primitif) => {
     return (

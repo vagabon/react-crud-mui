@@ -1,4 +1,3 @@
-import GoogleIcon from '@mui/icons-material/Google';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import MdButton from '../../../../../mui/component/button/MdButton';
@@ -28,7 +27,7 @@ const LoginGoogle: React.FC = () => {
         label='AUTH:LOGIN.GOOGLE'
         variant='outlined'
         color='google'
-        startIcon={<GoogleIcon />}
+        startIcon='google'
         onClick={handleGoogleLogin}></MdButton>
     </div>
   );

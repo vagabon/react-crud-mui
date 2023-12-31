@@ -4,7 +4,7 @@ import { IApiDto } from '../../../../dto/api/ApiDto';
 import { IPageableDto } from '../../../../dto/pageable/PageableDto';
 import { IMdFormPropsReturnDto } from '../../../../mui/component/form/MdForm';
 import MdFormSelect from '../../../../mui/component/form/select/MdFormSelect';
-import { IList } from '../../../../utils/list/ListUtils';
+import { IListDto } from '../../../../utils/list/ListUtils';
 import { IFormDto } from '../../../admin/dto/AdminConfDto';
 
 export interface ICustomFormSelectProps extends IMdFormPropsReturnDto {
@@ -15,7 +15,7 @@ export interface ICustomFormSelectProps extends IMdFormPropsReturnDto {
 }
 
 const CustomFormSelect: React.FC<ICustomFormSelectProps> = ({ conf, label, name, listId, ...rest }) => {
-  const [datas, setDatas] = useState<IList[]>([]);
+  const [datas, setDatas] = useState<IListDto[]>([]);
 
   useEffect(() => {
     conf.listEndPoint &&
@@ -25,7 +25,7 @@ const CustomFormSelect: React.FC<ICustomFormSelectProps> = ({ conf, label, name,
             return {
               id: dat.id,
               libelle: dat[conf.listName as keyof IApiDto],
-            } as IList;
+            } as IListDto;
           }),
         );
       });
