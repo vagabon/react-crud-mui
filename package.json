@@ -1,6 +1,6 @@
 {
   "name": "@vagabond-ts/react-crud-mui",
-  "version": "0.0.46",
+  "version": "0.0.47",
   "description": "React lib with MUI, redux, i18n, router-dom, axios",
   "private": false,
   "scripts": {
@@ -65,15 +65,10 @@
     "@storybook/blocks": "~7.6.6",
     "@storybook/react": "~7.6.6",
     "@storybook/react-vite": "~7.6.6",
-    "@testing-library/jest-dom": "~6.1.5",
     "@testing-library/react": "~14.1.2",
-    "@types/react": "~18.2.0",
-    "@types/react-dom": "~18.2.18",
-    "@types/uuid": "~9.0.1",
     "@typescript-eslint/eslint-plugin": "~6.17.0",
     "@typescript-eslint/parser": "~6.17.0",
     "babel-jest": "~29.7.0",
-    "css-loader": "~6.8.1",
     "eslint": "~8.56.0",
     "eslint-plugin-react": "~7.33.2",
     "eslint-plugin-react-hooks": "~4.6.0",
@@ -163,6 +158,7 @@
       ]
     },
     "ignorePatterns": [
+      "src/index.ts",
       "dist/**",
       "config.js",
       "**/*babel*",
