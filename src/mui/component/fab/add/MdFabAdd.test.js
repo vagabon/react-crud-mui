@@ -9,6 +9,6 @@ describe('MdFabAdd', () => {
       }),
     );
     render(<MdFabAdd urlAdd='urlAdd' urlAddRole={['ADMIN']} />);
-    expect(screen.getByTestId('Fab')).toBeInTheDocument();
+    expect(screen.getByTestId('Fab')).toBeDefined();
   });
 });

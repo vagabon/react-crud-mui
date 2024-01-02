@@ -11,6 +11,7 @@ import { useId } from '../../hook/useId';
 export interface IMdCardProps {
   id?: ID;
   title?: string;
+  titleIconLeft?: () => void;
   date?: string;
   url?: string;
   urlUpdate?: string;
@@ -46,9 +47,12 @@ const MdCard: React.FC<IMdCardProps> = ({ title, url, urlUpdate, avatar, image, 
           }
           action={urlUpdate && <CustomIcon color='primary' icon='settings' callback={handleClick(urlUpdate)} />}
           title={
-            <Typography variant='h4' color='secondary'>
-              {ObjectUtils.capitalize(title)}
-            </Typography>
+            <div className='flex flex-row' style={{ gap: '1rem' }}>
+              {rest.titleIconLeft && <CustomIcon icon='back' color='secondary' callback={rest.titleIconLeft} />}
+              <Typography variant='h4' color='secondary'>
+                {ObjectUtils.capitalize(title)}
+              </Typography>
+            </div>
           }
           subheader={date ? DateUtils.format(date, 'Le DD MMM YYYY à hhhmm') : ''}
         />

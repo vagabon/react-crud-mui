@@ -12,6 +12,6 @@ describe('NewsCardSmall', () => {
       date: '2023-12-28T15:30:22',
     };
     render(<NewsCardSmall news={news} />);
-    expect(screen.getByTestId('CardContent')).toBeInTheDocument();
+    expect(screen.getByTestId('CardContent')).toBeDefined();
   });
 });

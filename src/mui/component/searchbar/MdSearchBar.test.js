@@ -10,6 +10,6 @@ jest.mock('../form/MdInputTextSimple', () => ({ handleChange }) => {
 test('renders learn react link', () => {
   const mockCallback = jest.fn();
   render(<MdSearchBar search='plouf' callBack={mockCallback} />);
-  expect(screen.getByRole('textbox')).toBeInTheDocument();
+  expect(screen.getByRole('textbox')).toBeDefined();
   fireEvent.change(screen.getByTestId('MdInputTextSimple'), { target: { value: { test: 'test' } } });
 });

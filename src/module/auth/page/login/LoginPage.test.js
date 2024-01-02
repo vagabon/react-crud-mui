@@ -11,7 +11,7 @@ jest.mock('@react-oauth/google', () => ({
 describe('LoginPage', () => {
   test('Given LoginPage when its mount then ', () => {
     const { container } = render(<LoginPage />);
-    expect(screen.getByText(/AUTH:LOGIN.TITLE/)).toBeInTheDocument();
+    expect(screen.getByText(/AUTH:LOGIN.TITLE/)).toBeDefined();
     fireEvent.change(container.querySelector(`input[name="username"]`), { target: { value: 'login' } });
     fireEvent.change(container.querySelector(`input[name="password"]`), { target: { value: 'password' } });
     fireEvent.click(screen.getAllByRole('button')[2]);

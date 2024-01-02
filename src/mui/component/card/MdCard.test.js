@@ -14,6 +14,6 @@ describe('MdCard', () => {
         image='image'
         className='classNamme'></MdCard>,
     );
-    expect(screen.getByTestId('Card')).toBeInTheDocument();
+    expect(screen.getByTestId('Card')).toBeDefined();
   });
 });

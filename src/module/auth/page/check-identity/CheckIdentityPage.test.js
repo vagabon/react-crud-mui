@@ -11,7 +11,7 @@ describe('CheckIdentityPage', () => {
       .spyOn(AuthService, 'resetPassword')
       .mockReturnValue(Promise.resolve({ token: 'token' }));
     render(<CheckIdentityPage />);
-    expect(screen.getByText(/AUTH:CHECK_IDENTITY.TITLE/)).toBeInTheDocument();
+    expect(screen.getByText(/AUTH:CHECK_IDENTITY.TITLE/)).toBeDefined();
     fireEvent.click(screen.getAllByRole('button')[0]);
     expect(mockCheckIdentityToken).not.toBeCalled();
     expect(mockResetPassword).not.toBeCalled();

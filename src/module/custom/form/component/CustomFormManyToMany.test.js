@@ -44,7 +44,7 @@ describe('CustomFormManyToMany', () => {
         setFieldValue={setFieldValue}
       />,
     );
-    expect(screen.getAllByText(/AUTH:FIELDS.PFOFILES/)[0]).toBeInTheDocument();
+    expect(screen.getAllByText(/AUTH:FIELDS.PFOFILES/)[0]).toBeDefined();
     fireEvent.click(screen.getAllByTestId('Chip')[0]);
     expect(setFieldValue).toBeCalled();
     fireEvent.click(screen.getAllByRole('button')[0]);

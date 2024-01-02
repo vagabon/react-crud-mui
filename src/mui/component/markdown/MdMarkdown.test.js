@@ -19,6 +19,6 @@ describe('MdMarkdown', () => {
       </MdMarkdown>,
     );
     jest.runAllTimers();
-    expect(screen.getByTestId('MuiMarkdown')).toBeInTheDocument();
+    expect(screen.getByTestId('MuiMarkdown')).toBeDefined();
   });
 });

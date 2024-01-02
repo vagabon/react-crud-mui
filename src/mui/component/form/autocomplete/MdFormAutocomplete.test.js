@@ -19,7 +19,7 @@ describe('MdFormAutocomplete', () => {
         handleChange={handleChange}
       />,
     );
-    expect(screen.getByTestId('Autocomplete')).toBeInTheDocument();
+    expect(screen.getByTestId('Autocomplete')).toBeDefined();
     fireEvent.click(screen.getByTestId('Autocomplete'));
   });
 });

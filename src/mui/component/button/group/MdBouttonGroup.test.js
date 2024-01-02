@@ -4,6 +4,6 @@ import MdBouttonGroup from './MdBouttonGroup';
 describe('MdBouttonGroup', () => {
   test('Given MdBouttonGroup when its mount then ButtonGroup is shown', () => {
     render(<MdBouttonGroup />);
-    expect(screen.getByTestId('ButtonGroup')).toBeInTheDocument();
+    expect(screen.getByTestId('ButtonGroup')).toBeDefined();
   });
 });

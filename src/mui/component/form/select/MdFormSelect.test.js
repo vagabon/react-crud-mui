@@ -21,7 +21,7 @@ describe('MdFormSelect', () => {
         callBack={callBack}
       />,
     );
-    expect(screen.getByTestId('Select')).toBeInTheDocument();
+    expect(screen.getByTestId('Select')).toBeDefined();
     fireEvent.change(screen.getByTestId('Select'), { target: { value: 1 } });
   });
 });

@@ -16,8 +16,8 @@ describe('useModal', () => {
   test('Given useModal when is mount with an id Then ', () => {
     render(<ReactModal />);
     fireEvent.click(screen.getAllByRole('button')[0]);
-    expect(screen.getByText('OPEN')).toBeInTheDocument();
+    expect(screen.getByText('OPEN')).toBeDefined();
     fireEvent.click(screen.getAllByRole('button')[1]);
-    expect(screen.queryByText(/OPEN/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/OPEN/)).toBeNull();
   });
 });

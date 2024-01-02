@@ -2,7 +2,7 @@ import { Box, Modal } from '@mui/material';
 import { MouseEvent, ReactNode, useCallback } from 'react';
 import { IApiDto } from '../../../dto/api/ApiDto';
 
-interface CommonModalProps {
+export interface ICommonModalProps {
   className?: string;
   open?: boolean;
   children?: ReactNode;
@@ -23,7 +23,7 @@ const style = {
   pb: 3,
 };
 
-const MdCommonModal: React.FC<CommonModalProps> = (props) => {
+const MdCommonModal: React.FC<ICommonModalProps> = (props) => {
   const handleClose = useCallback(
     (callback: (data: IApiDto | undefined) => void) => (event: MouseEvent) => {
       event.stopPropagation();

@@ -18,6 +18,6 @@ describe('MdTableWithPagination', () => {
         Content
       </MdTableWithPagination>,
     );
-    expect(screen.getByTestId('Table')).toBeInTheDocument();
+    expect(screen.getByTestId('Table')).toBeDefined();
   });
 });

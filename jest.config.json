@@ -1,26 +1,13 @@
 {
-  "testEnvironment": "jsdom",
-  "moduleFileExtensions": [
-    "js",
-    "jsx",
-    "ts",
-    "tsx"
-  ],
-  "roots": [
-    "src"
-  ],
-  "modulePaths": [
-    "src"
-  ],
-  "moduleDirectories": [
-    "node_modules"
-  ],
+  "testEnvironment": "jest-environment-jsdom",
+  "moduleFileExtensions": ["js", "jsx", "ts", "tsx"],
+  "roots": ["src"],
+  "modulePaths": ["src"],
+  "moduleDirectories": ["node_modules"],
   "moduleNameMapper": {
     "^.+\\.(css|less|scss)$": "babel-jest"
   },
-  "setupFilesAfterEnv": [
-    "<rootDir>/src/setupTests.js"
-  ],
+  "setupFilesAfterEnv": ["<rootDir>/src/setupTests.js"],
   "globals": {
     "IS_REACT_ACT_ENVIRONMENT": true
   },

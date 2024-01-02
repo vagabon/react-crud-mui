@@ -67,6 +67,6 @@ describe('CustomForm', () => {
       ...COMMON_INPUT,
     };
     render(<CustomForm conf={Object.entries(conf)} values={{}} schema={conf} />);
-    expect(screen.getAllByText(/AUTH:FIELDS.LOGIN/)[0]).toBeInTheDocument();
+    expect(screen.getAllByText(/AUTH:FIELDS.LOGIN/)[0]).toBeDefined();
   });
 });

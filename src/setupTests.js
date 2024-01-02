@@ -1,5 +1,3 @@
-import '@testing-library/jest-dom';
-
 console.error = jest.fn();
 
 /********************************* MOCK COMPONENT ********************************/
@@ -91,7 +89,6 @@ jest.mock('react-i18next', () => ({
 jest.mock('@mui/material', () => ({
   Avatar: ({ children }) => <div data-testid='Avatar'>{children}</div>,
   Alert: ({ children }) => <div data-testid='Alert'>{children}</div>,
-  Avatar: ({ children }) => <div data-testid='Avatar'>{children}</div>,
   Autocomplete: ({ name, value, onChange, onBlur, renderInput }) => (
     <>
       <input data-testid='Autocomplete' name={name} value={value} onClick={onChange} onBlur={onBlur} />

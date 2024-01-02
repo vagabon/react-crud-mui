@@ -6,7 +6,7 @@ describe('ForgetPasswordPage', () => {
   test('Given ForgetPasswordPage when its mount then ', () => {
     const mockCreateIdentityToken = jest.spyOn(AuthService, 'createIdentityToken').mockReturnValue(Promise.resolve({}));
     render(<ForgetPasswordPage />);
-    expect(screen.getByText(/AUTH:FORGET_PASSWORD.TITLE/)).toBeInTheDocument();
+    expect(screen.getByText(/AUTH:FORGET_PASSWORD.TITLE/)).toBeDefined();
     fireEvent.change(screen.getAllByRole('textbox')[0], { target: { value: 'test@gmail.com' } });
     fireEvent.click(screen.getAllByRole('button')[0]);
     setTimeout(() => {

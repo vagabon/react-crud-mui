@@ -13,6 +13,6 @@ describe('NewsListPage', () => {
     );
     jest.spyOn(NewsService, 'fetchNews').mockReturnValue(Promise.resolve({ content: [{ id: 1 }] }));
     const { container } = render(<NewsListPage />);
-    expect(container.getElementsByClassName('container')[0]).toBeInTheDocument();
+    expect(container.getElementsByClassName('container')[0]).toBeDefined();
   });
 });

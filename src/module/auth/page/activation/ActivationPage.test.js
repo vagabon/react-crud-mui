@@ -9,6 +9,6 @@ describe('ActivationPage', () => {
       }),
     );
     render(<ActivationPage />);
-    expect(screen.getByText(/AUTH:ACTIVATION.TITLE/)).toBeInTheDocument();
+    expect(screen.getByText(/AUTH:ACTIVATION.TITLE/)).toBeDefined();
   });
 });

@@ -10,7 +10,7 @@ describe('RegisterPage', () => {
       }),
     );
     const { container } = render(<RegisterPage />);
-    expect(screen.getByText(/AUTH:REGISTER.TITLE/)).toBeInTheDocument();
+    expect(screen.getByText(/AUTH:REGISTER.TITLE/)).toBeDefined();
     fireEvent.change(container.querySelector(`input[name="username"]`), { target: { value: 'login' } });
     fireEvent.change(container.querySelector(`input[name="email"]`), { target: { value: 'test@gmail.com' } });
     fireEvent.change(container.querySelector(`input[name="password"]`), { target: { value: 'password' } });

@@ -13,6 +13,6 @@ describe('MdTabs', () => {
         Content
       </MdTabs>,
     );
-    expect(screen.getByTestId('Tabs')).toBeInTheDocument();
+    expect(screen.getByTestId('Tabs')).toBeDefined();
   });
 });

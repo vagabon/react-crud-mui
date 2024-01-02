@@ -13,6 +13,6 @@ describe('NewsShowPage', () => {
     );
     jest.spyOn(NewsService, 'fetchById').mockReturnValue(Promise.resolve({ id: 1 }));
     const { container } = render(<NewsShowPage />);
-    expect(container.getElementsByClassName('mardown-with-summary')[0]).toBeInTheDocument();
+    expect(container.getElementsByClassName('mardown-with-summary')[0]).toBeDefined();
   });
 });

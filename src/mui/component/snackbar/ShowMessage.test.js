@@ -9,6 +9,6 @@ describe('ShowMessage', () => {
       }),
     );
     render(<ShowMessage>Content</ShowMessage>);
-    expect(screen.getByTestId('Alert')).toBeInTheDocument();
+    expect(screen.getByTestId('Alert')).toBeDefined();
   });
 });

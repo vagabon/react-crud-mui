@@ -8,6 +8,6 @@ const ReactComponent = () => {
 describe('SuspenceLoader', () => {
   test('Give SuspenceLoader When component is mount Then loader class name is found', () => {
     render(<>{SuspenceLoader(<ReactComponent />)}</>);
-    expect(screen.getByText('TEST')).toBeInTheDocument();
+    expect(screen.getByText('TEST')).toBeDefined();
   });
 });

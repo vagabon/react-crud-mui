@@ -13,7 +13,7 @@ test('renders learn react link', () => {
       {' '}
     </MdMenuItem>,
   );
-  expect(screen.getAllByRole('button')[0]).toBeInTheDocument();
+  expect(screen.getAllByRole('button')[0]).toBeDefined();
   fireEvent.click(screen.getByTestId('Menu'));
   fireEvent.click(screen.getByTestId('MenuItem'));
 });

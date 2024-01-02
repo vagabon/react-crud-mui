@@ -41,7 +41,7 @@ const CustomModaleConfirm: React.FC<ICustomModaleConfirmProps> = ({ id, label, i
               <MdButton label='COMMON:YES' onClick={handleYes} />
             </>
           }>
-          <Trans i18nKey={label ?? 'CONFIRMATIOn.MESSAGE'} />
+          <Trans i18nKey={label ?? 'CONFIRMATION.MESSAGE'} />
         </MdCard>
       </MdCommonModal>
       {icon && <CustomIcon color={iconColor ?? 'error'} icon={icon} callback={handleOpen(true)} />}

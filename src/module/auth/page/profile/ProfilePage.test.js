@@ -9,6 +9,6 @@ describe('ProfilePage', () => {
       }),
     );
     render(<ProfilePage />);
-    expect(screen.getByText(/AUTH:PROFILE.TITLE/)).toBeInTheDocument();
+    expect(screen.getByText(/AUTH:PROFILE.TITLE/)).toBeDefined();
   });
 });

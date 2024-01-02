@@ -4,7 +4,7 @@ import MdFab from './MdFab';
 describe('MdFab', () => {
   test('Given MdFab when its mount then ButtonGroup is shown', () => {
     render(<MdFab>Content</MdFab>);
-    expect(screen.getByTestId('Fab')).toBeInTheDocument();
+    expect(screen.getByTestId('Fab')).toBeDefined();
     fireEvent.click(screen.getByTestId('Fab'));
   });
 });

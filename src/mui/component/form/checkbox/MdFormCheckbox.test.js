@@ -12,7 +12,7 @@ describe('MdFormCheckbox', () => {
     render(
       <MdFormCheckbox label='label' name='name' values={{ name: 'name' }} errors={[]} handleChange={handleChange} />,
     );
-    expect(screen.getByTestId('Checkbox')).toBeInTheDocument();
+    expect(screen.getByTestId('Checkbox')).toBeDefined();
     fireEvent.click(screen.getByTestId('Checkbox'));
   });
 });

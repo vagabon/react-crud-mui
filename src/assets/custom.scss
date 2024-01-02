@@ -55,6 +55,9 @@ html, body, #root { height: 100%; }
 
 .modalList { max-height: 380px; overflow: auto; }
 
+.MuiChip-root { margin: 0 10px; }
+.MuiListItemIcon-root { min-width: 45px !important; }
+
 /************** FORM ***********/
 .MuiFormControl-root { margin: 16px 0px 0px 0px !important; }
 .MuiInputLabel-root { line-height: 1em !important; top: -3px !important; }
@@ -158,9 +161,13 @@ thead th.MuiTableCell-root { background-color: var(--mui-palette-primary-main) !
   }
 }
 
-.form-modale .MuiBox-root { 
+.form-modale .MuiBox-root, .form-modale-small .MuiBox-root { 
   height: 70% !important; min-height: 480px !important; display: flex; flex-direction: column;
   .form-content { flex: 1; overflow: auto; }
+}
+
+.form-modale-small .MuiBox-root { 
+  height: 50% !important; min-height: 320px !important; 
 }
 
 @media (max-height: 500px) {

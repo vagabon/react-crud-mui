@@ -1,6 +1,7 @@
 import { Checkbox, Divider, ListItem, ListItemAvatar, ListItemIcon } from '@mui/material';
-import { Fragment, MouseEvent, useCallback } from 'react';
+import { Fragment, MouseEvent, useCallback, useEffect, useState } from 'react';
 import { IApiDto, ID } from '../../../../dto/api/ApiDto';
+import { useMessage } from '../../../../hook/message/useMessage';
 import { useMdTrans } from '../../../../hook/trans/useMdTrans';
 import MdAvatar from '../../../../mui/component/avatar/MdAvatar';
 import MdChip from '../../../../mui/component/chip/MdChip';
@@ -22,7 +23,7 @@ export interface ICustomListDto extends IApiDto {
 export interface ICustomListProps {
   datas: ICustomListDto[];
   callback?: (data: IApiDto) => void;
-  callbackCheckbox?: (id: ID) => void;
+  callbackCheckbox?: (id: ID, checked: boolean) => void;
   callbackDelete?: (id: ID) => void;
   callbackSettings?: (data: IApiDto) => void;
 }
@@ -35,6 +36,14 @@ const CustomList: React.FC<ICustomListProps> = ({
   callbackSettings,
 }) => {
   const { t } = useMdTrans();
+  const [disabled, setDisabled] = useState<boolean>();
+  const { message } = useMessage();
+
+  useEffect(() => {
+    if (message !== '') {
+      setDisabled(false);
+    }
+  }, [message]);
 
   const handleClick = useCallback(
     (data: IApiDto) => () => {
@@ -43,11 +52,13 @@ const CustomList: React.FC<ICustomListProps> = ({
     [callback],
   );
 
-  const handleClickIcon = useCallback(
-    (id: ID, callback?: (id: ID) => void) => (event: MouseEvent | MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      event.stopPropagation();
-      callback?.(id);
-    },
+  const handleClickChecbox = useCallback(
+    (id: ID, checked: boolean, callback?: (id: ID, checked: boolean) => void) =>
+      (event: MouseEvent | MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        event.stopPropagation();
+        setDisabled(true);
+        callback?.(id, checked);
+      },
     [],
   );
 
@@ -96,7 +107,8 @@ const CustomList: React.FC<ICustomListProps> = ({
                       checked={data.checked}
                       tabIndex={-1}
                       disableRipple
-                      onClick={handleClickIcon(data.id, callbackCheckbox)}
+                      onClick={handleClickChecbox(data.id, !data.checked, callbackCheckbox)}
+                      disabled={disabled}
                     />
                   </ListItemIcon>
                 )}

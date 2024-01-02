@@ -4,11 +4,11 @@ import ShowPage from './ShowPage';
 describe('ShowPage', () => {
   test('Given ShowPage when its mount then ButtonGroup is shown', () => {
     const fetchData = jest.fn();
-    const { container } = render(
+    render(
       <ShowPage data={{ id: 1 }} fetchData={fetchData}>
         Content
       </ShowPage>,
     );
-    expect(screen.getByText(/Content/)).toBeInTheDocument();
+    expect(screen.getByText(/Content/)).toBeDefined();
   });
 });
