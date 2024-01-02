@@ -13,7 +13,9 @@ const config = {
     '@storybook/addon-mdx-gfm',
   ],
 
-  core: {},
+  core: {
+    builder: '@storybook/builder-vite',
+  },
 
   // https://vitejs.dev/config/build-options.html
   async viteFinal(config) {
