@@ -5,7 +5,7 @@ import { IAdminTabDto } from '../dto/AdminConfDto';
 import { IAdminReducerDto, IAdminStateDto } from '../dto/AdminReducerDto';
 import { AdminAction } from '../reducer/AdminReducer';
 
-const MAX_DEFAULT: number = 5;
+const MAX_DEFAULT: number = 10;
 const ORDER_DEFAULT: 'asc' | 'desc' = 'asc';
 
 export const useAdminState = (activePage: string, pageConf: IAdminTabDto) => {

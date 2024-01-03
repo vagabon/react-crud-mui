@@ -61,8 +61,13 @@ export { default as CustomIcon } from './module/custom/icon/component/CustomIcon
 export type { ICustomIconProps } from './module/custom/icon/component/CustomIcon';
 export { default as CustomList } from './module/custom/list/component/CustomList';
 export type { ICustomListDto, ICustomListProps } from './module/custom/list/component/CustomList';
+
+export { default as CustomModale } from './module/custom/modale/component/CustomModale';
+export type { ICustomModaleProps } from './module/custom/modale/component/CustomModale';
 export { default as CustomModaleConfirm } from './module/custom/modale/component/CustomModaleConfirm';
 export type { ICustomModaleConfirmProps } from './module/custom/modale/component/CustomModaleConfirm';
+export { default as CustomModaleForm } from './module/custom/modale/component/CustomModaleForm';
+export type { ICustomModaleFormProps } from './module/custom/modale/component/CustomModaleForm';
 
 export { default as NewsRouter } from './module/news/NewsRouter';
 export { default as NewsCard } from './module/news/component/card/NewsCard';

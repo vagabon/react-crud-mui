@@ -12,12 +12,13 @@ html, body, #root { height: 100%; }
 .flex-wrap { flex-wrap: wrap; }
 .flex1 { flex: 1; &.MuiPaper-root { display: flex } .MuiCardContent-root { flex: 1; padding: 0px !important; } }
 .gap1 { gap: 1rem; }
+.gap4 { gap: 4rem; }
 .align-center { align-items: center; }
 .align-end { align-items: end; }
-.justify-center { justify-content: center; }
+.justify-center { justify-content: center; text-align: center; }
 .justify-end { justify-content: flex-end; }
 .space-between { justify-content: space-between; }
-.no-margin { margin: 0px !important; width: 100% !important; }
+.no-margin { margin: 0px !important; width: 100% !important; h3 { margin: 10px 0; } }
 .relative { position: relative; }
 .margin-5 { 
   margin: 0px 10px !important; width: calc(100% - 20px) !important;
@@ -91,7 +92,7 @@ html, body, #root { height: 100%; }
 
 .search-bar { width: 100%; padding: 10px 0; max-width: 1200px; margin: 0 auto; }
 
-.modale .MuiBox-root { 
+.modale > .MuiBox-root { 
   width: 70% !important; height: 50% !important; min-height: 370px;
   .MuiPaper-root {
     display: flex; flex-direction: column; overflow: auto; width: 100% !important; height: 100%; 
@@ -101,17 +102,17 @@ html, body, #root { height: 100%; }
   } 
 }
 
-.modale-confirm .MuiBox-root{ width: 45% !important; max-width: 500px; height: 220px !important; min-height: 220px; }
+.modale-confirm > .MuiBox-root { width: 45% !important; max-width: 500px; height: 220px !important; min-height: 220px; }
 
 @media screen and (max-width: 700px) {
-  .modale-confirm .MuiBox-root{ width: 90% !important; }
+  .modale-confirm > .MuiBox-root{ width: 90% !important; }
 }
 
 @media screen and (max-width: 900px) {
   .main-container { width: 100% !important; 
     .search-bar { padding: 0px 5px !important; }
     .MuiPaper-root { margin: 5px 0px !important; width: calc(100% - 10px) !important; }
-    .modale .MuiBox-root { width: 100% !important;  }
+    .modale > .MuiBox-root { width: 100% !important;  }
   }
 }
 
@@ -152,10 +153,11 @@ html, body, #root { height: 100%; }
 .MuiTableCell-root { font-size: 1rem !important; }
 thead th.MuiTableCell-root { background-color: var(--mui-palette-primary-main) !important; }
 .MuiAvatar-root { background-color: var(--mui-palette-secondary-main) !important; }
-.MuiToolbar-root .MuiAvatar-root { width: 30px; height: 30px; }
+.MuiToolbar-root .MuiAvatar-root { width: 30px; height: 30px; margin-right: 0.55rem; }
 .info { color: var(--mui-palette-info-main) !important; }
 .success { color: var(--mui-palette-success-main) !important; }
 .error { color: var(--mui-palette-error-main) !important; }
+.MuiTablePagination-toolbar { justify-content: center; & > div:nth-child(1) { flex: 0 !important; } }
 
 @media (min-width: 600px) {
   .MuiToolbar-root {
@@ -163,20 +165,20 @@ thead th.MuiTableCell-root { background-color: var(--mui-palette-primary-main) !
   }
 }
 
-.form-modale .MuiBox-root, .form-modale-small .MuiBox-root { 
+.form-modale > .MuiBox-root, .form-modale-small > .MuiBox-root { 
   height: 70% !important; min-height: 480px !important; display: flex; flex-direction: column;
   .form-content { flex: 1; overflow: auto; }
 }
 
-.form-modale-small .MuiBox-root { 
+.form-modale-small > .MuiBox-root { 
   height: 50% !important; min-height: 320px !important; 
 }
 
 @media (max-height: 500px) {
-  .form-modale { .MuiBox-root {  height: 70% !important; min-height: 100% !important; } }
+  .form-modale > .MuiBox-root {  height: 70% !important; min-height: 100% !important; } 
 }
 @media (max-height: 300px) {
-  .modale { .MuiBox-root {  min-height: 100% !important; } }
+  .modale > .MuiBox-root {  min-height: 100% !important; } 
 }
 
 :root {

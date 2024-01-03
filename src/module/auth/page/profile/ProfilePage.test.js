@@ -6,9 +6,10 @@ describe('ProfilePage', () => {
     useAppSelectorSpy.mockImplementation((callback) =>
       callback({
         auth: { user: { user: { id: 1, username: 'username', email: 'email', profiles: [{ id: 1, name: 'ADMIN' }] } } },
+        common: { history: [] },
       }),
     );
     render(<ProfilePage />);
-    expect(screen.getByTestId('CardContent')).toBeDefined();
+    expect(screen.getAllByTestId('CardContent')).toBeDefined();
   });
 });

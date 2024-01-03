@@ -49,7 +49,7 @@ const CustomFormModale: React.FC<ICustomFormModaleProps> = ({ conf, open, ...res
         {(!datas || datas.length === 0) && (
           <MdlistItem component='div' disablePadding>
             <MdlistItemButton>
-              <MdListItemText label={t('NO_RESULT')} />
+              <MdListItemText color='flex justify-center' label={t('NO_RESULT')} />
             </MdlistItemButton>
           </MdlistItem>
         )}

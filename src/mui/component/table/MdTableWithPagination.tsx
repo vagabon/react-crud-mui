@@ -129,7 +129,7 @@ const MdTableWithPagination: React.FC<IMdTableWithPaginationProps> = (props: IMd
               {!props?.datas || props.datas?.length === 0 ? (
                 <TableRow>
                   <TableCell component='th' scope='row' colSpan={props.cells?.length}>
-                    <Trans i18nKey='NOT_FOUND' />
+                    <Trans i18nKey='NO_RESULT' />
                   </TableCell>
                 </TableRow>
               ) : (
@@ -157,7 +157,7 @@ const MdTableWithPagination: React.FC<IMdTableWithPaginationProps> = (props: IMd
             <TableFooter>
               <TableRow>
                 <TablePagination
-                  rowsPerPageOptions={[2, 5, 10, 20, 50]}
+                  rowsPerPageOptions={[5, 10, 20, 50]}
                   count={props.count}
                   rowsPerPage={props.rowsPerPage}
                   page={props.page}

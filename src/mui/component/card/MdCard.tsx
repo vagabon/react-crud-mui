@@ -1,17 +1,19 @@
 import { Card, CardActions, CardContent, CardHeader, CardMedia, Typography } from '@mui/material';
 import { ReactNode, useCallback } from 'react';
+import { Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { ID } from '../../../dto/api/ApiDto';
+import { useMdTrans } from '../../../hook/trans/useMdTrans';
 import CustomIcon from '../../../module/custom/icon/component/CustomIcon';
 import { DateUtils } from '../../../utils/date/DateUtils';
-import { ObjectUtils } from '../../../utils/object/ObjectUtils';
+import { I18nUtils } from '../../../utils/i18n/I18nUtils';
 import { WindowUtils } from '../../../utils/window/WindowUtils';
 import { useId } from '../../hook/useId';
 
 export interface IMdCardProps {
   id?: ID;
   title?: string;
-  titleIconLeft?: () => void;
+  callbackLeft?: () => void;
   date?: string;
   url?: string;
   urlUpdate?: string;
@@ -25,6 +27,7 @@ export interface IMdCardProps {
 const API_URL: string = WindowUtils.getEnv('API_URL');
 
 const MdCard: React.FC<IMdCardProps> = ({ title, url, urlUpdate, avatar, image, date, ...rest }: IMdCardProps) => {
+  const { t } = useMdTrans();
   const navigate = useNavigate();
   const { id } = useId(rest.id as string);
 
@@ -48,9 +51,9 @@ const MdCard: React.FC<IMdCardProps> = ({ title, url, urlUpdate, avatar, image, 
           action={urlUpdate && <CustomIcon color='primary' icon='settings' callback={handleClick(urlUpdate)} />}
           title={
             <div className='flex flex-row' style={{ gap: '1rem' }}>
-              {rest.titleIconLeft && <CustomIcon icon='back' color='secondary' callback={rest.titleIconLeft} />}
+              {rest.callbackLeft && <CustomIcon icon='back' color='secondary' callback={rest.callbackLeft} />}
               <Typography variant='h4' color='secondary'>
-                {ObjectUtils.capitalize(title)}
+                <Trans i18nKey={I18nUtils.translate(t, title)} />
               </Typography>
             </div>
           }

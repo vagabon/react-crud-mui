@@ -1,6 +1,6 @@
 {
   "name": "@vagabond-ts/react-crud-mui",
-  "version": "0.0.47",
+  "version": "0.0.48",
   "description": "React lib with MUI, redux, i18n, router-dom, axios",
   "private": false,
   "scripts": {

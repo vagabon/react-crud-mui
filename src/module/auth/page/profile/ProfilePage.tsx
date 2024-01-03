@@ -1,15 +1,14 @@
-import { Card, CardActions, CardContent, CardMedia } from '@mui/material';
+import { Card, CardActions, CardContent } from '@mui/material';
 import { useCallback } from 'react';
 import { Trans } from 'react-i18next';
 import { Navigate } from 'react-router-dom';
 import { Primitif } from '../../../../dto/api/ApiDto';
 import { useUserAuth } from '../../../../hook/user/useUserAuth';
-import MdAvatar from '../../../../mui/component/avatar/MdAvatar';
-import MdButton from '../../../../mui/component/button/MdButton';
 import MdContent from '../../../../mui/component/content/MdContent';
-import MdFormFile from '../../../../mui/component/form/MdFormFile';
 import { useAppSelector } from '../../../../store/Store';
+import CustomModaleConfirm from '../../../custom/modale/component/CustomModaleConfirm';
 import { IProfileDto } from '../../../user/dto/ProfileDto';
+import ProfileAvatar from '../../component/profile/ProfileAvatar';
 
 const ProfilePage: React.FC = () => {
   const { user: currentUser } = useAppSelector((state) => state.auth);
@@ -34,17 +33,9 @@ const ProfilePage: React.FC = () => {
     <MdContent>
       <Card>
         <CardContent>
-          <div className='flex flex-row gap1'>
-            <div className='flex align-center'>
-              <CardMedia>
-                <MdAvatar
-                  name={currentUser.user.username}
-                  image={currentUser.user.avatar}
-                  sx={{ height: '200px', width: '200px', fontSize: '10rem' }}
-                />
-              </CardMedia>
-
-              <MdFormFile label='' name='avatar' handleChangeFile={() => {}} />
+          <div className='flex flex-row gap4'>
+            <div className='flex align-center' style={{ flex: '0.4' }}>
+              <ProfileAvatar user={currentUser.user} />
             </div>
             <div className='flex1'>
               {showField('AUTH:FIELDS.LOGIN', currentUser.user?.username)}
@@ -68,7 +59,7 @@ const ProfilePage: React.FC = () => {
         </CardContent>
 
         <CardActions className='justify-end'>
-          <MdButton label='COMMON:LOGOUT' color='error' onClick={handleLogout} />
+          <CustomModaleConfirm button='COMMON:LOGOUT' callback={handleLogout} />
         </CardActions>
       </Card>
     </MdContent>

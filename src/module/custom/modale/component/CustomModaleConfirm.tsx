@@ -1,6 +1,6 @@
-import { useCallback, useState } from 'react';
 import { Trans } from 'react-i18next';
 import { ID } from '../../../../dto/api/ApiDto';
+import { useModal } from '../../../../hook/modal/useModal';
 import MdButton from '../../../../mui/component/button/MdButton';
 import MdCard from '../../../../mui/component/card/MdCard';
 import MdCommonModal from '../../../../mui/component/modal/MdCommonModal';
@@ -12,39 +12,29 @@ export interface ICustomModaleConfirmProps {
   label?: string;
   icon?: string;
   iconColor?: ColorType;
+  button?: string;
   callback?: (id: ID) => void;
 }
 
-const CustomModaleConfirm: React.FC<ICustomModaleConfirmProps> = ({ id, label, icon, iconColor, callback }) => {
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = useCallback(
-    (newOpen: boolean) => () => {
-      setOpen(newOpen);
-    },
-    [],
-  );
-
-  const handleYes = useCallback(() => {
-    setOpen(false);
-    callback?.(id);
-  }, [id, callback]);
+const CustomModaleConfirm: React.FC<ICustomModaleConfirmProps> = ({ id, label, icon, iconColor, button, callback }) => {
+  const { open, openModal, closeModal, handleYes } = useModal();
 
   return (
     <>
-      <MdCommonModal className='modale-confirm' open={open} handleClose={handleOpen(false)}>
+      <MdCommonModal className='modale-confirm' open={open} handleClose={closeModal}>
         <MdCard
           title='CONFIRMATION.TITLE'
           buttonchildren={
             <>
-              <MdButton label='COMMON:NO' variant='text' onClick={handleOpen(false)} />
-              <MdButton label='COMMON:YES' onClick={handleYes} />
+              <MdButton label='COMMON:NO' variant='text' onClick={closeModal} />
+              <MdButton label='COMMON:YES' onClick={handleYes(id, callback)} />
             </>
           }>
           <Trans i18nKey={label ?? 'CONFIRMATION.MESSAGE'} />
         </MdCard>
       </MdCommonModal>
-      {icon && <CustomIcon color={iconColor ?? 'error'} icon={icon} callback={handleOpen(true)} />}
+      {icon && <CustomIcon color={iconColor ?? 'error'} icon={icon} callback={openModal} />}
+      {button && <MdButton label={button} color='error' onClick={openModal} />}
     </>
   );
 };

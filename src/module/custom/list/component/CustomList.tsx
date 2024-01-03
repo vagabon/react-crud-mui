@@ -82,7 +82,7 @@ const CustomList: React.FC<ICustomListProps> = ({
       {!datas || datas.length === 0 ? (
         <MdlistItem component='div' disablePadding>
           <MdlistItem>
-            <MdListItemText label={t('NO_RESULT')} />
+            <MdListItemText color='flex justify-center' label={t('NO_RESULT')} />
           </MdlistItem>
         </MdlistItem>
       ) : (

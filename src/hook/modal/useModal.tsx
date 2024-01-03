@@ -1,9 +1,12 @@
 import { useCallback, useState } from 'react';
+import { ID } from '../../dto/api/ApiDto';
 
 export interface IModalReturnProps {
   open: boolean;
   openModal: () => void;
   closeModal: () => void;
+  switchModal: (open: boolean) => void;
+  handleYes: (id: ID, callback?: (id: ID) => void) => () => void;
 }
 
 export const useModal = (): IModalReturnProps => {
@@ -19,5 +22,17 @@ export const useModal = (): IModalReturnProps => {
     document.body.style.overflow = '';
   }, []);
 
-  return { open, openModal, closeModal };
+  const switchModal = useCallback((open: boolean) => {
+    setOpen(open);
+  }, []);
+
+  const handleYes = useCallback(
+    (id: ID, callback?: (id: ID) => void) => () => {
+      closeModal();
+      callback?.(id);
+    },
+    [closeModal],
+  );
+
+  return { open, openModal, closeModal, switchModal, handleYes };
 };
