@@ -10,13 +10,19 @@ describe('AuthService', () => {
 
   test('Given AuthService when login then ApiService is called', () => {
     const mockService = jest.spyOn(ApiService, 'post').mockReturnValue(Promise.resolve({}));
-    AuthService.login('username', 'password')(mockDispatch);
+    AuthService.login('username', 'password');
     expect(mockService).toBeCalledTimes(1);
   });
 
   test('Given AuthService when activation then ApiService is called', () => {
     const mockService = jest.spyOn(ApiService, 'post').mockReturnValue(Promise.resolve({}));
     AuthService.activation('email');
+    expect(mockService).toBeCalledTimes(1);
+  });
+
+  test('Given AuthService when createIdentityToken then ApiService is called', () => {
+    const mockService = jest.spyOn(ApiService, 'post').mockReturnValue(Promise.resolve({}));
+    AuthService.createIdentityToken('token');
     expect(mockService).toBeCalledTimes(1);
   });
 
@@ -44,7 +50,11 @@ describe('AuthService', () => {
     expect(mockService).toBeCalledTimes(1);
   });
 
-  test('Given AuthService when logout then ApiService is called', () => {
+  test('Given AuthService when logout then ', () => {
     AuthService.logout();
+  });
+
+  test('Given AuthService when updateLocalStorage then ', () => {
+    AuthService.updateLocalStorage({});
   });
 });

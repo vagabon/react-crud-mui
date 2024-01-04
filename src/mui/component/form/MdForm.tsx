@@ -45,7 +45,7 @@ export interface IMdFormProps {
   className?: string;
   initialValues: JSONObject;
   validationSchema: IYupValidators;
-  onSubmit: (values: IApiDto) => void;
+  onSubmit?: (values: IApiDto) => void;
   onGoBack?: () => void;
   children: (props: IMdFormPropsReturnDto) => React.JSX.Element;
   backButton?: boolean;
@@ -73,7 +73,7 @@ const MdForm: React.FC<IMdFormProps> = (props: IMdFormProps) => {
           dispatch(CommonAction.setMessage({ message: 'COMMON:FORM.ERROR', type: 'error' }));
         } else {
           dispatch(CommonAction.clearMessage());
-          props.onSubmit(values);
+          props.onSubmit?.(values);
         }
       });
     },
@@ -82,7 +82,7 @@ const MdForm: React.FC<IMdFormProps> = (props: IMdFormProps) => {
 
   const onSubmit = useCallback(
     (values: IApiDto): void => {
-      props.onSubmit(values);
+      props.onSubmit?.(values);
     },
     [props],
   );
@@ -135,7 +135,7 @@ const MdForm: React.FC<IMdFormProps> = (props: IMdFormProps) => {
             {props.backButton === true && history.length > 1 && (
               <MdButton label='Retour' variant='text' onClick={goBack} />
             )}
-            {props.submitButton === true && (
+            {props.submitButton === true && props.onSubmit && (
               <MdButton label='COMMON:SUBMIT' onClick={() => doSubmit(values, validateForm)} />
             )}
           </div>

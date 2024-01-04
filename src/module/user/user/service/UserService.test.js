@@ -1,13 +1,7 @@
-import { ApiService } from '../../../api/service/ApiService';
+import { ApiService } from '../../../../api/service/ApiService';
 import UserService from './UserService';
 
 describe('UserService', () => {
-  test('Given UserService when getPublicContent then ApiService is called', () => {
-    const mockService = jest.spyOn(ApiService, 'get').mockReturnValue(Promise.resolve({}));
-    UserService.getPublicContent();
-    expect(mockService).toBeCalledTimes(1);
-  });
-
   test('Given UserService when loadUsers then ApiService is called', () => {
     const mockService = jest.spyOn(ApiService, 'findBy').mockReturnValue(Promise.resolve({}));
     UserService.loadUsers('filter', 0, 10, 'orderField', 'order');

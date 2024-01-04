@@ -1,27 +1,18 @@
 import FacebookLogin from '@greatsumini/react-facebook-login';
-import { useNavigate } from 'react-router-dom';
 import MdButton from '../../../../../mui/component/button/MdButton';
-import { useAppDispatch } from '../../../../../store/Store';
-import { StorageUtils } from '../../../../../utils/storage/StorageUtils';
 import { WindowUtils } from '../../../../../utils/window/WindowUtils';
-import { LoginAction } from '../../../reducer/AuthReducers';
-import AuthService from '../../../service/AuthService';
+import { useAuth } from '../../../hook/useAuth';
 
 const FACEBOOK_CLIENT_ID: string = WindowUtils.getEnv('FACEBOOK_CLIENT_ID');
 
 const LoginFacebook: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const { handleFacebookLogin } = useAuth();
 
   return (
     <FacebookLogin
       appId={FACEBOOK_CLIENT_ID}
       onSuccess={(response) => {
-        AuthService.facebookConnect(response.accessToken).then((data) => {
-          dispatch(LoginAction.setLoginSuccess(data));
-          StorageUtils.setCurrentUser(data);
-          navigate('/auth/profile');
-        });
+        handleFacebookLogin(response.accessToken);
       }}
       onFail={(error) => {
         console.log('Facebook Login Failed !', error);

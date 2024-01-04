@@ -3,7 +3,6 @@ import ActivationPage from './page/activation/ActivationPage';
 import CheckIdentityPage from './page/check-identity/CheckIdentityPage';
 import ForgetPasswordPage from './page/forget-password/ForgetPasswordPage';
 import LoginPage from './page/login/LoginPage';
-import ProfilePage from './page/profile/ProfilePage';
 import RegisterPage from './page/register/RegisterPage';
 
 const AuthRouter: React.FC = () => {
@@ -11,7 +10,6 @@ const AuthRouter: React.FC = () => {
     <Routes>
       <Route>
         <Route path='/signin' element={<LoginPage />} />
-        <Route path='/profile' element={<ProfilePage />} />
         <Route path='/signup' element={<RegisterPage />} />
         <Route path='/activation/:token' element={<ActivationPage />} />
         <Route path='/forget/password' element={<ForgetPasswordPage />} />

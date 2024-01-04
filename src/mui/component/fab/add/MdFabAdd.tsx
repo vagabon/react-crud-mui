@@ -3,7 +3,7 @@ import { Fab, PropTypes } from '@mui/material';
 import { SyntheticEvent, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ICurrentUserDto } from '../../../../dto/current-user/CurrentUserDto';
-import { IUserDto } from '../../../../module/user/dto/UserDto';
+import { IUserDto } from '../../../../module/user/user/dto/UserDto';
 import { useAppSelector } from '../../../../store/Store';
 import RoleUtils from '../../../../utils/role/RoleUtils';
 

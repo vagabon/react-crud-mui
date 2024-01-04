@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { IUserDto } from '../../../user/dto/UserDto';
+import { IUserDto } from '../../../user/user/dto/UserDto';
 import AuthService from '../../service/AuthService';
 
 import { useCallback } from 'react';

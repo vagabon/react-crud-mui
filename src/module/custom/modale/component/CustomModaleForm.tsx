@@ -4,14 +4,18 @@ import MdForm, { IMdFormPropsReturnDto } from '../../../../mui/component/form/Md
 import { IYupValidators } from '../../../../utils/yup/YupUtils';
 import CustomModale from './CustomModale';
 
+export interface ICustomModaleReturnDto extends IMdFormPropsReturnDto {
+  closeModal: () => void;
+}
+
 export interface ICustomModaleFormProps {
   title: string;
   initialValues: JSONObject;
   validationSchema: IYupValidators;
   button?: string;
   small?: boolean;
-  onSubmit: (values: IApiDto) => void;
-  children: (props: IMdFormPropsReturnDto) => React.JSX.Element;
+  onSubmit?: (callback: () => void) => (values: IApiDto) => void;
+  children: (props: ICustomModaleReturnDto) => React.JSX.Element;
 }
 
 const CustomModaleForm: React.FC<ICustomModaleFormProps> = ({ title, button, onSubmit, ...rest }) => {
@@ -26,9 +30,9 @@ const CustomModaleForm: React.FC<ICustomModaleFormProps> = ({ title, button, onS
             className='flex justify-center'
             initialValues={rest.initialValues}
             validationSchema={rest.validationSchema}
-            onSubmit={onSubmit}
+            onSubmit={onSubmit?.(closeModal)}
             onGoBack={closeModal}>
-            {(props) => <>{rest.children(props)}</>}
+            {(props) => <>{rest.children({ ...props, closeModal: closeModal })}</>}
           </MdForm>
         </>
       )}

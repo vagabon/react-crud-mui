@@ -48,12 +48,15 @@ export { default as LoginPage } from './module/auth/page/login/LoginPage';
 export type { ILoginDto } from './module/auth/page/login/dto/LoginDto';
 export { default as LoginFacebook } from './module/auth/page/login/facebook/LoginFacebook';
 export { default as LoginGoogle } from './module/auth/page/login/google/LoginGoogle';
-export { default as ProfilePage } from './module/auth/page/profile/ProfilePage';
 export { default as RegisterPage } from './module/auth/page/register/RegisterPage';
 export type { IRegisterDto } from './module/auth/page/register/dto/RegisterDto';
 export { AuthReducer, default as AuthReducers, LoginAction } from './module/auth/reducer/AuthReducers';
 export type { AuthReducerState } from './module/auth/reducer/AuthReducers';
 export { default as AuthService } from './module/auth/service/AuthService';
+
+export { default as UserRouter } from './module/user/UserRouter';
+export { default as ProfileShow } from './module/user/profile/component/ProfileShow';
+export { default as ProfilePage } from './module/user/profile/page/ProfilePage';
 
 export { default as CustomForm } from './module/custom/form/component/CustomForm';
 export type { ICustomFormProps } from './module/custom/form/component/CustomForm';
@@ -81,10 +84,11 @@ export { default as NewsFormPage } from './module/news/page/update/NewsUpdatePag
 export { NewsAction, NewsReducer, default as NewsReducers } from './module/news/reducer/NewsReducers';
 export type { NewsReducerState } from './module/news/reducer/NewsReducers';
 export { default as NewsService } from './module/news/service/NewsService';
-export type { IProfileDto } from './module/user/dto/ProfileDto';
-export type { IUserDto } from './module/user/dto/UserDto';
-export { default as ProfileService } from './module/user/service/ProfileService';
-export { default as UserService } from './module/user/service/UserService';
+
+export type { IProfileDto } from './module/user/profile/dto/ProfileDto';
+export { default as ProfileService } from './module/user/profile/service/ProfileService';
+export type { IUserDto } from './module/user/user/dto/UserDto';
+export { default as UserService } from './module/user/user/service/UserService';
 
 export { default as MdAvatar } from './mui/component/avatar/MdAvatar';
 export type { IMdAvatarProps } from './mui/component/avatar/MdAvatar';

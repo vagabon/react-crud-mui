@@ -1,5 +1,5 @@
 import { ICurrentUserDto } from '../../dto/current-user/CurrentUserDto';
-import { IUserDto } from '../../module/user/dto/UserDto';
+import { IUserDto } from '../../module/user/user/dto/UserDto';
 
 const RoleUtils = {
   hasProfile: (currentUser: ICurrentUserDto<IUserDto> | null, profiles: string[] | undefined): boolean => {

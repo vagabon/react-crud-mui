@@ -8,6 +8,7 @@ html { font-size: 13px; }
 html, body, #root { height: 100%; }
 
 .flex { display: flex; flex-direction: column; }
+.grid { display: grid; }
 .flex-row { display: flex; flex-direction: row; }
 .flex-wrap { flex-wrap: wrap; }
 .flex1 { flex: 1; &.MuiPaper-root { display: flex } .MuiCardContent-root { flex: 1; padding: 0px !important; } }
@@ -15,7 +16,7 @@ html, body, #root { height: 100%; }
 .gap4 { gap: 4rem; }
 .align-center { align-items: center; }
 .align-end { align-items: end; }
-.justify-center { justify-content: center; text-align: center; }
+.justify-center { justify-content: center; }
 .justify-end { justify-content: flex-end; }
 .space-between { justify-content: space-between; }
 .no-margin { margin: 0px !important; width: 100% !important; h3 { margin: 10px 0; } }
@@ -93,7 +94,7 @@ html, body, #root { height: 100%; }
 .search-bar { width: 100%; padding: 10px 0; max-width: 1200px; margin: 0 auto; }
 
 .modale > .MuiBox-root { 
-  width: 70% !important; height: 50% !important; min-height: 370px;
+  width: 70% !important; height: 50% !important; min-height: 370px; display: flex; padding: 10px;
   .MuiPaper-root {
     display: flex; flex-direction: column; overflow: auto; width: 100% !important; height: 100%; 
     .MuiCardContent-root {
@@ -167,11 +168,16 @@ thead th.MuiTableCell-root { background-color: var(--mui-palette-primary-main) !
 
 .form-modale > .MuiBox-root, .form-modale-small > .MuiBox-root { 
   height: 70% !important; min-height: 480px !important; display: flex; flex-direction: column;
-  .form-content { flex: 1; overflow: auto; }
+  .form-content { flex: 1; overflow: auto; justify-content: center; display: flex; flex-direction: column; }
 }
 
 .form-modale-small > .MuiBox-root { 
   height: 50% !important; min-height: 320px !important; 
+}
+
+.modale-medium > .MuiBox-root { 
+  height: 30% !important; min-height: 250px !important; max-width: 600px;
+  .MuiCardContent-root { justify-content: center; }
 }
 
 @media (max-height: 500px) {
@@ -179,6 +185,12 @@ thead th.MuiTableCell-root { background-color: var(--mui-palette-primary-main) !
 }
 @media (max-height: 300px) {
   .modale > .MuiBox-root {  min-height: 100% !important; } 
+}
+
+/*** PROFILE ****/
+.profile {
+  hr { margin: 10px }
+  & > div { margin: 5px 10px; }
 }
 
 :root {

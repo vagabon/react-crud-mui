@@ -13,6 +13,7 @@ import CustomModaleConfirm from '../../modale/component/CustomModaleConfirm';
 
 export interface ICustomListDto extends IApiDto {
   avatar?: string;
+  user?: IApiDto;
   icon?: string;
   chip?: string;
   secondary?: string;
@@ -23,6 +24,7 @@ export interface ICustomListDto extends IApiDto {
 export interface ICustomListProps {
   datas: ICustomListDto[];
   callback?: (data: IApiDto) => void;
+  callbackAvatar?: (data: IApiDto) => () => void;
   callbackCheckbox?: (id: ID, checked: boolean) => void;
   callbackDelete?: (id: ID) => void;
   callbackSettings?: (data: IApiDto) => void;
@@ -31,6 +33,7 @@ export interface ICustomListProps {
 const CustomList: React.FC<ICustomListProps> = ({
   datas,
   callback,
+  callbackAvatar,
   callbackCheckbox,
   callbackDelete,
   callbackSettings,
@@ -82,7 +85,7 @@ const CustomList: React.FC<ICustomListProps> = ({
       {!datas || datas.length === 0 ? (
         <MdlistItem component='div' disablePadding>
           <MdlistItem>
-            <MdListItemText color='flex justify-center' label={t('NO_RESULT')} />
+            <MdListItemText color='flex align-center' label={t('NO_RESULT')} />
           </MdlistItem>
         </MdlistItem>
       ) : (
@@ -92,7 +95,11 @@ const CustomList: React.FC<ICustomListProps> = ({
               <ListItem onClick={handleClick(data)}>
                 {data.avatar && (
                   <ListItemAvatar>
-                    <MdAvatar name={data.avatar} image={data.avatar} />
+                    <MdAvatar
+                      name={data.avatar}
+                      image={data.avatar}
+                      callback={callbackAvatar?.(data.user as IApiDto)}
+                    />
                   </ListItemAvatar>
                 )}
                 {data.icon && (

@@ -1,5 +1,5 @@
 import { IApiDto } from '../../../dto/api/ApiDto';
-import { IUserDto } from '../../user/dto/UserDto';
+import { IUserDto } from '../../user/user/dto/UserDto';
 
 export interface INewsDto extends IApiDto {
   title?: string;

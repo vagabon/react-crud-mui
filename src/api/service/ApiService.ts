@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { IApiDto, ID, JSON } from '../../dto/api/ApiDto';
+import { ID, JSON } from '../../dto/api/ApiDto';
 import { WindowUtils } from '../../utils/window/WindowUtils';
 
 const API_URL: string = WindowUtils.getEnv('API_URL');
@@ -16,7 +16,7 @@ export const ApiService = {
     );
   },
 
-  put: <T>(endPoint: string, data: IApiDto): Promise<T> => {
+  put: <T>(endPoint: string, data: T): Promise<T> => {
     return axios.put(API_URL + endPoint, data).then(
       (response: AxiosResponse) => {
         return ApiService.returnPromise<T>(response);
@@ -29,7 +29,7 @@ export const ApiService = {
 
   post: <T>(
     endPoint: string,
-    data: IApiDto | FormData | JSON,
+    data: T,
     config: JSON = {
       'Content-Type': 'application/json',
     },
@@ -44,7 +44,7 @@ export const ApiService = {
     );
   },
 
-  patch: <T>(endPoint: string, data: IApiDto): Promise<T> => {
+  patch: <T>(endPoint: string, data: T): Promise<T> => {
     return axios.patch(API_URL + endPoint, data).then(
       (response: AxiosResponse) => {
         return ApiService.returnPromise<T>(response);

@@ -3,11 +3,11 @@ import { IAdminTabConfDto } from './dto/AdminConfDto';
 import AdminShowPage from './page/show/AdminShowPage';
 import AdminTabsPage from './page/tab/AdminTabPage';
 
-interface IAdminTabsPageProps {
+interface IAdminRouterProps {
   conf: IAdminTabConfDto;
 }
 
-const AdminRouter: React.FC<IAdminTabsPageProps> = ({ conf }) => {
+const AdminRouter: React.FC<IAdminRouterProps> = ({ conf }) => {
   return (
     <Routes>
       <Route>

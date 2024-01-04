@@ -5,7 +5,7 @@ import { HandleChangeType } from '../../../../mui/component/form/MdForm';
 
 export const useCustomFormUpload = (endPoint: string) => {
   const uploadImage = useCallback(
-    (id: ID, file: File | undefined): Promise<string> => {
+    (id: ID, file: File | undefined) => {
       const formData = new FormData();
       if (file) {
         formData.append('file', file);
@@ -18,11 +18,11 @@ export const useCustomFormUpload = (endPoint: string) => {
   );
 
   const handleChangeFile = useCallback(
-    (id: ID, callback: HandleChangeType) => (name: string, file: File) => {
+    (id: ID, callback?: HandleChangeType) => (name: string, file: File) => {
       uploadImage(id, file).then((data) => {
         const event = { target: { name, value: data } };
         console.log('FILE UPLOAD : ', data, event);
-        callback(event);
+        callback?.(event);
       });
     },
     [uploadImage],
