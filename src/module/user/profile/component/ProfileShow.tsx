@@ -28,7 +28,7 @@ const ProfileShow: React.FC<IProfileShowProps> = ({ user, disabled, profileReact
         title={I18nUtils.translate(t, 'AUTH:PROFILE.TITLE') + ' ' + user?.username}
         buttonchildren={
           <>
-            {currentUser.user.id === user.id && !disabled && (
+            {currentUser.user?.id === user.id && !disabled && (
               <CustomModaleConfirm button='COMMON:LOGOUT' callback={handleLogout} />
             )}
           </>

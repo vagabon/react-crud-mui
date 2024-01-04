@@ -178,7 +178,7 @@ jest.mock('@mui/material', () => ({
 }));
 
 jest.mock('@mui/material/Button', () => ({ children, onClick }) => (
-  <button data-testid='BUTTON' onClick={onClick}>
+  <button data-testid='Button' onClick={onClick}>
     {children}
   </button>
 ));
