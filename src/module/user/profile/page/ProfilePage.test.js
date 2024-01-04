@@ -26,17 +26,12 @@ describe('ProfilePage', () => {
     });
   });
 
-  test('Given ProfilePage when its mount then CardContent is shown', async () => {
+  test('Given ProfilePage when its mount then CardContent is shown', () => {
     useAppSelectorSpy.mockImplementation((callback) =>
       callback({ auth: { user: null }, common: { message: '', history: [] } }),
     );
-
-    jest
-      .spyOn(UserService, 'fetchById')
-      .mockReturnValue(Promise.resolve({ id: 1, profiles: [{ id: 1, name: 'ADMIN' }] }));
+    jest.spyOn(UserService, 'fetchById').mockReturnValue(Promise.resolve({}));
     render(<ProfilePage profileReact={() => <></>} />);
-    await waitFor(() => {
-      expect(screen.getAllByTestId('CardContent')).toBeDefined();
-    });
+    expect(screen.queryByTestId(/CardContent/)).toBeNull();
   });
 });

@@ -75,10 +75,10 @@ export const useUser = () => {
       return (
         (!user.googleId || user.googleId === '') &&
         (!user.facebookId || user.facebookId === '') &&
-        currentUser.user?.id === user.id
+        currentUser?.user?.id === user.id
       );
     },
-    [currentUser.user?.id],
+    [currentUser?.user?.id],
   );
 
   return { user, fetchById, handleUpdateAvatar, handleUpdateEmail, handleUpdatePassword, isUserPassword };
