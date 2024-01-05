@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { Trans } from 'react-i18next';
-import MdInputText from '../../../../../mui/component/form/MdInputText';
+import MdInputText, { IMdInputTextProps } from '../../../../../mui/component/form/MdInputText';
 import { IYupValidators } from '../../../../../utils/yup/YupUtils';
 import CustomModaleForm from '../../../../custom/modale/component/CustomModaleForm';
 import { IUserDto } from '../../../user/dto/UserDto';
@@ -27,7 +27,7 @@ const ProfileFormEmail: React.FC<IProfileFormEmailProps> = ({ user }) => {
   const { handleUpdateEmail, isUserPassword } = useUser();
 
   const handleSubmit = useCallback(
-    (callback: () => void) => (data: IUserDto) => {
+    (callback?: () => void) => (data: IUserDto) => {
       handleUpdateEmail(user?.id, data.email as string, callback);
     },
     [user, handleUpdateEmail],
@@ -49,8 +49,8 @@ const ProfileFormEmail: React.FC<IProfileFormEmailProps> = ({ user }) => {
           button='AUTH:USER.EMAIL.BUTTON'>
           {(props) => (
             <>
-              <MdInputText label='AUTH:FIELDS.EMAIL' name='email' {...props} />
-              <MdInputText label='AUTH:FIELDS.EMAIL_CONFIRM' name='emailConfirm' {...props} />
+              <MdInputText {...(props as IMdInputTextProps)} label='AUTH:FIELDS.EMAIL' name='email' />
+              <MdInputText {...(props as IMdInputTextProps)} label='AUTH:FIELDS.EMAIL_CONFIRM' name='emailConfirm' />
             </>
           )}
         </CustomModaleForm>

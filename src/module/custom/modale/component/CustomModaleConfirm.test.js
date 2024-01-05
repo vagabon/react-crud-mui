@@ -11,8 +11,11 @@ describe('CustomModaleConfirm', () => {
     );
     expect(screen.getByTestId('Modal')).toBeDefined();
     fireEvent.click(screen.getByTestId('Modal'));
-    fireEvent.click(screen.getAllByTestId('Button')[0]);
-    fireEvent.click(screen.getAllByTestId('Button')[1]);
-    fireEvent.click(screen.getByTestId('IconButton'));
+    for (let i = 0; i < screen.getAllByTestId('Button').length; i++) {
+      fireEvent.click(screen.getAllByTestId('Button')[i]);
+    }
+    for (let i = 0; i < screen.getAllByTestId('IconButton').length; i++) {
+      fireEvent.click(screen.getAllByTestId('IconButton')[i]);
+    }
   });
 });

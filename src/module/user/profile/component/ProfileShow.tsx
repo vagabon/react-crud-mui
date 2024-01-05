@@ -29,7 +29,7 @@ const ProfileShow: React.FC<IProfileShowProps> = ({ user, disabled, profileReact
         buttonchildren={
           <>
             {currentUser?.user?.id === user.id && !disabled && (
-              <CustomModaleConfirm button='COMMON:LOGOUT' callback={handleLogout} />
+              <CustomModaleConfirm button='COMMON:LOGOUT' buttonColor='error' callback={handleLogout} />
             )}
           </>
         }>

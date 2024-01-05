@@ -5,6 +5,8 @@ import { LoginAction } from '../../module/auth/reducer/AuthReducers';
 import { CommonAction } from '../../reducer/common/CommonReducer';
 import { StorageUtils } from '../../utils/storage/StorageUtils';
 
+const URL_SIGNIN = 'auth/signin';
+
 export const AxiosInterceptor = <U>(
   store: EnhancedStore,
   apiUrl: string,
@@ -83,7 +85,7 @@ export const AxiosInterceptor = <U>(
       } else {
         if (error.response && error.response.status === 401) {
           store.dispatch(LoginAction.setLoginError());
-          window.location.href = 'auth/signin';
+          window.location.href = URL_SIGNIN;
         }
         return error;
       }

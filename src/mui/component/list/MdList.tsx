@@ -1,12 +1,12 @@
 import { List } from '@mui/material';
 import { ReactNode } from 'react';
 
-export interface IMdlistProps {
+export interface IMdListProps {
   className?: string;
   children: ReactNode;
 }
-const Mdlist: React.FC<IMdlistProps> = ({ className, children }) => {
+const MdList: React.FC<IMdListProps> = ({ className, children }) => {
   return <List className={className ?? 'modalList'}>{children}</List>;
 };
 
-export default Mdlist;
+export default MdList;

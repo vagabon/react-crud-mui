@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 import { MouseEvent, ReactNode, useCallback, useEffect, useState } from 'react';
 import { Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { ColorType, useIcon } from '../../hook/useIcon';
+import { IconColorType, useIcon } from '../../hook/useIcon';
 
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
@@ -11,14 +11,25 @@ declare module '@mui/material/Button' {
   }
 }
 
+export type ButtonColorType =
+  | 'inherit'
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'error'
+  | 'info'
+  | 'warning'
+  | 'google'
+  | 'facebook';
+
 export interface IMdButtonProps {
   show?: boolean;
   label?: string;
   url?: string;
   startIcon?: string;
   icon?: string;
-  iconColor?: ColorType;
-  color?: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning' | 'google' | 'facebook';
+  iconColor?: IconColorType;
+  color?: ButtonColorType;
   size?: 'small' | 'medium' | 'large';
   variant?: 'text' | 'outlined' | 'contained';
   onClick?: () => void;

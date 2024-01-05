@@ -1,13 +1,15 @@
-import { Checkbox, Divider, ListItem, ListItemAvatar, ListItemIcon } from '@mui/material';
-import { Fragment, MouseEvent, useCallback, useEffect, useState } from 'react';
+import { Checkbox, Divider, ListItemAvatar } from '@mui/material';
+import React, { Fragment, MouseEvent, useCallback, useEffect, useState } from 'react';
 import { IApiDto, ID } from '../../../../dto/api/ApiDto';
 import { useMessage } from '../../../../hook/message/useMessage';
 import { useMdTrans } from '../../../../hook/trans/useMdTrans';
 import MdAvatar from '../../../../mui/component/avatar/MdAvatar';
 import MdChip from '../../../../mui/component/chip/MdChip';
+import MdList from '../../../../mui/component/list/MdList';
+import MdListItem from '../../../../mui/component/list/MdListItem';
+import MdListItemButton from '../../../../mui/component/list/MdListItemButton';
+import MdListItemIcon from '../../../../mui/component/list/MdListItemIcon';
 import MdListItemText from '../../../../mui/component/list/MdListItemText';
-import Mdlist from '../../../../mui/component/list/Mdlist';
-import MdlistItem from '../../../../mui/component/list/MdlistItem';
 import CustomIcon from '../../icon/component/CustomIcon';
 import CustomModaleConfirm from '../../modale/component/CustomModaleConfirm';
 
@@ -23,6 +25,7 @@ export interface ICustomListDto extends IApiDto {
 
 export interface ICustomListProps {
   datas: ICustomListDto[];
+  buttonChildren?: (id: ID) => React.JSX.Element;
   callback?: (data: IApiDto) => void;
   callbackAvatar?: (data: IApiDto) => () => void;
   callbackCheckbox?: (id: ID, checked: boolean) => void;
@@ -32,6 +35,7 @@ export interface ICustomListProps {
 
 const CustomList: React.FC<ICustomListProps> = ({
   datas,
+  buttonChildren,
   callback,
   callbackAvatar,
   callbackCheckbox,
@@ -81,67 +85,58 @@ const CustomList: React.FC<ICustomListProps> = ({
   }, []);
 
   return (
-    <Mdlist className='overflow'>
+    <MdList className='overflow overflow-x-none'>
       {!datas || datas.length === 0 ? (
-        <MdlistItem component='div' disablePadding>
-          <MdlistItem>
+        <MdListItem component='div' disablePadding>
+          <MdListItemButton>
             <MdListItemText color='flex align-center' label={t('NO_RESULT')} />
-          </MdlistItem>
-        </MdlistItem>
+          </MdListItemButton>
+        </MdListItem>
       ) : (
         datas?.map((data) => (
           <Fragment key={data.id}>
-            <MdlistItem component='div' disablePadding>
-              <ListItem onClick={handleClick(data)}>
-                {data.avatar && (
-                  <ListItemAvatar>
-                    <MdAvatar
-                      name={data.avatar}
-                      image={data.avatar}
-                      callback={callbackAvatar?.(data.user as IApiDto)}
-                    />
-                  </ListItemAvatar>
-                )}
-                {data.icon && (
-                  <ListItemIcon>
-                    <CustomIcon icon={data.icon} color={getIconColor(data.checked)} disabled={true} />
-                  </ListItemIcon>
-                )}
-                {callbackCheckbox && (
-                  <ListItemIcon>
-                    <Checkbox
-                      edge='start'
-                      checked={data.checked}
-                      tabIndex={-1}
-                      disableRipple
-                      onClick={handleClickChecbox(data.id, !data.checked, callbackCheckbox)}
-                      disabled={disabled}
-                    />
-                  </ListItemIcon>
-                )}
-                <MdListItemText
-                  color={getTextColor(data.checked)}
-                  label={data.name}
-                  secondary={<>{data.secondary}</>}
-                />
-                {data.chip && <MdChip label={data.chip} />}
-                {callbackSettings && (
-                  <ListItemIcon>
-                    <CustomIcon icon='settings' color='primary' callback={() => callbackSettings(data)} />
-                  </ListItemIcon>
-                )}
-                {callbackDelete && (
-                  <ListItemIcon>
-                    <CustomModaleConfirm id={data.id} icon='delete' callback={callbackDelete} />
-                  </ListItemIcon>
-                )}
-              </ListItem>
-            </MdlistItem>
+            <MdListItem component='div' disablePadding callback={handleClick(data)}>
+              {data.avatar && (
+                <ListItemAvatar>
+                  <MdAvatar name={data.avatar} image={data.avatar} callback={callbackAvatar?.(data.user as IApiDto)} />
+                </ListItemAvatar>
+              )}
+              {data.icon && (
+                <MdListItemIcon>
+                  <CustomIcon icon={data.icon} color={getIconColor(data.checked)} disabled={true} />
+                </MdListItemIcon>
+              )}
+              {callbackCheckbox && (
+                <MdListItemIcon>
+                  <Checkbox
+                    edge='start'
+                    checked={data.checked}
+                    tabIndex={-1}
+                    disableRipple
+                    onClick={handleClickChecbox(data.id, !data.checked, callbackCheckbox)}
+                    disabled={disabled}
+                  />
+                </MdListItemIcon>
+              )}
+              <MdListItemText color={getTextColor(data.checked)} label={data.name} secondary={<>{data.secondary}</>} />
+              {data.chip && <MdChip label={data.chip} />}
+              {buttonChildren && <>{buttonChildren(data.id)}</>}
+              {callbackSettings && (
+                <MdListItemIcon>
+                  <CustomIcon icon='settings' color='primary' callback={() => callbackSettings(data)} />
+                </MdListItemIcon>
+              )}
+              {callbackDelete && data.id && (
+                <MdListItemIcon>
+                  <CustomModaleConfirm id={data.id} icon='delete' iconColor='error' callback={callbackDelete} />
+                </MdListItemIcon>
+              )}
+            </MdListItem>
             <Divider variant={data.avatar ? 'inset' : 'fullWidth'} component='li' />
           </Fragment>
         ))
       )}
-    </Mdlist>
+    </MdList>
   );
 };
 

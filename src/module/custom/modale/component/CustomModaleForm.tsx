@@ -1,42 +1,40 @@
-import { Trans } from 'react-i18next';
 import { IApiDto, JSONObject } from '../../../../dto/api/ApiDto';
-import MdForm, { IMdFormPropsReturnDto } from '../../../../mui/component/form/MdForm';
+import MdForm from '../../../../mui/component/form/MdForm';
 import { IYupValidators } from '../../../../utils/yup/YupUtils';
-import CustomModale from './CustomModale';
+import { ICustomModalChildrenType, ICustomModaleChildProps } from './CustomModale';
+import CustomModaleCard from './CustomModaleCard';
 
-export interface ICustomModaleReturnDto extends IMdFormPropsReturnDto {
-  closeModal: () => void;
-}
-
-export interface ICustomModaleFormProps {
+export interface ICustomModaleFormProps extends ICustomModaleChildProps {
   title: string;
   initialValues: JSONObject;
   validationSchema: IYupValidators;
-  button?: string;
   small?: boolean;
-  onSubmit?: (callback: () => void) => (values: IApiDto) => void;
-  children: (props: ICustomModaleReturnDto) => React.JSX.Element;
+  onSubmit?: (callback?: () => void) => (values: IApiDto) => void;
+  children: ICustomModalChildrenType;
 }
 
-const CustomModaleForm: React.FC<ICustomModaleFormProps> = ({ title, button, onSubmit, ...rest }) => {
+const CustomModaleForm: React.FC<ICustomModaleFormProps> = ({
+  title,
+  initialValues,
+  validationSchema,
+  small,
+  onSubmit,
+  children,
+  ...rest
+}) => {
   return (
-    <CustomModale className={'form-modale' + (rest.small ? '-small ' : ' ')} button={button}>
+    <CustomModaleCard {...rest} title={title} className={'form-modale' + (small ? '-small ' : ' ')}>
       {({ closeModal }) => (
-        <>
-          <h1>
-            <Trans i18nKey={title} />
-          </h1>
-          <MdForm
-            className='flex justify-center'
-            initialValues={rest.initialValues}
-            validationSchema={rest.validationSchema}
-            onSubmit={onSubmit?.(closeModal)}
-            onGoBack={closeModal}>
-            {(props) => <>{rest.children({ ...props, closeModal: closeModal })}</>}
-          </MdForm>
-        </>
+        <MdForm
+          className='flex justify-center'
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit?.(closeModal)}
+          onGoBack={closeModal}>
+          {(props) => <>{children({ ...props, closeModal: closeModal })}</>}
+        </MdForm>
       )}
-    </CustomModale>
+    </CustomModaleCard>
   );
 };
 

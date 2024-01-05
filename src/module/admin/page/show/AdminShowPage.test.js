@@ -25,11 +25,11 @@ const PROFILE_M2M = {
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
+  ...mockRouter,
   useParams: () => ({
     id: 2,
     page: 'user',
   }),
-  ...mockRouter,
 }));
 
 describe('AdminShowPage', () => {

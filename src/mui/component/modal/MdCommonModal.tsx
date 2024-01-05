@@ -1,12 +1,13 @@
 import { Box, Modal } from '@mui/material';
 import { MouseEvent, ReactNode, useCallback } from 'react';
 import { IApiDto } from '../../../dto/api/ApiDto';
+import CustomIcon from '../../../module/custom/icon/component/CustomIcon';
 
 export interface ICommonModalProps {
   className?: string;
   open?: boolean;
   children?: ReactNode;
-  handleClose: (data: IApiDto | undefined) => void;
+  handleClose: () => void;
 }
 
 const style = {
@@ -32,10 +33,23 @@ const MdCommonModal: React.FC<ICommonModalProps> = (props) => {
     },
     [],
   );
+  const handleClick = useCallback((event: MouseEvent) => {
+    event.stopPropagation();
+    event.preventDefault();
+  }, []);
 
   return (
-    <Modal className={props.className + ' modale'} open={props.open ?? false} onClose={handleClose(props.handleClose)}>
-      <Box sx={{ ...style, width: 250 }}>{props.children}</Box>
+    <Modal
+      className={props.className + ' modale'}
+      open={props.open ?? false}
+      onClick={handleClick}
+      onClose={handleClose(props.handleClose)}>
+      <Box sx={{ ...style, position: 'relative' }}>
+        <div style={{ position: 'absolute', top: '11px', right: '23px' }}>
+          <CustomIcon icon='close' callback={props.handleClose} />
+        </div>
+        {props.children}
+      </Box>
     </Modal>
   );
 };

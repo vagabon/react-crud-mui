@@ -20,7 +20,7 @@ const ProfileAvatar: React.FC<IProfileAvatarProps> = ({ user, disabled }) => {
   const { handleChangeFile } = useCustomFormUpload('user');
 
   const callbackFile = useCallback(
-    (callback: () => void) => (event: ChangeEvent<JSONObject>) => {
+    (callback?: () => void) => (event: ChangeEvent<JSONObject>) => {
       const avatar = ObjectUtils.getDtoString(event.target as IApiDto, 'value');
       handleUpdateAvatar(avatar, callback);
     },

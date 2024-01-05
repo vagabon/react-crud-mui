@@ -1,10 +1,10 @@
 import { IconButton } from '@mui/material';
 import { MouseEvent, useCallback } from 'react';
-import { ColorType, useIcon } from '../../../../mui/hook/useIcon';
+import { IconColorType, useIcon } from '../../../../mui/hook/useIcon';
 
 export interface ICustomIconProps {
   icon: string;
-  color?: ColorType;
+  color?: IconColorType;
   disabled?: boolean;
   callback?: () => void;
 }

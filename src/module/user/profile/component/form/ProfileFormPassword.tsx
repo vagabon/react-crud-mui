@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import MdInputText from '../../../../../mui/component/form/MdInputText';
+import MdInputText, { IMdInputTextProps } from '../../../../../mui/component/form/MdInputText';
 import { IYupValidators } from '../../../../../utils/yup/YupUtils';
 import CustomModaleForm from '../../../../custom/modale/component/CustomModaleForm';
 import { IUserDto } from '../../../user/dto/UserDto';
@@ -30,7 +30,7 @@ const ProfileFormPassword: React.FC<IProfileFormPasswordProps> = ({ user }) => {
   const { handleUpdatePassword } = useUser();
 
   const handleSubmit = useCallback(
-    (callback: () => void) => (data: IUserDto) => {
+    (callback?: () => void) => (data: IUserDto) => {
       handleUpdatePassword(user?.id, data.password as string, data.newPassword as string, callback);
     },
     [user, handleUpdatePassword],
@@ -47,9 +47,13 @@ const ProfileFormPassword: React.FC<IProfileFormPasswordProps> = ({ user }) => {
         button='AUTH:USER.PASSWORD.BUTTON'>
         {(props) => (
           <>
-            <MdInputText label='AUTH:FIELDS.PASSWORD' name='password' {...props} />
-            <MdInputText label='AUTH:FIELDS.PASSWORD_NEW' name='newPassword' {...props} />
-            <MdInputText label='AUTH:FIELDS.PASSWORD_NEW_CONFIRM' name='newPasswordConfirm' {...props} />
+            <MdInputText {...(props as IMdInputTextProps)} label='AUTH:FIELDS.PASSWORD' name='password' />
+            <MdInputText {...(props as IMdInputTextProps)} label='AUTH:FIELDS.PASSWORD_NEW' name='newPassword' />
+            <MdInputText
+              {...(props as IMdInputTextProps)}
+              label='AUTH:FIELDS.PASSWORD_NEW_CONFIRM'
+              name='newPasswordConfirm'
+            />
           </>
         )}
       </CustomModaleForm>

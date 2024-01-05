@@ -2,7 +2,7 @@ import { Formik, FormikErrors } from 'formik';
 import { ChangeEvent, FocusEvent, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { IApiDto, JSONObject } from '../../../dto/api/ApiDto';
+import { IApiDto, JSONObject, JSONValue } from '../../../dto/api/ApiDto';
 import { IPathDto } from '../../../dto/path/PathDto';
 import { CommonAction } from '../../../reducer/common/CommonReducer';
 import { useAppDispatch, useAppSelector } from '../../../store/Store';
@@ -27,6 +27,8 @@ export type SetFieldValueType = (
   shouldValidate?: boolean | undefined,
 ) => Promise<void | FormikErrors<IApiDto>>;
 
+export type ValidateFormType = (values?: JSONObject) => Promise<FormikErrors<JSONValue>>;
+
 export interface IMdFormPropsReturnDto {
   values: JSONObject;
   state: JSONObject;
@@ -35,7 +37,8 @@ export interface IMdFormPropsReturnDto {
   validationSchema: IYupValidators;
   handleChange: HandleChangeType;
   handleBlur: HandleBlurType;
-  handleSubmit: () => void;
+  handleSubmit: (values: IApiDto) => void;
+  validateForm: ValidateFormType;
   setFieldValue: SetFieldValueType;
   setValues: (values: IApiDto, shouldValidate?: boolean) => Promise<void | FormikErrors<IApiDto>>;
   disabled?: boolean;
@@ -67,7 +70,8 @@ const MdForm: React.FC<IMdFormProps> = (props: IMdFormProps) => {
   const doSubmit = useCallback(
     (values: IApiDto, validateForm: (values?: IApiDto) => Promise<FormikErrors<IApiDto>>): void => {
       dispatch(CommonAction.setMessage({ message: '', type: 'success' }));
-      validateForm().then((errors: FormikErrors<IApiDto>) => {
+      console.log(values);
+      validateForm(values).then((errors: FormikErrors<IApiDto>) => {
         console.log('form errors', values, errors);
         if (Object.keys(errors).length > 0) {
           dispatch(CommonAction.setMessage({ message: 'COMMON:FORM.ERROR', type: 'error' }));
@@ -104,17 +108,7 @@ const MdForm: React.FC<IMdFormProps> = (props: IMdFormProps) => {
       onSubmit={onSubmit}
       autoComplete='off'
       enableReinitialize>
-      {({
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        validateForm,
-        setFieldValue,
-        setValues,
-      }) => (
+      {({ values, errors, touched, handleChange, handleBlur, validateForm, setFieldValue, setValues }) => (
         <>
           <div className={'form-content ' + props.className}>
             {props.children({
@@ -125,20 +119,23 @@ const MdForm: React.FC<IMdFormProps> = (props: IMdFormProps) => {
               validationSchema: props.validationSchema,
               handleChange,
               handleBlur,
-              handleSubmit,
+              handleSubmit: (values: IApiDto) => doSubmit(values, validateForm),
+              validateForm,
               setFieldValue,
               setValues,
             })}
           </div>
-          <div style={{ height: '30px' }}>&nbsp;</div>
-          <div className='width100 flex-row justify-end'>
-            {props.backButton === true && history.length > 1 && (
-              <MdButton label='Retour' variant='text' onClick={goBack} />
-            )}
-            {props.submitButton === true && props.onSubmit && (
-              <MdButton label='COMMON:SUBMIT' onClick={() => doSubmit(values, validateForm)} />
-            )}
-          </div>
+          {(props.backButton || props.submitButton) && (
+            <>
+              <div style={{ height: '30px' }}>&nbsp;</div>
+              <div className='width100 flex-row justify-end'>
+                {props.backButton && history.length > 1 && <MdButton label='Retour' variant='text' onClick={goBack} />}
+                {props.submitButton && props.onSubmit && (
+                  <MdButton label='COMMON:SUBMIT' onClick={() => doSubmit(values, validateForm)} />
+                )}
+              </div>
+            </>
+          )}
         </>
       )}
     </Formik>

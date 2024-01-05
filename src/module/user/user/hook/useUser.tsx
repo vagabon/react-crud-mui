@@ -38,7 +38,7 @@ export const useUser = () => {
   );
 
   const handleUpdateAvatar = useCallback(
-    (avatar: string, callback: () => void) => {
+    (avatar: string, callback?: () => void) => {
       updateLocalUser({
         avatar: avatar,
       });
@@ -49,7 +49,7 @@ export const useUser = () => {
   );
 
   const handleUpdateEmail = useCallback(
-    (id: ID, email: string, callback: () => void) => {
+    (id: ID, email: string, callback?: () => void) => {
       UserService.updateEmail(id, email).then((data) => {
         updateLocalUser({ ...data });
         setMessage('AUTH:USER.EMAIL.SUCCESS', 'success');
@@ -60,7 +60,7 @@ export const useUser = () => {
   );
 
   const handleUpdatePassword = useCallback(
-    (id: ID, password: string, newPassword: string, callback: () => void) => {
+    (id: ID, password: string, newPassword: string, callback?: () => void) => {
       UserService.updatePassword(id, password, newPassword).then((data) => {
         updateLocalUser({ ...data });
         setMessage('AUTH:USER.PASSWORD.SUCCESS', 'success');

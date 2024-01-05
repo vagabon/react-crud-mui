@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IApiDto } from '../../../../dto/api/ApiDto';
+import MdList from '../../../../mui/component/list/MdList';
+import MdListItem from '../../../../mui/component/list/MdListItem';
+import MdListItemButton from '../../../../mui/component/list/MdListItemButton';
 import MdListItemText from '../../../../mui/component/list/MdListItemText';
-import Mdlist from '../../../../mui/component/list/Mdlist';
-import MdlistItem from '../../../../mui/component/list/MdlistItem';
-import MdlistItemButton from '../../../../mui/component/list/MdlistItemButton';
 import MdCommonModal from '../../../../mui/component/modal/MdCommonModal';
 import MdSearchBar from '../../../../mui/component/searchbar/MdSearchBar';
 import { IManyToManyDto } from '../../../admin/dto/AdminConfDto';
@@ -45,22 +45,22 @@ const CustomFormModale: React.FC<ICustomFormModaleProps> = ({ conf, open, ...res
   return (
     <MdCommonModal open={open} handleClose={rest.handleClose}>
       <MdSearchBar callBack={handleSearch} search={search} />
-      <Mdlist className='modalList'>
+      <MdList className='modalList'>
         {(!datas || datas.length === 0) && (
-          <MdlistItem component='div' disablePadding>
-            <MdlistItemButton>
+          <MdListItem component='div' disablePadding>
+            <MdListItemButton>
               <MdListItemText color='flex justify-center' label={t('NO_RESULT')} />
-            </MdlistItemButton>
-          </MdlistItem>
+            </MdListItemButton>
+          </MdListItem>
         )}
         {datas?.map((data) => (
-          <MdlistItem key={data.id} component='div' disablePadding>
-            <MdlistItemButton callback={rest.handleSelect(data)}>
+          <MdListItem key={data.id} component='div' disablePadding>
+            <MdListItemButton callback={rest.handleSelect(data)}>
               <MdListItemText label={(data['name' as keyof IApiDto] as string) ?? ''} />
-            </MdlistItemButton>
-          </MdlistItem>
+            </MdListItemButton>
+          </MdListItem>
         ))}
-      </Mdlist>
+      </MdList>
     </MdCommonModal>
   );
 };

@@ -1,41 +1,31 @@
 import { Trans } from 'react-i18next';
 import { ID } from '../../../../dto/api/ApiDto';
-import { useModal } from '../../../../hook/modal/useModal';
 import MdButton from '../../../../mui/component/button/MdButton';
 import MdCard from '../../../../mui/component/card/MdCard';
-import MdCommonModal from '../../../../mui/component/modal/MdCommonModal';
-import { ColorType } from '../../../../mui/hook/useIcon';
-import CustomIcon from '../../icon/component/CustomIcon';
+import CustomModale, { ICustomModaleChildProps } from './CustomModale';
 
-export interface ICustomModaleConfirmProps {
+export interface ICustomModaleConfirmProps extends ICustomModaleChildProps {
   id?: ID;
   label?: string;
-  icon?: string;
-  iconColor?: ColorType;
-  button?: string;
   callback?: (id: ID) => void;
 }
 
-const CustomModaleConfirm: React.FC<ICustomModaleConfirmProps> = ({ id, label, icon, iconColor, button, callback }) => {
-  const { open, openModal, closeModal, handleYes } = useModal();
-
+const CustomModaleConfirm: React.FC<ICustomModaleConfirmProps> = ({ id, label, callback, ...rest }) => {
   return (
-    <>
-      <MdCommonModal className='modale-confirm' open={open} handleClose={closeModal}>
+    <CustomModale {...rest} className='modale-confirm'>
+      {({ closeModal, handleYes }) => (
         <MdCard
           title='CONFIRMATION.TITLE'
           buttonchildren={
             <>
               <MdButton label='COMMON:NO' variant='text' onClick={closeModal} />
-              <MdButton label='COMMON:YES' onClick={handleYes(id, callback)} />
+              <MdButton label='COMMON:YES' onClick={handleYes?.(id, callback)} />
             </>
           }>
           <Trans i18nKey={label ?? 'CONFIRMATION.MESSAGE'} />
         </MdCard>
-      </MdCommonModal>
-      {icon && <CustomIcon color={iconColor ?? 'error'} icon={icon} callback={openModal} />}
-      {button && <MdButton label={button} color='error' onClick={openModal} />}
-    </>
+      )}
+    </CustomModale>
   );
 };
 

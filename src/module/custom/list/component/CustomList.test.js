@@ -22,7 +22,7 @@ describe('CustomList', () => {
       />,
     );
     expect(screen.getByTestId('List')).toBeDefined();
-    fireEvent.click(screen.getAllByTestId('ListItem')[1]);
+    fireEvent.click(screen.getAllByTestId('ListItem')[0]);
     expect(callback).toBeCalled();
     fireEvent.click(screen.getAllByTestId('Checkbox')[0]);
     expect(callbackCheckbox).toBeCalled();

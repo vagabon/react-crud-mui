@@ -5,7 +5,6 @@ export interface IModalReturnProps {
   open: boolean;
   openModal: () => void;
   closeModal: () => void;
-  switchModal: (open: boolean) => void;
   handleYes: (id: ID, callback?: (id: ID) => void) => () => void;
 }
 
@@ -22,10 +21,6 @@ export const useModal = (): IModalReturnProps => {
     document.body.style.overflow = '';
   }, []);
 
-  const switchModal = useCallback((open: boolean) => {
-    setOpen(open);
-  }, []);
-
   const handleYes = useCallback(
     (id: ID, callback?: (id: ID) => void) => () => {
       closeModal();
@@ -34,5 +29,5 @@ export const useModal = (): IModalReturnProps => {
     [closeModal],
   );
 
-  return { open, openModal, closeModal, switchModal, handleYes };
+  return { open, openModal, closeModal, handleYes };
 };

@@ -7,6 +7,8 @@ import { IUserDto } from '../../user/user/dto/UserDto';
 import { LoginAction } from '../reducer/AuthReducers';
 import AuthService from '../service/AuthService';
 
+const URL_PROFILE = '/profile';
+
 export const useAuth = () => {
   const dispatch = useAppDispatch();
   const { navigate } = useMdNavigate();
@@ -15,7 +17,7 @@ export const useAuth = () => {
     (data: IUserDto) => {
       AuthService.login(data.username as string, data.password as string).then((data) => {
         dispatch(LoginAction.setLoginSuccess(data as ICurrentUserDto<IUserDto>));
-        navigate('/auth/profile');
+        navigate(URL_PROFILE);
       });
     },
     [dispatch, navigate],
@@ -26,7 +28,7 @@ export const useAuth = () => {
       AuthService.googleConnect(token).then((data) => {
         dispatch(LoginAction.setLoginSuccess(data as ICurrentUserDto<IUserDto>));
         StorageUtils.setCurrentUser(data as ICurrentUserDto<IUserDto>);
-        navigate('/auth/profile');
+        navigate(URL_PROFILE);
       });
     },
     [dispatch, navigate],
@@ -37,7 +39,7 @@ export const useAuth = () => {
       AuthService.facebookConnect(token).then((data) => {
         dispatch(LoginAction.setLoginSuccess(data as ICurrentUserDto<IUserDto>));
         StorageUtils.setCurrentUser(data as ICurrentUserDto<IUserDto>);
-        navigate('/auth/profile');
+        navigate(URL_PROFILE);
       });
     },
     [dispatch, navigate],
