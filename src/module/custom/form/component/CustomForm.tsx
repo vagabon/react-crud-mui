@@ -34,7 +34,7 @@ const CustomForm: React.FC<ICustomFormProps> = ({ endPoint, conf, values, schema
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <MdForm
-        className='flex-row flex-wrap form'
+        className='flex-row custom-form form'
         initialValues={values}
         validationSchema={schema}
         onSubmit={handleUpdate}

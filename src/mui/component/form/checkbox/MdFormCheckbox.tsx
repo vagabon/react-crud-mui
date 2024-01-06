@@ -23,20 +23,21 @@ const MdFormCheckbox: React.FC<IMdFormCheckboxProps> = (props: IMdFormCheckboxPr
           value: checkked,
         },
       };
+      console.log(newEvent);
       callback(newEvent);
     },
     [props.name, props.values],
   );
 
   return (
-    <div className='flex flex-row'>
+    <div className='flex flex-row align-center'>
       <Typography paragraph={true} style={{ flex: '1', margin: '20px 7px' }}>
         {props.label && t(props.label)}
       </Typography>
       <Checkbox
         name={props.name}
         checked={props.values[props.name as keyof JSONObject] === true}
-        onChange={handleChange(props.handleChange)}
+        onClick={handleChange(props.handleChange)}
         onBlur={props.handleBlur}
         inputProps={{ 'aria-label': 'controlled' }}
         style={{ padding: '0px 2px' }}

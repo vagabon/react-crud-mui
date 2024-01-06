@@ -6,7 +6,7 @@ export interface IMdListProps {
   children: ReactNode;
 }
 const MdList: React.FC<IMdListProps> = ({ className, children }) => {
-  return <List className={className ?? 'modalList'}>{children}</List>;
+  return <List className={className ?? 'modal-list'}>{children}</List>;
 };
 
 export default MdList;

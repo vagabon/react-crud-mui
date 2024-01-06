@@ -23,7 +23,7 @@ const CustomModaleForm: React.FC<ICustomModaleFormProps> = ({
   ...rest
 }) => {
   return (
-    <CustomModaleCard {...rest} title={title} className={'form-modale' + (small ? '-small ' : ' ')}>
+    <CustomModaleCard {...rest} title={title} className={'modal-form' + (small ? '-small ' : ' ')}>
       {({ closeModal }) => (
         <MdForm
           className='flex justify-center'

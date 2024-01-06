@@ -45,7 +45,7 @@ const CustomFormModale: React.FC<ICustomFormModaleProps> = ({ conf, open, ...res
   return (
     <MdCommonModal open={open} handleClose={rest.handleClose}>
       <MdSearchBar callBack={handleSearch} search={search} />
-      <MdList className='modalList'>
+      <MdList className='modal-list'>
         {(!datas || datas.length === 0) && (
           <MdListItem component='div' disablePadding>
             <MdListItemButton>

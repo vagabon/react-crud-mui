@@ -10,7 +10,7 @@ export interface ICustomModaleCardProps extends ICustomModaleChildProps {
 
 const CustomModaleCard: React.FC<ICustomModaleCardProps> = ({ title, buttonChildren, children, ...rest }) => {
   return (
-    <CustomModale {...rest} className={'modale-card ' + rest.className}>
+    <CustomModale {...rest} className={'modal-card ' + rest.className}>
       {(props) => (
         <MdCard title={title} buttonchildren={<>{buttonChildren && <>{buttonChildren}</>}</>}>
           {children(props)}

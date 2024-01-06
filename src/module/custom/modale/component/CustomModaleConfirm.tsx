@@ -12,7 +12,7 @@ export interface ICustomModaleConfirmProps extends ICustomModaleChildProps {
 
 const CustomModaleConfirm: React.FC<ICustomModaleConfirmProps> = ({ id, label, callback, ...rest }) => {
   return (
-    <CustomModale {...rest} className='modale-confirm'>
+    <CustomModale {...rest} className='modal-confirm'>
       {({ closeModal, handleYes }) => (
         <MdCard
           title='CONFIRMATION.TITLE'

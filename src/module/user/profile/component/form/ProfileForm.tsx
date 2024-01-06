@@ -16,7 +16,7 @@ const ProfileForm: React.FC<IProfileFormProps> = ({ user, disabled }) => {
   const { isUserPassword } = useUser();
 
   return (
-    <div className='profile'>
+    <div className='profile-form'>
       {!disabled && (
         <>
           <Divider />

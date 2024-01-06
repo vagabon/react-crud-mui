@@ -24,6 +24,7 @@ export interface ICustomListDto extends IApiDto {
 }
 
 export interface ICustomListProps {
+  className?: string;
   datas: ICustomListDto[];
   buttonChildren?: (id: ID) => React.JSX.Element;
   callback?: (data: IApiDto) => void;
@@ -34,6 +35,7 @@ export interface ICustomListProps {
 }
 
 const CustomList: React.FC<ICustomListProps> = ({
+  className,
   datas,
   buttonChildren,
   callback,
@@ -85,7 +87,7 @@ const CustomList: React.FC<ICustomListProps> = ({
   }, []);
 
   return (
-    <MdList className='overflow overflow-x-none'>
+    <MdList className={'custom-list overflow overflow-x-none ' + className}>
       {!datas || datas.length === 0 ? (
         <MdListItem component='div' disablePadding>
           <MdListItemButton>

@@ -40,7 +40,7 @@ const MdCommonModal: React.FC<ICommonModalProps> = (props) => {
 
   return (
     <Modal
-      className={props.className + ' modale'}
+      className={props.className + ' modal'}
       open={props.open ?? false}
       onClick={handleClick}
       onClose={handleClose(props.handleClose)}>

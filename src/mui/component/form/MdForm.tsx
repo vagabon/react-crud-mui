@@ -70,7 +70,6 @@ const MdForm: React.FC<IMdFormProps> = (props: IMdFormProps) => {
   const doSubmit = useCallback(
     (values: IApiDto, validateForm: (values?: IApiDto) => Promise<FormikErrors<IApiDto>>): void => {
       dispatch(CommonAction.setMessage({ message: '', type: 'success' }));
-      console.log(values);
       validateForm(values).then((errors: FormikErrors<IApiDto>) => {
         console.log('form errors', values, errors);
         if (Object.keys(errors).length > 0) {

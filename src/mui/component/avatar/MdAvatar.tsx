@@ -37,11 +37,11 @@ const MdAvatar: React.FC<IMdAvatarProps> = ({ name, image, disabled, url, sx, ca
 
   return (
     <IconButton edge='end' aria-label='delete' onClick={handleClick} disabled={disabled}>
-      {image && image !== '' ? (
+      {image && image !== '' && image.startsWith('http') ? (
         <Avatar alt={name} src={getImage(image)} sx={sx} />
       ) : (
         <Avatar color='secondary' sx={sx}>
-          {ObjectUtils.capitalize(name[0])}
+          {ObjectUtils.capitalize(name)[0]}
         </Avatar>
       )}
     </IconButton>
