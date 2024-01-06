@@ -9,7 +9,7 @@ export const useFormError = (name: string, errors: JSONObject, touched: JSONObje
 
   useEffect(() => {
     const currentName = name;
-    const error = errors[currentName as keyof JSONObject];
+    const error = errors?.[currentName as keyof JSONObject] ?? '';
     if (error !== undefined && error !== '' && (touched[currentName as keyof JSONObject] || message !== '')) {
       setError(error);
     } else {

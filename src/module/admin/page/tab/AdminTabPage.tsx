@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import HasRole from '../../../../hook/role/HasRole';
 import MdContent from '../../../../mui/component/content/MdContent';
-import HasRole from '../../../../mui/component/role/HasRole';
 import MdTabs from '../../../../mui/component/tabs/MdTabs';
 import AdminTable from '../../component/AdminTable';
 import { IAdminTabConfDto } from '../../dto/AdminConfDto';

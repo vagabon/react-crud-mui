@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { JSONObject } from '../../../dto/api/ApiDto';
+import HasRole from '../../../hook/role/HasRole';
 import MdCard from '../../../mui/component/card/MdCard';
 import MdFabAdd from '../../../mui/component/fab/add/MdFabAdd';
-import HasRole from '../../../mui/component/role/HasRole';
 import MdSearchBar from '../../../mui/component/searchbar/MdSearchBar';
 import MdTableWithPagination from '../../../mui/component/table/MdTableWithPagination';
 import { IAdminTabConfDto, IAdminTabDto } from '../dto/AdminConfDto';

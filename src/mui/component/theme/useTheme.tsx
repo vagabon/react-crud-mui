@@ -27,8 +27,17 @@ export interface IPaletteDto {
 
 export type ModeType = 'light' | 'dark';
 
-export const useTheme = (palette: JSONObject, darkMode?: ModeType) => {
-  const [mode, setMode] = useState<ModeType>(darkMode ?? 'light');
+const defaultMode = () => {
+  let storageMode = StorageUtils.getMode();
+  if (!storageMode || (storageMode !== 'light' && storageMode !== 'dark')) {
+    const darkBrowser = window.matchMedia('(prefers-color-scheme: dark)');
+    storageMode = darkBrowser?.matches ? 'dark' : 'light';
+  }
+  return storageMode as ModeType;
+};
+
+export const useTheme = (palette: JSONObject) => {
+  const [mode, setMode] = useState<ModeType>(defaultMode());
   const [theme, setTheme] = useState<ITheme>();
 
   const showTheme = useCallback(
@@ -63,15 +72,6 @@ export const useTheme = (palette: JSONObject, darkMode?: ModeType) => {
     },
     [palette],
   );
-
-  useEffect(() => {
-    let storageMode = StorageUtils.getMode();
-    if (!storageMode || (storageMode !== 'light' && storageMode !== 'dark')) {
-      const darkBrowser = window.matchMedia('(prefers-color-scheme: dark)');
-      storageMode = darkBrowser?.matches ? 'dark' : 'light';
-    }
-    setMode(storageMode as ModeType);
-  }, []);
 
   useEffect(() => {
     showTheme(mode);

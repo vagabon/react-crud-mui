@@ -1,6 +1,6 @@
 import { Divider } from '@mui/material';
 import { Trans } from 'react-i18next';
-import HasRole from '../../../../../mui/component/role/HasRole';
+import HasRole from '../../../../../hook/role/HasRole';
 import { IUserDto } from '../../../user/dto/UserDto';
 import { useUser } from '../../../user/hook/useUser';
 import { IProfileDto } from '../../dto/ProfileDto';

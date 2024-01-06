@@ -23,7 +23,9 @@ export { useMessage } from './hook/message/useMessage';
 export { useModal } from './hook/modal/useModal';
 export type { IModalReturnProps } from './hook/modal/useModal';
 export { useMdNavigate, useMdParams } from './hook/navigate/useMdNavigate';
-export { useThemeSelector } from './hook/theme/useThemeSelector';
+export { default as HasRole } from './hook/role/HasRole';
+export type { HasRoleProps } from './hook/role/HasRole';
+export { useRole } from './hook/role/useRole';
 export { default as Mdtrans, useMdTrans } from './hook/trans/useMdTrans';
 export { useUserAuth } from './hook/user/useUserAuth';
 
@@ -164,10 +166,6 @@ export { default as InfiniteScrollPage } from './mui/page/InfiniteScrollPage';
 export type { InfiniteScroolPageProps } from './mui/page/InfiniteScrollPage';
 export { default as ShowPage } from './mui/page/ShowPage';
 export type { ShowPageProps } from './mui/page/ShowPage';
-
-export { default as HasRole } from './mui/component/role/HasRole';
-export type { HasRoleProps } from './mui/component/role/HasRole';
-export { useRole } from './mui/component/role/useRole';
 
 export { default as MdSearchBar } from './mui/component/searchbar/MdSearchBar';
 export type { IMdSearchBarProps } from './mui/component/searchbar/MdSearchBar';

@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import AppTheme from './AppTheme';
 
 const palette = {
@@ -75,5 +75,6 @@ describe('AppTheme', () => {
     );
     render(<AppTheme palette={palette} conf={conf} menu={menu} />);
     expect(screen.getByTestId('ThemeProvider')).toBeDefined();
+    fireEvent.click(screen.getByTestId('IconButton'));
   });
 });

@@ -31,7 +31,7 @@ const AppTheme: React.FC<IAppThemeProps> = ({ palette, conf, menu, children }) =
   const location = useLocation();
   const dispatch = useAppDispatch();
 
-  const { mode, theme, switchTheme } = useTheme(palette, 'light');
+  const { mode, theme, switchTheme } = useTheme(palette);
 
   useEffect(() => {
     dispatch(CommonAction.clearMessage());

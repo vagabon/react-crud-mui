@@ -34,8 +34,8 @@ const MdFormSelect: React.FC<IMdFormSelectProps> = (props: IMdFormSelectProps) =
     setValues(values);
   }, [props.list]);
 
-  const propsValues = props.values[props.name as keyof JSONObject];
-  const validationSchema = props.validationSchema[props.name as keyof JSONObject] ?? {};
+  const propsValues = props.values?.[props.name as keyof JSONObject] ?? '';
+  const validationSchema = props.validationSchema?.[props.name as keyof JSONObject] ?? {};
 
   useEffect(() => {
     setValue(props.byId === true ? propsValues?.['id'] ?? '' : propsValues ?? '');

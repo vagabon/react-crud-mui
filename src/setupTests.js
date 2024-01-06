@@ -17,6 +17,10 @@ global.mockComponentWithCallBack =
       </>
     );
 
+global.spyOn = (object, method, data) => {
+  return jest.spyOn(object, method).mockReturnValue(Promise.resolve(data));
+};
+
 /********************************** MOCK REDUX ***********************************/
 
 import * as redux from 'react-redux';
@@ -140,11 +144,17 @@ jest.mock('@mui/material', () => ({
   ListItemIcon: ({ children }) => <div data-testid='ListItemIcon'>{children}</div>,
   ListItemText: ({ children }) => <div data-testid='ListItemText'>{children}</div>,
   MenuItem: ({ value, children }) => (
-    <option data-testid='Modal' value={value}>
+    <option data-testid='MenuItem' value={value}>
       {children}
     </option>
   ),
-  Modal: ({ children }) => <div data-testid='Modal'>{children}</div>,
+  Modal: ({ children, onClick, onClose }) => (
+    <div data-testid='Modal'>
+      <div data-testid='ModalClick' onClick={onClick}></div>
+      <div data-testid='ModalClose' onClick={onClose}></div>
+      {children}
+    </div>
+  ),
   Select: ({ name, onChange, children }) => (
     <>
       <input name={name} data-testid='Select' onChange={onChange}></input>
