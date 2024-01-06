@@ -27,4 +27,12 @@ export const StorageUtils = {
     const user = StorageUtils.getCurrentUser();
     return user?.jwt ? user.jwt : '';
   },
+
+  setMode: (mode: string) => {
+    localStorage.setItem('mode_theme', mode);
+  },
+
+  getMode: () => {
+    return localStorage.getItem('mode_theme');
+  },
 };

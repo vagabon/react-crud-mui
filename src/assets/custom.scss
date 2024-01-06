@@ -22,15 +22,17 @@
 .MuiChip-root { margin: 0; }
 .MuiInputLabel-root.Mui-disabled { color: rgba(255, 255, 255, 0.5) !important; }
 .MuiCardContent-root { display: flex; flex-direction: column; flex: 1; }
+.MuiButtonBase-root { margin: 0px !important; } 
 .MuiListItemIcon-root { 
   min-width: 0px !important; 
-  .MuiButtonBase-root { margin: 0px; padding: 7px; } 
+  .MuiButtonBase-root { margin: 0px !important; padding: 6px !important; } 
 }
 .MuiToolbar-root {  
   overflow: auto; 
-  .MuiAvatar-root { width: 30px; height: 30px; margin-right: 0.55rem; }
+  .MuiAvatar-root { width: 30px; height: 30px; }
 }
 .MuiAvatar-root { background-color: var(--mui-palette-secondary-main) !important; }
+.mode-dark .MuiAvatar-root { background-color: var(--mui-palette-secondary-main-dark) !important; }
 
 @media (min-width: 600px) {
   .MuiToolbar-root { min-height: 48px !important; }
@@ -100,7 +102,7 @@
     .MuiPaper-root:nth-child(1) { width: 100% !important; }
     .MuiPaper-root:nth-child(2) { display: none !important; }
   }
-  .news-list .flex { flex-direction: column !important; & > div { width: 100% !important; } }
+  .news-list .flex { flex-direction: column !important; }
 }
 
 /**** MANY TOO MANY ****/
@@ -122,7 +124,7 @@
 
 .search-bar { width: 100%; padding: 10px 0; max-width: 1200px; margin: 0 auto; }
 
-.form {
+.form, .form-content {
   gap: 10px;
   .width100 { width: calc(100% - 10px) !important; }
   .width50 { width: calc(50% - 10px) !important; }
@@ -130,7 +132,7 @@
     & > div {
       display: flex; flex-direction: row !important; align-items: center !important; justify-content: space-between !important; 
       min-height: 4rem; margin-top: 1rem;
-      & > p { padding-left: 10px; }
+      & > p { padding-left: 10px; flex: 1; }
       & > p, & > span { align-self: center !important; margin: 0 !important; } 
     }
   }
@@ -211,6 +213,7 @@
 
 .MuiTableCell-root { font-size: 1rem !important; }
 thead th.MuiTableCell-root { background-color: var(--mui-palette-primary-main) !important; }
+.mode-dark thead th.MuiTableCell-root { background-color: var(--mui-palette-primary-main-dark) !important; }
 
 .MuiTablePagination-toolbar { justify-content: center; & > div:nth-child(1) { flex: 0 !important; } }
 

@@ -1,6 +1,8 @@
 import { InputProps, TextField, TextFieldVariants } from '@mui/material';
+import { KeyboardEvent, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { JSONValue } from '../../../dto/api/ApiDto';
+import { IApiDto, JSONValue } from '../../../dto/api/ApiDto';
+import { ObjectUtils } from '../../../utils/object/ObjectUtils';
 import { useFormValue } from '../../hook/useFormValue';
 import { HandleBlurType, HandleChangeType } from './MdForm';
 
@@ -22,6 +24,7 @@ export interface IMdInputTextSimpleProps {
   inputProps?: Partial<InputProps>;
   handleChange?: HandleChangeType;
   handleBlur?: HandleBlurType;
+  handleKeyEnter?: (target: { name: string; value: string }) => void;
 }
 
 const MdInputTextSimple: React.FC<IMdInputTextSimpleProps> = (props: IMdInputTextSimpleProps) => {
@@ -29,6 +32,19 @@ const MdInputTextSimple: React.FC<IMdInputTextSimpleProps> = (props: IMdInputTex
   const { uref, key, defaultValue, readonly, handleFocus, handleBlur } = useFormValue(
     props.type ?? DEFAULT_TEXT,
     props.value,
+  );
+
+  const handleKeyUp = useCallback(
+    (callbackEnter?: (target: { name: string; value: string }) => void) => (event: KeyboardEvent<HTMLDivElement>) => {
+      if (event.key === 'Enter') {
+        const target = {
+          name: ObjectUtils.getDtoString(event.target as IApiDto, 'name'),
+          value: ObjectUtils.getDtoString(event.target as IApiDto, 'value'),
+        };
+        callbackEnter?.(target);
+      }
+    },
+    [],
   );
 
   return (
@@ -51,6 +67,7 @@ const MdInputTextSimple: React.FC<IMdInputTextSimpleProps> = (props: IMdInputTex
         onFocus={handleFocus}
         onChange={props.handleChange}
         onBlur={handleBlur(props.handleBlur)}
+        onKeyUp={handleKeyUp(props.handleKeyEnter)}
         InputProps={{
           ...props.inputProps,
           autoComplete: 'off',

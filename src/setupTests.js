@@ -174,7 +174,9 @@ jest.mock('@mui/material', () => ({
   ThemeProvider: ({ children }) => <div data-testid='ThemeProvider'>{children}</div>,
   Toolbar: ({ children }) => <div data-testid='Toolbar'>{children}</div>,
   Typography: ({ children }) => <div data-testid='Typography'>{children}</div>,
-  createTheme: jest.fn(),
+  createTheme: () => {
+    return {};
+  },
 }));
 
 jest.mock('@mui/material/Button', () => ({ children, onClick }) => (

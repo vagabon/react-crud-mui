@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { useRole } from './useRole';
 
 export interface HasRoleProps {
-  roles: string[];
+  roles?: string[];
   showError?: boolean;
   children: ReactNode;
 }

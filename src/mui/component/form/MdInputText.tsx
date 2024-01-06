@@ -1,4 +1,5 @@
-import { JSONObject } from '../../../dto/api/ApiDto';
+import { useCallback } from 'react';
+import { IApiDto, JSONObject } from '../../../dto/api/ApiDto';
 import { useFormError } from '../../hook/useFormError';
 import { IMdFormPropsReturnDto } from './MdForm';
 import MdInputTextSimple from './MdInputTextSimple';
@@ -18,6 +19,17 @@ export interface IMdInputTextProps extends IMdFormPropsReturnDto {
 const MdInputText: React.FC<IMdInputTextProps> = (props: IMdInputTextProps) => {
   const { error, showError } = useFormError(props.name, props.errors, props.touched);
 
+  const handleKeyEnter = useCallback(
+    (callback?: (values: IApiDto) => void) => (target: { name: string; value: string }) => {
+      const state = {
+        ...props.state,
+        [target.name]: target.value,
+      };
+      !props.textarea && callback?.(state as IApiDto);
+    },
+    [props.state, props.textarea],
+  );
+
   return (
     <div style={{ width: '100%' }} className={props.className}>
       <MdInputTextSimple
@@ -31,6 +43,7 @@ const MdInputText: React.FC<IMdInputTextProps> = (props: IMdInputTextProps) => {
         handleChange={props.handleChange}
         handleBlur={props.handleBlur}
         textarea={props.textarea}
+        handleKeyEnter={handleKeyEnter(props.handleSubmit)}
       />
       {showError()}
     </div>

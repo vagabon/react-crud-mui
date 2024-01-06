@@ -29,7 +29,7 @@ const MdAvatar: React.FC<IMdAvatarProps> = ({ name, image, disabled, url, sx, ca
   );
 
   const getImage = useCallback((image: string) => {
-    if (!image.startsWith('http://') && !image.startsWith('https://')) {
+    if (!image.includes('http://') && !image.startsWith('https://')) {
       return API_URL + '/download?fileName=' + image;
     }
     return image;
@@ -37,7 +37,7 @@ const MdAvatar: React.FC<IMdAvatarProps> = ({ name, image, disabled, url, sx, ca
 
   return (
     <IconButton edge='end' aria-label='delete' onClick={handleClick} disabled={disabled}>
-      {image && image !== '' && image.startsWith('http') ? (
+      {image && image !== '' && image.includes('/') ? (
         <Avatar alt={name} src={getImage(image)} sx={sx} />
       ) : (
         <Avatar color='secondary' sx={sx}>

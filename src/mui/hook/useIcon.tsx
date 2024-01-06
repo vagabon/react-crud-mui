@@ -4,6 +4,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AddIcon from '@mui/icons-material/Add';
 import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import AlarmIcon from '@mui/icons-material/Alarm';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness5Icon from '@mui/icons-material/Brightness5';
 import CloseIcon from '@mui/icons-material/Close';
 import CreateIcon from '@mui/icons-material/Create';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -48,6 +50,8 @@ export const ICONS = {
   personAdd: { react: (color: IconColorType) => <PersonAddIcon color={color} /> },
   search: { react: (color: IconColorType) => <SearchIcon color={color} /> },
   close: { react: (color: IconColorType) => <CloseIcon color={color} /> },
+  sun: { react: (color: IconColorType) => <Brightness5Icon color={color} /> },
+  moon: { react: (color: IconColorType) => <Brightness4Icon color={color} /> },
 };
 
 export const useIcon = () => {

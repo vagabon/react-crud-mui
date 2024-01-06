@@ -55,3 +55,18 @@ describe('StorageUtils getJwt', () => {
     expect(localstorageSpy).toHaveBeenCalled();
   });
 });
+
+describe('StorageUtils mode', () => {
+  test('Given StorageUtils setMode Then localstorage is called', () => {
+    const localstorageSpy = jest.spyOn(window.localStorage, 'setItem');
+    StorageUtils.setMode('dark');
+    expect(localstorageSpy).toHaveBeenCalled();
+  });
+
+  test('Given StorageUtils When getMode Then localstorage is called', () => {
+    const localstorageSpy = jest.spyOn(window.localStorage, 'getItem');
+    const tested = StorageUtils.getMode();
+    expect(tested).not.toBeNull();
+    expect(localstorageSpy).toHaveBeenCalled();
+  });
+});

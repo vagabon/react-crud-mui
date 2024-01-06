@@ -195,6 +195,13 @@ export type { MessageType } from './reducer/common/CommonReducer';
 
 export { SuspenceLoader } from './suspence/SuspenceLoader';
 
+export { default as AppTheme } from './template/AppTheme';
+export type { IAppThemeProps, IConfDto } from './template/AppTheme';
+export { default as Footer } from './template/Footer';
+export type { IFoorterProps } from './template/Footer';
+export { default as Header } from './template/Header';
+export type { IHeaderProps } from './template/Header';
+
 export { DateUtils } from './utils/date/DateUtils';
 export { I18nUtils } from './utils/i18n/I18nUtils';
 export type { I18nTranslate } from './utils/i18n/I18nUtils';

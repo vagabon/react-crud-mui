@@ -61,7 +61,7 @@ const NewsForm: React.FC = () => {
                 name='image'
                 handleChangeFile={handleChangeFile(newsForm.id, handleChange(newsForm, props.handleChange))}
               />
-              <MdFormSwitch label='Actif' name='active' {...props} />;
+              <MdFormSwitch label='Actif' name='active' {...props} />
             </>
           )}
         </MdForm>

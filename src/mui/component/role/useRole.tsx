@@ -8,7 +8,7 @@ export const useRole = () => {
   const currentUser = useAppSelector<ICurrentUserDto<IUserDto> | null>((state) => state.auth.user);
 
   const hasUserRole = useCallback(
-    (roles: string[]) => {
+    (roles?: string[]) => {
       return RoleUtils.hasProfile(currentUser, roles);
     },
     [currentUser],

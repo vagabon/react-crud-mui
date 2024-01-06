@@ -33,8 +33,11 @@ html, body, #root { height: 100%; overflow: hidden; }
 .heigth100 { height: 100%; }
 
 .info { color: var(--mui-palette-info-main) !important; }
+.mode-dark .info { color: var(--mui-palette-info-main-dark) !important; }
 .success { color: var(--mui-palette-success-main) !important; }
+.mode-dark .success { color: var(--mui-palette-success-main-dark) !important; }
 .error { color: var(--mui-palette-error-main) !important; }
+.mode-dark .error { color: var(--mui-palette-error-main-dark) !important; }
 
 /*** ROOT ***/
 :root {
